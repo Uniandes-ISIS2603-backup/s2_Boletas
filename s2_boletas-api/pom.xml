@@ -6,14 +6,14 @@
 
     <parent>
         <groupId>co.edu.uniandes.csw</groupId>
-        <artifactId>s2_dns</artifactId>
+        <artifactId>s2_boletas</artifactId>
         <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>sX_dns-api</artifactId>
+    <artifactId>s2_boletas-api</artifactId>
     <packaging>war</packaging>
 
-    <name>s2_dns-api</name>
+    <name>s2_boletas-api</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -23,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>co.edu.uniandes.csw</groupId>
-            <artifactId>s2_dns-back</artifactId>
+            <artifactId>s2_boletas-back</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>

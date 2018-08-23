@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
     
     <groupId>co.edu.uniandes.csw</groupId>
-    <artifactId>s2_dns</artifactId>
+    <artifactId>s2_boletas</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <name>s2_dns</name>
+    <name>s2_boletas</name>
  
     <modules>
-        <module>s2_biblioteca-back</module>
-        <module>sX_biblioteca-api</module>
+        <module>s2_boletas-back</module>
+        <module>s2_boletas-api</module>
     </modules>
     
     <repositories>

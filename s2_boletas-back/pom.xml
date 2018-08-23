@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>co.edu.uniandes.csw</groupId>
-        <artifactId>s2_dns</artifactId>
+        <artifactId>s2_boletas</artifactId>
         <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>s2_dns-back</artifactId>
+    <artifactId>s2_boletas-back</artifactId>
     <packaging>jar</packaging>
-    <name>s2_dns-back</name>
+    <name>s2_boletas-back</name>
     
     <dependencies>
         <!-- Soporte Eclipselink -->
