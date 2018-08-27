@@ -34,6 +34,10 @@ public class EspectaculoDTO implements Serializable
     public EspectaculoDTO(EspectaculoEntity espectaculo)
     {
         artista = espectaculo.darArtista();
+        
+        fecha = espectaculo.darFecha();
+        
+        descripcion = espectaculo.darDescripcion();
     }
     
     public EspectaculoEntity toEntity()
