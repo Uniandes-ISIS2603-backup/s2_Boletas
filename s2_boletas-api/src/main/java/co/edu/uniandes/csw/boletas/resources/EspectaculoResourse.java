@@ -7,9 +7,13 @@ package co.edu.uniandes.csw.boletas.resources;
 
 import co.edu.uniandes.csw.boletas.dtos.EspectaculoDTO;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.POST;
+import javax.ws.rs.PathParam;
 
 
 
@@ -18,14 +22,23 @@ import javax.ws.rs.Produces;
  *
  * @author estudiante
  */
-@Path("Espectaculos")
+@Path("espectaculos")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class EspectaculoResourse 
 {
+    
+    @POST
     public EspectaculoDTO createEspectaculo(EspectaculoDTO espectaculo)
     {
-        return null;   
+        return espectaculo;   
+    }
+    
+    @GET
+    @Path("{espectaculoId : \\d+}")
+    public EspectaculoDTO getEspectaculo(@PathParam("espectaculoId") Long especatculoId)
+    {
+        return null;
     }
 }
