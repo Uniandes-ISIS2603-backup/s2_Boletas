@@ -15,6 +15,11 @@ import java.util.Date;
  */
 public class EspectaculoDTO implements Serializable
 {
+    
+    public Long espectaculoId;
+    
+    public String nombre;
+    
     public Date fecha;
     
     public String descripcion;
@@ -28,12 +33,66 @@ public class EspectaculoDTO implements Serializable
     
     public EspectaculoDTO(EspectaculoEntity espectaculo)
     {
-        
+        artista = espectaculo.darArtista();
     }
     
     public EspectaculoEntity toEntity()
     {
-        return null;
+        EspectaculoEntity espectaculo = new EspectaculoEntity();
+        
+        espectaculo.cambiarArtista(this.artista);
+        
+        return espectaculo;
+    }
+    
+    public Long getId()
+    {
+        return espectaculoId;
+    }
+    
+    public void cambiarId(Long id)
+    {
+        espectaculoId = id;
+    }
+    
+    public String getName()
+    {
+        return nombre;
+    }
+    
+    public void cambiarNombre(String nombre)
+    {
+        this.nombre = nombre;
+    }
+    
+    public Date getDate()
+    {
+        return fecha;
+    }
+    
+    public void cambiarFecha(Date pFecha)
+    {
+        this.fecha = pFecha;
+    }
+    
+    public String getDescription()
+    {
+        return descripcion;
+    }
+    
+    public void cambiarDescripcion(String description)
+    {
+        this.descripcion = description;
+    }
+    
+    public String getArtist()
+    {
+        return artista;
+    }
+    
+    public void cambiarArtista(String artist)
+    {
+        this.artista = artist;
     }
     
 }
