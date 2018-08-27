@@ -1,4 +1,4 @@
-/*
+/*                                              
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -23,6 +23,36 @@ public class EspectaculoEntity extends BaseEntity implements Serializable
     private String descripcion;
     
     private String artista;
+    
+    public String darNombre()
+    {
+        return nombre;
+    }
+    
+    public void cambiarNombre(String pNombre)
+    {
+        this.nombre = pNombre;
+    }
+    
+    public Date darFecha()
+    {
+        return fecha;
+    }
+    
+    public void cambiarFecha(Date date)
+    {
+        fecha = date;
+    }
+    
+    public String darDescripcion()
+    {
+        return descripcion;
+    }
+    
+    public void cambiarDescripcion(String descrip)
+    {
+        this.descripcion = descrip;
+    }
     
     public void cambiarArtista(String artist)
     {
