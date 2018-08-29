@@ -16,6 +16,9 @@ import javax.persistence.Entity;
 @Entity
 public class EspectaculoEntity extends BaseEntity implements Serializable
 {
+    
+    private Long id;
+    
     private String nombre;
     
     private Date fecha;
@@ -23,6 +26,16 @@ public class EspectaculoEntity extends BaseEntity implements Serializable
     private String descripcion;
     
     private String artista;
+    
+    public Long darId()
+    {
+        return id;
+    }
+    
+    public void cambiarId(Long nuevo)
+    {
+        id = nuevo;
+    }
     
     public String darNombre()
     {

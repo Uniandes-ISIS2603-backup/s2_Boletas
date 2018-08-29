@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.boletas.dtos;
-import java.util.Date
+import java.io.Serializable;
+import java.util.Date;
 /**
  *
  * @author Gabriel Hamilton

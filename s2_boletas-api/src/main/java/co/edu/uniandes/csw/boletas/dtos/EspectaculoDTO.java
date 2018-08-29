@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.boletas.dtos;
 import co.edu.uniandes.csw.bibilioteca.entities.EspectaculoEntity;
 import java.io.Serializable;
 import java.util.Date;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
@@ -33,18 +35,32 @@ public class EspectaculoDTO implements Serializable
     
     public EspectaculoDTO(EspectaculoEntity espectaculo)
     {
-        artista = espectaculo.darArtista();
+        if (espectaculo != null)
+        {
+            espectaculoId = espectaculo.darId();
+            
+            nombre = espectaculo.darNombre();
         
-        fecha = espectaculo.darFecha();
+            artista = espectaculo.darArtista();
         
-        descripcion = espectaculo.darDescripcion();
+            fecha = espectaculo.darFecha();
+        
+            descripcion = espectaculo.darDescripcion();  
+        }
+        
     }
     
     public EspectaculoEntity toEntity()
     {
         EspectaculoEntity espectaculo = new EspectaculoEntity();
         
+        espectaculo.cambiarNombre(this.nombre);
+        
         espectaculo.cambiarArtista(this.artista);
+        
+        espectaculo.cambiarDescripcion(this.descripcion);
+        
+        espectaculo.cambiarFecha(this.fecha);
         
         return espectaculo;
     }
@@ -99,4 +115,9 @@ public class EspectaculoDTO implements Serializable
         this.artista = artist;
     }
     
+     @Override
+    public String toString() 
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }
