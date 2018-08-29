@@ -10,6 +10,7 @@ import javax.enterprise.inject.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
@@ -28,7 +29,7 @@ public class CompraResource {
     {
         return compra;   
     }
-    
+       
     @GET
     @Path("{compraid : \\d+}")
     public CompraDTO getCompra(@PathParam("compraid") Long compraid)
