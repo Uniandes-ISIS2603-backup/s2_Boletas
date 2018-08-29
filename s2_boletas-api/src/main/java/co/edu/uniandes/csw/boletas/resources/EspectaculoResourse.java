@@ -5,8 +5,10 @@
  */
 package co.edu.uniandes.csw.boletas.resources;
 
+import co.edu.uniandes.csw.bibilioteca.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.dtos.EspectaculoDTO;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -29,9 +31,18 @@ import javax.ws.rs.PathParam;
 public class EspectaculoResourse 
 {
     
+    private static final Logger LOGGER = Logger.getLogger(EspectaculoResourse.class.getName());
+    
     @POST
     public EspectaculoDTO createEspectaculo(EspectaculoDTO espectaculo)
-    {
+    { 
+        
+        LOGGER.info("EspectaculoResourse createEspectaculo: input: " + espectaculo.toString());
+        
+        EspectaculoEntity entity = espectaculo.toEntity();
+        
+        
+        
         return espectaculo;   
     }
     
