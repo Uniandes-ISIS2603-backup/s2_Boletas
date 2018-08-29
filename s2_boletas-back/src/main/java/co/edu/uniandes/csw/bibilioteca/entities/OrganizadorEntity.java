@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.bibilioteca.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
@@ -19,6 +20,8 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
     private String password;
     private int presupuesto;
     private int ganancia;
+    @Id 
+    public Long organizadorId;
     
     public String darNombre()
     {
@@ -39,13 +42,32 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
         return ganancia;
     }
     
-    public void cambiarGanancia(int gana)
+    public void setNombre(String nom)
+    {
+        this.nombre=nom;
+    }
+    public void setPassword (String pass)
+    {
+        this.password=pass;
+    }
+    
+    public void setGanancia(int gana)
     {
         this.ganancia= gana;
     }
-    public void cambiarPresupuesto (int presup)
+    public void setPresupuesto (int presup)
     {
         this.presupuesto=presup;
+    }
+    
+    public void setId(Long id)
+    {
+        organizadorId=id;
+    }
+    
+    public Long darId()
+    {
+        return organizadorId;
     }
     
 }

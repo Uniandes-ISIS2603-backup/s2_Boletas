@@ -36,8 +36,11 @@ public class OrganizadorDTO implements Serializable  {
     public OrganizadorEntity toEntity()
     {
         OrganizadorEntity entity= new OrganizadorEntity();
-        entity.cambiarGanancia(this.ganancia);
-        entity.cambiarPresupuesto(this.presupuesto);
+        entity.setNombre(nombre);
+        entity.setPassword(password);
+        entity.setGanancia(this.ganancia);
+        entity.setPresupuesto(this.presupuesto);
+        entity.setId(organizadorId);
         return entity;
         
     }
@@ -47,25 +50,6 @@ public class OrganizadorDTO implements Serializable  {
         return organizadorId;
     }
     
-    public String darNombre()
-    {
-        return nombre;
-    }
-    
-    public String darPassword()
-    {
-        return password;
-    }
-    
-    public int darPresupueto()
-    {
-        return presupuesto;
-    }
-    
-    public int darGanancia()
-    {
-       return ganancia;
-    }
     
     
 }
