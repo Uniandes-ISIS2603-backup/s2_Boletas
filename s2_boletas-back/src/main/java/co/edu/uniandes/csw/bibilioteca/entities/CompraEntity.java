@@ -3,50 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.boletas.dtos;
-import co.edu.uniandes.csw.bibilioteca.entities.CompraEntity;
-import java.io.Serializable;
+package co.edu.uniandes.csw.bibilioteca.entities;
+
 import java.util.Date;
+
 /**
  *
- * @author Gabriel Hamilton
+ * @author estudiante
  */
-        
-
-public class CompraDTO implements Serializable {
+public class CompraEntity {
     
     private long id;
     private int costoTotal;
     private boolean envio;
     private  Date fecha;
-    private String direccion;
-    
-    public CompraDTO ()
-    {
-        
-    }
-    
-    
-    public CompraDTO (CompraEntity compra)
-    {
-        id = compra.getId();
-        costoTotal = compra.getCostoTotal();
-        envio = compra.getEnvio();
-        fecha = compra.getFecha();
-        direccion = compra.getDireccion();
-        
-    }
-    
-    public CompraEntity toEntity()
-    {
-        CompraEntity compra = new CompraEntity();
-        compra.setId(id);
-        compra.setCosto(costoTotal);
-        compra.setEnvio(envio);
-        compra.setFecha(fecha);
-        compra.setDireccion(direccion);
-        return compra;
-    }
+    private String direccion;    
     
     public long getId()
     {
@@ -97,6 +68,5 @@ public class CompraDTO implements Serializable {
     {
         fecha= fechaE;
     }
-   
     
 }
