@@ -23,7 +23,7 @@ import javax.ws.rs.PathParam;
  *
  * @author estudiante
  */
-@Path("espectaculos")
+@Path("clientes")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -48,14 +48,14 @@ public class ClienteResourse
     
     @PUT
     @Path("{clienteId : \\d+}")
-    public ClienteDTO uptadeEspectaculo(@PathParam("clienteId") Long espectaculoId, ClienteDTO cliente)
+    public ClienteDTO updateCliente(@PathParam("clienteId") Long clienteId, ClienteDTO cliente)
     {
         return null;
     }
     
     @GET
     @Path("{clienteId : \\d+}")
-    public ClienteDTO getCliente(@PathParam("clienteId") Long especatculoId)
+    public ClienteDTO getCliente(@PathParam("clienteId") Long clienteId)
     {
         return null;
     }
@@ -68,7 +68,7 @@ public class ClienteResourse
     
     @DELETE
     @Path("{clienteId: \\d+}")
-    public void deleteEditorial(@PathParam("clienteId") Long editorialsId) 
+    public void deleteCliente(@PathParam("clienteId") Long clienteId) 
     { 
     }
 }

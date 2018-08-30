@@ -23,7 +23,7 @@ import javax.ws.rs.PathParam;
  *
  * @author estudiante
  */
-@Path("espectaculos")
+@Path("organizadores")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -33,7 +33,7 @@ public class OrganizadorResourse
     private static final Logger LOGGER = Logger.getLogger(ClienteResourse.class.getName());
     
     @POST
-    public OrganizadorDTO createCliente(OrganizadorDTO organizador)
+    public OrganizadorDTO createOrganizador(OrganizadorDTO organizador)
     { 
         
         LOGGER.info("OrganizadorResourse createOrganizador: input: " + organizador.toString());
@@ -47,27 +47,27 @@ public class OrganizadorResourse
     
     @PUT
     @Path("{organizadorId : \\d+}")
-    public OrganizadorDTO uptadeEspectaculo(@PathParam("organizadorId") Long espectaculoId, OrganizadorDTO cliente)
+    public OrganizadorDTO updateOrganizador(@PathParam("organizadorId") Long organizadorId, OrganizadorDTO organizador)
     {
         return null;
     }
     
     @GET
     @Path("{organizadorId : \\d+}")
-    public OrganizadorDTO getCliente(@PathParam("organizadorId") Long especatculoId)
+    public OrganizadorDTO getOrganizador(@PathParam("organizadorId") Long organizadorId)
     {
         return null;
     }
     
     @GET 
-    public List<OrganizadorDTO> getCliente()
+    public List<OrganizadorDTO> getOrganizador()
     {
         return null;
     }
     
     @DELETE
     @Path("{organizadorId: \\d+}")
-    public void deleteEditorial(@PathParam("organizadorId") Long editorialsId) 
+    public void deleteOrganizador(@PathParam("organizadorId") Long organizadorId) 
     { 
     }
 }
