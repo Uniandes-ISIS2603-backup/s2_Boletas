@@ -27,7 +27,7 @@ import javax.ws.rs.Produces;
 @Path("sillas")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
+@RequestScoped //A partir de ahí va a iniciar una transacción.
 public class SillaResource {
     private static final Logger LOGGER = Logger.getLogger(SillaResource.class.getName());
     

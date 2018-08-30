@@ -17,14 +17,9 @@ import javax.ws.rs.Produces;
  *
  * @author Jhonatan Amórtegui
  */
-@Path("sillas")
-@Produces("application/json")
-@Consumes("application/json")
-@RequestScoped
 public class SillaDTO implements Serializable{
     private Long id;
     private String numero;
-    private String tipo;
     
     public SillaDTO(SillaEntity entity)
     {

@@ -16,13 +16,9 @@ import javax.ws.rs.Produces;
  *
  * @author Jhonatan Amórtegui
  */
-@Path("lugares")
-@Produces("application/json")
-@Consumes("application/json")
-@RequestScoped       //A partir de ahí va a iniciar una transacción.
+ 
 public class LugarDTO implements Serializable {
     private Long id;
-    private String ubicacion;
     private Integer numSillas; 
     private String direccion;
     private String nombre;
