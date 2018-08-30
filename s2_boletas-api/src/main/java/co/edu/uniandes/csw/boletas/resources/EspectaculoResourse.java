@@ -22,7 +22,7 @@ import javax.ws.rs.PathParam;
 
 /**
  *
- * @author estudiante
+ * @author Sebastian Rodriguez
  */
 @Path("espectaculos")
 @Produces("application/json")
