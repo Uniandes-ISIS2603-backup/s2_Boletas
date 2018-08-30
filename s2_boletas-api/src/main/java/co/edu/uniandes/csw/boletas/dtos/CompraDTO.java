@@ -15,9 +15,9 @@ import java.util.Date;
 
 public class CompraDTO implements Serializable {
     
-    private long id;
-    private int costoTotal;
-    private boolean envio;
+    private Long id;
+    private Integer costoTotal;
+    private Boolean envio;
     private  Date fecha;
     private String direccion;
     
@@ -48,17 +48,17 @@ public class CompraDTO implements Serializable {
         return compra;
     }
     
-    public long getId()
+    public Long getId()
     {
         return id;
     }
     
-    public int getCostoTotal()
+    public Integer getCostoTotal()
     {
         return costoTotal;
     }
     
-    public boolean getEnvio()
+    public Boolean getEnvio()
     {
         return envio;
     }
@@ -73,17 +73,17 @@ public class CompraDTO implements Serializable {
         return direccion;
     }
     
-    public void setId(long idE)
+    public void setId(Long idE)
     {
         id=idE;
     }
     
-    public void setCosto(int costoT)
+    public void setCosto(Integer costoT)
     {
         costoTotal= costoT;
     }
     
-    public void setEnvio(boolean envioP)
+    public void setEnvio(Boolean envioP)
     {
         envio= envioP;
     }
