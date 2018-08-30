@@ -3,27 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.boletas.dtos;
+package co.edu.uniandes.csw.boletas.resources;
 
-import java.io.Serializable;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-
 /**
  *
  * @author Jhonatan Amórtegui
  */
+
 @Path("sillas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class SillaDTO implements Serializable{
-    private Long id;
-    public SillaDTO()
-    {
-        
-    }
+public class SillaResource {
+    private static final Logger LOGGER = Logger.getLogger(SillaResource.class.getName());
 }

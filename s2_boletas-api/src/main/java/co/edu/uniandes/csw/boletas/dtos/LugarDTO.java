@@ -11,18 +11,19 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-
 /**
  *
  * @author Jhonatan Amórtegui
  */
-@Path("sillas")
+@Path("lugares")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
-public class SillaDTO implements Serializable{
+@RequestScoped       //A partir de ahí va a iniciar una transacción.
+public class LugarDTO implements Serializable {
     private Long id;
-    public SillaDTO()
+    
+    
+    public LugarDTO()
     {
         
     }

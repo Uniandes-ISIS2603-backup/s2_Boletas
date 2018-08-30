@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.boletas.dtos;
+package co.edu.uniandes.csw.boletas.resources;
 
 /**
  *
- * @author estudiante
+ * @author Jhonatan Amórtegui
  */
-public class LugatDTO {
+public class LugatResource {
     
 }
