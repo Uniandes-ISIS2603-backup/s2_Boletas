@@ -14,7 +14,7 @@ import javax.ws.rs.*;
  *
  * @author Gabriel hamilton
  */
-@Path("compra")
+@Path("compras")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
