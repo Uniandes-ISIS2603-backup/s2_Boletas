@@ -10,9 +10,10 @@ package co.edu.uniandes.csw.boletas.dtos;
  * @author Diego Camacho
  */
 import co.edu.uniandes.csw.bibilioteca.entities.BoletaEntity;
+import java.io.Serializable;
 import java.util.Date;
 
-public class BoletaDTO {
+public class BoletaDTO implements Serializable {
     
     public Long boletaID;
     

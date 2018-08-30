@@ -5,26 +5,21 @@
  */
 package co.edu.uniandes.csw.bibilioteca.entities;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
 
 /**
  *
  * @author estudiante
  */
-public class BoletaEntity {
-    private Long id;
+@Entity
+public class BoletaEntity extends BaseEntity implements Serializable       
+{
     
     private Integer precio;
     
     private Date fecha;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Integer getPrecio() {
         return precio;
