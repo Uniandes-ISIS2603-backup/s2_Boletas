@@ -7,10 +7,7 @@ package co.edu.uniandes.csw.boletas.dtos;
 
 import co.edu.uniandes.csw.bibilioteca.entities.SillaEntity;
 import java.io.Serializable;
-import javax.enterprise.context.RequestScoped;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+
 
 
 /**
@@ -20,6 +17,11 @@ import javax.ws.rs.Produces;
 public class SillaDTO implements Serializable{
     private Long id;
     private String numero;
+    
+    public SillaDTO()
+    {
+        
+    }
     
     public SillaDTO(SillaEntity entity)
     {
@@ -36,4 +38,22 @@ public class SillaDTO implements Serializable{
         //Me falta el tipo
         return sillaEntity;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+    
+    
 }

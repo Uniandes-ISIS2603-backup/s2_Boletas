@@ -7,10 +7,7 @@ package co.edu.uniandes.csw.boletas.dtos;
 
 import co.edu.uniandes.csw.bibilioteca.entities.LugarEntity;
 import java.io.Serializable;
-import javax.enterprise.context.RequestScoped;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+
 
 /**
  *
@@ -22,7 +19,10 @@ public class LugarDTO implements Serializable {
     private Integer numSillas; 
     private String direccion;
     private String nombre;
-    
+    public LugarDTO()
+    {
+        
+    }
     public LugarDTO(LugarEntity entity)
     {
         this.id = entity.getId();
@@ -42,4 +42,38 @@ public class LugarDTO implements Serializable {
         lugarEntity.setNombre(this.nombre);
         return lugarEntity;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Integer getNumSillas() {
+        return numSillas;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNumSillas(Integer numSillas) {
+        this.numSillas = numSillas;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
 }
