@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.dtos;
 
+import co.edu.uniandes.csw.bibilioteca.entities.LugarEntity;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
@@ -21,10 +22,28 @@ import javax.ws.rs.Produces;
 @RequestScoped       //A partir de ahí va a iniciar una transacción.
 public class LugarDTO implements Serializable {
     private Long id;
+    private String ubicacion;
+    private Integer numSillas; 
+    private String direccion;
+    private String nombre;
     
-    
-    public LugarDTO()
+    public LugarDTO(LugarEntity entity)
     {
-        
+        this.id = entity.getId();
+        //Falta Ubicación
+        this.numSillas = entity.getNumSillas();
+        this.direccion = entity.getDireccion();
+        this.nombre = entity.getNombre();
+    }
+    
+    public LugarEntity toEntity()
+    {
+        LugarEntity lugarEntity = new LugarEntity();
+        lugarEntity.setId(this.id);
+        //Falta Ubicación
+        lugarEntity.setNumSillas(this.numSillas);
+        lugarEntity.setDireccion(this.direccion);
+        lugarEntity.setNombre(this.nombre);
+        return lugarEntity;
     }
 }
