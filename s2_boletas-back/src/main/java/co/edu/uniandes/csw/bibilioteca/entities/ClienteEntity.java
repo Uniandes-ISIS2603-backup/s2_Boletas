@@ -22,44 +22,39 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     
     @Id
     public Long clienteId;
-    
-    public String darNombre()
-    {
+
+    public String getNombre() {
         return nombre;
     }
-    
-    public String darPassword()
-    {
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPassword() {
         return password;
     }
-    
-    public String darPago()
-    {
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPago() {
         return pago;
     }
-    
-    public void setPago (String pago)
-    {
-        this.pago= pago;
+
+    public void setPago(String pago) {
+        this.pago = pago;
     }
-    
-    public void setNombre(String nom)
-    {
-        this.nombre= nom;
-    }
-    public void setPassword (String pass)
-    {
-        this.password=pass;
-    }
-    
-    public void setId(Long id)
-    {
-        clienteId= id;
-    }
-    
-    public Long darId()
-    {
+
+    public Long getClienteId() {
         return clienteId;
     }
+
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
+    }
+    
+
     
 }
