@@ -23,21 +23,21 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
     @Id 
     public Long organizadorId;
     
-    public String darNombre()
+    public String getNombre()
     {
         return nombre;
     }
     
-    public String darPassword()
+    public String getPassword()
     {
         return password;
     }
-    public int darPresupuesto()
+    public int getPresupuesto()
     {
         return presupuesto;
     }
     
-    public int darGanancia()
+    public int getGanancia()
     {
         return ganancia;
     }
@@ -51,9 +51,9 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
         this.password=pass;
     }
     
-    public void setGanancia(int gana)
+    public void setGanancia(int ganancia)
     {
-        this.ganancia= gana;
+        this.ganancia= ganancia;
     }
     public void setPresupuesto (int presup)
     {
@@ -65,7 +65,7 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
         organizadorId=id;
     }
     
-    public Long darId()
+    public Long getId()
     {
         return organizadorId;
     }
