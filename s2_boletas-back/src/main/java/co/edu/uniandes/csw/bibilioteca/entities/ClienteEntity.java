@@ -16,8 +16,10 @@ import javax.persistence.Id;
 @Entity
 public class ClienteEntity extends BaseEntity implements Serializable {
     
+    private String usuario;
     private String nombre;
     private String password;
+    private int cedula;
     private String pago; 
     
     @Id
@@ -54,6 +56,27 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     public void setClienteId(Long clienteId) {
         this.clienteId = clienteId;
     }
+    
+    public String getUsuario()
+    {
+        return usuario;
+    }
+    
+    public void setUsuario(String usuario)
+    {
+        this.usuario=usuario;
+    }
+    
+    public int getCedula()
+    {
+        return cedula;
+    }
+    
+    public void setCedula(int cedula)
+    {
+        this.cedula=cedula;
+    }
+   
     
 
     
