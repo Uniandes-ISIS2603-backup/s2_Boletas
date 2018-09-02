@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.bibilioteca.entities;
+package co.edu.uniandes.csw.boletas.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,6 +24,8 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "espectaculo")
     private List<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
     
+    
+    @javax.persistence.Id
     private Long id;
 
     private String nombre;

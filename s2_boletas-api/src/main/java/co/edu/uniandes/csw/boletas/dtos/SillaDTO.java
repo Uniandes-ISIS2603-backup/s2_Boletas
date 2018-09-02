@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.dtos;
 
-import co.edu.uniandes.csw.bibilioteca.entities.SillaEntity;
+import co.edu.uniandes.csw.boletas.entities.SillaEntity;
 import java.io.Serializable;
 
 

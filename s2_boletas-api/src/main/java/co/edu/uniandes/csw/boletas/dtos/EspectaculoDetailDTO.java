@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.boletas.dtos;
 
-import co.edu.uniandes.csw.bibilioteca.entities.BoletaEntity;
-import co.edu.uniandes.csw.bibilioteca.entities.EspectaculoEntity;
+import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
+import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.boletas.dtos;
 
 import java.io.Serializable;
-import co.edu.uniandes.csw.bibilioteca.entities.OrganizadorEntity;
+import co.edu.uniandes.csw.boletas.entities.OrganizadorEntity;
 
 /**
  *
