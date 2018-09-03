@@ -5,14 +5,14 @@
  */
 package co.edu.uniandes.csw.boletas.dtos;
 
-import co.edu.uniandes.csw.bibilioteca.entities.SillaEntity;
+import co.edu.uniandes.csw.boletas.entities.SillaEntity;
 import java.io.Serializable;
 
 
 
 /**
  *
- * @author Jhonatan Amórtegui
+ * @author ja.amortegui10
  */
 public class SillaDTO implements Serializable{
     private Long id;

@@ -5,10 +5,78 @@
  */
 package co.edu.uniandes.csw.boletas.persistence;
 
+import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 /**
  *
- * @author estudiante
+ * @author Sebastian Rodriguez Beltran  
  */
-public class EspectaculoPersistence {
+
+@Stateless
+public class EspectaculoPersistence
+{
     
+    private static final Logger LOGGER = Logger.getLogger(EspectaculoPersistence.class.getName());
+    
+    @PersistenceContext(unitName = "DnsPU")
+    protected EntityManager em;
+    
+    
+    public EspectaculoEntity create(EspectaculoEntity espectaculo)
+    {
+        LOGGER.log(Level.INFO, "Creando un nuevo espectaculo");
+        
+        em.persist(espectaculo);
+        
+        LOGGER.log(Level.INFO, "Saliendo de crear un nuevo espectaculo");
+        
+        return espectaculo;
+    }
+    
+    public EspectaculoEntity find(Long id)
+    {
+        return em.find(EspectaculoEntity.class, id);
+    }
+    
+    public List<EspectaculoEntity> findAll()
+    {
+        TypedQuery<EspectaculoEntity> query = em.createQuery("",EspectaculoEntity.class);
+        return query.getResultList();
+    }
+         
+    public EspectaculoEntity findByName(String name)
+    {
+        TypedQuery query = em.createQuery("Select e From EspectaculoEntity e where e.name =:name", EspectaculoEntity.class);
+        
+        query = query.setParameter("name",name);
+        
+        List<EspectaculoEntity> lista = query.getResultList();
+        
+        EspectaculoEntity espec = null;
+        
+        if(!lista.isEmpty())
+        {
+            espec = lista.get(0);
+        }
+        return espec;
+    }
+    
+    public EspectaculoEntity update(EspectaculoEntity entity)
+    {
+        return em.merge(entity);
+    }
+    
+    public void delete(Long id)
+    {
+        EspectaculoEntity entity = em.find(EspectaculoEntity.class,id);
+        
+        em.remove(entity);
+    }
 }

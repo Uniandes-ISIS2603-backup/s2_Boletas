@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.bibilioteca.entities;
+package co.edu.uniandes.csw.boletas.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,8 +18,12 @@ import javax.persistence.Id;
 @Entity
 public class ClienteEntity extends BaseEntity implements Serializable {
     
+    private String usuario;
+    @PodamExclude
+    @OneToMany(mappedBy= "cliente")
     private String nombre;
     private String password;
+    private int cedula;
     private String pago; 
     
     @Id
@@ -54,6 +60,27 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     public void setClienteId(Long clienteId) {
         this.clienteId = clienteId;
     }
+    
+    public String getUsuario()
+    {
+        return usuario;
+    }
+    
+    public void setUsuario(String usuario)
+    {
+        this.usuario=usuario;
+    }
+    
+    public int getCedula()
+    {
+        return cedula;
+    }
+    
+    public void setCedula(int cedula)
+    {
+        this.cedula=cedula;
+    }
+   
     
 
     

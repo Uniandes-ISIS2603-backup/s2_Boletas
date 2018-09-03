@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.resources;
 
-import co.edu.uniandes.csw.bibilioteca.entities.OrganizadorEntity;
+import co.edu.uniandes.csw.boletas.entities.OrganizadorEntity;
 import co.edu.uniandes.csw.boletas.dtos.OrganizadorDTO;
 import java.util.List;
 import java.util.logging.Logger;

@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.boletas.dtos;
 
 import java.io.Serializable;
-import co.edu.uniandes.csw.bibilioteca.entities.OrganizadorEntity;
+import co.edu.uniandes.csw.boletas.entities.OrganizadorEntity;
 
 /**
  *
@@ -27,10 +27,10 @@ public class OrganizadorDTO implements Serializable  {
     
     public OrganizadorDTO(OrganizadorEntity organizador )
     {
-        nombre= organizador.darNombre();
-        password= organizador.darPassword();
-        ganancia=organizador.darGanancia();
-        presupuesto=organizador.darPresupuesto();
+        nombre= organizador.getNombre();
+        password= organizador.getPassword();
+        ganancia=organizador.getGanancia();
+        presupuesto=organizador.getPresupuesto();
     }
     
     public OrganizadorEntity toEntity()
@@ -38,12 +38,18 @@ public class OrganizadorDTO implements Serializable  {
         OrganizadorEntity entity= new OrganizadorEntity();
         entity.setNombre(nombre);
         entity.setPassword(password);
-        entity.setGanancia(this.ganancia);
+        entity.setGanancia(ganancia);
         entity.setPresupuesto(this.presupuesto);
         entity.setId(organizadorId);
         return entity;
         
     }
+    
+    
+    
+    
+    
+    
     
     public Long darId()
     {

@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "9346c812-6360-4cc9-885f-75260d048eb2",
+		"name": "BoletasSillaCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateSilla",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"numero\":\"A1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/sillas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"sillas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateSilla",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"numero\":\"Ax1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/sillas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"sillas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSilla",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/sillas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"sillas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSillas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/sillas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"sillas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteSilla",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/sillas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"sillas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
