@@ -50,7 +50,7 @@ public class EspectaculoResourse
     @Path("{espectaculoId : \\d+}")
     public EspectaculoDTO uptadeEspectaculo(@PathParam("espectaculoId") Long espectaculoId, EspectaculoDTO espec)
     {
-        return null;
+        return espec;
     }
     
     @GET

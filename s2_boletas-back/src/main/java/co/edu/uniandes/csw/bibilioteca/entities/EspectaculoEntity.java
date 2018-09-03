@@ -54,7 +54,7 @@ public class EspectaculoEntity extends BaseEntity implements Serializable
     
     public void cambiarFecha(Date date)
     {
-        fecha = date;
+        this.fecha = date;
     }
     
     public String darDescripcion()
