@@ -5,7 +5,11 @@
  */
 package co.edu.uniandes.csw.boletas.resources;
 
+import co.edu.uniandes.csw.bibilioteca.entities.CompraEntity;
+import co.edu.uniandes.csw.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.dtos.CompraDTO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.*;
@@ -20,10 +24,16 @@ import javax.ws.rs.*;
 @RequestScoped
 public class CompraResource {
  
+    
+    private static final Logger LOGGER = Logger.getLogger(CompraResource.class.getName());
+    
+    
     @POST
-    public CompraDTO postCompra(CompraDTO compra)
+    public CompraDTO postCompra(CompraDTO compra) throws BusinessLogicException
     {
-        return compra;   
+        LOGGER.log(Level.INFO, "CompraResource postCompra: input: {0}", compra.toString());
+        
+       return compra;   
     }
        
     @GET
