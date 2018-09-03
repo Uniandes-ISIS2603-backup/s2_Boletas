@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author Sebastian Rodriguez 
  */
 public class EspectaculoDetailDTO extends EspectaculoDTO implements Serializable
 {

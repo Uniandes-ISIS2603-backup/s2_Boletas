@@ -23,7 +23,11 @@ import javax.ws.rs.PathParam;
 
 /**
  *
+<<<<<<< HEAD
+ * @author Sebastian Rodriguez
+=======
  * @author Sebastian Rodriguez Beltran
+>>>>>>> master
  */
 @Path("espectaculos")
 @Produces("application/json")
@@ -51,7 +55,7 @@ public class EspectaculoResourse
     @Path("{espectaculoId : \\d+}")
     public EspectaculoDTO uptadeEspectaculo(@PathParam("espectaculoId") Long espectaculoId, EspectaculoDTO espec)
     {
-        return null;
+        return espec;
     }
     
     @GET
