@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.boletas.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -17,6 +19,8 @@ import javax.persistence.Id;
 public class OrganizadorEntity extends BaseEntity implements Serializable{
     
     private String nombre;
+    @PodamExclude
+    @OneToMany(mappedBy="organizador")
     private String password;
     private int presupuesto;
     private int ganancia;
