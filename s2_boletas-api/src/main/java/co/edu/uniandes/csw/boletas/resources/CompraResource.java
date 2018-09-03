@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.boletas.resources;
 
-import co.edu.uniandes.csw.bibilioteca.entities.CompraEntity;
-import co.edu.uniandes.csw.biblioteca.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.boletas.entities.CompraEntity;
+import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.dtos.CompraDTO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
