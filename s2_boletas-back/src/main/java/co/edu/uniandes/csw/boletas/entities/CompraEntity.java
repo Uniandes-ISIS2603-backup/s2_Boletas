@@ -16,14 +16,13 @@ import java.util.Date;
 @javax.persistence.Entity
 public class CompraEntity extends BaseEntity implements Serializable{
     
-    @javax.persistence.Id
     private Long id;
     
     private Integer costoTotal;
     
     private Boolean envio;
     
-    private  Date fecha;
+    private Date fecha;
     
     private String direccion;    
     

@@ -22,8 +22,8 @@ public class CompraPersistence {
     
 private static final Logger LOGGER = Logger.getLogger(CompraPersistence.class.getName());
    
-//dnsPU --- persistence.xml (01/09/2018)
-//@PersistenceContext(unitName = "dnsPU")
+//DnsPU --- persistence.xml (01/09/2018)
+//@PersistenceContext(unitName = "DnsPU")
 //protected EntityManager em;
     
        
