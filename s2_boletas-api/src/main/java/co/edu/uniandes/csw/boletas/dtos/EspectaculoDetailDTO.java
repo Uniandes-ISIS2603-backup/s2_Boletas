@@ -5,8 +5,11 @@
  */
 package co.edu.uniandes.csw.boletas.dtos;
 
-import co.edu.uniandes.csw.bibilioteca.entities.EspectaculoEntity;
+import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
+import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,6 +17,9 @@ import java.io.Serializable;
  */
 public class EspectaculoDetailDTO extends EspectaculoDTO implements Serializable
 {
+    
+    private List<BoletaDTO> boletas;
+    
     public EspectaculoDetailDTO()
     {
        
@@ -22,5 +28,39 @@ public class EspectaculoDetailDTO extends EspectaculoDTO implements Serializable
     public EspectaculoDetailDTO(EspectaculoEntity espectaculo)
     {
         super(espectaculo);
+        if(espectaculo != null)
+        {
+            if(espectaculo.getBoletas() != null)
+            {
+                boletas = new ArrayList<>();
+                for(BoletaEntity bol: espectaculo.getBoletas())
+                {
+                    boletas.add(new BoletaDTO(bol));
+                }
+            }
+        }
+    }
+    
+    public List<BoletaDTO> getBoletas()
+    {
+        return boletas;
+    }
+    
+    public void setBoletas(List<BoletaDTO> boletas)
+    {
+        this.boletas = boletas;
+    }
+    
+    @Override
+    public EspectaculoEntity toEntity() {
+        EspectaculoEntity espectaculoEntity = super.toEntity();
+        if (boletas != null) {
+            List<BoletaEntity> booksEntity = new ArrayList<>();
+            for (BoletaDTO dtoBook : boletas) {
+                booksEntity.add(dtoBook.toEntity());
+            }
+            espectaculoEntity.setBoletas(booksEntity);
+        }
+        return espectaculoEntity;
     }
 }

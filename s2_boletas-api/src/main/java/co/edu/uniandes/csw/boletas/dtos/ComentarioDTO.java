@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.dtos;
 
-import co.edu.uniandes.csw.bibilioteca.entities.ComentarioEntity;
+import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
 
 /**
  *

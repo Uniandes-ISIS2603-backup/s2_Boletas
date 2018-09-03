@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.resources;
 
-import co.edu.uniandes.csw.bibilioteca.entities.SillaEntity;
+import co.edu.uniandes.csw.boletas.entities.SillaEntity;
 import co.edu.uniandes.csw.boletas.dtos.SillaDTO;
 import java.util.List;
 import java.util.logging.Logger;
@@ -21,7 +21,7 @@ import javax.ws.rs.Produces;
 
 /**
  *
- * @author Jhonatan Amórtegui
+ * @author ja.amortegui10
  */
 
 @Path("sillas")

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.boletas.dtos;
-import co.edu.uniandes.csw.bibilioteca.entities.CompraEntity;
+import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import java.io.Serializable;
 import java.util.Date;
 /**

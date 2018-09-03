@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.bibilioteca.entities;
+package co.edu.uniandes.csw.boletas.entities;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
 
 /**
  *
  * @author estudiante
  */
-public class BoletaEntity {
+@Entity
+public class BoletaEntity extends BaseEntity implements Serializable       
+{
     private Long id;
-    
-    private Integer precio;
-    
-    private Date fecha;
 
     public Long getId() {
         return id;
@@ -25,6 +25,10 @@ public class BoletaEntity {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    private Integer precio;
+    
+    private Date fecha;
 
     public Integer getPrecio() {
         return precio;

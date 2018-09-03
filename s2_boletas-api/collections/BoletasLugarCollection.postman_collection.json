@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "0c2a0a5a-1ade-4280-a5d8-adf7292ca4cd",
+		"name": "BoletasLugarCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateLugar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"numSillas\":\"2000\",\n\t\"direccion\":\"kra 6 cll 22\",\n\t\"nombre\":\"Teatro de Bogotá\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/lugares",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateLugar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"numSillas\":\"2200\",\n\t\"direccion\":\"kra 6 cll 22\",\n\t\"nombre\":\"Teatro de Bogotá\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetLugar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetLugares",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/lugares",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteLugar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

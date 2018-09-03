@@ -5,8 +5,9 @@
  */
 package co.edu.uniandes.csw.boletas.resources;
 
-import co.edu.uniandes.csw.bibilioteca.entities.EspectaculoEntity;
+import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.dtos.EspectaculoDTO;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -22,7 +23,11 @@ import javax.ws.rs.PathParam;
 
 /**
  *
+<<<<<<< HEAD
  * @author Sebastian Rodriguez
+=======
+ * @author Sebastian Rodriguez Beltran
+>>>>>>> master
  */
 @Path("espectaculos")
 @Produces("application/json")
@@ -57,13 +62,15 @@ public class EspectaculoResourse
     @Path("{espectaculoId : \\d+}")
     public EspectaculoDTO getEspectaculo(@PathParam("espectaculoId") Long especatculoId)
     {
-        return null;
+        return new EspectaculoDTO();
     }
     
     @GET 
     public List<EspectaculoDTO> getEspectaculos()
     {
-        return null;
+        ArrayList<EspectaculoDTO> espectaculos = new ArrayList();
+        
+        return espectaculos;
     }
     
     @DELETE

@@ -5,13 +5,13 @@
  */
 package co.edu.uniandes.csw.boletas.dtos;
 
-import co.edu.uniandes.csw.bibilioteca.entities.LugarEntity;
+import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import java.io.Serializable;
 
 
 /**
  *
- * @author Jhonatan Amórtegui
+ * @author ja.amortegui10
  */
  
 public class LugarDTO implements Serializable {

@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.boletas.dtos;
 
 import java.io.Serializable;
-import co.edu.uniandes.csw.bibilioteca.entities.ClienteEntity;
+import co.edu.uniandes.csw.boletas.entities.ClienteEntity;
 
 /**
  *
@@ -16,8 +16,11 @@ import co.edu.uniandes.csw.bibilioteca.entities.ClienteEntity;
 public class ClienteDTO implements Serializable {
     
     public String nombre;
+     private String usuario;
     public String password;
     public String pago;
+    private int cedula;
+    
     public Long clienteId;
     
     public ClienteDTO()
@@ -27,10 +30,12 @@ public class ClienteDTO implements Serializable {
     
     public ClienteDTO(ClienteEntity entity )
     {
-        nombre= entity.darNombre();
-        password= entity.darPassword();
-        pago= entity.darPago();
-        clienteId=entity.darId();
+        nombre= entity.getNombre();
+        usuario=entity.getUsuario();
+        password= entity.getPassword();
+        pago= entity.getPago();
+        cedula=entity.getCedula();
+        clienteId=entity.getId();
     }
     
     public ClienteEntity toEntity()
@@ -39,6 +44,8 @@ public class ClienteDTO implements Serializable {
         entity.setPago(this.pago);
         entity.setNombre(nombre);
         entity.setPassword(password);
+        entity.setUsuario(usuario);
+        entity.setCedula(cedula);
         return entity;
     }
     

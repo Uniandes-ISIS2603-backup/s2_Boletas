@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.bibilioteca.entities;
+package co.edu.uniandes.csw.boletas.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -17,27 +19,29 @@ import javax.persistence.Id;
 public class OrganizadorEntity extends BaseEntity implements Serializable{
     
     private String nombre;
+    @PodamExclude
+    @OneToMany(mappedBy="organizador")
     private String password;
     private int presupuesto;
     private int ganancia;
     @Id 
     public Long organizadorId;
     
-    public String darNombre()
+    public String getNombre()
     {
         return nombre;
     }
     
-    public String darPassword()
+    public String getPassword()
     {
         return password;
     }
-    public int darPresupuesto()
+    public int getPresupuesto()
     {
         return presupuesto;
     }
     
-    public int darGanancia()
+    public int getGanancia()
     {
         return ganancia;
     }
@@ -51,9 +55,9 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
         this.password=pass;
     }
     
-    public void setGanancia(int gana)
+    public void setGanancia(int ganancia)
     {
-        this.ganancia= gana;
+        this.ganancia= ganancia;
     }
     public void setPresupuesto (int presup)
     {
@@ -65,7 +69,7 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
         organizadorId=id;
     }
     
-    public Long darId()
+    public Long getId()
     {
         return organizadorId;
     }

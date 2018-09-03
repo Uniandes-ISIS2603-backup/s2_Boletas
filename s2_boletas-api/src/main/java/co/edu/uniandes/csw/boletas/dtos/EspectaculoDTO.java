@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.dtos;
 
-import co.edu.uniandes.csw.bibilioteca.entities.EspectaculoEntity;
+import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import java.io.Serializable;
 import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -13,7 +13,11 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
+<<<<<<< HEAD
  * @author Sebastian Rodriguez
+=======
+ * @author Sebastian Rodriguez Beltran
+>>>>>>> master
  */
 public class EspectaculoDTO implements Serializable
 {
