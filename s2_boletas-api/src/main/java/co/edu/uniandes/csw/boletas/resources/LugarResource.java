@@ -21,7 +21,7 @@ import javax.ws.rs.Produces;
 
 /**
  *
- * @author Jhonatan Amórtegui
+ * @author ja.amortegui10
  */
 @Path("lugares")
 @Consumes("application/json")

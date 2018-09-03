@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Jhonatan Amórtegui
+ * @author ja.amortegui10
  */
  
 public class LugarDTO implements Serializable {

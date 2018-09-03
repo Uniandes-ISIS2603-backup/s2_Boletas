@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Jhonatan Amórtegui
+ * @author ja.amortegui10
  */
 public class SillaDTO implements Serializable{
     private Long id;
