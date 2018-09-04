@@ -27,12 +27,12 @@ public class CompraEntity extends BaseEntity implements Serializable{
     private String direccion;    
     
     
-    @javax.persistence.OneToMany(
-    fetch = javax.persistence.FetchType.LAZY)
-    Collection<BoletaEntity> boletas;
+    //@javax.persistence.OneToMany(
+    //fetch = javax.persistence.FetchType.LAZY)
+    //Collection<BoletaEntity> boletas;
     
-    @javax.persistence.ManyToOne()
-    ClienteEntity cliente;
+    //@javax.persistence.ManyToOne()
+    //ClienteEntity cliente;
     
     /**
      * retorna el Id de la compra
