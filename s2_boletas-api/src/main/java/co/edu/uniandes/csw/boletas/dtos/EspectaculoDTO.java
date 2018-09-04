@@ -41,7 +41,7 @@ public class EspectaculoDTO implements Serializable
     {
         if (espectaculo != null)
         {
-            espectaculoId = espectaculo.darId();
+            espectaculoId = espectaculo.getId();
             
             nombre = espectaculo.darNombre();
         
