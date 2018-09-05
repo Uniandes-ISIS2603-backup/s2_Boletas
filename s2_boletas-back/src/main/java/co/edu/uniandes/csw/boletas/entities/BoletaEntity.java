@@ -16,16 +16,7 @@ import javax.persistence.Entity;
 @Entity
 public class BoletaEntity extends BaseEntity implements Serializable       
 {
-    private Long id;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
     private Integer precio;
     
     private Date fecha;
