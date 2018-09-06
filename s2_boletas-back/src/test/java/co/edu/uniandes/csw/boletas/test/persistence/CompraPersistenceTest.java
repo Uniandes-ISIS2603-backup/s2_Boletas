@@ -56,7 +56,11 @@ public class CompraPersistenceTest {
         CompraEntity newEntity = factory.manufacturePojo(CompraEntity.class);
         CompraEntity result = compraPersistence.create(newEntity);
         
-        //Assert.assertNotNull(result);
+        Assert.assertNotNull(result);
+        
+        CompraEntity entity = em.find(CompraEntity.class, result.getId());
+
+        Assert.assertEquals(newEntity.getId(), entity.getId());
     }
             
     
