@@ -26,8 +26,6 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private int cedula;
     private String pago; 
     
-    @Id
-    public Long clienteId;
 
     public String getNombre() {
         return nombre;
@@ -51,14 +49,6 @@ public class ClienteEntity extends BaseEntity implements Serializable {
 
     public void setPago(String pago) {
         this.pago = pago;
-    }
-
-    public Long getClienteId() {
-        return clienteId;
-    }
-
-    public void setClienteId(Long clienteId) {
-        this.clienteId = clienteId;
     }
     
     public String getUsuario()
