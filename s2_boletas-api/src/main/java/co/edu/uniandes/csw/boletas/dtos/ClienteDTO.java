@@ -10,18 +10,15 @@ import co.edu.uniandes.csw.boletas.entities.ClienteEntity;
 
 /**
  *
- * @author estudiante
+ * @author Vilma Tirado Gomez
  */
 
 public class ClienteDTO implements Serializable {
     
     public String nombre;
      private String usuario;
-    public String password;
     public String pago;
-    private int cedula;
-    
-    public Long clienteId;
+    private String cedula;
     
     public ClienteDTO()
     {
@@ -32,10 +29,8 @@ public class ClienteDTO implements Serializable {
     {
         nombre= entity.getNombre();
         usuario=entity.getUsuario();
-        password= entity.getPassword();
         pago= entity.getPago();
         cedula=entity.getCedula();
-        clienteId=entity.getId();
     }
     
     public ClienteEntity toEntity()
@@ -43,15 +38,9 @@ public class ClienteDTO implements Serializable {
         ClienteEntity entity= new ClienteEntity();
         entity.setPago(this.pago);
         entity.setNombre(nombre);
-        entity.setPassword(password);
         entity.setUsuario(usuario);
         entity.setCedula(cedula);
         return entity;
-    }
-    
-    public Long darId()
-    {
-        return clienteId;
     }
     
 }
