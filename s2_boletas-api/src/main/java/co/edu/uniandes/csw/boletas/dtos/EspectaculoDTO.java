@@ -22,15 +22,22 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class EspectaculoDTO implements Serializable
 {
     
-    public Long espectaculoId;
+    private Long espectaculoId;
     
-    public String nombre;
+    private String nombre;
     
-    public Date fecha;
+    private Date fecha;
     
-    public String descripcion;
+    private String descripcion;
     
-    public String artista;
+    private String artista;
+    
+    /**
+     * Espectaculo tiene una asociacion, de modo que tiene un lugar asignado
+     */
+    
+    private LugarDTO lugar;
+    
     
     public EspectaculoDTO()
     {
@@ -41,7 +48,7 @@ public class EspectaculoDTO implements Serializable
     {
         if (espectaculo != null)
         {
-            espectaculoId = espectaculo.darId();
+            espectaculoId = espectaculo.getId();
             
             nombre = espectaculo.darNombre();
         
@@ -50,6 +57,17 @@ public class EspectaculoDTO implements Serializable
             fecha = espectaculo.darFecha();
         
             descripcion = espectaculo.darDescripcion();  
+            
+            if(espectaculo.darLugar() != null)
+            {
+                this.lugar = new LugarDTO(espectaculo.darLugar());
+            }
+            else 
+            {
+                lugar = null;
+            }
+              
+            
         }
         
     }
@@ -65,6 +83,11 @@ public class EspectaculoDTO implements Serializable
         espectaculo.cambiarDescripcion(this.descripcion);
         
         espectaculo.cambiarFecha(this.fecha);
+        
+        if(lugar != null)
+        {
+            espectaculo.setLugar(lugar.toEntity());
+        }
         
         return espectaculo;
     }
@@ -117,6 +140,16 @@ public class EspectaculoDTO implements Serializable
     public void cambiarArtista(String artist)
     {
         this.artista = artist;
+    }
+    
+    public LugarDTO darLugar()
+    {
+        return lugar;
+    }
+    
+    public void cambiarLugar(LugarDTO lugar)
+    {
+        this.lugar = lugar;
     }
     
      @Override
