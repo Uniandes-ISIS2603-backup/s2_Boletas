@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -20,21 +22,26 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class EspectaculoEntity extends BaseEntity implements Serializable {
-
-    @PodamExclude
-    @OneToMany()
-    private List<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
+    
     
 
     private String nombre;
-
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
 
     private String descripcion;
 
     private String artista;
 
+    @PodamExclude
+    @OneToMany(mappedBy = "espectaculo")
+    private List<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
     
+    
+    @PodamExclude
+    @OneToOne(mappedBy = "espectaculo",fetch = FetchType.LAZY)
+    private LugarEntity lugar;
 
     public String darNombre() {
         return nombre;
@@ -77,4 +84,15 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     {
         this.boletas = boletas;
     }
+    
+    public LugarEntity darLugar()
+    {
+        return lugar;
+    }
+    
+    public void setLugar(LugarEntity pLugar)
+    {
+        this.lugar = pLugar;
+    }
+    
 }
