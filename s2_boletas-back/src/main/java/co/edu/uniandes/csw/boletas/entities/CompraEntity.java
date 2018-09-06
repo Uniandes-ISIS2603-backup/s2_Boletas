@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.boletas.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -15,6 +16,8 @@ import java.util.Date;
  */
 @javax.persistence.Entity
 public class CompraEntity extends BaseEntity implements Serializable{
+    
+    
     
     private Long id;
     
@@ -27,12 +30,14 @@ public class CompraEntity extends BaseEntity implements Serializable{
     private String direccion;    
     
     
-    //@javax.persistence.OneToMany(
-    //fetch = javax.persistence.FetchType.LAZY)
-    //Collection<BoletaEntity> boletas;
+    @PodamExclude
+    @javax.persistence.OneToMany(
+    fetch = javax.persistence.FetchType.LAZY)
+    Collection<BoletaEntity> boletas;
     
-    //@javax.persistence.ManyToOne()
-    //ClienteEntity cliente;
+    @PodamExclude
+    @javax.persistence.ManyToOne()
+    ClienteEntity cliente;
     
     /**
      * retorna el Id de la compra
