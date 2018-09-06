@@ -10,15 +10,15 @@ import co.edu.uniandes.csw.boletas.entities.OrganizadorEntity;
 
 /**
  *
- * @author estudiante
+ * @author Vilma Tirado Gomez
  */
 public class OrganizadorDTO implements Serializable  {
     
     public Long organizadorId;
     public String nombre;
     public String password;
-    public int presupuesto;
-    public int ganancia;
+    public Integer presupuesto;
+    public Integer ganancia;
     
     public OrganizadorDTO()
     {
@@ -28,7 +28,6 @@ public class OrganizadorDTO implements Serializable  {
     public OrganizadorDTO(OrganizadorEntity organizador )
     {
         nombre= organizador.getNombre();
-        password= organizador.getPassword();
         ganancia=organizador.getGanancia();
         presupuesto=organizador.getPresupuesto();
     }
@@ -37,7 +36,6 @@ public class OrganizadorDTO implements Serializable  {
     {
         OrganizadorEntity entity= new OrganizadorEntity();
         entity.setNombre(nombre);
-        entity.setPassword(password);
         entity.setGanancia(ganancia);
         entity.setPresupuesto(this.presupuesto);
         entity.setId(organizadorId);
