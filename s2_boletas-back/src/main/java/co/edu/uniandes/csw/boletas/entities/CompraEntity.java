@@ -41,7 +41,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     
     
     /*
-     * rtorna el costo total de la compra
+     * retorna el costo total de la compra
      * @return costoTotal
      */
     public Integer getCostoTotal()

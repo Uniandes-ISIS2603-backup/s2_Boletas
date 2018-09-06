@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.boletas.test.persistence;
 
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import co.edu.uniandes.csw.boletas.persistence.CompraPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,6 +18,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import uk.co.jemos.podam.api.PodamFactory;
@@ -40,6 +43,12 @@ public class CompraPersistenceTest {
     @PersistenceContext
     private EntityManager em;
     
+    /**
+     * Lista datos
+     */
+    private List<CompraEntity> data = new ArrayList<CompraEntity>();
+    
+    //----------------------------------------------------------------
   @Deployment
   public static JavaArchive createDeployement()
   {
@@ -50,6 +59,31 @@ public class CompraPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
   }
     
+  
+  /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     *
+     *
+     */
+    private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+
+            CompraEntity entity = factory.manufacturePojo(CompraEntity.class);
+
+            em.persist(entity);
+
+            data.add(entity);
+        }
+    }
+  
+  
+  
+  /**
+   *  Prueba crear una compra (POST)
+   */
+    @Test 
     public void createCompraTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
@@ -62,6 +96,42 @@ public class CompraPersistenceTest {
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
-            
     
+    /**
+     * Prueba borrar compra (DELETE)
+     */
+    @Test
+    public void deleteCompraTest() {
+        CompraEntity entity = data.get(0);
+        compraPersistence.delete(entity.getId());
+        CompraEntity deleted = em.find(CompraEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    /**
+     * Prueba de conseguir una compra (GET)
+     */        
+    @Test
+    public void getCompraTest() {
+        CompraEntity entity = data.get(0);
+        CompraEntity newEntity = compraPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+    }
+
+    /**
+     * Prueba actualizar compra (UPDATE)
+     */
+    @Test
+    public void updateCompraTest()
+    {
+        CompraEntity entity = data.get(0);
+        CompraEntity newEntity = compraPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        
+        PodamFactory factory = new PodamFactoryImpl();
+        CompraEntity newEntity2 = factory.manufacturePojo(CompraEntity.class);
+        CompraEntity result = compraPersistence.create(newEntity2);
+        
+        Assert.assertNotNull(result);
+    }
 }
