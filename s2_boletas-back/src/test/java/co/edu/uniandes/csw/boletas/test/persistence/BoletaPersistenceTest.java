@@ -53,6 +53,7 @@ public class BoletaPersistenceTest {
         BoletaEntity result= boletaPersistence.create(newEntity);
         
         Assert.assertNotNull(result);
+        BoletaEntity entity = em.find(BoletaEntity.class, result.getId());
         
     }
 }

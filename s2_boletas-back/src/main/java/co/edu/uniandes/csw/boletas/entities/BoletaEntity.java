@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.boletas.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,11 +18,25 @@ import javax.persistence.Entity;
 @Entity
 public class BoletaEntity extends BaseEntity implements Serializable       
 {
-
+    
     private Integer precio;
     
     private Date fecha;
+    /*
+    @PodamExclude
+    @ManyToOne
+    private EspectaculoEntity espectaculo;
 
+    public EspectaculoEntity getEspectaculo() {
+        return espectaculo;
+    }
+
+    public void setEspectaculo(EspectaculoEntity espectaculo) {
+        this.espectaculo = espectaculo;
+    }
+    */
+    
+    
     public Integer getPrecio() {
         return precio;
     }
