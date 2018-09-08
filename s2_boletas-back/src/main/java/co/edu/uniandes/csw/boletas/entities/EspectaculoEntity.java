@@ -33,66 +33,83 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     private String descripcion;
 
     private String artista;
-
-    @PodamExclude
-    @OneToMany(mappedBy = "espectaculo")
-    private List<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
     
-    
-    @PodamExclude
-    @OneToOne(mappedBy = "espectaculo",fetch = FetchType.LAZY)
-    private LugarEntity lugar;
+    private String tipo;
 
-    public String darNombre() {
+    
+//    @PodamExclude
+//    @OneToMany(mappedBy = "espectaculo")
+//    private List<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
+//    
+//    
+//    @PodamExclude
+//    @OneToOne(mappedBy = "espectaculo",fetch = FetchType.LAZY)
+//    private LugarEntity lugar;
+
+    public String getNombre() {
         return nombre;
     }
 
-    public void cambiarNombre(String pNombre) {
+    public void setNombre(String pNombre) {
         this.nombre = pNombre;
     }
 
-    public Date darFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void cambiarFecha(Date date) {
+    public void setFecha(Date date) {
         fecha = date;
     }
 
-    public String darDescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void cambiarDescripcion(String descrip) {
+    public void setDescripcion(String descrip) {
         this.descripcion = descrip;
     }
 
-    public void cambiarArtista(String artist) {
+    public void setArtista(String artist) {
         artista = artist;
     }
 
-    public String darArtista() {
+    public String getArtista() {
         return artista;
     }
     
-    public List<BoletaEntity> getBoletas()
-    {
-        return boletas;
-    }
+//    public List<BoletaEntity> getBoletas()
+//    {
+//        return boletas;
+//    }
+//    
+//    public void setBoletas(List<BoletaEntity> boletas)
+//    {
+//        this.boletas = boletas;
+//    }
     
-    public void setBoletas(List<BoletaEntity> boletas)
-    {
-        this.boletas = boletas;
+//    public LugarEntity darLugar()
+//    {
+//        return lugar;
+//    }
+//    
+//    public void setLugar(LugarEntity pLugar)
+//    {
+//        this.lugar = pLugar;
+//    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
     }
-    
-    public LugarEntity darLugar()
-    {
-        return lugar;
-    }
-    
-    public void setLugar(LugarEntity pLugar)
-    {
-        this.lugar = pLugar;
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
 }

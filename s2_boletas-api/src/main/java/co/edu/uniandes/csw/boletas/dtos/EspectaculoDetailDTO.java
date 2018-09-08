@@ -28,17 +28,17 @@ public class EspectaculoDetailDTO extends EspectaculoDTO implements Serializable
     public EspectaculoDetailDTO(EspectaculoEntity espectaculo)
     {
         super(espectaculo);
-        if(espectaculo != null)
-        {
-            if(espectaculo.getBoletas() != null)
-            {
-                boletas = new ArrayList<>();
-                for(BoletaEntity bol: espectaculo.getBoletas())
-                {
-                    boletas.add(new BoletaDTO(bol));
-                }
-            }
-        }
+//        if(espectaculo != null)
+//        {
+//            if(espectaculo.getBoletas() != null)
+//            {
+//                boletas = new ArrayList<>();
+//                for(BoletaEntity bol: espectaculo.getBoletas())
+//                {
+//                    boletas.add(new BoletaDTO(bol));
+//                }
+//            }
+//        }
     }
     
     public List<BoletaDTO> getBoletas()
@@ -54,13 +54,13 @@ public class EspectaculoDetailDTO extends EspectaculoDTO implements Serializable
     @Override
     public EspectaculoEntity toEntity() {
         EspectaculoEntity espectaculoEntity = super.toEntity();
-        if (boletas != null) {
-            List<BoletaEntity> booksEntity = new ArrayList<>();
-            for (BoletaDTO dtoBook : boletas) {
-                booksEntity.add(dtoBook.toEntity());
-            }
-            espectaculoEntity.setBoletas(booksEntity);
-        }
+//        if (boletas != null) {
+//            List<BoletaEntity> booksEntity = new ArrayList<>();
+//            for (BoletaDTO dtoBook : boletas) {
+//                booksEntity.add(dtoBook.toEntity());
+//            }
+//            espectaculoEntity.setBoletas(booksEntity);
+//        }
         return espectaculoEntity;
     }
 }
