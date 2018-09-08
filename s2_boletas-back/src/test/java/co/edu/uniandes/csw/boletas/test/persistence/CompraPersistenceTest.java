@@ -51,7 +51,7 @@ public class CompraPersistenceTest {
     private List<CompraEntity> data = new ArrayList<CompraEntity>();
     
      /**
-     * Variable para martcar las transacciones del em anterior cuando se
+     * Variable para marcar las transacciones del em anterior cuando se
      * crean/borran datos para las pruebas.
      */
     @Inject
