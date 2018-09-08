@@ -12,7 +12,10 @@ import co.edu.uniandes.csw.boletas.persistence.BoletaPersistence;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 
 import org.junit.Test;
@@ -32,6 +35,16 @@ public class BoletaPersistenceTest {
     
     @PersistenceContext
     private EntityManager em;
+    
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(BoletaEntity.class.getPackage())
+                .addPackage(BoletaEntity.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
+    
     @Test
     public void createBoletaTest(){
         PodamFactory factory = new PodamFactoryImpl();
