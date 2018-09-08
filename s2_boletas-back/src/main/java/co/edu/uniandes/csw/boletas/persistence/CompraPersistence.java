@@ -23,8 +23,8 @@ public class CompraPersistence {
 private static final Logger LOGGER = Logger.getLogger(CompraPersistence.class.getName());
    
 //DnsPU --- persistence.xml (01/09/2018)
-//@PersistenceContext(unitName = "DnsPU")
-//protected EntityManager em;
+@PersistenceContext(unitName = "DnsPU")
+protected EntityManager em;
     
        
 // Metodos CRUD
@@ -36,7 +36,7 @@ private static final Logger LOGGER = Logger.getLogger(CompraPersistence.class.ge
 public CompraEntity create(CompraEntity compraEntity)
 {
     LOGGER.log(Level.INFO, "Creando una compra nueva");       
-    //em.persist(compraEntity);
+    em.persist(compraEntity);
     LOGGER.log(Level.INFO, "Compra nueva creada");
     return compraEntity;
 }
@@ -47,20 +47,20 @@ public CompraEntity create(CompraEntity compraEntity)
  * @param compraId, id de la compra a buscar
  * @return la compra con el id ingresado por parametro
  */
-//public CompraEntity find(Long compraId) {
-  //  LOGGER.log(Level.INFO, "Buscando compra con el id={0}", compraId);
-   // return em.find(CompraEntity.class, compraId);
-//}
+public CompraEntity find(Long compraId) {
+    LOGGER.log(Level.INFO, "Buscando compra con el id={0}", compraId);
+    return em.find(CompraEntity.class, compraId);
+}
 
 /**
  * Metodo para actualizar una compra (UPDATE)
  * @param compraEntity, la compra con la informacion a actualizar
  * @return la compra con la informacion actualizada
  */
-//public CompraEntity update(CompraEntity compraEntity) {
-  //  LOGGER.log(Level.INFO, "Actualizando compra con el id = {0}", compraEntity.getId());
-   // return em.merge(compraEntity);
-//}
+public CompraEntity update(CompraEntity compraEntity) {
+    LOGGER.log(Level.INFO, "Actualizando compra con el id = {0}", compraEntity.getId());
+    return em.merge(compraEntity);
+}
 
 /**
  * Metodo para borrar una compra (DELETE)
@@ -68,8 +68,8 @@ public CompraEntity create(CompraEntity compraEntity)
  */
 public void delete(Long compraId) {
     LOGGER.log(Level.INFO, "Borrando compra con el id = {0}", compraId);
-   // CompraEntity compraD = em.find(CompraEntity.class, compraId);
-    //em.remove(compraD);
+    CompraEntity compraD = em.find(CompraEntity.class, compraId);
+    em.remove(compraD);
     LOGGER.log(Level.INFO, "Compra borrada, id = {0}", compraId);
 }
 

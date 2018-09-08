@@ -27,7 +27,12 @@ public class CompraResource {
     
     private static final Logger LOGGER = Logger.getLogger(CompraResource.class.getName());
     
-    
+    /**
+     * todavia no se implementa
+     * @param compra
+     * @return
+     * @throws BusinessLogicException 
+     */
     @POST
     public CompraDTO postCompra(CompraDTO compra) throws BusinessLogicException
     {
@@ -36,6 +41,11 @@ public class CompraResource {
        return compra;   
     }
        
+    /**
+     * todavia no se implementa
+     * @param compraid
+     * @return 
+     */
     @GET
     @Path("{compraid : \\d+}")
     public CompraDTO getCompra(@PathParam("compraid") Long compraid)
@@ -43,6 +53,12 @@ public class CompraResource {
         return null;
     }
     
+    /**
+     * todavia no se implementa
+     * @param compraid
+     * @param compra
+     * @return 
+     */
     @PUT
     @Path("{compraid : \\d+}")
     public CompraDTO putCompra(@PathParam("compraid") Long compraid, CompraDTO compra)
@@ -50,6 +66,10 @@ public class CompraResource {
         return compra;
     }
     
+    /**
+     * todavia no se implementa
+     * @param compraid 
+     */
     @DELETE
     @Path("{compraid : \\d+}")
     public void deleteCompra (@PathParam("compraid") Long compraid)

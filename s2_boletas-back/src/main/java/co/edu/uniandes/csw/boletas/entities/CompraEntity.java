@@ -8,6 +8,9 @@ package co.edu.uniandes.csw.boletas.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,35 +19,29 @@ import java.util.Date;
 @javax.persistence.Entity
 public class CompraEntity extends BaseEntity implements Serializable{
     
-    private Long id;
-    
+     
     private Integer costoTotal;
     
     private Boolean envio;
     
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     
     private String direccion;    
     
     
-    //@javax.persistence.OneToMany(
-    //fetch = javax.persistence.FetchType.LAZY)
-    //Collection<BoletaEntity> boletas;
+    @PodamExclude
+    @javax.persistence.OneToMany(
+    fetch = javax.persistence.FetchType.LAZY)
+    Collection<BoletaEntity> boletas;
     
-    //@javax.persistence.ManyToOne()
-    //ClienteEntity cliente;
+    @PodamExclude
+    @javax.persistence.ManyToOne()
+    ClienteEntity cliente;
     
-    /**
-     * retorna el Id de la compra
-     * @return id
-     */
-    public Long getId()
-    {
-        return id;
-    }
     
     /*
-     * rtorna el costo total de la compra
+     * retorna el costo total de la compra
      * @return costoTotal
      */
     public Integer getCostoTotal()
@@ -81,15 +78,6 @@ public class CompraEntity extends BaseEntity implements Serializable{
         return direccion;
     }
     
-    
-    /**
-     * modifica el id con el id ingresado por parametro
-     * @param idN, nuevo id
-     */
-    public void setId(Long idN)
-    {
-        id=idN;
-    }
     
     
     /**

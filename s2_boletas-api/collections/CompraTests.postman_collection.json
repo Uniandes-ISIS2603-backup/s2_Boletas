@@ -1,0 +1,334 @@
+{
+	"info": {
+		"_postman_id": "80d5456c-fc57-49e5-bb3e-0bf2c15bfbaf",
+		"name": "CompraTests",
+		"description": "Tests para la clase compra de s2_boletas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "614f2e6b-acd5-4984-b150-ad0a1645bb7a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"costo\": \"2000\", \"envio\": \"True\", \"fecha\": \"26-08-2018\", \"direccion\": \"Cra 1 #18a-12\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/compra",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compra"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST compra 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "05adb391-59bc-437d-8560-b5b902c93c46",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"costo\": \"40000\", \"envio\": \"False\", \"fecha\": \"29-08-2018\", \"direccion\": \"Carrera 7 #40 - 62\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/compra",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compra"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "122034c4-df8a-44f4-96c6-5491ee028f8f",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/compra/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compra",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET compra 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "66af3d2d-9e12-45e0-8c8e-03d375b13a5a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/compra/123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compra",
+						"123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef5d2c72-0e57-4ba1-9c24-804464162238",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"costo\": \"2222\", \"envio\": \"True\", \"fecha\": \"22-02-2012\", \"direccion\": \"Cra 2 #22-22\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/compra/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compra",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT compra 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f880abd0-94b6-4414-b92f-ddeb370f7ed0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"costo\": \"4444\", \"envio\": \"True\", \"fecha\": \"30-03-2013\", \"direccion\": \"Cra 3 #33-33\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/compra/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compra",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "027f1df1-41db-4ec1-bf92-cf61d8f684fb",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/compra/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compra",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE compra 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a1fea080-3794-4a15-84e6-9200f2cd756e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/compra/134",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compra",
+						"134"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
