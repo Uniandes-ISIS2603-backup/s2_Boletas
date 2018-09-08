@@ -43,38 +43,13 @@ public class BoletaPersistence {
         return em.find(BoletaEntity.class, id);
     }
     
-    public List<BoletaEntity> findAll()
-    {
-        TypedQuery<BoletaEntity> query = em.createQuery("",BoletaEntity.class);
-        return query.getResultList();
-    }
-         
-    public BoletaEntity findByName(String name)
-    {
-        TypedQuery query = em.createQuery("Select e From BoletaEntity e where e.id =:id", BoletaEntity.class);
-        
-        query = query.setParameter("name",name);
-        
-        List<BoletaEntity> lista = query.getResultList();
-        
-        BoletaEntity espec = null;
-        
-        if(!lista.isEmpty())
-        {
-            espec = lista.get(0);
-        }
-        return espec;
-    }
-    
-    public BoletaEntity update(BoletaEntity entity)
-    {
-        return em.merge(entity);
-    }
+
     
     public void delete(Long id)
     {
+        LOGGER.log(Level.INFO, "Borrando boleta con id = {0}", id);
         BoletaEntity entity = em.find(BoletaEntity.class,id);
-        
         em.remove(entity);
+        LOGGER.log(Level.INFO, "Saliendo de borrar la boleta con id = {0}", id);
     }
 }
