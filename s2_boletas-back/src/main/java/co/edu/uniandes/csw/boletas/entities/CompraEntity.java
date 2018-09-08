@@ -16,7 +16,7 @@ import java.util.Date;
 @javax.persistence.Entity
 public class CompraEntity extends BaseEntity implements Serializable{
     
-    private Long id;
+    
     
     private Integer costoTotal;
     
@@ -34,14 +34,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     //@javax.persistence.ManyToOne()
     //ClienteEntity cliente;
     
-    /**
-     * retorna el Id de la compra
-     * @return id
-     */
-    public Long getId()
-    {
-        return id;
-    }
+   
     
     /*
      * rtorna el costo total de la compra
@@ -82,14 +75,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     }
     
     
-    /**
-     * modifica el id con el id ingresado por parametro
-     * @param idN, nuevo id
-     */
-    public void setId(Long idN)
-    {
-        id=idN;
-    }
+
     
     
     /**
