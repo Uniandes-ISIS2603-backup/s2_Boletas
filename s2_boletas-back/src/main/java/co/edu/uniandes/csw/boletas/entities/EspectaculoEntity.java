@@ -38,12 +38,12 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
 
     
 //    @PodamExclude
-//    @OneToMany(mappedBy = "espectaculo")
-//    private List<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
+//    @OneToMany()
+//    private Collection<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
 //    
 //    
 //    @PodamExclude
-//    @OneToOne(mappedBy = "espectaculo",fetch = FetchType.LAZY)
+//    @OneToOne(fetch = FetchType.LAZY)
 //    private LugarEntity lugar;
 
     public String getNombre() {
