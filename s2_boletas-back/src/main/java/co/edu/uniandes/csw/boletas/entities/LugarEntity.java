@@ -6,8 +6,12 @@
 package co.edu.uniandes.csw.boletas.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,26 +20,24 @@ import javax.persistence.Id;
 @Entity
 public class LugarEntity extends BaseEntity implements Serializable{
     
-    public enum Ubicacion{
-        ESTADIO,
-        TEATRO
-    }
+    private String ubicacion;
     
-    @Id
-    private Long id;
-    private Ubicacion ubicacion;
     private Integer numSillas;
     private String direccion;    
     private String nombre;
-
     
-    public void setId(Long id) {
-        this.id = id;
+    @PodamExclude
+    @OneToMany(mappedBy="lugar")
+    private List<SillaEntity> sillas = new ArrayList<SillaEntity>();
+
+    public void setSillas(List<SillaEntity> sillas) {
+        this.sillas = sillas;
     }
 
-    public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
+    public List<SillaEntity> getSillas() {
+        return sillas;
     }
+    
 
     public void setNumSillas(Integer numSillas) {
         this.numSillas = numSillas;
@@ -49,14 +51,6 @@ public class LugarEntity extends BaseEntity implements Serializable{
         this.nombre = nombre;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Ubicacion getUbicacion() {
-        return ubicacion;
-    }
-
     public Integer getNumSillas() {
         return numSillas;
     }
@@ -68,5 +62,15 @@ public class LugarEntity extends BaseEntity implements Serializable{
     public String getNombre() {
         return nombre;
     }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+    
+    
     
 }
