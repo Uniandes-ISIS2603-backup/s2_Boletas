@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.boletas.ejb;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.BoletaPersistence;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -22,11 +23,21 @@ public class BoletaLogic {
     @Inject
     private BoletaPersistence persistence;
     
-   /* public BoletaEntity createBoleta(BoletaEntity boleta) throws BusinessLogicException
+    public BoletaEntity createBoleta(BoletaEntity boleta) throws BusinessLogicException
     {
-        
+        LOGGER.log(Level.INFO, "Inicia el proceso de la creación de la boleta");
+        persistence.create(boleta);
+        LOGGER.log(Level.INFO, "Termina proceso de la creación de la boleta");
+        return boleta;
     }
-    */
+    
+    public void deleteBoleta(Long boletaId)
+    {
+        LOGGER.log(Level.INFO, "Inicia el proceso de la eliminación de una boleta con id = {0}", boletaId);
+        persistence.delete(boletaId);
+        LOGGER.log(Level.INFO, "Termina proceso de eliminar una boleta con id = {0}", boletaId);
+    }
+    
     
     
 }
