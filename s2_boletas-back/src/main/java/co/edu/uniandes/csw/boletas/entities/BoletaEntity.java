@@ -22,6 +22,7 @@ public class BoletaEntity extends BaseEntity implements Serializable
     private Integer precio;
     
     private Date fecha;
+    
     /*
     @PodamExclude
     @ManyToOne
