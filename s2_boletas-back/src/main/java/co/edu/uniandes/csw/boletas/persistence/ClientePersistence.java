@@ -22,6 +22,7 @@ import javax.persistence.TypedQuery;
 public class ClientePersistence {
     private static final Logger LOGGER = Logger.getLogger(ClientePersistence.class.getName());
 
+    
      @PersistenceContext(unitName = "DnsPU")
     protected EntityManager em;
      
