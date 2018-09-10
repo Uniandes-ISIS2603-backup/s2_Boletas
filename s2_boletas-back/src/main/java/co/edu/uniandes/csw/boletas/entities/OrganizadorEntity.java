@@ -19,29 +19,19 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class OrganizadorEntity extends BaseEntity implements Serializable{
     
     private String nombre;
-    @PodamExclude
-    @OneToMany(mappedBy="organizador")
-    private String password;
-    private int presupuesto;
-    private int ganancia;
-    @Id 
-    public Long organizadorId;
+    private Integer  presupuesto;
+    private Integer ganancia;
     
     public String getNombre()
     {
         return nombre;
     }
-    
-    public String getPassword()
-    {
-        return password;
-    }
-    public int getPresupuesto()
+    public Integer getPresupuesto()
     {
         return presupuesto;
     }
     
-    public int getGanancia()
+    public Integer  getGanancia()
     {
         return ganancia;
     }
@@ -50,28 +40,14 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
     {
         this.nombre=nom;
     }
-    public void setPassword (String pass)
-    {
-        this.password=pass;
-    }
     
-    public void setGanancia(int ganancia)
+    public void setGanancia(Integer ganancia)
     {
         this.ganancia= ganancia;
     }
-    public void setPresupuesto (int presup)
+    public void setPresupuesto (Integer presup)
     {
         this.presupuesto=presup;
-    }
-    
-    public void setId(Long id)
-    {
-        organizadorId=id;
-    }
-    
-    public Long getId()
-    {
-        return organizadorId;
     }
     
 }

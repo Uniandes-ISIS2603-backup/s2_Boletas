@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "7f981a0e-2383-4442-85ca-3e34ce782465",
+		"name": "EspectaculoCollections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/espectaculos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"yolo\"\n,\"fecha\":\"2012-03-19T07:22Z\"\n,\"descripcion\":\"es un musical\"\n,\"artista\":\"Coldplay\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"yolo\"\n,\"fecha\":\"2012-03-19T07:22Z\"\n,\"descripcion\":\"es un musical\"\n,\"artista\":\"Coldplay\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un espectaculo que no existe",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"yolo\"\n,\"fecha\":\"2012-03-19T07:22Z\"\n,\"descripcion\":\"es un musical\"\n,\"artista\":\"Coldplay\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener los espectaculo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crea un espectaculo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"nombre\":\"yolo\"\n,\"descripcion\":\"es un musical\"\n,\"fecha\":\"2000-08-20T00:00:00-05:00\"\n,\"artista\":\"Coldplay\"\n,\"tipo\":\"Concierto\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un espectaculo que no existe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3c696a3c-5732-4c09-8171-0d22e0d3f6c5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6339d6c4-daeb-4c98-8bd0-468244ec6dc4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
