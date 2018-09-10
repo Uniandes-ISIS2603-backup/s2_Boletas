@@ -15,11 +15,11 @@ import java.util.Date;
 
 public class BoletaDTO implements Serializable {
     
-    public Long boletaID;
+    private Long boletaID;
     
-    public Integer precio;
+    private Integer precio;
     
-    public Date fecha;
+    private Date fecha;
     
     public BoletaDTO()
     {
