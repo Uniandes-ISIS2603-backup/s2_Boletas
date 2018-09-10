@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.boletas.resources;
 
 import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.dtos.LugarDTO;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -55,7 +56,7 @@ public class LugarResource {
     @GET
     public List<LugarDTO> getLugares()
     {
-        return null;
+        return new ArrayList<LugarDTO>();
     }
     
     @DELETE
