@@ -44,6 +44,18 @@ public class EspectaculoPersistenceTest
     
     private List<EspectaculoEntity> data = new ArrayList<EspectaculoEntity>();
     
+    
+    @Deployment
+    public static JavaArchive createDeployement()
+    {
+      return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(EspectaculoEntity.class.getPackage())
+                .addPackage(EspectaculoPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
+    
+    
     /**
      * Configuración inicial de la prueba.
      */
@@ -66,15 +78,7 @@ public class EspectaculoPersistenceTest
     }
     
     
-    @Deployment
-    public static JavaArchive createDeployement()
-    {
-      return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(EspectaculoEntity.class.getPackage())
-                .addPackage(EspectaculoEntity.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
+
     
     /**
      * Limpia las tablas que están implicadas en la prueba.
@@ -144,6 +148,14 @@ public class EspectaculoPersistenceTest
         EspectaculoEntity newEntity = espectaculoPersistence.find(entity.getId());
         org.junit.Assert.assertNotNull(newEntity);
         org.junit.Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+    }
+    
+      @Test
+    public void deleteCompraTest() {
+        EspectaculoEntity entity = data.get(0);
+        espectaculoPersistence.delete(entity.getId());
+        EspectaculoEntity deleted = em.find(EspectaculoEntity.class, entity.getId());
+        Assert.assertNull(deleted);
     }
     
 }
