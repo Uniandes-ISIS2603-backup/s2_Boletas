@@ -7,10 +7,12 @@ package co.edu.uniandes.csw.boletas.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -38,14 +40,24 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
 
     
 //    @PodamExclude
-//    @OneToMany()
+//    @OneToMany(mappedBy = "espectaculo", fetch = FetchType.LAZY)
 //    private Collection<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
 //
 //    
 //    @PodamExclude
-//    @OneToOne(fetch = FetchType.LAZY)
+//    @OneToOne(mappedBy = "espectaculo", fetch = FetchType.LAZY)
 //    private LugarEntity lugar;
-
+//    
+//    @PodamExclude
+//    @OneToMany(mappedBy = "espectaculo", fetch = FetchType.LAZY)
+//    private Collection<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
+//    
+//    @PodamExclude
+//    @ManyToOne()
+//    private OrganizadorEntity organizador;
+//    
+    
+    
     public String getNombre() {
         return nombre;
     }
