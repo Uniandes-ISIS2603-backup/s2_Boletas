@@ -42,7 +42,7 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
 //    @PodamExclude
 //    @OneToMany(mappedBy = "espectaculo", fetch = FetchType.LAZY)
 //    private Collection<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
-//    
+//
 //    
 //    @PodamExclude
 //    @OneToOne(mappedBy = "espectaculo", fetch = FetchType.LAZY)
