@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.boletas.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 
@@ -26,6 +27,9 @@ public class SillaEntity extends BaseEntity implements Serializable{
     @ManyToOne()
     private LugarEntity lugar;
     
+    @PodamExclude
+    @OneToOne
+    private BoletaEntity boleta;
     
     public void setLugar(LugarEntity lugar) {
         this.lugar = lugar;
