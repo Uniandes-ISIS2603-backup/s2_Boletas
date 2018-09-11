@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.dtos.LugarDTO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
@@ -41,7 +42,7 @@ public class LugarResource {
     
     @PUT
     @Path("(lugar_id : \\d+)")
-    public LugarDTO updateLugar(@PathParam("lugar_id") Long id, LugarDTO lugarDTO)
+    public LugarDTO updateLugar(@PathParam("lugar_id") Long lugar_id, LugarDTO lugarDTO)
     {
         return lugarDTO;
     }
