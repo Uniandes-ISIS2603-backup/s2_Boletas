@@ -22,10 +22,18 @@ public class LugarDTO implements Serializable {
     private String ubicacion;
 
    
+    /**
+     * Constructor vacío
+     */
     public LugarDTO()
     {
         
     }
+    
+    /**
+     * Constructor con parámetros
+     * @param entity 
+     */
     public LugarDTO(LugarEntity entity)
     {
         this.id = entity.getId();
@@ -35,6 +43,10 @@ public class LugarDTO implements Serializable {
         this.ubicacion = entity.getUbicacion();
     }
     
+    /**
+     * Convertir de dto a entity.
+     * @return 
+     */
     public LugarEntity toEntity()
     {
         LugarEntity lugarEntity = new LugarEntity();

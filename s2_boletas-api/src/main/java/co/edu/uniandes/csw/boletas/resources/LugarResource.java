@@ -35,23 +35,29 @@ public class LugarResource {
     @POST
     public LugarDTO createLugar(LugarDTO lugarDTO)
     {
-        LOGGER.info("LugarResource createLugar: input:" + lugarDTO.toString());
+        LOGGER.log(Level.INFO, "LugarResource createLugar: ", lugarDTO.toString());
         LugarEntity lugarEntity = lugarDTO.toEntity();
         return lugarDTO;
     }
     
     @PUT
-    @Path("(lugar_id : \\d+)")
-    public LugarDTO updateLugar(@PathParam("lugar_id") Long lugar_id, LugarDTO lugarDTO)
+    @Path("/(lugar_id : \\d+)")
+    public LugarDTO updateLugar(@PathParam("lugar_id")Long lugar_id, LugarDTO lugarDTO)
     {
+        LOGGER.log(Level.INFO, "LugarResource updateLugar: ", lugarDTO.toString());
         return lugarDTO;
     }
     
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     @GET
     @Path("(lugar_id : \\d+)")
     public LugarDTO getLugar(@PathParam("lugar_id") Long id)
     {
-        return null;
+        return new LugarDTO();
     }
     
     @GET
@@ -64,6 +70,6 @@ public class LugarResource {
     @Path("(lugar_id : \\d+)")
     public LugarDTO deleteLugar(@PathParam("lugar_id") Long id)
     {
-        return null;
+        return new LugarDTO();
     }
 }

@@ -9,8 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -29,7 +29,11 @@ public class LugarEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToMany(mappedBy="lugar")
     private List<SillaEntity> sillas = new ArrayList<SillaEntity>();
-
+    
+    @PodamExclude
+    @OneToOne()
+    private List<EspectaculoEntity> espectaculos;
+    
     public void setSillas(List<SillaEntity> sillas) {
         this.sillas = sillas;
     }

@@ -20,12 +20,18 @@ public class SillaDTO implements Serializable{
     private String tipo;
 
     
-    
+    /**
+     * Constructor vacío
+     */
     public SillaDTO()
     {
         
     }
     
+    /**
+     * Constructor con parámetros.
+     * @param entity 
+     */
     public SillaDTO(SillaEntity entity)
     {
         this.id = entity.getId();
@@ -33,6 +39,10 @@ public class SillaDTO implements Serializable{
         this.tipo = entity.getTipo();
     }
     
+    /**
+     * Transformar a entity.
+     * @return 
+     */
     public SillaEntity toEntity()
     {
         SillaEntity sillaEntity = new SillaEntity();
