@@ -33,7 +33,7 @@
 					"raw": "{\"costo\": \"2000\", \"envio\": \"True\", \"fecha\": \"26-08-2018\", \"direccion\": \"Cra 1 #18a-12\"}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compra",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -42,7 +42,7 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"compra"
+						"compras"
 					]
 				}
 			},
@@ -54,12 +54,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "05adb391-59bc-437d-8560-b5b902c93c46",
+						"id": "fc088aee-3573-435a-bbc7-ff04842c818c",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
+							""
 						]
 					}
 				}
@@ -77,7 +75,7 @@
 					"raw": "{\"costo\": \"40000\", \"envio\": \"False\", \"fecha\": \"29-08-2018\", \"direccion\": \"Carrera 7 #40 - 62\"}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compra",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -86,7 +84,7 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"compra"
+						"compras"
 					]
 				}
 			},
@@ -98,12 +96,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "122034c4-df8a-44f4-96c6-5491ee028f8f",
+						"id": "1a4d1bef-e687-4a23-8e74-0f6df704b16f",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
+							""
 						]
 					}
 				}
@@ -113,7 +109,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compra/0",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/0",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -122,7 +118,7 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"compra",
+						"compras",
 						"0"
 					]
 				}
@@ -135,12 +131,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "66af3d2d-9e12-45e0-8c8e-03d375b13a5a",
+						"id": "c8165bb1-d062-42b2-85d2-e1f6574d8c73",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});"
+							""
 						]
 					}
 				}
@@ -150,7 +144,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compra/123",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/123",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -159,7 +153,7 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"compra",
+						"compras",
 						"123"
 					]
 				}
@@ -172,12 +166,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ef5d2c72-0e57-4ba1-9c24-804464162238",
+						"id": "1d4d8cca-140f-4a73-b54a-c2aadd91a4be",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
+							""
 						]
 					}
 				}
@@ -195,7 +187,7 @@
 					"raw": "{\"costo\": \"2222\", \"envio\": \"True\", \"fecha\": \"22-02-2012\", \"direccion\": \"Cra 2 #22-22\"}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compra/0",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/0",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -204,7 +196,7 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"compra",
+						"compras",
 						"0"
 					]
 				}
@@ -217,12 +209,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f880abd0-94b6-4414-b92f-ddeb370f7ed0",
+						"id": "f8d7bfa0-5ee9-4d91-bc49-5f542da7b062",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
+							""
 						]
 					}
 				}
@@ -240,7 +230,7 @@
 					"raw": "{\"costo\": \"4444\", \"envio\": \"True\", \"fecha\": \"30-03-2013\", \"direccion\": \"Cra 3 #33-33\"}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compra/1",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -249,7 +239,7 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"compra",
+						"compras",
 						"1"
 					]
 				}
@@ -262,12 +252,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "027f1df1-41db-4ec1-bf92-cf61d8f684fb",
+						"id": "4d8d54e3-d1de-46dd-9567-37c5139feff7",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
+							""
 						]
 					}
 				}
@@ -277,7 +265,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compra/0",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/0",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -286,7 +274,7 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"compra",
+						"compras",
 						"0"
 					]
 				}
@@ -299,12 +287,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a1fea080-3794-4a15-84e6-9200f2cd756e",
+						"id": "c6d1ca27-d1e6-4397-93d3-fcedbfae598b",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});"
+							""
 						]
 					}
 				}
@@ -314,7 +300,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compra/134",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/134",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -323,7 +309,7 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"compra",
+						"compras",
 						"134"
 					]
 				}
