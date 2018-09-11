@@ -47,7 +47,7 @@ public class EspectaculoPersistence
     
     public List<EspectaculoEntity> findAll()
     {
-        TypedQuery<EspectaculoEntity> query = em.createQuery("Select u From EspectaculoEntity",EspectaculoEntity.class);
+        TypedQuery<EspectaculoEntity> query = em.createQuery("Select u From EspectaculoEntity u",EspectaculoEntity.class);
         return query.getResultList();
     }
          
