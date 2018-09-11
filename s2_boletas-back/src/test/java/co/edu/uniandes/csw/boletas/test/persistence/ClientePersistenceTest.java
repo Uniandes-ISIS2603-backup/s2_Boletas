@@ -70,9 +70,7 @@ public class ClientePersistenceTest {
     public void configTest() {
         try {
             utx.begin();
-            System.out.println("UTX");
             em.joinTransaction();
-            System.out.println("YA LLEGUE");
             clearData();
             
             insertData();
