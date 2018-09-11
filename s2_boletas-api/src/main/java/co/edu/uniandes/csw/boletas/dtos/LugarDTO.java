@@ -19,27 +19,42 @@ public class LugarDTO implements Serializable {
     private Integer numSillas; 
     private String direccion;
     private String nombre;
+    private String ubicacion;
+
+   
+    /**
+     * Constructor vacío
+     */
     public LugarDTO()
     {
         
     }
+    
+    /**
+     * Constructor con parámetros
+     * @param entity 
+     */
     public LugarDTO(LugarEntity entity)
     {
         this.id = entity.getId();
-        //Falta Ubicación
         this.numSillas = entity.getNumSillas();
         this.direccion = entity.getDireccion();
         this.nombre = entity.getNombre();
+        this.ubicacion = entity.getUbicacion();
     }
     
+    /**
+     * Convertir de dto a entity.
+     * @return 
+     */
     public LugarEntity toEntity()
     {
         LugarEntity lugarEntity = new LugarEntity();
         lugarEntity.setId(this.id);
-        //Falta Ubicación
         lugarEntity.setNumSillas(this.numSillas);
         lugarEntity.setDireccion(this.direccion);
         lugarEntity.setNombre(this.nombre);
+        lugarEntity.setUbicacion(this.ubicacion);
         return lugarEntity;
     }
 
@@ -75,5 +90,12 @@ public class LugarDTO implements Serializable {
         this.nombre = nombre;
     }
     
+     public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
     
 }
