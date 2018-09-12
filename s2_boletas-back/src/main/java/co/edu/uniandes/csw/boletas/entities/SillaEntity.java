@@ -30,6 +30,8 @@ public class SillaEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToOne
     private BoletaEntity boleta;
+
+    
     
     public void setLugar(LugarEntity lugar) {
         this.lugar = lugar;
@@ -54,6 +56,14 @@ public class SillaEntity extends BaseEntity implements Serializable{
 
     public String getTipo() {
         return tipo;
+    }
+    
+    public BoletaEntity getBoleta() {
+        return boleta;
+    }
+
+    public void setBoleta(BoletaEntity boleta) {
+        this.boleta = boleta;
     }
     
 }
