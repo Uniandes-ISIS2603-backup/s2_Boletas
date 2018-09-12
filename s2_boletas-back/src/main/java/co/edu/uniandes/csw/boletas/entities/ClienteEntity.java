@@ -6,6 +6,9 @@
 package co.edu.uniandes.csw.boletas.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -17,6 +20,11 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class ClienteEntity extends BaseEntity implements Serializable {
+    
+        @OneToMany(mappedBy="cliente", cascade= CascadeType.PERSIST, orphanRemoval=true)
+  private List<ComentarioEntity> comentarios= new ArrayList<>();
+        @OneToMany(mappedBy="cliente", cascade= CascadeType.PERSIST, orphanRemoval=true)
+  private List<CompraEntity> compra= new ArrayList<>();
     
     private String usuario;
     private String nombre;
