@@ -12,10 +12,12 @@ package co.edu.uniandes.csw.boletas.dtos;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import java.io.Serializable;
 import java.util.Date;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class BoletaDTO implements Serializable {
     
-    private Long boletaID;
+    private Long id;
     
     private Integer precio;
     
@@ -28,26 +30,29 @@ public class BoletaDTO implements Serializable {
     
     public BoletaDTO(BoletaEntity boleta)
     {
-        boletaID = boleta.getId();
-        precio = boleta.getPrecio();
-        fecha = boleta.getFecha();
+        if(boleta!=null)
+        {
+            id = boleta.getId();
+            precio = boleta.getPrecio();
+            fecha = boleta.getFecha();
+        }
     }
     
     public BoletaEntity toEntity()
     {
         BoletaEntity boleta = new BoletaEntity();
-        boleta.setId(boletaID);
+        boleta.setId(id);
         boleta.setPrecio(precio);
         boleta.setFecha(fecha);
         return boleta;
     }
 
-    public Long getBoletaID() {
-        return boletaID;
+    public Long getID() {
+        return id;
     }
 
-    public void setBoletaID(Long boletaID) {
-        this.boletaID = boletaID;
+    public void setidID(Long boletaID) {
+        this.id = boletaID;
     }
 
     public Integer getPrecio() {
@@ -65,7 +70,10 @@ public class BoletaDTO implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
     
     
 }
