@@ -77,7 +77,6 @@ public class ClientePersistenceTest {
             utx.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("MUERO ANTES");
             try {
                 utx.rollback();
             } catch (Exception e1) {
