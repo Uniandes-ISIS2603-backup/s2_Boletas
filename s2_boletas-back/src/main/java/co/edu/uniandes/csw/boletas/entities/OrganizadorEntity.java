@@ -6,10 +6,11 @@
 package co.edu.uniandes.csw.boletas.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -17,6 +18,11 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class OrganizadorEntity extends BaseEntity implements Serializable{
+    
+    @OneToMany(mappedBy= "organizador", cascade=CascadeType.PERSIST, orphanRemoval=true)
+    private List<EspectaculoEntity> espectaculos= new ArrayList<>();
+    
+   
     
     private String nombre;
     private Integer  presupuesto;
