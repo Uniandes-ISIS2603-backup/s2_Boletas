@@ -33,9 +33,7 @@ public class LugarEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToMany(mappedBy="lugar", fetch = FetchType.LAZY)
     private List<EspectaculoEntity> espectaculos;
-
-    
-    
+ 
     public List<EspectaculoEntity> getEspectaculos() {
         return espectaculos;
     }
