@@ -19,8 +19,8 @@ import javax.ws.rs.PathParam;
 import co.edu.uniandes.csw.boletas.dtos.ComentarioDTO;
 
 @Path("comentarios")
-@Produces("aplication/json")
-@Consumes("aplication/json")
+@Produces("application/json")
+@Consumes("application/json")
 @RequestScoped
 public class ComentarioResource {
     @POST
