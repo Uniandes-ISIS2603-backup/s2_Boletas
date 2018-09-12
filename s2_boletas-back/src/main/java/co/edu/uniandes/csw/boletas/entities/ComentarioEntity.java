@@ -5,23 +5,19 @@
  */
 package co.edu.uniandes.csw.boletas.entities;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+
 /**
  *
  * @author estudiante
  */
-public class ComentarioEntity {
-    private Long id;
+@Entity
+public class ComentarioEntity extends BaseEntity implements Serializable
+{
+   
     
     private String mensaje;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getMensaje() {
         return mensaje;
     }

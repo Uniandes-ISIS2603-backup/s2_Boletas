@@ -21,7 +21,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class BoletaPersistence {
     
-    private static final Logger LOGGER = Logger.getLogger(EspectaculoPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(BoletaPersistence.class.getName());
     
     @PersistenceContext(unitName = "DnsPU")
     protected EntityManager em;
