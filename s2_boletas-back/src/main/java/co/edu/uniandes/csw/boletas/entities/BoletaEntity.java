@@ -33,9 +33,9 @@ public class BoletaEntity extends BaseEntity implements Serializable
     @PodamExclude
     @ManyToOne
     private CompraEntity compra;
-   /*
+   
     @PodamExclude
-    @OneToOne(mappedBy = "silla", fetch=FetchType.LAZY)
+    @OneToOne(mappedBy = "boleta", fetch=FetchType.LAZY)
     private SillaEntity silla;
 
     public SillaEntity getSilla() {
@@ -45,7 +45,7 @@ public class BoletaEntity extends BaseEntity implements Serializable
     public void setSilla(SillaEntity silla) {
         this.silla = silla;
     }
-    */
+    
     public CompraEntity getCompra() {
         return compra;
     }
