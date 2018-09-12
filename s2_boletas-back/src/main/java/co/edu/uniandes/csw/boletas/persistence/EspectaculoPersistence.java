@@ -47,15 +47,15 @@ public class EspectaculoPersistence
     
     public List<EspectaculoEntity> findAll()
     {
-        TypedQuery<EspectaculoEntity> query = em.createQuery("",EspectaculoEntity.class);
+        TypedQuery<EspectaculoEntity> query = em.createQuery("Select u From EspectaculoEntity u",EspectaculoEntity.class);
         return query.getResultList();
     }
          
     public EspectaculoEntity findByName(String name)
     {
-        TypedQuery query = em.createQuery("Select e From EspectaculoEntity e where e.name =:name", EspectaculoEntity.class);
+        TypedQuery query = em.createQuery("Select e From EspectaculoEntity e where e.nombre =:nombre", EspectaculoEntity.class);
         
-        query = query.setParameter("name",name);
+        query = query.setParameter("nombre",name);
         
         List<EspectaculoEntity> lista = query.getResultList();
         

@@ -44,9 +44,8 @@ public class EspectaculoResourse
         
         LOGGER.info("EspectaculoResourse createEspectaculo: input: " + espectaculo.toString());
         
-        EspectaculoEntity entity = espectaculo.toEntity();
-        
-        
+        //EspectaculoEntity entity = espectaculo.toEntity();
+       
         
         return espectaculo;   
     }

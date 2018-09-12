@@ -17,25 +17,38 @@ import java.io.Serializable;
 public class SillaDTO implements Serializable{
     private Long id;
     private String numero;
+    private String tipo;
+
     
+    /**
+     * Constructor vacío
+     */
     public SillaDTO()
     {
         
     }
     
+    /**
+     * Constructor con parámetros.
+     * @param entity 
+     */
     public SillaDTO(SillaEntity entity)
     {
         this.id = entity.getId();
         this.numero = entity.getNumero();
-        //Me falta implementar lo de tipo
+        this.tipo = entity.getTipo();
     }
     
+    /**
+     * Transformar a entity.
+     * @return 
+     */
     public SillaEntity toEntity()
     {
         SillaEntity sillaEntity = new SillaEntity();
-        sillaEntity.setId(id);
-        sillaEntity.setNumero(numero);
-        //Me falta el tipo
+        sillaEntity.setId(this.id);
+        sillaEntity.setNumero(this.numero);
+        sillaEntity.setTipo(this.tipo);;
         return sillaEntity;
     }
 
@@ -55,5 +68,12 @@ public class SillaDTO implements Serializable{
         this.numero = numero;
     }
     
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
     
 }

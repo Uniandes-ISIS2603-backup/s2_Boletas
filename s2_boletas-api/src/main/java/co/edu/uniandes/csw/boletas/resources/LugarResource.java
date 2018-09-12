@@ -7,7 +7,9 @@ package co.edu.uniandes.csw.boletas.resources;
 
 import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.dtos.LugarDTO;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
@@ -33,35 +35,41 @@ public class LugarResource {
     @POST
     public LugarDTO createLugar(LugarDTO lugarDTO)
     {
-        LOGGER.info("LugarResource createLugar: input:" + lugarDTO.toString());
+        LOGGER.log(Level.INFO, "LugarResource createLugar: ", lugarDTO.toString());
         LugarEntity lugarEntity = lugarDTO.toEntity();
         return lugarDTO;
     }
     
     @PUT
-    @Path("(lugar_id : \\d+)")
-    public LugarDTO updateLugar(@PathParam("lugar_id") Long id, LugarDTO lugarDTO)
+    @Path("/(lugar_id : \\d+)")
+    public LugarDTO updateLugar(@PathParam("lugar_id")Long lugar_id, LugarDTO lugarDTO)
     {
+        LOGGER.log(Level.INFO, "LugarResource updateLugar: ", lugarDTO.toString());
         return lugarDTO;
     }
     
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     @GET
     @Path("(lugar_id : \\d+)")
     public LugarDTO getLugar(@PathParam("lugar_id") Long id)
     {
-        return null;
+        return new LugarDTO();
     }
     
     @GET
     public List<LugarDTO> getLugares()
     {
-        return null;
+        return new ArrayList<LugarDTO>();
     }
     
     @DELETE
     @Path("(lugar_id : \\d+)")
     public LugarDTO deleteLugar(@PathParam("lugar_id") Long id)
     {
-        return null;
+        return new LugarDTO();
     }
 }

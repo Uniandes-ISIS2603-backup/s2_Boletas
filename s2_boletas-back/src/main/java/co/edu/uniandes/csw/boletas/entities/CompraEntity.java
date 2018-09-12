@@ -11,6 +11,10 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
+import uk.co.jemos.podam.common.PodamExclude;
+
+
 /**
  *
  * @author Gabriel Hamilton
@@ -18,6 +22,7 @@ import javax.persistence.TemporalType;
 @javax.persistence.Entity
 public class CompraEntity extends BaseEntity implements Serializable{
     
+
 
     private Integer costoTotal;
     
@@ -29,17 +34,19 @@ public class CompraEntity extends BaseEntity implements Serializable{
     private String direccion;    
     
     
-    //@javax.persistence.OneToMany(
-    //fetch = javax.persistence.FetchType.LAZY)
-    //Collection<BoletaEntity> boletas;
+    @PodamExclude
+    @javax.persistence.OneToMany(
+    fetch = javax.persistence.FetchType.LAZY)
+    Collection<BoletaEntity> boletas;
     
-    //@javax.persistence.ManyToOne()
-    //ClienteEntity cliente;
+    @PodamExclude
+    @javax.persistence.ManyToOne()
+    ClienteEntity cliente;
     
 
     
     /*
-     * rtorna el costo total de la compra
+     * retorna el costo total de la compra
      * @return costoTotal
      */
     public Integer getCostoTotal()
@@ -77,12 +84,14 @@ public class CompraEntity extends BaseEntity implements Serializable{
     }
     
     
+
     /**
      * modifica el id con el id ingresado por parametro
      * @param idN, nuevo id
      */
 
     
+
     
     /**
      * modifica el costo de la compra

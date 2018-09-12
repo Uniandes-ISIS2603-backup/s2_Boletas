@@ -1,14 +1,12 @@
 /*
-
-
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.boletas.test.persistence;
 
-import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
-import co.edu.uniandes.csw.boletas.persistence.BoletaPersistence;
+import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
+import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -21,7 +19,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Before;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -32,40 +29,39 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author estudiante
  */
 @RunWith(Arquillian.class)
-public class BoletaPersistenceTest {
-    
+public class ComentarioPersistenceTest {
     @Inject
-    private BoletaPersistence boletaPersistence;
+    private ComentarioPersistence comentarioPersistence;
     
     @PersistenceContext
-    private EntityManager em;
+     private EntityManager em;
     
      @Inject
     UserTransaction utx;
     
     
-    private List<BoletaEntity> data = new ArrayList<BoletaEntity>();
+    private List<ComentarioEntity> data = new ArrayList<ComentarioEntity>();
     
    
     
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(BoletaEntity.class.getPackage())
-                .addPackage(BoletaPersistence.class.getPackage())
+                .addPackage(ComentarioEntity.class.getPackage())
+                .addPackage(ComentarioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
     @Test
-    public void createBoletaTest(){
+    public void createComentarioTest(){
         PodamFactory factory = new PodamFactoryImpl();
         
-        BoletaEntity newEntity = factory.manufacturePojo(BoletaEntity.class);
-        BoletaEntity result= boletaPersistence.create(newEntity);
+        ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
+        ComentarioEntity result= comentarioPersistence.create(newEntity);
         
         Assert.assertNotNull(result);
-        BoletaEntity entity = em.find(BoletaEntity.class, result.getId());
+        ComentarioEntity entity = em.find(ComentarioEntity.class, result.getId());
         
     }
     
@@ -93,7 +89,7 @@ public class BoletaPersistenceTest {
     }
     private void clearData()
     {
-        em.createQuery("Delete from BoletaEntity").executeUpdate();
+        em.createQuery("Delete from ComentarioEntity").executeUpdate();
     }
     
     private void insertData()
@@ -101,7 +97,7 @@ public class BoletaPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for(int i = 0; i<3; i++)
         {
-            BoletaEntity entity =factory.manufacturePojo(BoletaEntity.class);
+            ComentarioEntity entity =factory.manufacturePojo(ComentarioEntity.class);
             em.persist(entity);
             data.add(entity);
         }
@@ -110,9 +106,10 @@ public class BoletaPersistenceTest {
     @Test
     public void deleteBoletaTest()
     {
-        BoletaEntity entity = data.get(0);
-        boletaPersistence.delete(entity.getId());
-        BoletaEntity deleted =em.find(BoletaEntity.class, entity.getId());
+        ComentarioEntity entity = data.get(0);
+        comentarioPersistence.delete(entity.getId());
+        ComentarioEntity deleted =em.find(ComentarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
+    
 }

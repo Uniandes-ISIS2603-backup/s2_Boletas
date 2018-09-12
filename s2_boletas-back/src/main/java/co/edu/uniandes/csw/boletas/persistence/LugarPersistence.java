@@ -46,8 +46,8 @@ public class LugarPersistence {
     
     public LugarEntity findByName(String name)
     {
-        TypedQuery query = em.createQuery("Select e from LugarEntity e where e.name =:name", LugarEntity.class);
-        query = query.setParameter("name", name);
+        TypedQuery query = em.createQuery("Select e from LugarEntity e where e.nombre =:nombre", LugarEntity.class);
+        query = query.setParameter("nombre", name);
         List<LugarEntity> lugares = query.getResultList();
         LugarEntity lugar = null;
         if(!lugares.isEmpty())

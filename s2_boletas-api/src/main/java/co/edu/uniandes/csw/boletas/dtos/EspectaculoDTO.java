@@ -21,6 +21,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class EspectaculoDTO implements Serializable
 {
+
+    
     
     private Long espectaculoId;
     
@@ -32,11 +34,13 @@ public class EspectaculoDTO implements Serializable
     
     private String artista;
     
+    private String tipo;
+    
     /**
      * Espectaculo tiene una asociacion, de modo que tiene un lugar asignado
      */
     
-    private LugarDTO lugar;
+ //   private LugarDTO lugar;
     
     
     public EspectaculoDTO()
@@ -50,22 +54,24 @@ public class EspectaculoDTO implements Serializable
         {
             espectaculoId = espectaculo.getId();
             
-            nombre = espectaculo.darNombre();
+            nombre = espectaculo.getNombre();
         
-            artista = espectaculo.darArtista();
+            artista = espectaculo.getArtista();
         
-            fecha = espectaculo.darFecha();
+            fecha = espectaculo.getFecha();
         
-            descripcion = espectaculo.darDescripcion();  
+            descripcion = espectaculo.getDescripcion();
             
-            if(espectaculo.darLugar() != null)
-            {
-                this.lugar = new LugarDTO(espectaculo.darLugar());
-            }
-            else 
-            {
-                lugar = null;
-            }
+            tipo = espectaculo.getTipo();
+            
+//            if(espectaculo.darLugar() != null)
+//            {
+//                this.lugar = new LugarDTO(espectaculo.darLugar());
+//            }
+//            else 
+//            {
+//                lugar = null;
+//            }
               
             
         }
@@ -76,18 +82,20 @@ public class EspectaculoDTO implements Serializable
     {
         EspectaculoEntity espectaculo = new EspectaculoEntity();
         
-        espectaculo.cambiarNombre(this.nombre);
+        espectaculo.setNombre(this.nombre);
         
-        espectaculo.cambiarArtista(this.artista);
+        espectaculo.setArtista(this.artista);
         
-        espectaculo.cambiarDescripcion(this.descripcion);
+        espectaculo.setDescripcion(this.descripcion);
         
-        espectaculo.cambiarFecha(this.fecha);
+        espectaculo.setFecha(this.fecha);
         
-        if(lugar != null)
-        {
-            espectaculo.setLugar(lugar.toEntity());
-        }
+        espectaculo.setTipo(tipo);
+        
+//        if(lugar != null)
+//        {
+//            espectaculo.setLugar(lugar.toEntity());
+//        }
         
         return espectaculo;
     }
@@ -97,59 +105,73 @@ public class EspectaculoDTO implements Serializable
         return espectaculoId;
     }
     
-    public void cambiarId(Long id)
+    public void setId(Long id)
     {
         espectaculoId = id;
     }
     
-    public String getName()
+    public String getNombre()
     {
         return nombre;
     }
     
-    public void cambiarNombre(String nombre)
+    public void setNombre(String nombre)
     {
         this.nombre = nombre;
     }
     
-    public Date getDate()
+    public Date getFecha()
     {
         return fecha;
     }
     
-    public void cambiarFecha(Date pFecha)
+    public void setFecha(Date pFecha)
     {
         this.fecha = pFecha;
     }
     
-    public String getDescription()
+    public String getDescripcion()
     {
         return descripcion;
     }
     
-    public void cambiarDescripcion(String description)
+    public void setDescripcion(String description)
     {
         this.descripcion = description;
     }
     
-    public String getArtist()
+    public String getArtista()
     {
         return artista;
     }
     
-    public void cambiarArtista(String artist)
+    public void setArtista(String artist)
     {
         this.artista = artist;
     }
     
-    public LugarDTO darLugar()
-    {
-        return lugar;
-    }
+//    public LugarDTO darLugar()
+//    {
+//        return lugar;
+//    }
+//    
+//    public void cambiarLugar(LugarDTO lugar)
+//    {
+//        this.lugar = lugar;
+//    }
     
-    public void cambiarLugar(LugarDTO lugar)
-    {
-        this.lugar = lugar;
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
      @Override

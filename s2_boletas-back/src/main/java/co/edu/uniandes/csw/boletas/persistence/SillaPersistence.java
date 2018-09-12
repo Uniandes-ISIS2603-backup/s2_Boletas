@@ -39,6 +39,19 @@ public class SillaPersistence {
         return em.find(SillaEntity.class, id);
     }
     
+    public SillaEntity findByNumeroAndLugar(String numero, Long lugarId)
+    {
+        TypedQuery<SillaEntity> query = em.createQuery("Select e from SillaEntity e where e.numero =:numero",SillaEntity.class);
+        query = query.setParameter("numero", numero);
+        List<SillaEntity> sillas = query.getResultList();
+        //Falta mejorar el algoritmo o implementar la búsqueda con ambos parámetros en el query.
+        if(!sillas.isEmpty())
+            for(SillaEntity sillaActual: sillas)
+                if(sillaActual.getLugar().getId().equals(lugarId))
+                    return sillaActual;
+        return null;
+    }
+    
     public List<SillaEntity> findAll()
     {
         TypedQuery<SillaEntity> query = em.createQuery("", SillaEntity.class);

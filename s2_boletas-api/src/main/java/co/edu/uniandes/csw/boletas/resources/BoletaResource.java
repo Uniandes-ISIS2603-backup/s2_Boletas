@@ -5,35 +5,49 @@
  */
 package co.edu.uniandes.csw.boletas.resources;
 
-import javax.enterprise.context.RequestScoped;
+import co.edu.uniandes.csw.boletas.dtos.BoletaDTO;
+import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import co.edu.uniandes.csw.boletas.dtos.BoletaDTO;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+
+
 
 /**
  *
  * @author estudiante
  */
 @Path("boletas")
-@Produces("aplication/json")
-@Consumes("aplication/json")
-@RequestScoped
+@Produces("application/json")
+@Consumes("application/json")
 public class BoletaResource {
     
+    private static final Logger LOGGER = Logger.getLogger(BoletaResource.class.getName());
     @POST
-    public BoletaDTO postBoleta(BoletaDTO boleta){
-    return boleta;
+    public BoletaDTO postBoleta(BoletaDTO boleta) throws BusinessLogicException
+    {
+        LOGGER.log(Level.INFO, "BoletaResource postBoleta: input: {0}", boleta.toString());
+        return boleta;
     }
     
     @GET
-    @Path("{boletaid : \\d+}")
-    public BoletaDTO getBoleta(@PathParam("boletaid") Long boletaid)
+    @Path("{boletasId : \\d+}")
+    public BoletaDTO getBoleta(@PathParam("boletasId") Long boletasId)
     {
         return null;
+    }
+    
+    @DELETE
+    @Path("{boletasId: \\d+}")
+    public void deleteBoleta(@PathParam("boletasId") Long boletasId) 
+    { 
     }
     
 }

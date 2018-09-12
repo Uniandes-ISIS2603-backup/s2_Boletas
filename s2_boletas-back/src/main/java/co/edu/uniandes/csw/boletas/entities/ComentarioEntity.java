@@ -5,23 +5,44 @@
  */
 package co.edu.uniandes.csw.boletas.entities;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
+
 /**
  *
  * @author estudiante
  */
-public class ComentarioEntity {
-    private Long id;
+@Entity
+public class ComentarioEntity extends BaseEntity implements Serializable
+{
+   
+    @PodamExclude
+    @ManyToOne
+    private EspectaculoEntity espectaculo;
+    
+    @PodamExclude
+    @ManyToOne
+    private ClienteEntity cliente;
+
+    public EspectaculoEntity getEspectaculo() {
+        return espectaculo;
+    }
+
+    public void setEspectaculo(EspectaculoEntity espectaculo) {
+        this.espectaculo = espectaculo;
+    }
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
     
     private String mensaje;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getMensaje() {
         return mensaje;
     }

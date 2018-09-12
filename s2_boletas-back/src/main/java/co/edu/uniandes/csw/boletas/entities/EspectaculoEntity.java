@@ -7,10 +7,12 @@ package co.edu.uniandes.csw.boletas.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -33,45 +35,58 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     private String descripcion;
 
     private String artista;
+    
+    private String tipo;
 
+    
     @PodamExclude
-    @OneToMany(mappedBy = "espectaculo")
+    @OneToMany(mappedBy = "espectaculo", fetch = FetchType.LAZY)
     private List<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
-    
+
     
     @PodamExclude
-    @OneToOne(mappedBy = "espectaculo",fetch = FetchType.LAZY)
+    @ManyToOne
     private LugarEntity lugar;
-
-    public String darNombre() {
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "espectaculo", fetch = FetchType.LAZY)
+    private List<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
+    
+    @PodamExclude
+    @ManyToOne()
+    private OrganizadorEntity organizador;
+    
+    
+    
+    public String getNombre() {
         return nombre;
     }
 
-    public void cambiarNombre(String pNombre) {
+    public void setNombre(String pNombre) {
         this.nombre = pNombre;
     }
 
-    public Date darFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void cambiarFecha(Date date) {
+    public void setFecha(Date date) {
         fecha = date;
     }
 
-    public String darDescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void cambiarDescripcion(String descrip) {
+    public void setDescripcion(String descrip) {
         this.descripcion = descrip;
     }
 
-    public void cambiarArtista(String artist) {
+    public void setArtista(String artist) {
         artista = artist;
     }
 
-    public String darArtista() {
+    public String getArtista() {
         return artista;
     }
     
@@ -93,6 +108,20 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     public void setLugar(LugarEntity pLugar)
     {
         this.lugar = pLugar;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
 }
