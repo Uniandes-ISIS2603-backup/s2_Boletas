@@ -40,7 +40,7 @@ public class EspectaculoDTO implements Serializable
      * Espectaculo tiene una asociacion, de modo que tiene un lugar asignado
      */
     
- //   private LugarDTO lugar;
+    private LugarDTO lugar;
     
     
     public EspectaculoDTO()
@@ -64,14 +64,14 @@ public class EspectaculoDTO implements Serializable
             
             tipo = espectaculo.getTipo();
             
-//            if(espectaculo.darLugar() != null)
-//            {
-//                this.lugar = new LugarDTO(espectaculo.darLugar());
-//            }
-//            else 
-//            {
-//                lugar = null;
-//            }
+            if(espectaculo.darLugar() != null)
+            {
+                this.lugar = new LugarDTO(espectaculo.darLugar());
+            }
+            else 
+            {
+                lugar = null;
+            }
               
             
         }
@@ -92,10 +92,10 @@ public class EspectaculoDTO implements Serializable
         
         espectaculo.setTipo(tipo);
         
-//        if(lugar != null)
-//        {
-//            espectaculo.setLugar(lugar.toEntity());
-//        }
+        if(lugar != null)
+        {
+            espectaculo.setLugar(lugar.toEntity());
+        }
         
         return espectaculo;
     }
@@ -150,15 +150,6 @@ public class EspectaculoDTO implements Serializable
         this.artista = artist;
     }
     
-//    public LugarDTO darLugar()
-//    {
-//        return lugar;
-//    }
-//    
-//    public void cambiarLugar(LugarDTO lugar)
-//    {
-//        this.lugar = lugar;
-//    }
     
     /**
      * @return the tipo
@@ -178,5 +169,19 @@ public class EspectaculoDTO implements Serializable
     public String toString() 
     {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    /**
+     * @return the lugar
+     */
+    public LugarDTO getLugar() {
+        return lugar;
+    }
+
+    /**
+     * @param lugar the lugar to set
+     */
+    public void setLugar(LugarDTO lugar) {
+        this.lugar = lugar;
     }
 }

@@ -158,4 +158,36 @@ public class EspectaculoPersistenceTest
         Assert.assertNull(deleted);
     }
     
+    /**
+     * Prueba para actualizar una Editorial.
+     */
+    @Test
+    public void updateEspectaculoTest() {
+        EspectaculoEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        EspectaculoEntity newEntity = factory.manufacturePojo(EspectaculoEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        espectaculoPersistence.update(newEntity);
+
+        EspectaculoEntity resp = em.find(EspectaculoEntity.class, entity.getId());
+
+        org.junit.Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
+    }
+
+    /**
+     * Prueba para consultar una Editorial por nombre.
+     */
+    @Test
+    public void finsEspectaculoByNameTest() {
+        EspectaculoEntity entity = data.get(0);
+        EspectaculoEntity newEntity = espectaculoPersistence.findByName(entity.getNombre());
+        org.junit.Assert.assertNotNull(newEntity);
+        org.junit.Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+
+        newEntity = espectaculoPersistence.findByName(null);
+        org.junit.Assert.assertNull(newEntity);
+    }
+    
 }
