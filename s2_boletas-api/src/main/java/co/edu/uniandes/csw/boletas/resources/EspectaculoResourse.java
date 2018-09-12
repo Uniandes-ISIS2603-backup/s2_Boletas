@@ -7,8 +7,12 @@ package co.edu.uniandes.csw.boletas.resources;
 
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.dtos.EspectaculoDTO;
+import co.edu.uniandes.csw.boletas.dtos.EspectaculoDetailDTO;
+import co.edu.uniandes.csw.boletas.ejb.EspectaculoLogic;
+import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -38,16 +42,24 @@ public class EspectaculoResourse
     
     private static final Logger LOGGER = Logger.getLogger(EspectaculoResourse.class.getName());
     
+    @Inject
+    EspectaculoLogic espectaculoLogic;
+    
     @POST
-    public EspectaculoDTO createEspectaculo(EspectaculoDTO espectaculo)
+    public EspectaculoDTO createEspectaculo(EspectaculoDTO espectaculo) throws BusinessLogicException
     { 
         
         LOGGER.info("EspectaculoResourse createEspectaculo: input: " + espectaculo.toString());
         
-        //EspectaculoEntity entity = espectaculo.toEntity();
-       
+        EspectaculoEntity entity = espectaculo.toEntity();
         
-        return espectaculo;   
+        EspectaculoEntity nuevo = espectaculoLogic.createEntity(entity);
+        
+        EspectaculoDTO dto = new EspectaculoDTO(nuevo);
+        
+        LOGGER.log(Level.INFO, dto.toString());
+        
+        return dto;   
     }
     
     @PUT
@@ -65,11 +77,12 @@ public class EspectaculoResourse
     }
     
     @GET 
-    public List<EspectaculoDTO> getEspectaculos()
+    public List<EspectaculoDetailDTO> getEspectaculos()
     {
-        ArrayList<EspectaculoDTO> espectaculos = new ArrayList();
-        
-        return espectaculos;
+        LOGGER.info("EspectaculoResourse getEditorials: input: void");
+        List<EspectaculoDetailDTO> listaEditoriales = listEntity2DetailDTO(espectaculoLogic.getEspectaculos());
+        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaEditoriales.toString());
+        return listaEditoriales;
     }
     
     @DELETE
@@ -77,5 +90,13 @@ public class EspectaculoResourse
     public void deleteEditorial(@PathParam("espectaculoId") Long editorialsId) 
     {
         
+    }
+    
+     private List<EspectaculoDetailDTO> listEntity2DetailDTO(List<EspectaculoEntity> entityList) {
+        List<EspectaculoDetailDTO> list = new ArrayList<>();
+        for (EspectaculoEntity entity : entityList) {
+            list.add(new EspectaculoDetailDTO(entity));
+        }
+        return list;
     }
 }

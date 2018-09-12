@@ -10,7 +10,10 @@ import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+
 import uk.co.jemos.podam.common.PodamExclude;
+
 
 /**
  *
@@ -19,7 +22,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 @javax.persistence.Entity
 public class CompraEntity extends BaseEntity implements Serializable{
     
-     
+
+
     private Integer costoTotal;
     
     private Boolean envio;
@@ -39,6 +43,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     @javax.persistence.ManyToOne()
     ClienteEntity cliente;
     
+
     
     /*
      * retorna el costo total de la compra
@@ -79,6 +84,14 @@ public class CompraEntity extends BaseEntity implements Serializable{
     }
     
     
+
+    /**
+     * modifica el id con el id ingresado por parametro
+     * @param idN, nuevo id
+     */
+
+    
+
     
     /**
      * modifica el costo de la compra

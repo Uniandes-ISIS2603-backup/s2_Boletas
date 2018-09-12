@@ -28,7 +28,7 @@ public class SillaEntity extends BaseEntity implements Serializable{
     private LugarEntity lugar;
     
     @PodamExclude
-    @OneToOne
+    @OneToOne()
     private BoletaEntity boleta;
 
     

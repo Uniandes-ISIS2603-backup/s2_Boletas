@@ -7,14 +7,12 @@ package co.edu.uniandes.csw.boletas.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -122,6 +120,34 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    /**
+     * @return the organizador
+     */
+    public OrganizadorEntity getOrganizador() {
+        return organizador;
+    }
+
+    /**
+     * @param organizador the organizador to set
+     */
+    public void setOrganizador(OrganizadorEntity organizador) {
+        this.organizador = organizador;
+    }
+
+    /**
+     * @return the comentarios
+     */
+    public List<ComentarioEntity> getComentarios() {
+        return comentarios;
+    }
+
+    /**
+     * @param comentarios the comentarios to set
+     */
+    public void setComentarios(List<ComentarioEntity> comentarios) {
+        this.comentarios = comentarios;
     }
     
 }
