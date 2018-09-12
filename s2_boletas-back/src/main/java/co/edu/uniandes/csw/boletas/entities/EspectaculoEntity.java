@@ -39,23 +39,23 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     private String tipo;
 
     
-//    @PodamExclude
-//    @OneToMany(mappedBy = "espectaculo", fetch = FetchType.LAZY)
-//    private Collection<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
-//
-//    
-//    @PodamExclude
-//    @OneToOne(mappedBy = "espectaculo", fetch = FetchType.LAZY)
-//    private LugarEntity lugar;
-//    
-//    @PodamExclude
-//    @OneToMany(mappedBy = "espectaculo", fetch = FetchType.LAZY)
-//    private Collection<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
-//    
-//    @PodamExclude
-//    @ManyToOne()
-//    private OrganizadorEntity organizador;
-//    
+    @PodamExclude
+    @OneToMany(mappedBy = "espectaculo", fetch = FetchType.LAZY)
+    private List<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
+
+    
+    @PodamExclude
+    @ManyToOne
+    private LugarEntity lugar;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "espectaculo", fetch = FetchType.LAZY)
+    private List<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
+    
+    @PodamExclude
+    @ManyToOne()
+    private OrganizadorEntity organizador;
+    
     
     
     public String getNombre() {
@@ -90,25 +90,25 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
         return artista;
     }
     
-//    public List<BoletaEntity> getBoletas()
-//    {
-//        return boletas;
-//    }
-//    
-//    public void setBoletas(List<BoletaEntity> boletas)
-//    {
-//        this.boletas = boletas;
-//    }
+    public List<BoletaEntity> getBoletas()
+    {
+        return boletas;
+    }
     
-//    public LugarEntity darLugar()
-//    {
-//        return lugar;
-//    }
-//    
-//    public void setLugar(LugarEntity pLugar)
-//    {
-//        this.lugar = pLugar;
-//    }
+    public void setBoletas(List<BoletaEntity> boletas)
+    {
+        this.boletas = boletas;
+    }
+    
+    public LugarEntity darLugar()
+    {
+        return lugar;
+    }
+    
+    public void setLugar(LugarEntity pLugar)
+    {
+        this.lugar = pLugar;
+    }
 
     /**
      * @return the tipo
