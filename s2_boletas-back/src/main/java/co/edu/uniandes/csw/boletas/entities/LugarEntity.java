@@ -31,8 +31,18 @@ public class LugarEntity extends BaseEntity implements Serializable{
     private List<SillaEntity> sillas = new ArrayList<SillaEntity>();
     
     @PodamExclude
-    @OneToOne()
+    @OneToMany(mappedBy="lugar")
     private List<EspectaculoEntity> espectaculos;
+
+    
+    
+    public List<EspectaculoEntity> getEspectaculos() {
+        return espectaculos;
+    }
+
+    public void setEspectaculos(List<EspectaculoEntity> espectaculos) {
+        this.espectaculos = espectaculos;
+    }
     
     public void setSillas(List<SillaEntity> sillas) {
         this.sillas = sillas;
