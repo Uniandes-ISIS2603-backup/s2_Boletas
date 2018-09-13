@@ -36,6 +36,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @javax.persistence.OneToMany(
+    mappedBy = "compra",
     fetch = javax.persistence.FetchType.LAZY)
     Collection<BoletaEntity> boletas;
     
