@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.boletas.resources;
 
 import co.edu.uniandes.csw.boletas.dtos.ComentarioDTO;
+import co.edu.uniandes.csw.boletas.ejb.ComentarioLogic;
+import co.edu.uniandes.csw.boletas.ejb.EspectaculoComentarioLogic;
 import co.edu.uniandes.csw.boletas.ejb.EspectaculoLogic;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +20,11 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
- *
+ * Clase que implementa el recurso de /espectaculos/{id}/comentarios
  * @author Diego Camacho y Sebastian Rodriguez 
  */
 @Consumes(MediaType.APPLICATION_JSON)
@@ -30,14 +33,14 @@ public class EspectaculoComentarioResourse
 {
     private static final Logger LOGGER = Logger.getLogger(EspectaculoComentarioResourse.class.getName());
 
-//    @Inject
-//    private EspectaculoComentarioLogic espectaculoComentarioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+    @Inject
+    private EspectaculoComentarioLogic espectaculoComentarioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
     @Inject
     private EspectaculoLogic espectaculoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
-   // @Inject
-  //  private ComentarioLogic comentarioLogic;
+    @Inject
+    private ComentarioLogic comentarioLogic;
     
    /**
     * Metodo que se usa para agregar un comentario a un espectaculo
@@ -50,11 +53,11 @@ public class EspectaculoComentarioResourse
     public ComentarioDTO addComentario(@PathParam("espectaculoId") Long espectaculosId, @PathParam("comentarioId") Long comentariosId)
     {
         LOGGER.log(Level.INFO, "EspectaculoComentarioResourse addComentario: input: espectaculoId: "+ espectaculosId +", comentariosId: " + comentariosId, new Object[]{espectaculosId, comentariosId});
-//        if (bookLogic.getBook(booksId) == null) {
-//            throw new WebApplicationException("El recurso /books/" + booksId + " no existe.", 404);
-//        }
-     //   ComentarioDTO comentarioDTO = new ComentarioDTO(editorialBooksLogic.addBook(booksId, editorialsId));
-     //   LOGGER.log(Level.INFO, "EditorialBooksResource addBook: output: {0}", bookDTO.toString());
+        if (comentarioLogic == null) {
+            throw new WebApplicationException("El recurso /comentarios/" + comentariosId + " no existe.", 404);
+        }
+        ComentarioDTO comentarioDTO = new ComentarioDTO(espectaculoComentarioLogic.addComentario(comentariosId, espectaculosId));
+        LOGGER.log(Level.INFO, "EspectaculoComentarioResourse agregarComentario: output: {0}", comentarioDTO.toString());
         return new ComentarioDTO();
     }
     
