@@ -22,6 +22,7 @@ public class SillaEntity extends BaseEntity implements Serializable{
  
     private String numero;
     private String tipo;
+    private Boolean disponible;
     
     @PodamExclude
     @ManyToOne()
@@ -58,6 +59,16 @@ public class SillaEntity extends BaseEntity implements Serializable{
         return tipo;
     }
     
+    public Boolean getDisponible()
+    {
+        return disponible;
+    }
+    
+    public void setDisponible(Boolean disponible)
+    {
+        this.disponible = disponible;
+    }
+    
     public BoletaEntity getBoleta() {
         return boleta;
     }
@@ -65,5 +76,7 @@ public class SillaEntity extends BaseEntity implements Serializable{
     public void setBoleta(BoletaEntity boleta) {
         this.boleta = boleta;
     }
+    
+    
     
 }

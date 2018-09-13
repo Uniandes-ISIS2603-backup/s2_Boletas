@@ -18,7 +18,7 @@ public class SillaDTO implements Serializable{
     private Long id;
     private String numero;
     private String tipo;
-
+    private Boolean disponible;
     
     /**
      * Constructor vacío
@@ -37,6 +37,7 @@ public class SillaDTO implements Serializable{
         this.id = entity.getId();
         this.numero = entity.getNumero();
         this.tipo = entity.getTipo();
+        this.disponible = entity.getDisponible();
     }
     
     /**
@@ -49,6 +50,7 @@ public class SillaDTO implements Serializable{
         sillaEntity.setId(this.id);
         sillaEntity.setNumero(this.numero);
         sillaEntity.setTipo(this.tipo);;
+        sillaEntity.setDisponible(this.disponible);
         return sillaEntity;
     }
 
@@ -76,4 +78,13 @@ public class SillaDTO implements Serializable{
         return tipo;
     }
     
+    public Boolean getDisponible()
+    {
+        return disponible;
+    }
+    
+    public void setDisponible(Boolean disponible)
+    {
+        this.disponible = disponible;
+    }
 }

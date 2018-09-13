@@ -58,7 +58,7 @@ public class SillaPersistence {
         return query.getResultList();
     }
     
-    public SillaEntity udate(SillaEntity silla)
+    public SillaEntity update(SillaEntity silla)
     {
         return em.merge(silla);
     }
