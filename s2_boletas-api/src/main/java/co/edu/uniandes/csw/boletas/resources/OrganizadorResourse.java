@@ -21,7 +21,7 @@ import javax.ws.rs.PathParam;
 
 /**
  *
- * @author estudiante
+ * @author Vilma Tirado Gomez
  */
 @Path("organizadores")
 @Produces("application/json")
@@ -30,7 +30,7 @@ import javax.ws.rs.PathParam;
 public class OrganizadorResourse 
 {
     
-    private static final Logger LOGGER = Logger.getLogger(ClienteResourse.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(OrganizadorResourse.class.getName());
     
     @POST
     public OrganizadorDTO createOrganizador(OrganizadorDTO organizador)
