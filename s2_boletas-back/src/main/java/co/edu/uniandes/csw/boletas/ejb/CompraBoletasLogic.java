@@ -91,14 +91,14 @@ public class CompraBoletasLogic {
     public List<BoletaEntity> putBoletas(Long compraId, List<BoletaEntity> boletas) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la compra con id = {0}", compraId);
         CompraEntity compraEntity = compraPersistence.find(compraId);
-//        List<BoletaEntity> boletaList = boletaPersistence.findAll();
-//        for (BoletaEntity boleta : boletaList) {
-//            if (boletas.contains(boleta)) {
-//                boleta.setCompra(compraEntity);
-//            } else if (boleta.getCompra() != null && boleta.getCompra().equals(compraEntity)) {
-//                boleta.setCompra(null);
-//            }
-//        }
+        List<BoletaEntity> boletaList = boletaPersistence.findAll();
+        for (BoletaEntity boleta : boletaList) {
+            if (boletas.contains(boleta)) {
+                boleta.setCompra(compraEntity);
+            } else if (boleta.getCompra() != null && boleta.getCompra().equals(compraEntity)) {
+                boleta.setCompra(null);
+            }
+        }
         LOGGER.log(Level.INFO, "Termina proceso de actualizar la compra con id = {0}", compraId);
         return boletas;
     }

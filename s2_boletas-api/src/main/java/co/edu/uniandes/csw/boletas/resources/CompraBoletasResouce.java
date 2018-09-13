@@ -54,9 +54,9 @@ public class CompraBoletasResouce {
     public BoletaDTO postBoleta(@PathParam("compraId") Long compraId, @PathParam("boletaId") Long boletaId) 
     {
         LOGGER.log(Level.INFO, "CompraBoletasResouce postBoleta: input: compraId: {0} , boletaId: {1}", new Object[]{compraId, boletaId});
-//        if (boletaLogic.getBoleta(boletaId) == null) {
-//            throw new WebApplicationException("El recurso /boletas/" + boletaId + " no existe.", 404);
-//        }
+        if (boletaLogic.getBoleta(boletaId) == null) {
+            throw new WebApplicationException("El recurso /boletas/" + boletaId + " no existe.", 404);
+        }
         BoletaDTO boletaDTO = new BoletaDTO(compraBoletasLogic.createBoleta(boletaId, compraId));
         LOGGER.log(Level.INFO, "CompraBoletasResouce postBoleta: output: {0}", boletaDTO.toString());
         return boletaDTO;
@@ -93,9 +93,9 @@ public class CompraBoletasResouce {
     @Path("{boletaId: \\d+}")
     public BoletaDTO getBook(@PathParam("compraId") Long compraId, @PathParam("boletaId") Long boletaId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "CompraBoletasResouce getBoleta: input: CompraId: {0} , boletaId: {1}", new Object[]{compraId, boletaId});
-//        if (boletaLogic.getBoleta(boletaId) == null) {
-//            throw new WebApplicationException("El recurso /compra/" + compraId + "/boletas/" + boletaId + " no existe.", 404);
-//        }
+        if (boletaLogic.getBoleta(boletaId) == null) {
+            throw new WebApplicationException("El recurso /compra/" + compraId + "/boletas/" + boletaId + " no existe.", 404);
+        }
         BoletaDTO boletaDTO = new BoletaDTO(compraBoletasLogic.getBoleta(compraId, boletaId));
         LOGGER.log(Level.INFO, "CompraBoletasResouce getBoleta: output: {0}", boletaDTO.toString());
         return boletaDTO;
@@ -117,9 +117,9 @@ public class CompraBoletasResouce {
     public List<BoletaDTO> putBoletas(@PathParam("compraId") Long compraId, List<BoletaDTO> boletas) {
         LOGGER.log(Level.INFO, "CompraBoletasResouce putBoletas: input: compraId: {0} , boletas: {1}", new Object[]{compraId, boletas.toString()});
         for (BoletaDTO boleta : boletas) {
-//            if (boletaLogic.getBoleta(boleta.getID()) == null) {
-//                throw new WebApplicationException("El recurso /boletas/" + boleta.getID() + " no existe.", 404);
-//            }
+            if (boletaLogic.getBoleta(boleta.getID()) == null) {
+                throw new WebApplicationException("El recurso /boletas/" + boleta.getID() + " no existe.", 404);
+            }
         }
         List<BoletaDTO> listaDTOs = boletasListEntityToDTO(compraBoletasLogic.putBoletas(compraId, booksListDTO2Entity(boletas)));
         LOGGER.log(Level.INFO, "EditorialBooksResource replaceBooks: output: {0}", listaDTOs.toString());
