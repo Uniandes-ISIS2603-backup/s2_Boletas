@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.boletas.ejb;
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -45,6 +46,14 @@ public class ComentarioLogic {
         LOGGER.log(Level.INFO, "Inicia el proceso de la eliminación de un comentario con id = {0}", comentarioId);
         persistence.delete(comentarioId);
         LOGGER.log(Level.INFO, "Termina proceso de eliminar un comentario con id = {0}", comentarioId);
+    }
+    
+    public List<ComentarioEntity> getComentarios() {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todas los comentarios");
+        // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
+        List<ComentarioEntity> comentarios = persistence.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los comentarios");
+        return comentarios;
     }
     
 }

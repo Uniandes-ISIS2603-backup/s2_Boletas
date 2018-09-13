@@ -7,11 +7,13 @@ package co.edu.uniandes.csw.boletas.persistence;
 
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -46,6 +48,14 @@ public class ComentarioPersistence {
         ComentarioEntity entity = em.find(ComentarioEntity.class,id);
         em.remove(entity);
         LOGGER.log(Level.INFO, "Saliendo de borrar comentario con id = {0}", id);
+    }
+    
+    public List<ComentarioEntity> findAll() {
+        LOGGER.log(Level.INFO, "Consultando todos los comentarios");
+        
+        TypedQuery query = em.createQuery("select u from ComentarioEntity u", ComentarioEntity.class);
+        
+        return query.getResultList();
     }
     
 }
