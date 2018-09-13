@@ -97,4 +97,5 @@ public class BoletaEntity extends BaseEntity implements Serializable
     }
     
     
+    
 }
