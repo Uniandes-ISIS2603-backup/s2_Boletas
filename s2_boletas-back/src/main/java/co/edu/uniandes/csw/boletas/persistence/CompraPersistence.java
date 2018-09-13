@@ -26,8 +26,11 @@ private static final Logger LOGGER = Logger.getLogger(CompraPersistence.class.ge
 @PersistenceContext(unitName = "DnsPU")
 protected EntityManager em;
     
-       
+
+
+//-----------------------------------------------------------------------------------------
 // Metodos CRUD
+
 /**
  * Metodo para crear en la base de datos (CREATE)
  * @param compraEntity, la compra a crear

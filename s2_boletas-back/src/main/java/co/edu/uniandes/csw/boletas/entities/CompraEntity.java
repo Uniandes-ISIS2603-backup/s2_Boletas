@@ -6,8 +6,8 @@
 package co.edu.uniandes.csw.boletas.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -36,8 +36,9 @@ public class CompraEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @javax.persistence.OneToMany(
+    mappedBy = "compra",
     fetch = javax.persistence.FetchType.LAZY)
-    Collection<BoletaEntity> boletas;
+    private List<BoletaEntity> boletas;
     
     @PodamExclude
     @javax.persistence.ManyToOne()
@@ -83,14 +84,14 @@ public class CompraEntity extends BaseEntity implements Serializable{
         return direccion;
     }
     
-    
-
     /**
-     * modifica el id con el id ingresado por parametro
-     * @param idN, nuevo id
+     * devuelve la lista de boletas
+     * @return  lista de entidades de boletas
      */
-
-    
+    public List<BoletaEntity> getBoletas()
+    {
+        return boletas;
+    }
 
     
     /**
@@ -129,6 +130,15 @@ public class CompraEntity extends BaseEntity implements Serializable{
     public void setFecha(Date fechaN)
     {
         fecha= fechaN;
+    }
+    
+    /**
+     * Modifica las boletas de la compra.
+     *
+     * @param boletaS Las nuevas boletas.
+     */
+    public void setBoletas(List<BoletaEntity> boletaS) {
+        boletas = boletaS;
     }
     
 }
