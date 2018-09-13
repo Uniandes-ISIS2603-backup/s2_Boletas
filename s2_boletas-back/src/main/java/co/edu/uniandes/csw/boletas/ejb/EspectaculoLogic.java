@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.ejb;
 
+import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
@@ -69,6 +70,21 @@ public class EspectaculoLogic
         LOGGER.log(Level.INFO, "Termina proceso de actualizar la editorial con id = {0}", espectaculoEntity.getId());
         
         return newEntity;
+    }
+    
+    public void deleteEspectaculo(Long espectaculosId) throws BusinessLogicException
+    {
+        
+        List<BoletaEntity> boletas = getEspectaculo(espectaculosId).getBoletas();
+        
+        if(boletas!= null && !boletas.isEmpty())
+        {
+            throw new BusinessLogicException("El espectaculo que se quiere eliminar tiene boletas asociadas");
+        }
+        
+        persistence.delete(espectaculosId);
+        
+        
     }
     
 }
