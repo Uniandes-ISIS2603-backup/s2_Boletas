@@ -48,5 +48,14 @@ public class BoletaLogic {
         return boletas;
     }
     
+    public BoletaEntity getBoleta(Long boletaId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar la boleta con id = {0}", boletaId);
+        BoletaEntity boletaEntity = persistence.find(boletaId);
+        if (boletaEntity == null) {
+            LOGGER.log(Level.SEVERE, "La boleta con el id = {0} no existe", boletaId);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar la boleta con id = {0}", boletaId);
+        return boletaEntity;
+    }
     
 }

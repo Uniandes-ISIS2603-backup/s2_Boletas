@@ -55,5 +55,14 @@ public class ComentarioLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar todos los comentarios");
         return comentarios;
     }
+    public ComentarioEntity getComentario(Long comentarioId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el comentario con id = {0}", comentarioId);
+        ComentarioEntity comentarioEntity = persistence.find(comentarioId);
+        if (comentarioEntity == null) {
+            LOGGER.log(Level.SEVERE, "La boleta con el id = {0} no existe", comentarioId);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar la boleta con id = {0}", comentarioId);
+        return comentarioEntity;
+    }
     
 }
