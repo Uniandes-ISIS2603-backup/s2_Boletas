@@ -31,6 +31,7 @@ public class BoletaDTO implements Serializable {
      */
     private Date fecha;
     
+    private Boolean vendida;
     /**
      * Constructor vacío de una boleta.
      */
@@ -117,6 +118,23 @@ public class BoletaDTO implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getVendida() {
+        return vendida;
+    }
+
+    public void setVendida(Boolean vendida) {
+        this.vendida = vendida;
+    }
+    
     
     
     @Override

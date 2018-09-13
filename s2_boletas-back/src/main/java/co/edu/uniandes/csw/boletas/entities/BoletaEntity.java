@@ -28,6 +28,8 @@ public class BoletaEntity extends BaseEntity implements Serializable
     @Temporal(TemporalType.DATE)
     private Date fecha;
 
+    private Boolean vendida;
+
    
     @PodamExclude
     @ManyToOne
@@ -85,6 +87,14 @@ public class BoletaEntity extends BaseEntity implements Serializable
         this.fecha = fecha;
     }
     
+    
+    public Boolean getVendida() {
+        return vendida;
+    }
+
+    public void setVendida(Boolean vendida) {
+        this.vendida = vendida;
+    }
     
     
 }

@@ -52,4 +52,12 @@ public class BoletaPersistence {
         em.remove(entity);
         LOGGER.log(Level.INFO, "Saliendo de borrar la boleta con id = {0}", id);
     }
+    
+    public List<BoletaEntity> findAll() {
+        LOGGER.log(Level.INFO, "Consultando todas las boletas");
+        
+        TypedQuery query = em.createQuery("select u from BoletaEntity u", BoletaEntity.class);
+        
+        return query.getResultList();
+    }
 }
