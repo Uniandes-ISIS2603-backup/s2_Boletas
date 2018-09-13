@@ -109,7 +109,7 @@ public class EspectaculoLogicTest
     }
     
     @Test
-    public void createEditorialTest() throws BusinessLogicException
+    public void createEspectaculoTest() throws BusinessLogicException
     {
         EspectaculoEntity newEntity = factory.manufacturePojo(EspectaculoEntity.class);
         EspectaculoEntity result = espectaculoLogic.createEntity(newEntity);
@@ -120,9 +120,52 @@ public class EspectaculoLogicTest
     }
     
     @Test(expected = BusinessLogicException.class)
-    public void createEditorialConMismoNombreTest() throws BusinessLogicException {
+    public void createEspectaculoConMismoNombreTest() throws BusinessLogicException {
         EspectaculoEntity newEntity = factory.manufacturePojo(EspectaculoEntity.class);
         newEntity.setNombre(data.get(0).getNombre());
         espectaculoLogic.createEntity(newEntity);
+    }
+    
+    @Test
+    public void getEspectaculosTest() {
+        List<EspectaculoEntity> list = espectaculoLogic.getEspectaculos();
+        Assert.assertEquals(data.size(), list.size());
+        for (EspectaculoEntity entity : list) {
+            boolean found = false;
+            for (EspectaculoEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    @Test
+    public void getEspectaculoTest() {
+        EspectaculoEntity entity = data.get(0);
+        EspectaculoEntity resultEntity = espectaculoLogic.getEspectaculo(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
+    }
+    
+     @Test
+    public void updateEspectaculoTest() {
+        EspectaculoEntity entity = data.get(0);
+        EspectaculoEntity pojoEntity = factory.manufacturePojo(EspectaculoEntity.class);
+        pojoEntity.setId(entity.getId());
+        espectaculoLogic.updateEspectaculo(pojoEntity.getId(), pojoEntity);
+        EspectaculoEntity resp = em.find(EspectaculoEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
+    }
+    
+    @Test
+    public void deleteEspectaculoTest() throws BusinessLogicException {
+        EspectaculoEntity entity = data.get(1);
+        espectaculoLogic.deleteEspectaculo(entity.getId());
+        EspectaculoEntity deleted = em.find(EspectaculoEntity.class, entity.getId());
+        Assert.assertNull(deleted);
     }
 }
