@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.boletas.dtos.ComentarioDTO;
 import co.edu.uniandes.csw.boletas.ejb.ComentarioLogic;
 import co.edu.uniandes.csw.boletas.ejb.EspectaculoComentarioLogic;
 import co.edu.uniandes.csw.boletas.ejb.EspectaculoLogic;
+import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -64,9 +65,9 @@ public class EspectaculoComentarioResourse
     @GET
     public List<ComentarioDTO> getComentarios(@PathParam("espectaculosId") Long espectaculosId) {
         LOGGER.log(Level.INFO, "EspectaculoComentarioResourse getComentarios: input: {0}", espectaculosId);
-        List<ComentarioDTO> listaDetailDTOs = new ArrayList<>();
-     //   List<ComentarioDTO> listaDetailDTOs = booksListEntity2DTO(editorialBooksLogic.getBooks(editorialsId));
-     //   LOGGER.log(Level.INFO, "EditorialBooksResource getBooks: output: {0}", listaDetailDTOs.toString());
+        
+        List<ComentarioDTO> listaDetailDTOs = comentariosListEntity2DTO(espectaculoComentarioLogic.darComentarios(espectaculosId));
+        LOGGER.log(Level.INFO, "EditorialBooksResource getBooks: output: {0}", listaDetailDTOs.toString());
         return listaDetailDTOs;
     }
     
@@ -74,9 +75,20 @@ public class EspectaculoComentarioResourse
     @Path("{comentariosId: \\d+}")
     public ComentarioDTO getComentario(@PathParam("espectaculosId") Long espectaculosId, @PathParam("comentariosId") Long comentariosId)
     {
+//        if(comentarioLogic){
+//            
+//        }
+        
+        
         return new ComentarioDTO();
     }
     
     
-    
+    private List<ComentarioDTO> comentariosListEntity2DTO(List<ComentarioEntity> entityList) {
+        List<ComentarioDTO> list = new ArrayList();
+        for (ComentarioEntity entity : entityList) {
+            list.add(new ComentarioDTO(entity));
+        }
+        return list;
+    }
 }

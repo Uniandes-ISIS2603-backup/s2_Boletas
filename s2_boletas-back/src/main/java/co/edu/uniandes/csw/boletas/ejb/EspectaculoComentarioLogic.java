@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
 import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -39,4 +40,11 @@ public class EspectaculoComentarioLogic
         LOGGER.log(Level.INFO, "Termina proceso de agregarle un libro a la editorial con id = {0}", espectaculoEntity);
         return comentarioEntity;
     } 
+    
+    public List<ComentarioEntity> darComentarios(Long espectaculoId)
+    {
+        EspectaculoEntity espectaculo = espectaculoPersistence.find(espectaculoId);
+        
+        return espectaculo.getComentarios();
+    }
 }
