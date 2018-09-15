@@ -10,12 +10,19 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *
- * @author estudiante
+ *Clase que representa un comentario
+ * @author Diego Camacho
  */
 public class ComentarioDTO {
+    
+    /**
+     * Id del comentario
+     */
     public Long comentarioID;
     
+    /**
+     * Mensaje que contiene el comentario
+     */
     public String mensaje;
     
     public ComentarioDTO(){

@@ -57,5 +57,13 @@ public class BoletaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar la boleta con id = {0}", boletaId);
         return boletaEntity;
     }
+    public BoletaEntity updateBoleta(Long boletasId, BoletaEntity boletaEntity)
+    {
+      LOGGER.log(Level.INFO, "Inicia proceso de actualizar la boleta con id = {0}", boletasId);
+        // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
+        BoletaEntity newEntity = persistence.update(boletaEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar la boleta con id = {0}", boletaEntity.getId());
+        return newEntity;  
+    }
     
 }
