@@ -119,18 +119,34 @@ public class BoletaDTO implements Serializable {
         this.fecha = fecha;
     }
 
+    /**
+     * Retorna el identificador de la boleta
+     * @return identificador de la boleta
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Asigna el id a la boleta
+     * @param id el id a asignar
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Retorna si la boleta está vendida o no
+     * @return true si la boleta está vendida, false en caso contrario
+     */
     public Boolean getVendida() {
         return vendida;
     }
 
+    /**
+     * Le asigna a una boleta la caracteristica de estar vendida
+     * @param vendida 
+     */
     public void setVendida(Boolean vendida) {
         this.vendida = vendida;
     }
