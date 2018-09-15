@@ -21,7 +21,7 @@ import javax.ws.rs.PathParam;
 
 /**
  *
- * @author estudiante
+ * @author Vilma Tirado Gomez
  */
 @Path("clientes")
 @Produces("application/json")
