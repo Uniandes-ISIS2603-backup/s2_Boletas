@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 
 /**
  *
- * @author estudiante
+ * @author Vilma Tirado Gomez
  */
 @Entity
 public class OrganizadorEntity extends BaseEntity implements Serializable{
