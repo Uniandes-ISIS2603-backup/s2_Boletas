@@ -23,11 +23,16 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
     private List<EspectaculoEntity> espectaculos= new ArrayList<>();
     
    
-    
+    private String usuario;
     private String nombre;
     private Integer  presupuesto;
     private Integer ganancia;
     
+    
+    public String getUsuario()
+    {
+        return usuario;
+    }
     public String getNombre()
     {
         return nombre;
@@ -40,6 +45,11 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
     public Integer  getGanancia()
     {
         return ganancia;
+    }
+    
+    public void setUsuario(String usuario)
+    {
+        this.usuario=usuario;
     }
     
     public void setNombre(String nom)

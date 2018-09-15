@@ -5,14 +5,13 @@
  */
 package co.edu.uniandes.csw.boletas.ejb;
 
-import co.edu.uniandes.csw.boletas.entities.OrganizadorEntity;
+import co.edu.uniandes.csw.boletas.entities.ClienteEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.boletas.persistence.OrganizadorPersistence;
+import co.edu.uniandes.csw.boletas.persistence.ClientePersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
 
 /**
@@ -20,27 +19,27 @@ import javax.inject.Inject;
  * @author Vilma Tirado Gomez
  */
 @Stateless
-public class OrganizadorLogic {
-    private static final Logger LOGGER = Logger.getLogger(OrganizadorLogic.class.getName());
+public class ClienteLogic {
+        private static final Logger LOGGER = Logger.getLogger(ClienteLogic.class.getName());
     
     /**
      * Persistencia 
      */
     @Inject 
-    OrganizadorPersistence persistence;
+    ClientePersistence persistence;
     
     
     /**
      * POST
      * Recibe un entity como parametro y llama a la persistencia para 
-     * guardar el organizador en la tabla creandole un id 
+     * guardar el cliente en la tabla creandole un id 
      * @param entity
      * @return la misma entidad que recibio con el id asignado por la persistencia 
      * @throws BusinessLogicException 
      */
-    public OrganizadorEntity createOrganizador (OrganizadorEntity entity ) throws BusinessLogicException
+    public ClienteEntity createCliente (ClienteEntity entity ) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "incia la creacion del organizador");
+        LOGGER.log(Level.INFO, "incia la creacion del cliente");
         //Verifica que se cumpla la regla de negocio 
         if(persistence.findByUser(entity.getUsuario())!=null)
         {
@@ -51,7 +50,7 @@ public class OrganizadorLogic {
         
         persistence.create(entity);
         
-        LOGGER.log(Level.INFO, "saliendo de crear organizador");
+        LOGGER.log(Level.INFO, "saliendo de crear cliente");
         
         //retorna la entidad con el id asignado 
         return entity;
@@ -59,19 +58,19 @@ public class OrganizadorLogic {
     
         /**
      *GET
-     *Recibe el id de un organizador como paramentro y devuelve la entidad
+     *Recibe el id de un cliente como paramentro y devuelve la entidad
      * si no existe retorna null
-     * @param organizadorId
-     * @return el organizador con ese id
+     * @param clienteId
+     * @return el cliente con ese id
      * 
      */
-    public OrganizadorEntity getOrganizador (Long organizadorId)
+    public ClienteEntity getCliente (Long clienteId)
     {
-        LOGGER.log(Level.INFO, "Obtengo el organizador", organizadorId);
+        LOGGER.log(Level.INFO, "Obtengo el cliente", clienteId);
         
-        OrganizadorEntity entity =persistence.find(organizadorId);
+        ClienteEntity entity =persistence.find(clienteId);
         
-        LOGGER.log(Level.INFO, "Salgo de obtener el organizador", organizadorId);
+        LOGGER.log(Level.INFO, "Salgo de obtener el cliente", clienteId);
         
         return entity;
         
@@ -79,16 +78,16 @@ public class OrganizadorLogic {
     
      /**
      *GET ALL
-     *Retorna todos los organizadores 
-     * @return todos los organizadores 
+     *Retorna todos los clientes 
+     * @return todos los clientes 
      * 
      */
-    public List<OrganizadorEntity> getOrganizadores ()
+    public List<ClienteEntity> getClientes ()
     {
-        LOGGER.log(Level.INFO, "Traigo todos los organizadores existentes");
+        LOGGER.log(Level.INFO, "Traigo todos los clientes existentes");
         
         //Se llama a la persistencia
-        List<OrganizadorEntity>  lista=persistence.findAll();
+        List<ClienteEntity>  lista=persistence.findAll();
         return lista;        
     }
     
@@ -99,23 +98,23 @@ public class OrganizadorLogic {
      * @return La entidad actualizada 
      * 
      */
-    public OrganizadorEntity update(OrganizadorEntity entity)
+    public ClienteEntity update(ClienteEntity entity)
     {
-        LOGGER.log(Level.INFO, "Entrando a actualizar el organizador con el nombre", entity.getNombre());
+        LOGGER.log(Level.INFO, "Entrando a actualizar el cliente con el nombre", entity.getNombre());
         entity=persistence.update(entity);
-        LOGGER.log(Level.INFO, "saliendo de actualizar el organizador con el nombre", entity.getNombre());
+        LOGGER.log(Level.INFO, "saliendo de actualizar el cliente con el nombre", entity.getNombre());
         return entity;
     }
     
     /**DELETE
      *Borra el entity con el id recibido como parametro 
-     * @param organizadorId. Id del organizador a borrar.
+     * @param clienteId. Id del cliente a borrar.
      * 
      */
-    public void delete (Long organizadorId)
+    public void delete (Long clienteId)
     {
-        LOGGER.log(Level.INFO, "Entrando a borrar el organizador");
-        persistence.delete(organizadorId);
-        LOGGER.log(Level.INFO, "Saliendo de borrar el organizador");
+        LOGGER.log(Level.INFO, "Entrando a borrar el cliente");
+        persistence.delete(clienteId);
+        LOGGER.log(Level.INFO, "Saliendo de borrar el cliente");
     }
 }

@@ -46,6 +46,33 @@ return clienteEntity;
          return em.find(ClienteEntity.class, clienteId);
      }
      
+     public ClienteEntity findByUser(String usuario)
+     {
+         LOGGER.log(Level.INFO, "Entrando a buscar el usuario",usuario);
+         
+         TypedQuery query= em.createQuery("Select c From ClienteEntity c Where c.usuario=:usuario",ClienteEntity.class);
+         
+          //Se remplaza el placeholder :usuario por el valor del parametro 
+                  query = query.setParameter("usuario", usuario);
+                  
+                  
+                    //Lista en donde se guardan los resultados del Query 
+                  List<ClienteEntity > answer= query.getResultList();
+                  ClienteEntity result;
+                  
+                                    if (answer==null)
+                      result=null;
+                  else if (answer.isEmpty())
+                      result=null;
+                  else 
+                      result=answer.get(0);
+                  
+                  LOGGER.log(Level.INFO, "Saliendo de buscar por usuario ", usuario);
+                  
+                  return result;
+               
+     }
+     
      public ClienteEntity update (ClienteEntity clienteEntity ){
          LOGGER.log(Level.INFO, "Actualizando el cliente con el id ={0}", clienteEntity.getId());
          LOGGER.log(Level.INFO, "Saliendo de actualizar el cliente con el id ={0}", clienteEntity.getId());

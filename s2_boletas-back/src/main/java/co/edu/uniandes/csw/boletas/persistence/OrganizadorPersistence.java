@@ -43,14 +43,14 @@ return organizadorEntity;
             * @param nombre
             * @return Null si el organizador no existe, el organizador si este ya existe.
             */
-           public OrganizadorEntity findByName(String nombre)
+           public OrganizadorEntity findByUser(String usuario)
            {
-                 LOGGER.log(Level.INFO, "Consultando editorial por nombre ", nombre);
-                  //Crea un Query para buscar organizadores con el nombre dado por parametro, en este caso nobre es un placeholder
-                  TypedQuery query =em.createQuery("Select o From OrganizadorEntity o  Where o.nombre= :nombre ", OrganizadorEntity.class );
+                 LOGGER.log(Level.INFO, "Consultando organizador  por usuario ", usuario);
+                  //Crea un Query para buscar organizadores con el usuario dado por parametro, en este caso usuario es un placeholder
+                  TypedQuery query =em.createQuery("Select o From OrganizadorEntity o  Where o.usuario= :usuario ", OrganizadorEntity.class );
                   
-                  //Se remplaza el placeholder :nombre por el valor del parametro 
-                  query = query.setParameter("nombre", nombre);
+                  //Se remplaza el placeholder :usuario por el valor del parametro 
+                  query = query.setParameter("usuario", usuario);
                   
                   //Lista en donde se guardan los resultados del Query 
                   List<OrganizadorEntity> answer= query.getResultList();
@@ -64,7 +64,7 @@ return organizadorEntity;
                   else 
                       result=answer.get(0);
                   
-                  LOGGER.log(Level.INFO, "Saliendo de buscar por nombre ", nombre);
+                  LOGGER.log(Level.INFO, "Saliendo de buscar por usuario ", usuario);
                   
                   return result;
                   
