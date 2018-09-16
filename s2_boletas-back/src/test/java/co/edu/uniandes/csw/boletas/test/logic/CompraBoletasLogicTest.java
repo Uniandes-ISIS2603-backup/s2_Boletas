@@ -152,12 +152,28 @@ public class CompraBoletasLogicTest {
         BoletaEntity boletaEntity = boletasData.get(0);
         BoletaEntity response = compraBoletasLogic.getBoleta(entity.getId(), boletaEntity.getId());
 
-//        Assert.assertEquals(BoletaEntity.getId(), response.getId());
-//        Assert.assertEquals(BoletaEntity.getFecha(), response.getFecha());
-//        Assert.assertEquals(BoletaEntity.getPrecio(), response.getPrecio());
-//        Assert.assertEquals(BoletaEntity.getSilla(), response.getSilla());
-//        Assert.assertEquals(BoletaEntity.getVendida(), response.getVendida());
+        Assert.assertEquals(boletaEntity.getId(), response.getId());
+        Assert.assertEquals(boletaEntity.getFecha(), response.getFecha());
+        Assert.assertEquals(boletaEntity.getPrecio(), response.getPrecio());
+        Assert.assertEquals(boletaEntity.getSilla(), response.getSilla());
+        Assert.assertEquals(boletaEntity.getVendida(), response.getVendida());
     }
 
 
+    /**
+     * Prueba para remplazar las instancias de Boleta asociadas a una instancia
+     * de Compra.
+     */
+    @Test
+    public void putBoletasTest() {
+        CompraEntity entity = data.get(0);
+        List<BoletaEntity> list = boletasData.subList(1, 3);
+        compraBoletasLogic.putBoletas(entity.getId(), list);
+
+        entity = compraLogic.getCompra(entity.getId());
+        Assert.assertFalse(entity.getBoletas().contains(boletasData.get(0)));
+        Assert.assertTrue(entity.getBoletas().contains(boletasData.get(1)));
+        Assert.assertTrue(entity.getBoletas().contains(boletasData.get(2)));
+    }
+    
 }
