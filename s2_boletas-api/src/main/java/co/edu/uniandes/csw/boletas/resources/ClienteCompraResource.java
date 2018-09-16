@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.boletas.resources;
-import co.edu.uniandes.csw.boletas.dtos.CompraDTO;
+import co.edu.uniandes.csw.boletas.dtos.CompraDetailDTO;
 import co.edu.uniandes.csw.boletas.ejb.ClienteCompraLogic;
 import co.edu.uniandes.csw.boletas.ejb.CompraLogic;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
@@ -45,18 +45,18 @@ public class ClienteCompraResource {
      *
      * @param compraId El ID de la compra que se va a asociar
      * @param clienteId El ID del cliente al cual se le va a asociar la compra
-     * @return JSON {@link CompraDTO} - La compra asociada.
+     * @return JSON {@link CompraDetailDTO} - La compra asociada.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la compra.
      */
     @POST
     @Path("{compraId: \\d+}")
-    public CompraDTO addCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) {
+    public CompraDetailDTO addCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) {
         LOGGER.log(Level.INFO, "ClienteCompraResource addCompra: input: clienteId {0} , compraId {1}", new Object[]{clienteId, compraId});
         if (compraLogic.getCompra(compraId) == null) {
-            throw new WebApplicationException("El recurso /compra/" + compraId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
         }
-        CompraDTO detailDTO = new CompraDTO(clienteCompraLogic. addCompra(clienteId, compraId));
+        CompraDetailDTO detailDTO = new CompraDetailDTO(clienteCompraLogic. addCompra(clienteId, compraId));
         LOGGER.log(Level.INFO, "ClienteCompraResource addCompra: output: {0}", detailDTO.toString());
         return detailDTO;
     }
@@ -65,13 +65,13 @@ public class ClienteCompraResource {
      * Busca y devuelve todos las compras que existen en un cliente.
      *
      * @param clienteId El ID del cliente del cual se buscan las compras
-     * @return JSONArray {@link CompraDTO} - Las compras encontradas en el
+     * @return JSONArray {@link CompraDetailDTO} - Las compras encontradas en el
      * cliente. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<CompraDTO> getCompras(@PathParam("clienteId") Long clienteId) {
+    public List<CompraDetailDTO> getCompras(@PathParam("clienteId") Long clienteId) {
         LOGGER.log(Level.INFO, "ClienteCompraResource getCompras: input: {0}", clienteId);
-        List<CompraDTO> lista =comprasListEntity2DTO(clienteCompraLogic.getCompras(clienteId));
+        List<CompraDetailDTO> lista =comprasListEntity2DTO(clienteCompraLogic.getCompras(clienteId));
         LOGGER.log(Level.INFO, "ClienteCompraResource getCompras: output: {0}", lista.toString());
         return lista;
     }
@@ -82,18 +82,18 @@ public class ClienteCompraResource {
      *
      * @param compraId El ID de la compra que se busca
      * @param clienteId El ID del cliente del cual se busca la compra
-     * @return {@link CompraDTO} - La compra encontrada en el cliente.
+     * @return {@link CompraDetailDTO} - La compra encontrada en el cliente.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper}
      * Error de lógica que se genera cuando no se encuentra la compra.
      */
     @GET
     @Path("{compraId: \\d+}")
-    public CompraDTO getCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) {
+    public CompraDetailDTO getCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) {
         LOGGER.log(Level.INFO, "ClienteCompraResource getCompra: input: clienteId {0} , compraId {1}", new Object[]{clienteId, compraId});
         if (compraLogic.getCompra(compraId) == null) {
-            throw new WebApplicationException("El recurso /compra/" + compraId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
         }
-        CompraDTO detailDTO = new CompraDTO(clienteCompraLogic.getCompra(clienteId, compraId));
+        CompraDetailDTO detailDTO = new CompraDetailDTO(clienteCompraLogic.getCompra(clienteId, compraId));
         LOGGER.log(Level.INFO, "ClienteCompraResource getCompra: output: {0}", detailDTO.toString());
         return detailDTO;
     }
@@ -104,21 +104,21 @@ public class ClienteCompraResource {
      *
      * @param clienteId El ID del cliente al cual se le va a asociar la lista de
      * compras
-     * @param compras JSONArray {@link CompraDTO} - La lista de compras
+     * @param compras JSONArray {@link CompraDetailDTO} - La lista de compras
      * que se desea guardar.
-     * @return JSONArray {@link CompraDTO} - La lista actualizada.
+     * @return JSONArray {@link CompraDetailDTO} - La lista actualizada.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper}
      * Error de lógica que se genera cuando no se encuentra la compra.
      */
     @PUT
-    public List<CompraDTO> replaceCompras(@PathParam("clienteId") Long clienteId, List<CompraDTO> compras) {
+    public List<CompraDetailDTO> replaceCompras(@PathParam("clienteId") Long clienteId, List<CompraDetailDTO> compras) {
         LOGGER.log(Level.INFO, "ClienteCompraResource replaceCompras: input: clienteId {0} , compras {1}", new Object[]{clienteId, compras.toString()});
-        for (CompraDTO compra : compras) {
+        for (CompraDetailDTO compra : compras) {
             if (compraLogic.getCompra(compra.getId()) == null) {
-                throw new WebApplicationException("El recurso /compra/" + compra.getId() + " no existe.", 404);
+                throw new WebApplicationException("El recurso /compras/" + compra.getId() + " no existe.", 404);
             }
         }
-        List<CompraDTO> lista = comprasListEntity2DTO(clienteCompraLogic.replaceCompras(clienteId, comprasListDTO2Entity(compras)));
+        List<CompraDetailDTO> lista = comprasListEntity2DTO(clienteCompraLogic.replaceCompras(clienteId, comprasListDTO2Entity(compras)));
         LOGGER.log(Level.INFO, "ClienteCompraResource replaceCompras: output:{0}", lista.toString());
         return lista;
     }
@@ -136,22 +136,22 @@ public class ClienteCompraResource {
     public void removeCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) {
         LOGGER.log(Level.INFO, "ClienteCompraResource removeCompra: input: clienteId {0} , compraId {1}", new Object[]{clienteId, compraId});
         if (compraLogic.getCompra(compraId) == null) {
-            throw new WebApplicationException("El recurso /compra/" + compraId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
         }
         clienteCompraLogic.removeCompra(clienteId, compraId);
         LOGGER.info("ClienteCompraResource removeCompra: output: void");
     }
 
     /**
-     * Convierte una lista de CompraEntity a una lista de CompraDTO.
+     * Convierte una lista de CompraEntity a una lista de CompraDetailDTO.
      *
      * @param entityList Lista de CompraEntity a convertir.
-     * @return Lista de CompraDTO convertida.
+     * @return Lista de CompraDetailDTO convertida.
      */
-    private List<CompraDTO> comprasListEntity2DTO(List<CompraEntity> entityList) {
-        List<CompraDTO> list = new ArrayList<>();
+    private List<CompraDetailDTO> comprasListEntity2DTO(List<CompraEntity> entityList) {
+        List<CompraDetailDTO> list = new ArrayList<>();
         for (CompraEntity entity : entityList) {
-            list.add(new CompraDTO(entity));
+            list.add(new CompraDetailDTO(entity));
         }
         return list;
     }
@@ -159,12 +159,12 @@ public class ClienteCompraResource {
     /**
      * Convierte una lista de CompraDTO a una lista de CompraEntity.
      *
-     * @param dtos Lista de CompraDTO a convertir.
+     * @param dtos Lista de CompraDetailDTO a convertir.
      * @return Lista de CompraEntity convertida.
      */
-    private List<CompraEntity> comprasListDTO2Entity(List<CompraDTO> dtos) {
+    private List<CompraEntity> comprasListDTO2Entity(List<CompraDetailDTO> dtos) {
         List<CompraEntity> list = new ArrayList<>();
-        for (CompraDTO dto : dtos) {
+        for (CompraDetailDTO dto : dtos) {
             list.add(dto.toEntity());
         }
         return list;

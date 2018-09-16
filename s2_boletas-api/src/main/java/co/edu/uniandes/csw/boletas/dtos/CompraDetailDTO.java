@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author Gabriel Hamilton
  */
 public class CompraDetailDTO extends CompraDTO implements Serializable {
     

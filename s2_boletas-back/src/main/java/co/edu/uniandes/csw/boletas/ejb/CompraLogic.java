@@ -30,9 +30,8 @@ public class CompraLogic
      * Crear la Compra en persistencia
      * @param compraEntity
      * @return compraEntity, la entity de la compra despues de la persistencia
-     * @throws BusinessLogicException 
      */
-    public CompraEntity createCompra(CompraEntity compraEntity) throws BusinessLogicException {
+    public CompraEntity createCompra(CompraEntity compraEntity) {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la compra");
         persistence.create(compraEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la compra");
