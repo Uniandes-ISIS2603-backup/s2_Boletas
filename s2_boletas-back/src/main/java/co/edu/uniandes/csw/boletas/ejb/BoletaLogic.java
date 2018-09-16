@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.boletas.ejb;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.BoletaPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -25,6 +26,7 @@ public class BoletaLogic {
     
     public BoletaEntity createBoleta(BoletaEntity boleta) throws BusinessLogicException
     {
+        
         LOGGER.log(Level.INFO, "Inicia el proceso de la creación de la boleta");
         persistence.create(boleta);
         LOGGER.log(Level.INFO, "Termina proceso de la creación de la boleta");
@@ -38,6 +40,30 @@ public class BoletaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de eliminar una boleta con id = {0}", boletaId);
     }
     
+    public List<BoletaEntity> getBoletas() {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las boletas");
+        // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
+        List<BoletaEntity> boletas = persistence.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todas las boletas");
+        return boletas;
+    }
     
+    public BoletaEntity getBoleta(Long boletaId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar la boleta con id = {0}", boletaId);
+        BoletaEntity boletaEntity = persistence.find(boletaId);
+        if (boletaEntity == null) {
+            LOGGER.log(Level.SEVERE, "La boleta con el id = {0} no existe", boletaId);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar la boleta con id = {0}", boletaId);
+        return boletaEntity;
+    }
+    public BoletaEntity updateBoleta(Long boletasId, BoletaEntity boletaEntity)
+    {
+      LOGGER.log(Level.INFO, "Inicia proceso de actualizar la boleta con id = {0}", boletasId);
+        // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
+        BoletaEntity newEntity = persistence.update(boletaEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar la boleta con id = {0}", boletaEntity.getId());
+        return newEntity;  
+    }
     
 }

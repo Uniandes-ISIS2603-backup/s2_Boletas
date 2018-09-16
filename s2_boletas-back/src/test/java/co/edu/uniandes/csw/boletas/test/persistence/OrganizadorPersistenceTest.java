@@ -1,4 +1,5 @@
 
+package co.edu.uniandes.csw.boletas.test.persistence;
 import co.edu.uniandes.csw.boletas.entities.OrganizadorEntity;
 import co.edu.uniandes.csw.boletas.persistence.OrganizadorPersistence;
 import java.util.ArrayList;
