@@ -8,9 +8,9 @@ package co.edu.uniandes.csw.boletas.ejb;
 import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.LugarPersistence;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
-import java.util.List;
+import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -20,6 +20,8 @@ import javax.inject.Inject;
  */
 @Stateless
 public class LugarLogic {
+    
+    private static final Logger LOGGER  = Logger.getLogger(LugarLogic.class.getName());
     
     @Inject
     private LugarPersistence persistence;
@@ -48,7 +50,7 @@ public class LugarLogic {
         LOGGER.log(Level.INFO, "Iniciando proceso de retornar lugar por id.");
         LugarEntity lugar = persistence.find(lugarId);
         LOGGER.log(Level.INFO, "Terminando proceso de retornar lugar por id.");
-        return null;
+        return lugar;
     }
     
     public LugarEntity updateLugar(Long lugarId, LugarEntity lugarAModificar)throws BusinessLogicException

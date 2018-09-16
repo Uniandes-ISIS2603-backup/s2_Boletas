@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.boletas.ejb;
 import co.edu.uniandes.csw.boletas.entities.SillaEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.SillaPersistence;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+import java.util.logging.Logger;
 import java.util.List;
 import java.util.logging.Level;
 import javax.ejb.Stateless;
@@ -20,6 +20,9 @@ import javax.inject.Inject;
  */
 @Stateless
 public class SillaLogic {
+    
+    private static final Logger LOGGER = Logger.getLogger(SillaLogic.class.getName());
+    
     @Inject
     private SillaPersistence persistence;
     
