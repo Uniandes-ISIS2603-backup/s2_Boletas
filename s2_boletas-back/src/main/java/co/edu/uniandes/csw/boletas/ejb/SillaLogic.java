@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.ejb;
 
+import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.entities.SillaEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.SillaPersistence;
@@ -38,7 +39,9 @@ public class SillaLogic {
     
     public SillaEntity createSilla(SillaEntity entity) throws BusinessLogicException
     {
-        SillaEntity alreadyExists = getSillaByNumero(entity.getNumero(), entity.getLugar().getId());
+        SillaEntity alreadyExists = null;
+        if(entity.getLugar() != null)
+             alreadyExists = getSillaByNumero(entity.getNumero(), entity.getLugar().getId());
         if(alreadyExists != null)
             throw new BusinessLogicException("Ya existe una silla con ese número en el lugar especificado.");
         return persistence.create(entity);

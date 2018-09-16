@@ -20,6 +20,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -61,6 +62,7 @@ public class SillaLogicTest {
     /**
      * Configuración inicial de prueba.
      */
+    @Before
     public void congifTest()
     {
         try
@@ -101,6 +103,8 @@ public class SillaLogicTest {
     @Test
     public void createSillaTest()throws BusinessLogicException
     {
+        //Falta implementar la parte de la prueba correspondiente a los lugares a los que
+        //pertenecen cada silla.
         SillaEntity entity = factory.manufacturePojo(SillaEntity.class);
         SillaEntity result = logic.createSilla(entity);
         Assert.assertNotNull(result);
