@@ -155,10 +155,10 @@ public class OrganizadorPersistenceTest {
      *
      */
     @Test
-    public void FindOrganizadorByNameTest() {
+    public void FindOrganizadorByUsuarioTest() {
         OrganizadorEntity entity = data.get(0);
-        OrganizadorEntity newEntity = organizadorPersistence.find(entity.getId());
+        OrganizadorEntity newEntity = organizadorPersistence.findByUser(entity.getUsuario());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+        Assert.assertEquals(entity.getUsuario(), newEntity.getUsuario());
     }
 }

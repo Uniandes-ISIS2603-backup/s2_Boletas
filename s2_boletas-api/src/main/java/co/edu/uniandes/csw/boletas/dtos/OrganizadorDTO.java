@@ -14,10 +14,10 @@ import co.edu.uniandes.csw.boletas.entities.OrganizadorEntity;
  */
 public class OrganizadorDTO implements Serializable  {
     
-    public Long organizadorId;
-    public String nombre;
-    public String password;
-    public Integer presupuesto;
+    private Long organizadorId;
+    private String usuario;
+    private String nombre;
+    private Integer presupuesto;
     public Integer ganancia;
     
     public OrganizadorDTO()
@@ -27,14 +27,16 @@ public class OrganizadorDTO implements Serializable  {
     
     public OrganizadorDTO(OrganizadorEntity organizador )
     {
-        nombre= organizador.getNombre();
-        ganancia=organizador.getGanancia();
+        this.usuario= organizador.getUsuario();
+        this.nombre= organizador.getNombre();
+        this.ganancia=organizador.getGanancia();
         presupuesto=organizador.getPresupuesto();
     }
     
     public OrganizadorEntity toEntity()
     {
         OrganizadorEntity entity= new OrganizadorEntity();
+        entity.setUsuario(usuario);
         entity.setNombre(nombre);
         entity.setGanancia(ganancia);
         entity.setPresupuesto(this.presupuesto);
@@ -42,13 +44,7 @@ public class OrganizadorDTO implements Serializable  {
         return entity;
         
     }
-    
-    
-    
-    
-    
-    
-    
+
     public Long darId()
     {
         return organizadorId;

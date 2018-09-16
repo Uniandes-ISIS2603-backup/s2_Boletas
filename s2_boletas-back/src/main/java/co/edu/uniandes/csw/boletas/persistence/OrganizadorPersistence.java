@@ -38,6 +38,37 @@ return organizadorEntity;
          TypedQuery query =em.createQuery("Select all organizadores" ,OrganizadorEntity.class);
          return query.getResultList();
      }
+           /**
+            * Busca un organizador con el nombre dado por parametro
+            * @param nombre
+            * @return Null si el organizador no existe, el organizador si este ya existe.
+            */
+           public OrganizadorEntity findByUser(String usuario)
+           {
+                 LOGGER.log(Level.INFO, "Consultando organizador  por usuario ", usuario);
+                  //Crea un Query para buscar organizadores con el usuario dado por parametro, en este caso usuario es un placeholder
+                  TypedQuery query =em.createQuery("Select o From OrganizadorEntity o  Where o.usuario= :usuario ", OrganizadorEntity.class );
+                  
+                  //Se remplaza el placeholder :usuario por el valor del parametro 
+                  query = query.setParameter("usuario", usuario);
+                  
+                  //Lista en donde se guardan los resultados del Query 
+                  List<OrganizadorEntity> answer= query.getResultList();
+                  
+                  // variable donde se guarda el resultado 
+                  OrganizadorEntity result;
+                  if (answer==null)
+                      result=null;
+                  else if (answer.isEmpty())
+                      result=null;
+                  else 
+                      result=answer.get(0);
+                  
+                  LOGGER.log(Level.INFO, "Saliendo de buscar por usuario ", usuario);
+                  
+                  return result;
+                  
+           }
            public OrganizadorEntity find(Long organizadorId){
                
                LOGGER.log(Level.INFO, "Consultando organizador con id={0}", organizadorId);
@@ -50,7 +81,8 @@ return organizadorEntity;
           return em.merge(organizadorEntity);
      }
      
-     public void delete (Long organizadorId){
+     
+        public void delete (Long organizadorId){
          LOGGER.log(Level.INFO, "Borrando organizador con id={0}", organizadorId);
          OrganizadorEntity entity= em.find(OrganizadorEntity.class, organizadorId);
          em.remove(entity);

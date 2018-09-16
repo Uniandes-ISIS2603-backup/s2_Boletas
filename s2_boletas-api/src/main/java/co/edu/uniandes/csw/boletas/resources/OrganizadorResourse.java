@@ -60,7 +60,7 @@ public class OrganizadorResourse
     }
     
     @GET 
-    public List<OrganizadorDTO> getOrganizador()
+    public List<OrganizadorDTO> getOrganizadores()
     {
         return null;
     }
