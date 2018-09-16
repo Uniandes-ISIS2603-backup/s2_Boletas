@@ -111,14 +111,14 @@ public class ClienteCompraResource {
      * Error de lógica que se genera cuando no se encuentra la compra.
      */
     @PUT
-    public List<CompraDetailDTO> replaceCompras(@PathParam("clienteId") Long clienteId, List<CompraDetailDTO> compras) {
+    public List<CompraDetailDTO> updateCompras(@PathParam("clienteId") Long clienteId, List<CompraDetailDTO> compras) {
         LOGGER.log(Level.INFO, "ClienteCompraResource replaceCompras: input: clienteId {0} , compras {1}", new Object[]{clienteId, compras.toString()});
         for (CompraDetailDTO compra : compras) {
             if (compraLogic.getCompra(compra.getId()) == null) {
                 throw new WebApplicationException("El recurso /compras/" + compra.getId() + " no existe.", 404);
             }
         }
-        List<CompraDetailDTO> lista = comprasListEntity2DTO(clienteCompraLogic.replaceCompras(clienteId, comprasListDTO2Entity(compras)));
+        List<CompraDetailDTO> lista = comprasListEntity2DTO(clienteCompraLogic.updateCompras(clienteId, comprasListDTO2Entity(compras)));
         LOGGER.log(Level.INFO, "ClienteCompraResource replaceCompras: output:{0}", lista.toString());
         return lista;
     }
@@ -133,7 +133,7 @@ public class ClienteCompraResource {
      */
     @DELETE
     @Path("{compraId: \\d+}")
-    public void removeCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) {
+    public void deleteCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) {
         LOGGER.log(Level.INFO, "ClienteCompraResource removeCompra: input: clienteId {0} , compraId {1}", new Object[]{clienteId, compraId});
         if (compraLogic.getCompra(compraId) == null) {
             throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
