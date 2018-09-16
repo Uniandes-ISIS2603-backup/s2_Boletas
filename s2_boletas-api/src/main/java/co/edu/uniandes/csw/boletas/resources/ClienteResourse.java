@@ -56,7 +56,6 @@ public class ClienteResourse
         //Una vez creada la entity en la aplicacion esta se puede pasar nuevamente a DTO
         ClienteDTO dto= new ClienteDTO(nuevoCliente);
         
-        LOGGER.log(Level.INFO, "ClienteResourse createCliente: output: {0}", dto.toString());
     
         return dto;   
     }
