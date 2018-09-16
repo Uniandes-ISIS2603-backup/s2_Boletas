@@ -40,7 +40,7 @@ public class LugarPersistence {
     
     public List<LugarEntity> findAll()
     {
-        TypedQuery<LugarEntity> query = em.createQuery("", LugarEntity.class);
+        TypedQuery<LugarEntity> query = em.createQuery("select e from LugarEntity e", LugarEntity.class);
         return query.getResultList();
     }
     

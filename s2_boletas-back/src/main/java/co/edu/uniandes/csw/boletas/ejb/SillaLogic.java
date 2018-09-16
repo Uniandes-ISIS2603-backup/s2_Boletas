@@ -44,6 +44,11 @@ public class SillaLogic {
              alreadyExists = getSillaByNumero(entity.getNumero(), entity.getLugar().getId());
         if(alreadyExists != null)
             throw new BusinessLogicException("Ya existe una silla con ese número en el lugar especificado.");
+        String tipoSilla = entity.getTipo();
+        if(tipoSilla == null)
+            throw new BusinessLogicException("La silla debe tener un tipo.");
+        if(!(tipoSilla.equals("palcos") || tipoSilla.equals("general") || tipoSilla.equals("vip")))
+            throw new BusinessLogicException("El tipo de silla no concuerda con las reglas del negocio del sistema.");
         return persistence.create(entity);
        
     }

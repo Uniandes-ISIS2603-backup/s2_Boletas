@@ -54,7 +54,7 @@ public class SillaPersistence {
     
     public List<SillaEntity> findAll()
     {
-        TypedQuery<SillaEntity> query = em.createQuery("", SillaEntity.class);
+        TypedQuery<SillaEntity> query = em.createQuery("select e from SillaEntity e", SillaEntity.class);
         return query.getResultList();
     }
     
