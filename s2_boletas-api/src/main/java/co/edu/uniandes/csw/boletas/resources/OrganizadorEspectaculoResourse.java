@@ -21,7 +21,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
- * Clase que implementa el recurso /organizadores/{id}/espectaculos
+ * Clase que implementa el subrecurso /organizadores/{id}/espectaculos
  * @author Vilma Tirado y Sebastian Rodriguez 
  */
 @Consumes(MediaType.APPLICATION_JSON)
@@ -30,7 +30,7 @@ public class OrganizadorEspectaculoResourse
 {
     private static final Logger LOGGER = Logger.getLogger(OrganizadorEspectaculoResourse.class.getName());
 
-//    @Inject
+//  @Inject
 //    private OrganizadorEspectaculoLogic espectaculoComentarioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
     @Inject
@@ -49,6 +49,8 @@ public class OrganizadorEspectaculoResourse
         if (comentarioLogic == null) {
             throw new WebApplicationException("El recurso /espectaculos" + espectaculosId + " no existe.", 404);
         }
+        
+        EspectaculoDTO espectaculoDTO = new EspectaculoDTO()
 //        ComentarioDTO comentarioDTO = new ComentarioDTO(espectaculoComentarioLogic.addComentario(comentariosId, espectaculosId));
 //        LOGGER.log(Level.INFO, "EspectaculoComentarioResourse agregarComentario: output: {0}", comentarioDTO.toString());
         return new EspectaculoDTO();

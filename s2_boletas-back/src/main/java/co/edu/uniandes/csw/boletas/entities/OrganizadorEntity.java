@@ -47,6 +47,11 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
         return ganancia;
     }
     
+    public List<EspectaculoEntity> getEspectaculos()
+    {
+        return espectaculos;
+    }
+    
     public void setUsuario(String usuario)
     {
         this.usuario=usuario;
@@ -64,6 +69,11 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
     public void setPresupuesto (Integer presup)
     {
         this.presupuesto=presup;
+    }
+    
+    public void setEspectaculos (List<EspectaculoEntity> espectaculos)
+    {
+        this.espectaculos=espectaculos;
     }
     
 }
