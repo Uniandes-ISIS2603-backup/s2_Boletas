@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.boletas.persistence;
 
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 
 /**
@@ -27,9 +29,20 @@ private static final Logger LOGGER = Logger.getLogger(CompraPersistence.class.ge
 protected EntityManager em;
     
 
+/**
+* Devuelve todas las compras de la base de datos.
+*
+* @return una lista con todas las compras que encuentre en la base de
+* datos.
+*/
+public List<CompraEntity> findAll() {
+    LOGGER.log(Level.INFO, "Consultando todas las compras");
+    TypedQuery query = em.createQuery("select u from CompraEntity u", CompraEntity.class);
+    return query.getResultList();
+    }
 
 //-----------------------------------------------------------------------------------------
-// Metodos CRUD
+// Metodos CRUD individuales
 
 /**
  * Metodo para crear en la base de datos (CREATE)

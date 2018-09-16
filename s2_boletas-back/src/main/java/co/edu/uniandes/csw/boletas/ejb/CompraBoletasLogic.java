@@ -19,7 +19,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Gabriel Hamilton y Juan Diego Camacho
+ * @author Gabriel Hamilton 
  */
 @Stateless
 public class CompraBoletasLogic {

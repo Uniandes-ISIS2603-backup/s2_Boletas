@@ -119,6 +119,25 @@ public class CompraPersistenceTest {
   
   //-----------------------------------------------------------------------------------
   
+     /**
+     * Prueba para consultar la lista de Compras.
+     */
+    @Test
+    public void getAllComprasTest() {
+        List<CompraEntity> list = compraPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (CompraEntity ent : list) {
+            boolean found = false;
+            for (CompraEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    
   /**
    *  Prueba crear una compra (POST)
    */

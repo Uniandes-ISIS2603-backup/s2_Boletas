@@ -22,7 +22,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Gabriel Hamilton y Juan Diego Camacho
+ * @author Gabriel Hamilton 
  */
 
 @Consumes(MediaType.APPLICATION_JSON)
