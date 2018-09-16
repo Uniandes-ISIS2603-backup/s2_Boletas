@@ -130,13 +130,12 @@ public class SillaLogicTest {
     }
     
     @Test
-    public void getSillaTest()throws BusinessLogicException
+    public void getSillaTest()
     {
         SillaEntity entity = data.get(0);
         SillaEntity sourced = logic.getSillaById(entity.getId());
         Assert.assertNotNull(sourced);
         Assert.assertEquals(entity, sourced);
-        
     }
 
 }
