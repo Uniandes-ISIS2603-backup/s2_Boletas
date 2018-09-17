@@ -123,24 +123,24 @@ public class ClienteCompraResource {
         return lista;
     }
 
-    /**
-     * Elimina la conexión entre la compra y el libro recibidos en la URL.
-     *
-     * @param clienteId El ID del cliente al cual se le va a desasociar la compra
-     * @param compraId El ID de la compra que se desasocia
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper}
-     * Error de lógica que se genera cuando no se encuentra la compra.
-     */
-    @DELETE
-    @Path("{compraId: \\d+}")
-    public void deleteCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) {
-        LOGGER.log(Level.INFO, "ClienteCompraResource removeCompra: input: clienteId {0} , compraId {1}", new Object[]{clienteId, compraId});
-        if (compraLogic.getCompra(compraId) == null) {
-            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
-        }
-        clienteCompraLogic.removeCompra(clienteId, compraId);
-        LOGGER.info("ClienteCompraResource removeCompra: output: void");
-    }
+//    /**
+//     * Elimina la conexión entre la compra y el libro recibidos en la URL.
+//     *
+//     * @param clienteId El ID del cliente al cual se le va a desasociar la compra
+//     * @param compraId El ID de la compra que se desasocia
+//     * @throws WebApplicationException {@link WebApplicationExceptionMapper}
+//     * Error de lógica que se genera cuando no se encuentra la compra.
+//     */
+//    @DELETE
+//    @Path("{compraId: \\d+}")
+//    public void deleteCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) {
+//        LOGGER.log(Level.INFO, "ClienteCompraResource removeCompra: input: clienteId {0} , compraId {1}", new Object[]{clienteId, compraId});
+//        if (compraLogic.getCompra(compraId) == null) {
+//            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+//        }
+//        clienteCompraLogic.removeCompra(clienteId, compraId);
+//        LOGGER.info("ClienteCompraResource removeCompra: output: void");
+//    }
 
     /**
      * Convierte una lista de CompraEntity a una lista de CompraDetailDTO.

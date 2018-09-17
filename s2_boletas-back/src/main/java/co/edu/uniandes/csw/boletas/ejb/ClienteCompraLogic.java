@@ -132,13 +132,19 @@ public class ClienteCompraLogic {
         return clientePersistence.find(clienteId).getCompras();
     }
             
-    /**
-     * Desasocia una compra  existente de un Book existente
-     *
-     * @param booksId Identificador de la instancia de Book
-     * @param authorsId Identificador de la instancia de Author
-     */
-            
+//     /**
+//     * Desasocia una compra existente de un cliente existente
+//     *
+//     * @param clienteId Identificador de la instancia de Cliente
+//     * @param compraId Identificador de la instancia de Compra
+//     */
+//    public void removeCompra(Long clienteId, Long compraId) {
+//        LOGGER.log(Level.INFO, "Inicia proceso de borrar una compra del cliente con id = {0}", clienteId);
+//        ClienteEntity clienteEntity = clientePersistence.find(clienteId);
+//        CompraEntity compraEntity = compraPersistence.find(compraId);
+//        compraEntity.getCliente().remove(clienteEntity);
+//        LOGGER.log(Level.INFO, "Termina proceso de borrar un libro del author con id = {0}", authorsId);
+//    }     
             
             
     
