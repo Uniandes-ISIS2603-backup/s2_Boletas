@@ -23,8 +23,9 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     
         @OneToMany(mappedBy="cliente", cascade= CascadeType.PERSIST, orphanRemoval=true)
   private List<ComentarioEntity> comentarios= new ArrayList<>();
+        
         @OneToMany(mappedBy="cliente", cascade= CascadeType.PERSIST, orphanRemoval=true)
-  private List<CompraEntity> compra= new ArrayList<>();
+  private List<CompraEntity> compras= new ArrayList<>();
     
     private String usuario;
     private String nombre;
@@ -63,5 +64,15 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     public String getCedula()
     {
         return cedula;
+    }
+    
+    public List<CompraEntity> getCompras()
+    {
+        return compras;
+    }
+    
+    public void setCompras(List<CompraEntity> compras)
+    {
+        this.compras=compras;
     }
 }
