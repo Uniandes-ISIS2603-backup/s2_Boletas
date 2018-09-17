@@ -22,6 +22,10 @@ public class CompraDetailDTO extends CompraDTO implements Serializable {
     */
     private List<BoletaDTO> boletas;
 
+    
+    
+    private ClienteDTO cliente;
+    
     /**
      * Constructor por defecto
      */
@@ -42,6 +46,11 @@ public class CompraDetailDTO extends CompraDTO implements Serializable {
                 for (BoletaEntity entityBoleta : compraEntity.getBoletas()) {
                     boletas.add(new BoletaDTO(entityBoleta));
                 }
+            }
+            
+            if (compraEntity.getCliente()!=null)
+            {
+                    cliente=new ClienteDTO(compraEntity.getCliente());
             }
         }
     }
@@ -77,9 +86,9 @@ public class CompraDetailDTO extends CompraDTO implements Serializable {
     /**
      * Modifica la lista de boletas de la compra.
      *
-     * @param boletas the books to set
+     * @param boletas las nuevas boletas
      */
-    public void setBooks(List<BoletaDTO> boletas) {
+    public void setBoletas(List<BoletaDTO> boletas) {
         this.boletas = boletas;
     }
 }
