@@ -95,6 +95,7 @@ public class SillaLogicTest {
         for(int i = 0; i < 4; i++)
         {
             SillaEntity silla = factory.manufacturePojo(SillaEntity.class);
+            silla.setTipo("general");
             em.persist(silla);
             data.add(silla);
         }
@@ -106,6 +107,7 @@ public class SillaLogicTest {
         //Falta implementar la parte de la prueba correspondiente a los lugares a los que
         //pertenecen cada silla.
         SillaEntity entity = factory.manufacturePojo(SillaEntity.class);
+        entity.setTipo("palcos");
         SillaEntity result = logic.createSilla(entity);
         Assert.assertNotNull(result);
         
