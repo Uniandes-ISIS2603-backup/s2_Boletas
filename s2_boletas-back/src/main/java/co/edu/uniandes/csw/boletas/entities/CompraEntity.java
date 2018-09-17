@@ -93,6 +93,15 @@ public class CompraEntity extends BaseEntity implements Serializable{
         return boletas;
     }
 
+    /**
+     * devuelve el cliente de la compra
+     * @return  lel cliente
+     */
+    public ClienteEntity getCliente()
+    {
+        return cliente;
+    }
+    
     
     /**
      * modifica el costo de la compra
@@ -139,6 +148,15 @@ public class CompraEntity extends BaseEntity implements Serializable{
      */
     public void setBoletas(List<BoletaEntity> boletaS) {
         boletas = boletaS;
+    }
+    
+    /**
+     * Modifica el cliente de la compra
+     *
+     * @param cliente el nuevo cliente de la compra
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
     }
     
 }

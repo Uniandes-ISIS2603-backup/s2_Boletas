@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.boletas.ejb;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.CompraPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -29,9 +30,8 @@ public class CompraLogic
      * Crear la Compra en persistencia
      * @param compraEntity
      * @return compraEntity, la entity de la compra despues de la persistencia
-     * @throws BusinessLogicException 
      */
-    public CompraEntity createCompra(CompraEntity compraEntity) throws BusinessLogicException {
+    public CompraEntity createCompra(CompraEntity compraEntity) {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la compra");
         persistence.create(compraEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la compra");
@@ -56,6 +56,19 @@ public class CompraLogic
        return compraEntity;
     }
      
+     /**
+     *
+     * Obtener todas las compras existentes en la base de datos.
+     *
+     * @return una lista de compras.
+     */
+    public List<CompraEntity> getCompras() {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las compras");
+        List<CompraEntity> compras = persistence.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todas las compras");
+        return compras;
+    }
+    
      
     /**
      * Actualiza una compra
@@ -80,8 +93,11 @@ public class CompraLogic
     public void deleteCompra(Long compraId) throws BusinessLogicException 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la compra con id = {0}", compraId);
-        //se queda la siguiente linea hasta confirmar una regla de negocio
-        //CompraEntity compra = getCompra(compraId);
+        CompraEntity compra = getCompra(compraId);
+        if (compra != null && !compra.getBoletas().isEmpty()) {
+            throw new BusinessLogicException("No se puede borrar la compra con id = " + compraId + " porque tiene boletas asociadas");
+        }
+        
         persistence.delete(compraId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar la compra con id = {0}", compraId);
     }

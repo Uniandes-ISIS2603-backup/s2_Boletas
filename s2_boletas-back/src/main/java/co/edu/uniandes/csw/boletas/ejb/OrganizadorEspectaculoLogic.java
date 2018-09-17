@@ -124,8 +124,6 @@ public class OrganizadorEspectaculoLogic {
                   espec.setOrganizador(null);
               }
           }
-          
-          
           return espectaculos;
       }
       
