@@ -32,6 +32,13 @@ public class EspectaculoComentarioLogic
     @Inject
     private ComentarioPersistence comentarioPersistence;
     
+    
+    /**
+     * Metodo para agregar un comentario a un espectaculo
+     * @param comentarioId Id del comentario a agregar
+     * @param espectaculoId Id de espectaculo al que se le va a agregar el comentario
+     * @return Un comentario que llega
+     */
     public ComentarioEntity addComentario(Long comentarioId, Long espectaculoId) 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle un libro a la editorial con id = {0}", espectaculoId);
@@ -64,4 +71,5 @@ public class EspectaculoComentarioLogic
         
         throw new BusinessLogicException("El comentario no estaba asociado a el espectaculo");
     }
+    
 }
