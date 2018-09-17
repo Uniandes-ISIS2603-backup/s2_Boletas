@@ -42,6 +42,13 @@ public class EspectaculoResourse
     @Inject
     EspectaculoLogic espectaculoLogic;
     
+    
+    /**
+     * Metodo Post para agregar un nuevo objeto de EspectaculoDTO
+     * @param espectaculo El espectaculo a añadir, fue pasado como un json
+     * @return El espectaculo añadido
+     * @throws BusinessLogicException 
+     */
     @POST
     public EspectaculoDTO createEspectaculo(EspectaculoDTO espectaculo) throws BusinessLogicException
     { 
@@ -59,6 +66,13 @@ public class EspectaculoResourse
         return dto;   
     }
     
+    
+    /**
+     * Metodo PUT para actualizar un espectaculo, dado su id y los valores en el espectaculo DTO
+     * @param espectaculoId El id del espectaculo a actualizar
+     * @param espec Objeto de tipo EspectaculoDTO que llega como objeto JSON
+     * @return El objeto EspectaculoDTO actualizado
+     */
     @PUT
     @Path("{espectaculoId : \\d+}")
     public EspectaculoDTO uptadeEspectaculo(@PathParam("espectaculoId") Long espectaculoId, EspectaculoDTO espec)
@@ -78,6 +92,12 @@ public class EspectaculoResourse
         return dto;
     }
     
+    
+    /**
+     * Metodo que busca un espectaculo dado un ID
+     * @param espectaculoId El id del espectaculo a buscar
+     * @return El objeto EspectaculoDTO que se encuentra en el sistema, en caso de no encontrarlo bota excepcion
+     */
     @GET
     @Path("{espectaculoId : \\d+}")
     public EspectaculoDTO getEspectaculo(@PathParam("espectaculoId") Long espectaculoId)

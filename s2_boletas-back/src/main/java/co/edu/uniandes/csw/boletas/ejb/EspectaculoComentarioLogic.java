@@ -62,6 +62,14 @@ public class EspectaculoComentarioLogic
         return espectaculo.getComentarios();
     }
     
+    
+    /**
+     * Metodo que obtiene un comentario, dado su id, y el id del espectaculo asociado
+     * @param espectaculoId Espectaculo que debe contener el comentario
+     * @param comentarioId El id del comentario a buscar 
+     * @return Una instancia de ComentarioEntity 
+     * @throws BusinessLogicException En caso de que no se encuentre asociado a ese espectaculo
+     */
     public ComentarioEntity getComentario(Long espectaculoId, Long comentarioId) throws BusinessLogicException
     {
         

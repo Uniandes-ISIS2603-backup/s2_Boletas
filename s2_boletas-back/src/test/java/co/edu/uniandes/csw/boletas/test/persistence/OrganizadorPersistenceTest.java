@@ -131,7 +131,7 @@ public class OrganizadorPersistenceTest {
 
         Assert.assertNotNull(result);
 
-        OrganizadorEntity entity = em.find(OrganizadorEntity.class, result.getId());
+        OrganizadorEntity entity = organizadorPersistence.find( result.getId());
 
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }

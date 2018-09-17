@@ -11,7 +11,6 @@ import co.edu.uniandes.csw.boletas.ejb.OrganizadorLogic;
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.entities.OrganizadorEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
 import co.edu.uniandes.csw.boletas.persistence.OrganizadorPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +38,6 @@ public class OrganizadorEspectaculoLogicTest
 {
     private PodamFactory factory = new PodamFactoryImpl();
     
-    @Inject
-    private OrganizadorLogic organizadorLogic;
     
     @Inject 
     private OrganizadorEspectaculoLogic organizadorEspectaculoLogic;
@@ -101,6 +98,8 @@ public class OrganizadorEspectaculoLogicTest
      */
     private void insertData()
     {
+        
+        
         for (int i = 0; i < 3; i++) {
             EspectaculoEntity espec = factory.manufacturePojo(EspectaculoEntity.class);
             em.persist(espec);
@@ -156,6 +155,8 @@ public class OrganizadorEspectaculoLogicTest
     {
         List<EspectaculoEntity> espectacul = organizadorEspectaculoLogic.getEspectaculos(espectaculos.get(0).getId());
         
+        
+        
         Assert.assertEquals(1,espectacul.size());
     }
     
@@ -164,14 +165,20 @@ public class OrganizadorEspectaculoLogicTest
      * Debe lanzar la excepcion, pues no lo deberia encontrar en la logica
      * @throws BusinessLogicException 
      */
-    @Test
+    @Test(expected = BusinessLogicException.class)
     public void obtenerUnEspectaculoNoAsociadoTest() throws BusinessLogicException
     {
         EspectaculoEntity espec = espectaculos.get(1);
         
-        OrganizadorEntity org = organizadores.get(0);
+        OrganizadorEntity org = organizadores.get(1);
         
         organizadorEspectaculoLogic.getEspectaculo(espec.getId(), org.getId());
+    }
+    
+    @Test 
+    public void testNull()
+    {
+        
     }
     
           

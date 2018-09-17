@@ -177,7 +177,7 @@ public class EspectaculoComentarioLogicTest
      * No deberia estar asociado, deberia lanzar excepcion
      * @throws BusinessLogicException
      */
-    @Test
+    @Test(expected = BusinessLogicException.class)
     public void obtenerUnComentarioNoAsociadoTest() throws BusinessLogicException
     {
         EspectaculoEntity espec = espectaculos.get(0);

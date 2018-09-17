@@ -73,6 +73,8 @@ public class OrganizadorEspectaculoLogic {
       public List<EspectaculoEntity> getEspectaculos (Long organizadorId)
       {
            LOGGER.log(Level.INFO, "Inicia proceso de consultar los espectaculos  asociados al organizador con id = {0}", organizadorId);
+           
+           
            return organizadorPersistence.find(organizadorId).getEspectaculos();
       }
       
@@ -96,17 +98,20 @@ public class OrganizadorEspectaculoLogic {
         int index= espectaculos.indexOf(espectaculoEntity);
         //Se comprueba que si exista ese espectaculo en la lista, sino manda excepcion 
         
-        if(index>=0)
+        
+        if(index<0)
         {
-           return  espectaculos.get(index);
+        throw new BusinessLogicException("El espectaculo no pertenece a este organizador");
         }
         
-        throw new BusinessLogicException("El espectaculo no pertenece a este organizador");
+          return  espectaculos.get(index);
+
         
       }
       
           /**
-     * Remplazar los espectaculos de un organizador
+     * Rempla        throw new BusinessLogicException("El espectaculo no pertenece a este organizador");
+zar los espectaculos de un organizador
      *
      * @param espectaculos  Lista de espectaculos  que serán los del organizador.
      * @param organizadorId  El id del organizador que se quiere actualizar.
