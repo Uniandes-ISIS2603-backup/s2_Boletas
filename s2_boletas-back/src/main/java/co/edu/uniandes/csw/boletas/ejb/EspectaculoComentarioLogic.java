@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.boletas.ejb;
 
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
+import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
 import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
 import java.util.List;
@@ -46,5 +47,21 @@ public class EspectaculoComentarioLogic
         EspectaculoEntity espectaculo = espectaculoPersistence.find(espectaculoId);
         
         return espectaculo.getComentarios();
+    }
+    
+    public ComentarioEntity getComentario(Long espectaculoId, Long comentarioId) throws BusinessLogicException
+    {
+        List<ComentarioEntity> comentarios = espectaculoPersistence.find(espectaculoId).getComentarios();
+        
+        ComentarioEntity comentario = comentarioPersistence.find(comentarioId);
+        
+        int index = comentarios.indexOf(comentario);
+        
+        if(index >= 0)
+        {
+            return comentarios.get(index);
+        }
+        
+        throw new BusinessLogicException("El comentario no estaba asociado a el espectaculo");
     }
 }

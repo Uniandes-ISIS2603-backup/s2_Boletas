@@ -82,7 +82,10 @@ public class EspectaculoResourse
     @Path("{espectaculoId : \\d+}")
     public EspectaculoDTO getEspectaculo(@PathParam("espectaculoId") Long espectaculoId)
     {
+        
+        LOGGER.log(Level.INFO, "EspectaculoResourse get Espectaculo");
         EspectaculoEntity entity = espectaculoLogic.getEspectaculo(espectaculoId);
+        
         
         if(entity == null)
         {
@@ -91,25 +94,29 @@ public class EspectaculoResourse
         
         EspectaculoDTO dto = new EspectaculoDTO(entity);
         
+        LOGGER.log(Level.INFO, "EspectaculoResourse getEspectaculo" + dto.toString());
+        
         return dto;
     }
     
     @GET 
     public List<EspectaculoDetailDTO> getEspectaculos()
     {
-        LOGGER.info("EspectaculoResourse getEditorials: input: void");
-        List<EspectaculoDetailDTO> listaEditoriales = listEntity2DetailDTO(espectaculoLogic.getEspectaculos());
-        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaEditoriales.toString());
-        return listaEditoriales;
+        LOGGER.info("EspectaculoResourse getEspectaculos: input: void");
+        List<EspectaculoDetailDTO> listaEspectaculos = listEntity2DetailDTO(espectaculoLogic.getEspectaculos());
+        LOGGER.log(Level.INFO, "EspectaculoResourse getEspectaculos: output: {0}", listaEspectaculos.toString());
+        return listaEspectaculos;
     }
     
     @DELETE
     @Path("{espectaculoId: \\d+}")
-    public void deleteEditorial(@PathParam("espectaculoId") Long editorialsId) throws BusinessLogicException 
+    public void deleteEspectaculo(@PathParam("espectaculoId") Long espectaculoId) throws BusinessLogicException 
     {
-        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: ");
+        LOGGER.log(Level.INFO, "EspectaculoResourse deleteEspectaculo: output: ");
         
-       espectaculoLogic.deleteEspectaculo(editorialsId);
+       espectaculoLogic.deleteEspectaculo(espectaculoId);
+       
+       LOGGER.log(Level.INFO, "Espectaculo con id :" + espectaculoId+"ha sido elimiado");
     }
     
     private List<EspectaculoDetailDTO> listEntity2DetailDTO(List<EspectaculoEntity> entityList) {

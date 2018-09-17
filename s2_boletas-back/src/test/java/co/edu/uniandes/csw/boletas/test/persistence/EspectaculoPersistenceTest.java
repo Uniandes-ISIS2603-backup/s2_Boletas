@@ -107,7 +107,9 @@ public class EspectaculoPersistenceTest
         }
     }
   
-    
+    /**
+     * Prueba para crear un espectaculo
+     */
     @Test
     public void createEspectaculoTest()
     {
@@ -142,6 +144,10 @@ public class EspectaculoPersistenceTest
         }
     }
     
+    
+    /**
+     * Prueba para obtener un espectaculo 
+     */
     @Test
     public void getEspectaculoTest() {
         EspectaculoEntity entity = data.get(0);
@@ -150,8 +156,11 @@ public class EspectaculoPersistenceTest
         org.junit.Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
     }
     
-      @Test
-    public void deleteCompraTest() {
+    /**
+     * Prueba para eliminar un espectaculo
+     */
+    @Test
+    public void deleteEspectaculoTest() {
         EspectaculoEntity entity = data.get(0);
         espectaculoPersistence.delete(entity.getId());
         EspectaculoEntity deleted = em.find(EspectaculoEntity.class, entity.getId());
@@ -159,7 +168,7 @@ public class EspectaculoPersistenceTest
     }
     
     /**
-     * Prueba para actualizar una Editorial.
+     * Prueba para actualizar un Espectaculo (PUT).
      */
     @Test
     public void updateEspectaculoTest() {
@@ -177,7 +186,7 @@ public class EspectaculoPersistenceTest
     }
 
     /**
-     * Prueba para consultar una Editorial por nombre.
+     * Prueba para consultar una Espectaculo por nombre.
      */
     @Test
     public void finsEspectaculoByNameTest() {

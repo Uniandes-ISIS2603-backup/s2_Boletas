@@ -28,7 +28,12 @@ public class EspectaculoPersistence
     @PersistenceContext(unitName = "DnsPU")
     protected EntityManager em;
     
-    
+    /**
+     * Metodo para crear un espectaculo en la base de datos
+     * Es llamado por la logica 
+     * @param espectaculo
+     * @return Un espectaculo
+     */
     public EspectaculoEntity create(EspectaculoEntity espectaculo)
     {
         LOGGER.log(Level.INFO, "Creando un nuevo espectaculo");
@@ -37,6 +42,7 @@ public class EspectaculoPersistence
         
         LOGGER.log(Level.INFO, "Saliendo de crear un nuevo espectaculo");
         
+       
         return espectaculo;
     }
     
