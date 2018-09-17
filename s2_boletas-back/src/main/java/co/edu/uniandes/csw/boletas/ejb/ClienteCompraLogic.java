@@ -120,6 +120,17 @@ public class ClienteCompraLogic {
           return compras;
       }
             
+      
+    /**
+     * Retorna todas las compras asociadas a un cliente
+     *
+     * @param cliente El ID del cliente buscado
+     * @return La lista de compras del cliente
+     */
+    public List<CompraEntity> getCompras(Long clienteId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar las compras asociadas al cliente con id = {0}", clienteId);
+        return clientePersistence.find(clienteId).getCompras();
+    }
             
     /**
      * Desasocia una compra  existente de un Book existente
