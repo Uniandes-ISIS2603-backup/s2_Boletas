@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.boletas.ejb;
 
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
+import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
 import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
 import java.util.List;
@@ -31,6 +32,13 @@ public class EspectaculoComentarioLogic
     @Inject
     private ComentarioPersistence comentarioPersistence;
     
+    
+    /**
+     * Metodo para agregar un comentario a un espectaculo
+     * @param comentarioId Id del comentario a agregar
+     * @param espectaculoId Id de espectaculo al que se le va a agregar el comentario
+     * @return Un comentario que llega
+     */
     public ComentarioEntity addComentario(Long comentarioId, Long espectaculoId) 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle un libro a la editorial con id = {0}", espectaculoId);
@@ -47,4 +55,21 @@ public class EspectaculoComentarioLogic
         
         return espectaculo.getComentarios();
     }
+    
+    public ComentarioEntity getComentario(Long espectaculoId, Long comentarioId) throws BusinessLogicException
+    {
+        List<ComentarioEntity> comentarios = espectaculoPersistence.find(espectaculoId).getComentarios();
+        
+        ComentarioEntity comentario = comentarioPersistence.find(comentarioId);
+        
+        int index = comentarios.indexOf(comentario);
+        
+        if(index >= 0)
+        {
+            return comentarios.get(index);
+        }
+        
+        throw new BusinessLogicException("El comentario no estaba asociado a el espectaculo");
+    }
+    
 }

@@ -28,6 +28,13 @@ public class EspectaculoLogic
     @Inject
     private EspectaculoPersistence persistence;
     
+    
+    /**
+     * Metodo para crear un espectaculo, tiene conexion con la persistencia
+     * @param espec El espectaculo a crear en la base de datos
+     * @return El espectaculo creado, con un nuevo id asignado por la base de datos
+     * @throws BusinessLogicException En caso de que ya exista 
+     */
     public EspectaculoEntity createEntity(EspectaculoEntity espec) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia el proceso de crear un espectaculo");
@@ -41,9 +48,14 @@ public class EspectaculoLogic
         
         LOGGER.log(Level.INFO, "Se creo el espectaculo satisfactoriamente");
         
+        
         return espec;
     }
     
+    /**
+     * Metodo para encontrar todos los espectaculos que existen en el programa
+     * @return 
+     */
      public List<EspectaculoEntity> getEspectaculos() {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los espectaculos");
         List<EspectaculoEntity> espectaculos = persistence.findAll();
@@ -51,6 +63,12 @@ public class EspectaculoLogic
         return espectaculos;
     }
      
+     
+    /**
+     * Obtener un espectaculo segun su Id
+     * @param espectaculosId
+     * @return 
+     */
     public EspectaculoEntity getEspectaculo(Long espectaculosId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el espectaculo con id = {0}", espectaculosId);
         EspectaculoEntity editorialEntity = persistence.find(espectaculosId);
@@ -72,17 +90,24 @@ public class EspectaculoLogic
         return newEntity;
     }
     
-    public void deleteEspectaculo(Long espectaculosId) throws BusinessLogicException
+    
+    /**
+     * Metodo que elimina un espectaculo de la base de datos
+     * @param espectaculosId Id del espectaculo a eliminar
+     */
+    public void deleteEspectaculo(Long espectaculosId) 
     {
         
         List<BoletaEntity> boletas = getEspectaculo(espectaculosId).getBoletas();
         
-        if(boletas!= null && !boletas.isEmpty())
-        {
-            throw new BusinessLogicException("El espectaculo que se quiere eliminar tiene boletas asociadas");
-        }
+        LOGGER.log(Level.INFO, "Inicia proceso de eliminar el espectaculo con id = {0}", espectaculosId);
+        
+       //Como al borrar el espectaculo tambien se borran las boletas, no se esta haciendo la verificacion 
+       //de si tiene boletas asociadas
         
         persistence.delete(espectaculosId);
+        
+        LOGGER.log(Level.INFO, "Se termina el proceso de eliminar un espectaculo con id = {0}", espectaculosId);
         
         
     }

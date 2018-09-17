@@ -108,6 +108,11 @@ public class EspectaculoLogicTest
         }
     }
     
+    
+    /**
+     * PRUEBA para crear un espectaculo y que se cumplan las reglas de negocio
+     * @throws BusinessLogicException 
+     */
     @Test
     public void createEspectaculoTest() throws BusinessLogicException
     {
@@ -119,6 +124,11 @@ public class EspectaculoLogicTest
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
     
+    
+    /**
+     * Prueba para crear un espectaculo que tiene un nombre de uno que ya exite, deberia lanzar excepcion
+     * @throws BusinessLogicException 
+     */
     @Test(expected = BusinessLogicException.class)
     public void createEspectaculoConMismoNombreTest() throws BusinessLogicException {
         EspectaculoEntity newEntity = factory.manufacturePojo(EspectaculoEntity.class);
@@ -126,6 +136,10 @@ public class EspectaculoLogicTest
         espectaculoLogic.createEntity(newEntity);
     }
     
+    
+    /**
+     * Prueba para obtener todos los espectaculos creados
+     */
     @Test
     public void getEspectaculosTest() {
         List<EspectaculoEntity> list = espectaculoLogic.getEspectaculos();
@@ -141,6 +155,11 @@ public class EspectaculoLogicTest
         }
     }
     
+    
+    /**
+     * Prueba para obtener un espectaculo, tiene que coincidir los datos que se tienen
+     * en el arreglo creado en insertData con lo que se obtiene en la logica
+     */
     @Test
     public void getEspectaculoTest() {
         EspectaculoEntity entity = data.get(0);
@@ -150,6 +169,11 @@ public class EspectaculoLogicTest
         Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
     }
     
+    
+    /**
+     * Prueba para actualizar un espectaculo, se quiere que se actualice un espectaculo
+     * y despues sea posible encontrarlo y que coincida 
+     */
      @Test
     public void updateEspectaculoTest() {
         EspectaculoEntity entity = data.get(0);
@@ -161,6 +185,11 @@ public class EspectaculoLogicTest
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
     }
     
+    
+    /**
+     * Prueba para que el espectaculo sea eliminado, y se verifica que sea nulo al fina de la operacion
+     * @throws BusinessLogicException 
+     */
     @Test
     public void deleteEspectaculoTest() throws BusinessLogicException {
         EspectaculoEntity entity = data.get(1);
