@@ -19,11 +19,11 @@ public class ComentarioEntity extends BaseEntity implements Serializable
 {
    
     @PodamExclude
-    @ManyToOne
+    @ManyToOne()
     private EspectaculoEntity espectaculo;
     
     @PodamExclude
-    @ManyToOne
+    @ManyToOne()
     private ClienteEntity cliente;
 
     public EspectaculoEntity getEspectaculo() {

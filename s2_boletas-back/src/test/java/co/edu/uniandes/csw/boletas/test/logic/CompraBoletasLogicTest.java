@@ -144,7 +144,7 @@ public class CompraBoletasLogicTest {
      * Prueba para obtener una instancia de Boleta asociada a una instancia
      * Compra.
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws BusinessLogicException
      */
     @Test
     public void getBoletaTest() throws BusinessLogicException {

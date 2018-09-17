@@ -39,7 +39,7 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
 
     
     @PodamExclude
-    @OneToMany(mappedBy = "espectaculo", fetch = FetchType.LAZY,cascade=CascadeType.PERSIST)
+    @OneToMany(mappedBy = "espectaculo",cascade= CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
 
     
@@ -48,7 +48,7 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     private LugarEntity lugar;
     
     @PodamExclude
-    @OneToMany(mappedBy = "espectaculo",cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "espectaculo",cascade= CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
     
     @PodamExclude
@@ -56,7 +56,10 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     private OrganizadorEntity organizador;
     
     
-    
+    /**
+     * Metodo que devuelve el nombre del espectaculo
+     * @return El nombre del espectaculo
+     */
     public String getNombre() {
         return nombre;
     }
