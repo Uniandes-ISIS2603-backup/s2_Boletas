@@ -76,6 +76,8 @@ public class EspectaculoPersistence
     
     public EspectaculoEntity update(EspectaculoEntity entity)
     {
+        
+        LOGGER.log(Level.INFO, "Espectaculo Entity update espectaculo con id :" + entity.getId());
         return em.merge(entity);
     }
     

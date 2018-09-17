@@ -13,12 +13,14 @@ import co.edu.uniandes.csw.boletas.persistence.OrganizadorPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Sebastian Beltran y Vilma Tirado
  */
+@Stateless
 public class OrganizadorEspectaculoLogic {
     
     
@@ -32,6 +34,8 @@ public class OrganizadorEspectaculoLogic {
       //Injeccion para la clase espectaculo persistence 
       @Inject 
       private EspectaculoPersistence espectaculoPersistence;
+      
+      
       
           /**
      * Agregar un espectaculo  al la lista del organizador 
@@ -96,8 +100,8 @@ public class OrganizadorEspectaculoLogic {
         {
            return  espectaculos.get(index);
         }
-        else 
-            throw new BusinessLogicException("El espectaculo no pertenece a este organizador");
+        
+        throw new BusinessLogicException("El espectaculo no pertenece a este organizador");
         
       }
       

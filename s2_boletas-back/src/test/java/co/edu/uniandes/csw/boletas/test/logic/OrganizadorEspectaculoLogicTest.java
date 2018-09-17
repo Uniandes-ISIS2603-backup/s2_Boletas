@@ -89,8 +89,10 @@ public class OrganizadorEspectaculoLogicTest
     
     
     private void clearData() {
-        em.createQuery("delete from OrganizadorEntity").executeUpdate();
+        
         em.createQuery("delete from EspectaculoEntity").executeUpdate();
+        
+        em.createQuery("delete from OrganizadorEntity").executeUpdate();
     }
     
     
@@ -152,7 +154,7 @@ public class OrganizadorEspectaculoLogicTest
     @Test
     public void getEspectaculosTest()
     {
-        List<EspectaculoEntity> espectacul = organizadores.get(0).getEspectaculos();
+        List<EspectaculoEntity> espectacul = organizadorEspectaculoLogic.getEspectaculos(espectaculos.get(0).getId());
         
         Assert.assertEquals(1,espectacul.size());
     }
@@ -172,6 +174,5 @@ public class OrganizadorEspectaculoLogicTest
         organizadorEspectaculoLogic.getEspectaculo(espec.getId(), org.getId());
     }
     
-    
-            
+          
 }
