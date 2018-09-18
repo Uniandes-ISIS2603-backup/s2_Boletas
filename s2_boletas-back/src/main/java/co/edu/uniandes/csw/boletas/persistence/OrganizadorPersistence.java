@@ -35,7 +35,7 @@ public OrganizadorEntity create( OrganizadorEntity organizadorEntity)
 }
         public List<OrganizadorEntity> findAll(){
          LOGGER.log(Level.INFO, "Buscando todos los organizadores");
-         TypedQuery query =em.createQuery("Select all organizadores" ,OrganizadorEntity.class);
+         TypedQuery query =em.createQuery("Select u from OrganizadorEntity u" ,OrganizadorEntity.class);
          return query.getResultList();
      }
            /**

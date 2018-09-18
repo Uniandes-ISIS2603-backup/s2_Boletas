@@ -112,6 +112,23 @@ public class ClientePersistenceTest {
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
     } 
     
+    
+    @Test
+    public void FindClientesTest()
+              {
+      List<ClienteEntity> list = clientePersistence.findAll();
+        org.junit.Assert.assertEquals(data.size(), list.size());
+        for (ClienteEntity ent : list) {
+            boolean found = false;
+            for (ClienteEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            org.junit.Assert.assertTrue(found);
+        }
+    }
+    
         /**
      * Prueba para eliminar una Cliente.
      *
