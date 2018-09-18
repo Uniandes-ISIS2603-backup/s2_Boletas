@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.boletas.test.logic;
 
 import co.edu.uniandes.csw.boletas.ejb.BoletaLogic;
+import co.edu.uniandes.csw.boletas.ejb.EspectaculoLogic;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
@@ -39,6 +40,8 @@ public class BoletaLogicTest {
     @Inject
     private BoletaLogic boletaLogic;
     
+    @Inject
+    private EspectaculoLogic espLogic;
     
     @PersistenceContext
     private EntityManager em;
@@ -113,6 +116,9 @@ public class BoletaLogicTest {
     @Test
     public void createBoletaTest() throws BusinessLogicException {
         BoletaEntity newEntity = factory.manufacturePojo(BoletaEntity.class);
+        EspectaculoEntity espEntity = factory.manufacturePojo(EspectaculoEntity.class);
+        espEntity = espLogic.createEntity(espEntity);
+        newEntity.setEspectaculo(espEntity);
         BoletaEntity result = boletaLogic.createBoleta(newEntity);
         Assert.assertNotNull(result);
         BoletaEntity entity = em.find(BoletaEntity.class, result.getId());
@@ -148,6 +154,30 @@ public class BoletaLogicTest {
         boletaLogic.createBoleta(entity);
         
     }
+    
+    /**
+     * Prueba para consultar la lista de boletas
+     */
+    @Test
+    public void getBoletasTest()
+    {
+        List<BoletaEntity> list =boletaLogic.getBoletas();
+        Assert.assertEquals(data.size(), list.size());
+        for(BoletaEntity entity: list)
+        {
+            boolean found= false;
+            for(BoletaEntity storedEntity: data)
+            {
+                if(entity.getId().equals(storedEntity.getId()))
+                {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+        
+        
+    }
     /**
      * Prueba para borrar una boleta
      * @throws BusinessLogicException 
@@ -158,5 +188,23 @@ public class BoletaLogicTest {
         boletaLogic.deleteBoleta(entity.getId());
         BoletaEntity deleted = em.find(BoletaEntity.class, entity.getId());
         Assert.assertNull(deleted);
+    }
+    
+    /**
+     * Prueba para actualizar una boleta
+     */
+    @Test
+    public void updateBoletaTest()
+    {
+        BoletaEntity entity = data.get(0);
+        BoletaEntity pojoEntity = factory.manufacturePojo(BoletaEntity.class);
+        
+        pojoEntity.setId(entity.getId());
+        boletaLogic.updateBoleta(pojoEntity.getId(), pojoEntity);
+        BoletaEntity resp = em.find(BoletaEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getPrecio(), resp.getPrecio());
+        Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
+        Assert.assertEquals(pojoEntity.getVendida(), resp.getVendida());
     }
 }
