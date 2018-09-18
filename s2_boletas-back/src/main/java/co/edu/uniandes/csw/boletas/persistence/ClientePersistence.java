@@ -37,7 +37,7 @@ return clienteEntity;
      
      public List<ClienteEntity> findAll(){
          LOGGER.log(Level.INFO, "Buscando todos los clientes");
-         TypedQuery query =em.createQuery("Select all clientes" ,ClienteEntity.class);
+         TypedQuery query =em.createQuery("Select u from ClienteEntity u" ,ClienteEntity.class);
          return query.getResultList();
      }
      
