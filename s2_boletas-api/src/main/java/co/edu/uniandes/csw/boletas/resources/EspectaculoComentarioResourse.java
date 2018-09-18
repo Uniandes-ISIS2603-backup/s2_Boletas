@@ -8,8 +8,8 @@ package co.edu.uniandes.csw.boletas.resources;
 import co.edu.uniandes.csw.boletas.dtos.ComentarioDTO;
 import co.edu.uniandes.csw.boletas.ejb.ComentarioLogic;
 import co.edu.uniandes.csw.boletas.ejb.EspectaculoComentarioLogic;
-import co.edu.uniandes.csw.boletas.ejb.EspectaculoLogic;
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
+import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -36,9 +36,6 @@ public class EspectaculoComentarioResourse
 
     @Inject
     private EspectaculoComentarioLogic espectaculoComentarioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
-    @Inject
-    private EspectaculoLogic espectaculoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
     @Inject
     private ComentarioLogic comentarioLogic;
@@ -73,14 +70,20 @@ public class EspectaculoComentarioResourse
     
     @GET
     @Path("{comentariosId: \\d+}")
-    public ComentarioDTO getComentario(@PathParam("espectaculosId") Long espectaculosId, @PathParam("comentariosId") Long comentariosId)
+    public ComentarioDTO getComentario(@PathParam("espectaculosId") Long espectaculosId, @PathParam("comentariosId") Long comentariosId) throws BusinessLogicException
     {
-//        if(comentarioLogic){
-//            
-//        }
         
         
-        return new ComentarioDTO();
+        LOGGER.log(Level.INFO, "EspectaculoComentarioResourse getComentario");
+        if(comentarioLogic.getComentario(comentariosId) == null)
+        {
+            throw new WebApplicationException("El recurso /espectaculo/" + espectaculosId + "/comentarios/" + comentariosId + " no existe.", 404);
+        }    
+        
+        ComentarioDTO comentario = new ComentarioDTO(espectaculoComentarioLogic.getComentario(espectaculosId, comentariosId));
+        
+        
+        return comentario;
     }
     
     

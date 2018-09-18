@@ -5,12 +5,12 @@
  */
 package co.edu.uniandes.csw.boletas.test.logic;
 
-import co.edu.uniandes.csw.boletas.ejb.CompraBoletasLogic;
-import co.edu.uniandes.csw.boletas.ejb.CompraLogic;
+import co.edu.uniandes.csw.boletas.ejb.EspectaculoBoletasLogic;
+import co.edu.uniandes.csw.boletas.ejb.EspectaculoLogic;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
-import co.edu.uniandes.csw.boletas.entities.CompraEntity;
+import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.boletas.persistence.CompraPersistence;
+import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -28,19 +28,20 @@ import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
+
 /**
  *
- * @author Gabriel Hamilton
+ * @author Juan Diego Camacho
  */
 @RunWith(Arquillian.class)
-public class CompraBoletasLogicTest {
+public class EspectaculoBoletasLogicTest {
     
-    private PodamFactory factory = new PodamFactoryImpl();
+     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
-    private CompraLogic compraLogic;
+    private EspectaculoLogic espectaculoLogic;
     @Inject
-    private CompraBoletasLogic compraBoletasLogic;
+    private EspectaculoBoletasLogic espectaculoBoletasLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -48,26 +49,20 @@ public class CompraBoletasLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private List<CompraEntity> data = new ArrayList<CompraEntity>();
+    private List<EspectaculoEntity> data = new ArrayList<EspectaculoEntity>();
 
     private List<BoletaEntity> boletasData = new ArrayList();
-
     
-    /**
-     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
-     * El jar contiene las clases, el descriptor de la base de datos y el
-     * archivo beans.xml para resolver la inyección de dependencias.
-     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CompraEntity.class.getPackage())
-                .addPackage(CompraLogic.class.getPackage())
-                .addPackage(CompraPersistence.class.getPackage())
+                .addPackage(EspectaculoEntity.class.getPackage())
+                .addPackage(EspectaculoLogic.class.getPackage())
+                .addPackage(EspectaculoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-
+    
     /**
      * Configuración inicial de la prueba.
      */
@@ -87,13 +82,13 @@ public class CompraBoletasLogicTest {
             }
         }
     }
-
+    
     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
         em.createQuery("delete from BoletaEntity").executeUpdate();
-        em.createQuery("delete from CompraEntity").executeUpdate();
+        em.createQuery("delete from EspectaculoEntity").executeUpdate();
     }
 
     /**
@@ -107,73 +102,54 @@ public class CompraBoletasLogicTest {
             boletasData.add(boletas);
         }
         for (int i = 0; i < 3; i++) {
-            CompraEntity entity = factory.manufacturePojo(CompraEntity.class);
+            EspectaculoEntity entity = factory.manufacturePojo(EspectaculoEntity.class);
             em.persist(entity);
             data.add(entity);
             if (i == 0) {
-                boletasData.get(i).setCompra(entity);
+                boletasData.get(i).setEspectaculo(entity);
             }
         }
     }
-
-    /**
-     * Prueba para asociar una boleta existente a un compra.
-     */
+    
     @Test
-    public void addBoletaTest() {
-        CompraEntity entity = data.get(0);
+    public void addBoletaTest()
+    {
+        EspectaculoEntity entity = data.get(0);
         BoletaEntity boletaEntity = boletasData.get(1);
-        BoletaEntity response = compraBoletasLogic.createBoleta(boletaEntity.getId(), entity.getId());
-
+        BoletaEntity response = espectaculoBoletasLogic.addBoleta(boletaEntity.getId(), entity.getId());
         Assert.assertNotNull(response);
-        Assert.assertEquals(boletaEntity.getId(), response.getId());
+        Assert.assertEquals(boletaEntity.getId(),response.getId());
     }
-
-    /**
-     * Prueba para obtener una colección de instancias de Boletas asociadas a una
-     * instancia Compra.
-     */
+    
     @Test
-    public void getBoletasTest() {
-        List<BoletaEntity> list = compraBoletasLogic.getBoletas(data.get(0).getId());
-
-        Assert.assertEquals(1, list.size());
-    }
-
-    /**
-     * Prueba para obtener una instancia de Boleta asociada a una instancia
-     * Compra.
-     *
-     * @throws BusinessLogicException
-     */
-    @Test
-    public void getBoletaTest() throws BusinessLogicException {
-        CompraEntity entity = data.get(0);
+    public void getBoletasTest() throws BusinessLogicException
+    {
+        EspectaculoEntity entity = data.get(0);
         BoletaEntity boletaEntity = boletasData.get(0);
-        BoletaEntity response = compraBoletasLogic.getBoleta(entity.getId(), boletaEntity.getId());
-
+        BoletaEntity response = espectaculoBoletasLogic.getBoleta(entity.getId(), boletaEntity.getId());
+        
         Assert.assertEquals(boletaEntity.getId(), response.getId());
-        Assert.assertEquals(boletaEntity.getFecha(), response.getFecha());
         Assert.assertEquals(boletaEntity.getPrecio(), response.getPrecio());
-        Assert.assertEquals(boletaEntity.getSilla(), response.getSilla());
+        Assert.assertEquals(boletaEntity.getFecha(), response.getFecha());
         Assert.assertEquals(boletaEntity.getVendida(), response.getVendida());
     }
-
-
-    /**
-     * Prueba para remplazar las instancias de Boleta asociadas a una instancia
-     * de Compra.
-     */
+    
+    @Test(expected = BusinessLogicException.class)
+    public void getoletaNoAsociadaTest() throws BusinessLogicException {
+        EspectaculoEntity entity = data.get(0);
+        BoletaEntity boletaEntity = boletasData.get(1);
+        espectaculoBoletasLogic.getBoleta(entity.getId(), boletaEntity.getId());
+    }
+    
     @Test
-    public void putBoletasTest() {
-        CompraEntity entity = data.get(0);
+    public void replaceBoletasTest() {
+        EspectaculoEntity entity = data.get(0);
         List<BoletaEntity> list = boletasData.subList(1, 3);
-        compraBoletasLogic.putBoletas(entity.getId(), list);
+        espectaculoBoletasLogic.replaceBoletas(entity.getId(), list);
 
-        entity = compraLogic.getCompra(entity.getId());
+        entity = espectaculoLogic.getEspectaculo(entity.getId());
         Assert.assertFalse(entity.getBoletas().contains(boletasData.get(0)));
         Assert.assertTrue(entity.getBoletas().contains(boletasData.get(1)));
         Assert.assertTrue(entity.getBoletas().contains(boletasData.get(2)));
     }
-    
 }

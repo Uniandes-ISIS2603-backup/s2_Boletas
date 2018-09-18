@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.boletas.test.logic;
 
-import co.edu.uniandes.csw.boletas.ejb.ComentarioLogic;
 import co.edu.uniandes.csw.boletas.ejb.EspectaculoComentarioLogic;
 import co.edu.uniandes.csw.boletas.ejb.EspectaculoLogic;
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
@@ -18,11 +17,11 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+import org.junit.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,24 +30,25 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author estudiante
+ * @author Sebastian Rodriguez y Diego Camacho
  */
 @RunWith(Arquillian.class)
 public class EspectaculoComentarioLogicTest
 {
+    
     private PodamFactory factory = new PodamFactoryImpl();
     
-    @Inject
-    private EspectaculoLogic espectaculoLogic;
+    
     
     @Inject
     private EspectaculoComentarioLogic espectaculoComentarioLogic;
     
     @PersistenceContext
     private EntityManager em;
-    
-    @Inject 
+
+    @Inject
     private UserTransaction utx;
+    
     
     private List<EspectaculoEntity> espectaculos = new ArrayList<EspectaculoEntity>();
     
@@ -89,8 +89,10 @@ public class EspectaculoComentarioLogicTest
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from EspectaculoEntity").executeUpdate();
+        
         em.createQuery("delete from ComentarioEntity").executeUpdate();
+        
+        em.createQuery("delete from EspectaculoEntity").executeUpdate();
     }
     
     /**
@@ -146,8 +148,9 @@ public class EspectaculoComentarioLogicTest
     @Test 
     public void getComentariosTest()
     {
-        List<ComentarioEntity> coment = espectaculos.get(0).getComentarios();
         
+        List<ComentarioEntity> coment = espectaculoComentarioLogic.darComentarios((espectaculos.get(0)).getId());
+        System.out.println(coment.size());
         Assert.assertEquals(1, coment.size());
     }
     
@@ -174,7 +177,7 @@ public class EspectaculoComentarioLogicTest
      * No deberia estar asociado, deberia lanzar excepcion
      * @throws BusinessLogicException
      */
-    @Test
+    @Test(expected = BusinessLogicException.class)
     public void obtenerUnComentarioNoAsociadoTest() throws BusinessLogicException
     {
         EspectaculoEntity espec = espectaculos.get(0);

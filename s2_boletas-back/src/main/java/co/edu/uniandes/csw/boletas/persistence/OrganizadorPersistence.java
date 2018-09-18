@@ -25,17 +25,17 @@ public class OrganizadorPersistence {
      @PersistenceContext(unitName = "DnsPU")
     protected EntityManager em;
      
-          public OrganizadorEntity create( OrganizadorEntity organizadorEntity)
+public OrganizadorEntity create( OrganizadorEntity organizadorEntity)
 {
-  LOGGER.log(Level.INFO, "Creando un organizador nuevo");
+    LOGGER.log(Level.INFO, "Creando un organizador nuevo");
 
-em.persist(organizadorEntity);
-LOGGER.log(Level.INFO, "Saliendo de crear un organizador nuevo");
-return organizadorEntity;
+    em.persist(organizadorEntity);
+    LOGGER.log(Level.INFO, "Saliendo de crear un organizador nuevo");
+    return organizadorEntity;
 }
-           public List<OrganizadorEntity> findAll(){
+        public List<OrganizadorEntity> findAll(){
          LOGGER.log(Level.INFO, "Buscando todos los organizadores");
-         TypedQuery query =em.createQuery("Select all organizadores" ,OrganizadorEntity.class);
+         TypedQuery query =em.createQuery("Select u from OrganizadorEntity u" ,OrganizadorEntity.class);
          return query.getResultList();
      }
            /**
@@ -69,17 +69,17 @@ return organizadorEntity;
                   return result;
                   
            }
-           public OrganizadorEntity find(Long organizadorId){
+        public OrganizadorEntity find(Long organizadorId){
                
                LOGGER.log(Level.INFO, "Consultando organizador con id={0}", organizadorId);
                return em.find(OrganizadorEntity.class, organizadorId);
-           } 
+        } 
      
-     public OrganizadorEntity update (OrganizadorEntity organizadorEntity ){
-         LOGGER.log(Level.INFO, "Actualizando organizador con id={0}", organizadorEntity.getId());
-          LOGGER.log(Level.INFO, "Saliendo de actualizar organizador con id={0}", organizadorEntity.getId());
-          return em.merge(organizadorEntity);
-     }
+    public OrganizadorEntity update (OrganizadorEntity organizadorEntity ){
+        LOGGER.log(Level.INFO, "Actualizando organizador con id={0}", organizadorEntity.getId());
+        LOGGER.log(Level.INFO, "Saliendo de actualizar organizador con id={0}", organizadorEntity.getId());
+        return em.merge(organizadorEntity);
+    }
      
      
         public void delete (Long organizadorId){

@@ -79,7 +79,12 @@ public class EspectaculoLogic
         return editorialEntity;
     } 
     
-    
+    /**
+     * Metodo que busca un espectaculo con el id dado, y lo actualiza con los datos de espectaculoEntity
+     * @param espectaculosId El espectaculo a buscar
+     * @param espectaculoEntity Objeto tipo EspectaculoEntity que contiene los datos a actualizar 
+     * @return El espectaculo entity con los datos actualizados
+     */
     public EspectaculoEntity updateEspectaculo(Long espectaculosId, EspectaculoEntity espectaculoEntity) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la editorial con id = {0}", espectaculosId);
         
