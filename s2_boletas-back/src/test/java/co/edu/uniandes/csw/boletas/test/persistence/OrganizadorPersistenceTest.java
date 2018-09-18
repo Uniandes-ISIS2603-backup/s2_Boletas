@@ -150,7 +150,7 @@ public class OrganizadorPersistenceTest {
     }
 
     /**
-     * Prueba para consultar un Organizador por nombre.
+     * Prueba para consultar un Organizador por usuario.
      *
      *
      */
@@ -160,5 +160,21 @@ public class OrganizadorPersistenceTest {
         OrganizadorEntity newEntity = organizadorPersistence.findByUser(entity.getUsuario());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getUsuario(), newEntity.getUsuario());
+    }
+    
+    @Test
+     public void FindOrganizadoresTest()
+    {
+      List<OrganizadorEntity> list = organizadorPersistence.findAll();
+        org.junit.Assert.assertEquals(data.size(), list.size());
+        for (OrganizadorEntity ent : list) {
+            boolean found = false;
+            for (OrganizadorEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            org.junit.Assert.assertTrue(found);
+        }
     }
 }
