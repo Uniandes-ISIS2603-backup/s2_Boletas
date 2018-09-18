@@ -79,13 +79,14 @@ public CompraEntity update(CompraEntity compraEntity) {
 }
 
 /**
- * Metodo para borrar una compra (DELETE)
+ * Metodo para borrar una compra (DELETE), borrar en las compras, es cambiar el estado de TRUE a FALSE.
  * @param compraId, la compra a borrar
  */
 public void delete(Long compraId) {
     LOGGER.log(Level.INFO, "Borrando compra con el id = {0}", compraId);
     CompraEntity compraD = em.find(CompraEntity.class, compraId);
-    em.remove(compraD);
+    compraD.setEstado(Boolean.FALSE);
+    em.merge(compraD);
     LOGGER.log(Level.INFO, "Compra borrada, id = {0}", compraId);
 }
 

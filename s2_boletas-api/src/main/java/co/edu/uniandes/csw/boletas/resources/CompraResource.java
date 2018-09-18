@@ -122,7 +122,7 @@ public class CompraResource {
     }
     
     /**
-     * Borra la compra con el id asociado recibido en la URL.
+     * Borra la compra con el id asociado recibido en la URL, Borrar para compra es cambiar el estado de TRUE a FALSE.
      *
      * @param compraId Identificador de la compra que se desea borrar.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -

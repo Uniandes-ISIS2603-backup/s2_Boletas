@@ -86,7 +86,7 @@ public class CompraLogic
     
     
     /**
-     * Borra una compra con el id ingresado por parametro
+     * Borra una compra con el id ingresado por parametro, borrar en compra es cambiar el estado de TRUE a FALSE.
      * @param compraId
      * @throws BusinessLogicException 
      */
@@ -97,7 +97,10 @@ public class CompraLogic
         if (compra != null && !compra.getBoletas().isEmpty()) {
             throw new BusinessLogicException("No se puede borrar la compra con id = " + compraId + " porque tiene boletas asociadas");
         }
-        
+        if(compra!=null && compra.getEstado()==false)
+        {
+            throw new BusinessLogicException("No se puede borrar la compra con id = " + compraId + " porque esta ya fue eliminada");
+        }
         persistence.delete(compraId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar la compra con id = {0}", compraId);
     }
