@@ -92,8 +92,16 @@ public class SillaResource {
     
     @DELETE
     @Path("{silla_id: \\d+}")
-    public SillaDTO deleteSilla(@PathParam("silla_id")Long id)
+    public SillaDTO deleteSilla(@PathParam("silla_id")Long id)throws WebApplicationException
     {
-        return null;
+        SillaEntity deleted = null;
+        try
+        {
+            deleted = logic.deleteSilla(id);
+        }catch(BusinessLogicException bE)
+        {
+            throw new WebApplicationException(bE.getMessage());
+        }
+        return new SillaDTO(deleted);
     }
 }
