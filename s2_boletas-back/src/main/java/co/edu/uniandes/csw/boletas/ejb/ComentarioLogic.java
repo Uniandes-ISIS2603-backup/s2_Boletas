@@ -9,7 +9,9 @@ import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.boletas.persistence.ClientePersistence;
 import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
+import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,14 +30,20 @@ public class ComentarioLogic {
     @Inject
     private ComentarioPersistence persistence;
     
+    @Inject
+    private ClientePersistence clientePersistence;
+    
+    @Inject
+    private EspectaculoPersistence espectaculoPersistence;
+    
     public ComentarioEntity createComentario(ComentarioEntity comentario) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia el proceso de la creación del comentario");
-        if(comentario.getCliente()==null)
+        if(comentario.getCliente()==null || clientePersistence.find(comentario.getCliente().getId())== null)
         {
             throw new BusinessLogicException("El comentario debe tener un cliente que lo realizó");
         }
-        if(comentario.getEspectaculo() == null )
+        if(comentario.getEspectaculo() == null || espectaculoPersistence.find(comentario.getEspectaculo().getId())==null )
         {
             throw new BusinessLogicException("El comentario debe estar asociado a un espectáculo");
         }
@@ -52,7 +60,7 @@ public class ComentarioLogic {
            
                 for(BoletaEntity boleta: compra.getBoletas())
                 {
-                  if(boleta!=null && boleta.getEspectaculo().getId().equals(comentario.getEspectaculo().getId()))
+                  if(boleta!=null && boleta.getEspectaculo().getId().equals(comentario.getEspectaculo().getId()) && espectaculoPersistence.find(comentario.getEspectaculo().getId())!=null)
                   {
                       corresponde = true;
                   }
