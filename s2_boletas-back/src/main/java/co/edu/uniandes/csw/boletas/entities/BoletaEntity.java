@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.entities;
 
+import co.edu.uniandes.csw.boletas.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -26,6 +28,7 @@ public class BoletaEntity extends BaseEntity implements Serializable
     private Integer precio;
     
     @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date fecha;
 
     private Boolean vendida;

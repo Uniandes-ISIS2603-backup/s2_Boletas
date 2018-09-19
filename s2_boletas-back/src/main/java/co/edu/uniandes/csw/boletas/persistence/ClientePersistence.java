@@ -22,10 +22,16 @@ import javax.persistence.TypedQuery;
 public class ClientePersistence {
     private static final Logger LOGGER = Logger.getLogger(ClientePersistence.class.getName());
 
-    
+    //Entity manager
      @PersistenceContext(unitName = "DnsPU")
     protected EntityManager em;
      
+     
+     /**
+      * PERSIST persiste un objeto en la base de datos 
+      * @param clienteEntity
+      * @return la entidad del cliente con el id asignado 
+      */
      public ClienteEntity create( ClienteEntity clienteEntity)
 {
   LOGGER.log(Level.INFO, "Creando un cliente nuevo");
@@ -35,12 +41,20 @@ LOGGER.log(Level.INFO, "Saliendo de crear un cliente nuevo");
 return clienteEntity;
 }
      
+          /**
+      * Busca todos los clientes en la base de datos
+      * @return  Lista con todos los clientes
+      */
      public List<ClienteEntity> findAll(){
          LOGGER.log(Level.INFO, "Buscando todos los clientes");
          TypedQuery query =em.createQuery("Select u from ClienteEntity u" ,ClienteEntity.class);
          return query.getResultList();
      }
      
+               /**
+      * Busca un c liente por el id dado
+      * @return  La entidad del cliente
+      */
      public ClienteEntity find (Long clienteId){
          LOGGER.log(Level.INFO, "Consultando cliente con id={0}", clienteId);
          return em.find(ClienteEntity.class, clienteId);
@@ -60,7 +74,7 @@ return clienteEntity;
                   List<ClienteEntity > answer= query.getResultList();
                   ClienteEntity result;
                   
-                                    if (answer==null)
+                  if (answer==null)
                       result=null;
                   else if (answer.isEmpty())
                       result=null;
@@ -72,6 +86,7 @@ return clienteEntity;
                   return result;
                
      }
+
      
      public ClienteEntity update (ClienteEntity clienteEntity ){
          LOGGER.log(Level.INFO, "Actualizando el cliente con el id ={0}", clienteEntity.getId());
@@ -88,5 +103,3 @@ return clienteEntity;
      }
     
 }
-
-
