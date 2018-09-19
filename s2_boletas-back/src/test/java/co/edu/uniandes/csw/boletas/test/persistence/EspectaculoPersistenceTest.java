@@ -189,7 +189,7 @@ public class EspectaculoPersistenceTest
      * Prueba para consultar una Espectaculo por nombre.
      */
     @Test
-    public void finsEspectaculoByNameTest() {
+    public void findEspectaculoByNameTest() {
         EspectaculoEntity entity = data.get(0);
         EspectaculoEntity newEntity = espectaculoPersistence.findByName(entity.getNombre());
         org.junit.Assert.assertNotNull(newEntity);
@@ -197,6 +197,19 @@ public class EspectaculoPersistenceTest
 
         newEntity = espectaculoPersistence.findByName(null);
         org.junit.Assert.assertNull(newEntity);
+    }
+    
+    @Test 
+    public void findEspectaculoById()
+    {
+        EspectaculoEntity entity = data.get(0);
+        
+        EspectaculoEntity newEntity = espectaculoPersistence.find(entity.getId());
+        
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+        Assert.assertEquals(entity.getTipo(), newEntity.getTipo());
+        
     }
     
 }

@@ -139,7 +139,7 @@ public class CompraPersistenceTest {
     
     
   /**
-   *  Prueba crear una compra (POST)
+   *  Prueba crear una compra (POST).
    */
     @Test 
     public void createCompraTest()
@@ -157,16 +157,17 @@ public class CompraPersistenceTest {
     
     /**
      * Prueba borrar compra (DELETE)
+     * Borrar en compra es cambiar el estado de TRUE a FALSE.
      */
     @Test
     public void deleteCompraTest() {
         CompraEntity entity = data.get(0);
         compraPersistence.delete(entity.getId());
         CompraEntity deleted = em.find(CompraEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        Assert.assertFalse(deleted.getEstado());
     }
     /**
-     * Prueba de conseguir una compra (GET)
+     * Prueba de conseguir una compra (GET).
      */        
     @Test
     public void getCompraTest() {
@@ -177,7 +178,7 @@ public class CompraPersistenceTest {
     }
 
     /**
-     * Prueba actualizar compra (UPDATE)
+     * Prueba actualizar compra (UPDATE).
      */
     @Test
     public void updateCompraTest()

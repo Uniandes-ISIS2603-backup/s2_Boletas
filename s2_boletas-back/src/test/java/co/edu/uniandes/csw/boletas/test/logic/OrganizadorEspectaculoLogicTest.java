@@ -153,9 +153,7 @@ public class OrganizadorEspectaculoLogicTest
     @Test
     public void getEspectaculosTest()
     {
-        List<EspectaculoEntity> espectacul = organizadorEspectaculoLogic.getEspectaculos(espectaculos.get(0).getId());
-        
-        
+        List<EspectaculoEntity> espectacul = organizadorEspectaculoLogic.getEspectaculos(organizadores.get(0).getId());
         
         Assert.assertEquals(1,espectacul.size());
     }
@@ -172,7 +170,7 @@ public class OrganizadorEspectaculoLogicTest
         
         OrganizadorEntity org = organizadores.get(1);
         
-        organizadorEspectaculoLogic.getEspectaculo(espec.getId(), org.getId());
+        organizadorEspectaculoLogic.getEspectaculo( org.getId(),espec.getId());
     }
     
     @Test 
