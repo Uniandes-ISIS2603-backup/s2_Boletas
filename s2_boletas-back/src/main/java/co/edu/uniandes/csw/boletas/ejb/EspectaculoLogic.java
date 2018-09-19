@@ -38,7 +38,10 @@ public class EspectaculoLogic
     public EspectaculoEntity createEntity(EspectaculoEntity espec) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia el proceso de crear un espectaculo");
-        
+        if(persistence.findByName(espec.getNombre()) != null)
+        {
+            throw new BusinessLogicException("Exception");
+        }
         persistence.create(espec);
         
         LOGGER.log(Level.INFO, "Se creo el espectaculo satisfactoriamente");
