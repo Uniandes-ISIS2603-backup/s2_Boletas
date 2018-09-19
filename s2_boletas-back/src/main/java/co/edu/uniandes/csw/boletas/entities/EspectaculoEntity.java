@@ -44,7 +44,7 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "espectaculo",cascade= CascadeType.PERSIST, fetch = FetchType.LAZY)
 //    @OneToMany(mappedBy = "espectaculo")
-    private List<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
+    private List<BoletaEntity> boletas = new ArrayList<>(); 
 
     
     @PodamExclude
@@ -54,10 +54,10 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "espectaculo",cascade= CascadeType.PERSIST, fetch = FetchType.LAZY)
 //    @OneToMany(mappedBy = "espectaculo")
-    private List<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
+    private List<ComentarioEntity> comentarios = new ArrayList<>();
     
     @PodamExclude
-    @ManyToOne(fetch = FetchType.LAZY)
+    @javax.persistence.ManyToOne()
     private OrganizadorEntity organizador;
     
     

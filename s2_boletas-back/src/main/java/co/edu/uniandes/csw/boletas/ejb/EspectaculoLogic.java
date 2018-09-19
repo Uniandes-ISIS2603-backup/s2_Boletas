@@ -98,7 +98,6 @@ public class EspectaculoLogic
     public void deleteEspectaculo(Long espectaculosId) 
     {
         
-        List<BoletaEntity> boletas = getEspectaculo(espectaculosId).getBoletas();
         
         LOGGER.log(Level.INFO, "Inicia proceso de eliminar el espectaculo con id = {0}", espectaculosId);
         
