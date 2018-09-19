@@ -42,7 +42,7 @@ public class SillaResource {
     @POST
     public SillaDTO createSilla(SillaDTO sillaDTO)throws WebApplicationException
     {
-        LOGGER.info("SillaResource createSilla: input: " + SillaResource.class.getName());
+        LOGGER.log(Level.INFO, "SillaResource createSilla: ", sillaDTO.toString());
         SillaEntity created = null;
         try
         {
@@ -57,14 +57,14 @@ public class SillaResource {
     
     @PUT
     @Path("{silla_id : \\d+}")
-    public SillaDTO updateSilla(@PathParam("silla_id") Long id, SillaDTO sillaDTO)throws WebApplicationException
+    public SillaDTO updateSilla(@PathParam("silla_id") Long silla_id, SillaDTO sillaDTO)throws WebApplicationException
     {
         LOGGER.log(Level.INFO, "SillaResource updateSilla: ", sillaDTO.toString());
         SillaEntity sillaEntity = sillaDTO.toEntity();
         SillaEntity updated = null;
         try
         {
-            updated = logic.updateSilla(id, sillaEntity);
+            updated = logic.updateSilla(silla_id, sillaEntity);
         }catch(Exception e)
         {
             throw new WebApplicationException(e.getMessage());
@@ -92,12 +92,12 @@ public class SillaResource {
     
     @DELETE
     @Path("{silla_id: \\d+}")
-    public SillaDTO deleteSilla(@PathParam("silla_id")Long id)throws WebApplicationException
+    public SillaDTO deleteSilla(@PathParam("silla_id")Long silla_id)throws WebApplicationException
     {
         SillaEntity deleted = null;
         try
         {
-            deleted = logic.deleteSilla(id);
+            deleted = logic.deleteSilla(silla_id);
         }catch(BusinessLogicException bE)
         {
             throw new WebApplicationException(bE.getMessage());

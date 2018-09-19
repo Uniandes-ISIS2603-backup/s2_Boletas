@@ -104,8 +104,16 @@ public class LugarResource {
     
     @DELETE
     @Path("{lugar_id : \\d+}")
-    public LugarDTO deleteLugar(@PathParam("lugar_id") Long id)
+    public LugarDTO deleteLugar(@PathParam("lugar_id") Long lugar_id)throws WebApplicationException
     {
-        return new LugarDTO();
+        LugarEntity deleted = null;
+        try
+        {
+            deleted = logic.deleteLugar(lugar_id);
+        }catch(BusinessLogicException bE)
+        {
+            throw new WebApplicationException(bE.getMessage());
+        }
+        return new LugarDTO(deleted);
     }
 }
