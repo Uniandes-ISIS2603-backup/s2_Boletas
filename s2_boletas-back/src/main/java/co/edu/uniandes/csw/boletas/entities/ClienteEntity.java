@@ -75,4 +75,14 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     {
         this.compras=compras;
     }
+    
+    public List<ComentarioEntity> getComentarios()
+    {
+        return comentarios;
+    }
+    
+    public void setComentarios(List<ComentarioEntity> comentarios)
+    {
+        this.comentarios=comentarios;
+    }
 }

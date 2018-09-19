@@ -25,32 +25,44 @@ import javax.ws.rs.WebApplicationException;
 
 
 /**
- *
- * @author estudiante
+ * Clase que representa el recurso boleta
+ * @author Diego Camacho
  */
 @Path("boletas")
 @Produces("application/json")
 @Consumes("application/json")
 public class BoletaResource {
     
+    /**
+     * Dependencia de la lógica, conexión con la persistencia
+     */
     @Inject 
     private BoletaLogic boletaLogic;
     
     private static final Logger LOGGER = Logger.getLogger(BoletaResource.class.getName());
+    
+    /**
+     * Crea una nueva boleta con la informacion que se recibe en el cuerpo de la
+     * petición y se regresa un objeto identico con un id auto-generado por la
+     * base de datos.
+     *
+     * @param boleta {@link BoletaDTO} - La boleta que se desea guardar.
+     * @return JSON {@link BoletaTO} - La boleta guardada con el atributo id
+     * autogenerado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
+     * Error de lógica que se genera cuando ya existe la boleta 
+     */
     @POST
     public BoletaDTO postBoleta(BoletaDTO boleta) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "BoletaResource postBoleta: input: {0}", boleta.toString());
         BoletaEntity boletaEntity = boleta.toEntity();
-        
         BoletaEntity nuevaBoletaEntity = boletaLogic.createBoleta(boletaEntity);
-        
         BoletaDTO nuevaBoletaDto =new BoletaDTO(nuevaBoletaEntity);
-        
         LOGGER.log(Level.INFO, "BoletaResource createBoleta: output: {0}", nuevaBoletaDto.toString());
         return nuevaBoletaDto;
-        
     }
+    
     
     @GET
     @Path("{boletasId : \\d+}")

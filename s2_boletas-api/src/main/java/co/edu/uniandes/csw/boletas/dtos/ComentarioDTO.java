@@ -25,9 +25,16 @@ public class ComentarioDTO {
      */
     public String mensaje;
     
+    /**
+     * Constructor vacío de la clase
+     */
     public ComentarioDTO(){
     }
     
+    /**
+     * Constructor que recibe un comentarioEntity y lo convierte a un DTO
+     * @param comentario Entity que se va a convertir a DTO
+     */
     public ComentarioDTO(ComentarioEntity comentario)
     {
         if(comentario!= null)
@@ -37,6 +44,10 @@ public class ComentarioDTO {
         }
     }
     
+    /**
+     * Metodo que transforma un comentario DTO a un tipo Entity
+     * @return regresa un comentario en tipo entity
+     */
     public ComentarioEntity toEntity()
     {
        ComentarioEntity comentario = new ComentarioEntity();
@@ -45,18 +56,34 @@ public class ComentarioDTO {
        return comentario;
     }
 
+    /**
+     * Retorna el id de un comentario
+     * @return id de comentario
+     */
     public Long getComentarioID() {
         return comentarioID;
     }
 
+    /**
+     * Asigna un identificador a un comentario
+     * @param comentarioID id a asignar
+     */
     public void setComentarioID(Long comentarioID) {
         this.comentarioID = comentarioID;
     }
 
+    /**
+     * Retorna el mensaje del que va a estar compuesto el comentario
+     * @return mensaje del comentario
+     */
     public String getMensaje() {
         return mensaje;
     }
 
+    /**
+     * Asigna un mensaje al comentario
+     * @param mensaje contenido del comentario
+     */
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }

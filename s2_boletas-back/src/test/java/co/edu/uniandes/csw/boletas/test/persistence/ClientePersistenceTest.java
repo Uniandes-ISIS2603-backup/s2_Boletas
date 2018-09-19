@@ -104,7 +104,7 @@ public class ClientePersistenceTest {
     
     //Prueba para GET 
         @Test
-    public void FindClientelByNameTest() {
+    public void FindClientelByUsuarioTest() {
          System.out.println("el tam de data es "+ data.size());
         ClienteEntity entity = data.get(0);
         ClienteEntity newEntity = clientePersistence.find(entity.getId());

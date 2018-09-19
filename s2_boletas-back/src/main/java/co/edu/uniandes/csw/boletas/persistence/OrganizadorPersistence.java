@@ -39,8 +39,8 @@ public OrganizadorEntity create( OrganizadorEntity organizadorEntity)
          return query.getResultList();
      }
            /**
-            * Busca un organizador con el nombre dado por parametro
-            * @param nombre
+            * Busca un organizador con el usuario dado por parametro
+            * @param usuario
             * @return Null si el organizador no existe, el organizador si este ya existe.
             */
            public OrganizadorEntity findByUser(String usuario)
@@ -66,9 +66,9 @@ public OrganizadorEntity create( OrganizadorEntity organizadorEntity)
                   
                   LOGGER.log(Level.INFO, "Saliendo de buscar por usuario ", usuario);
                   
-                  return result;
-                  
+                  return result;   
            }
+           
         public OrganizadorEntity find(Long organizadorId){
                
                LOGGER.log(Level.INFO, "Consultando organizador con id={0}", organizadorId);
