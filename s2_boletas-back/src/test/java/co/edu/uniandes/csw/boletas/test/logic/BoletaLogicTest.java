@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.boletas.test.logic;
 
 import co.edu.uniandes.csw.boletas.ejb.BoletaLogic;
+import co.edu.uniandes.csw.boletas.ejb.EspectaculoLogic;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
+import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.BoletaPersistence;
 import java.util.ArrayList;
@@ -27,8 +29,9 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- *
- * @author estudiante
+ * Pruebas de logica de boleta
+ * 
+ * @author Diego Camacho
  */
 @RunWith(Arquillian.class)
 public class BoletaLogicTest {
@@ -37,6 +40,8 @@ public class BoletaLogicTest {
     @Inject
     private BoletaLogic boletaLogic;
     
+    @Inject
+    private EspectaculoLogic espLogic;
     
     @PersistenceContext
     private EntityManager em;
@@ -46,7 +51,13 @@ public class BoletaLogicTest {
     
     private List<BoletaEntity> data = new ArrayList<BoletaEntity>();
     
+
     
+     /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -57,6 +68,9 @@ public class BoletaLogicTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+    /**
+     *  Configuracion inicial de la prueba
+     */
     @Before
     public void configTest() {
         try {
@@ -95,21 +109,102 @@ public class BoletaLogicTest {
         }
     }
     
+    /**
+     * Prueba para crear una boleta
+     * @throws BusinessLogicException 
+     */
     @Test
     public void createBoletaTest() throws BusinessLogicException {
         BoletaEntity newEntity = factory.manufacturePojo(BoletaEntity.class);
+        EspectaculoEntity espEntity = factory.manufacturePojo(EspectaculoEntity.class);
+        espEntity = espLogic.createEntity(espEntity);
+        newEntity.setEspectaculo(espEntity);
         BoletaEntity result = boletaLogic.createBoleta(newEntity);
         Assert.assertNotNull(result);
         BoletaEntity entity = em.find(BoletaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getPrecio(), entity.getPrecio());
+        //Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertEquals(newEntity.getVendida(), entity.getVendida());
         
     }
     
+    /**
+     * Prueba para crear una boleta con mal espectaculo
+     * @throws BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createBoletaConEspectaculoInvalidoTest() throws BusinessLogicException
+    {
+        BoletaEntity newEntity = factory.manufacturePojo(BoletaEntity.class);
+        newEntity.setEspectaculo(null);
+        boletaLogic.createBoleta(newEntity);
+    }
+    
+    /**
+     * Prueba para crear una boleta con un espectaculo que no existe
+     * @throws BusinessLogicException
+     */
+    public void createBoletaConEspectaculoInvalido2Test() throws BusinessLogicException
+    {
+        BoletaEntity entity = factory.manufacturePojo(BoletaEntity.class);
+        EspectaculoEntity espectaculo = new EspectaculoEntity();
+        espectaculo.setId(Long.MIN_VALUE);
+        entity.setEspectaculo(espectaculo);
+        boletaLogic.createBoleta(entity);
+        
+    }
+    
+    /**
+     * Prueba para consultar la lista de boletas
+     */
+    @Test
+    public void getBoletasTest()
+    {
+        List<BoletaEntity> list =boletaLogic.getBoletas();
+        Assert.assertEquals(data.size(), list.size());
+        for(BoletaEntity entity: list)
+        {
+            boolean found= false;
+            for(BoletaEntity storedEntity: data)
+            {
+                if(entity.getId().equals(storedEntity.getId()))
+                {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+        
+        
+    }
+    /**
+     * Prueba para borrar una boleta
+     * @throws BusinessLogicException 
+     */
     @Test
     public void deleteBoletaTest() throws BusinessLogicException {
         BoletaEntity entity = data.get(1);
         boletaLogic.deleteBoleta(entity.getId());
         BoletaEntity deleted = em.find(BoletaEntity.class, entity.getId());
         Assert.assertNull(deleted);
+    }
+    
+    /**
+     * Prueba para actualizar una boleta
+     */
+    @Test
+    public void updateBoletaTest()
+    {
+        BoletaEntity entity = data.get(0);
+        BoletaEntity pojoEntity = factory.manufacturePojo(BoletaEntity.class);
+        
+        pojoEntity.setId(entity.getId());
+        boletaLogic.updateBoleta(pojoEntity.getId(), pojoEntity);
+        BoletaEntity resp = em.find(BoletaEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getPrecio(), resp.getPrecio());
+        Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
+        Assert.assertEquals(pojoEntity.getVendida(), resp.getVendida());
     }
 }
