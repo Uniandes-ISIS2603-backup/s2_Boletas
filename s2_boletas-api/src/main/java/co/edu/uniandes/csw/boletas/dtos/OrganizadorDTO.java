@@ -19,7 +19,7 @@ public class OrganizadorDTO implements Serializable  {
     private String usuario;
     private String nombre;
     private Integer presupuesto;
-    public Integer ganancia;
+    private Integer ganancia;
     
     public OrganizadorDTO()
     {
