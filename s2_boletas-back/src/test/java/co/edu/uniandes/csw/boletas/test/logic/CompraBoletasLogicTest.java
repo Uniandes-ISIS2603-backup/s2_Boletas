@@ -196,7 +196,7 @@ public class CompraBoletasLogicTest {
 
         entity = compraLogic.getCompra(entity.getId());
         
-        Assert.assertEquals(0, entity.getBoletas().size());
+        Assert.assertTrue(entity.getBoletas().isEmpty());
         
 //        Assert.assertNull(boletas.get(0).getCompra());
 //        Assert.assertNull(boletas.get(1).getCompra());

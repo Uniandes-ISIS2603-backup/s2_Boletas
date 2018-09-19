@@ -115,6 +115,27 @@ public class CompraLogicTest {
   
   //-----------------------------------------------------------------------------------
   
+    /**
+     * Prueba para consultar la lista de Compras.
+     */
+    @Test
+    public void getComprasTest() {
+        List<CompraEntity> list = compraLogic.getCompras();
+        Assert.assertEquals(data.size(), list.size());
+        for (CompraEntity entity : list) {
+            boolean found = false;
+            for (CompraEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    
+  //-----------------------------------------------------------------------------------
+  // CRUD individuales
    /**
     *  Prueba crear una compra (POST).
     */
@@ -128,6 +149,13 @@ public class CompraLogicTest {
         CompraEntity entity = em.find(CompraEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
+        Assert.assertEquals(newEntity.getCostoTotal(), entity.getCostoTotal());
+        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
+        Assert.assertEquals(newEntity.getEnvio(), entity.getEnvio());
+        Assert.assertEquals(newEntity.getEstado(), entity.getEstado());
+        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertTrue(newEntity.getBoletas().equals(entity.getBoletas()));
     }
     
     /**
@@ -155,6 +183,13 @@ public class CompraLogicTest {
         CompraEntity resp = em.find(CompraEntity.class, entity.getId());
        
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getCliente(), resp.getCliente());
+        Assert.assertEquals(pojoEntity.getCostoTotal(), resp.getCostoTotal());
+        Assert.assertEquals(pojoEntity.getDireccion(), resp.getDireccion());
+        Assert.assertEquals(pojoEntity.getEnvio(), resp.getEnvio());
+        Assert.assertEquals(pojoEntity.getEstado(), resp.getEstado());
+        Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
+        Assert.assertTrue(pojoEntity.getBoletas().equals(resp.getBoletas()));
     }
     
     
@@ -167,6 +202,13 @@ public class CompraLogicTest {
         CompraEntity newEntity = compraLogic.getCompra(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getCliente(), newEntity.getCliente());
+        Assert.assertEquals(entity.getCostoTotal(), newEntity.getCostoTotal());
+        Assert.assertEquals(entity.getDireccion(), newEntity.getDireccion());
+        Assert.assertEquals(entity.getEnvio(), newEntity.getEnvio());
+        Assert.assertEquals(entity.getEstado(), newEntity.getEstado());
+        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+        Assert.assertTrue(entity.getBoletas().equals(newEntity.getBoletas()));
     }
     
   
