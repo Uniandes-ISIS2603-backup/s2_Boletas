@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.BoletaPersistence;
 import co.edu.uniandes.csw.boletas.persistence.CompraPersistence;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.logging.Level;
@@ -101,6 +102,52 @@ public class CompraBoletasLogic {
         }
         LOGGER.log(Level.INFO, "Termina proceso de actualizar la compra con id = {0}", compraId);
         return boletas;
+    }
+    
+    
+    /**
+     * Desasocia todas las boletas existentes de una compra existente
+     *
+     * @param compraId Identificador de la instancia de Compra
+     */
+    public void deleteBoletas(Long compraId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar las boletas de la compra con id = {0}", compraId);
+        CompraEntity compraEntity = compraPersistence.find(compraId);
+        List<BoletaEntity> boletas = compraEntity.getBoletas();
+        for (BoletaEntity boleta : boletas) 
+        {
+            boleta.setCompra(null);
+        }
+       
+        List<BoletaEntity> listaVacia = new ArrayList<>() ;    
+        compraEntity.setBoletas(listaVacia);
+        
+        LOGGER.log(Level.INFO, "Termina proceso de borrar las boletas de la compra con id = {0}", compraId);
+    }
+    
+    
+    /**
+     * Desasocia una boleta existente de una compra existente.
+     * A la boleta le quita la compra, y a la compra, quita la boleta de la lista.
+     *
+     * @param compraId Identificador de la instancia de Compra
+     * @param boletaId Identificador de la instancia de Boleta
+     */
+    public void deleteBoleta(Long compraId, Long boletaId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar una boleta de la compra con id = {0}", compraId);
+        CompraEntity compraEntity = compraPersistence.find(compraId);
+        BoletaEntity boletaEntity = boletaPersistence.find(boletaId);
+        
+        boletaEntity.setCompra(null);
+        
+        List<BoletaEntity> boletas = compraEntity.getBoletas();
+        int index = boletas.indexOf(boletaEntity);
+        
+        boletas.remove(index);
+        
+        putBoletas(compraId, boletas);
+        
+        LOGGER.log(Level.INFO, "Termina proceso de borrar una boleta de la compra con id = {0}", compraId);
     }
     
 }

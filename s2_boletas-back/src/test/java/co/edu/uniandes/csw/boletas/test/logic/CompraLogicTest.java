@@ -116,7 +116,7 @@ public class CompraLogicTest {
   //-----------------------------------------------------------------------------------
   
    /**
-    *  Prueba crear una compra (POST)
+    *  Prueba crear una compra (POST).
     */
     @Test
     public void createCompraTest() throws BusinessLogicException {
@@ -132,17 +132,18 @@ public class CompraLogicTest {
     
     /**
      * Prueba borrar compra (DELETE)
+     * Borrar en compra es cambiar el estado de TRUE a FALSE.
      */
     @Test
     public void deleteCompraTest() throws BusinessLogicException {
         CompraEntity entity = data.get(0);
         compraLogic.deleteCompra(entity.getId());
         CompraEntity deleted = em.find(CompraEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        Assert.assertFalse(deleted.getEstado());
     }
     
     /**
-     * Prueba actualizar compra (UPDATE)
+     * Prueba actualizar compra (UPDATE).
      */
     @Test
     public void updateCompraTest()
@@ -158,7 +159,7 @@ public class CompraLogicTest {
     
     
      /**
-     * Prueba de conseguir una compra (GET)
+     * Prueba de conseguir una compra (GET).
      */        
     @Test
     public void getCompraTest() {

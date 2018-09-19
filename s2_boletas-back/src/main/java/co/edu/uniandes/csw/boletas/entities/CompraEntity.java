@@ -33,6 +33,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     
     private String direccion;    
     
+    private Boolean estado;
     
     @PodamExclude
     @javax.persistence.OneToMany(
@@ -53,6 +54,16 @@ public class CompraEntity extends BaseEntity implements Serializable{
     public Integer getCostoTotal()
     {
         return costoTotal;
+    }
+    
+    
+     /*
+     * retorna un boolean sobre el estado de la compra, vigente = True, cancelada = False
+     * @return estado
+     */
+    public Boolean getEstado()
+    {
+        return estado;
     }
     
     /**
@@ -112,6 +123,14 @@ public class CompraEntity extends BaseEntity implements Serializable{
         costoTotal= costoN;
     }
     
+     /*
+     * modifica el estado de la compra, vigente = True, cancelada = False
+     * @return vigente
+     */
+    public void setEstado(Boolean estado)
+    {
+        this.estado = estado;
+    }
     
     /**
      * modifica si se necesita un envio o no
