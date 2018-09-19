@@ -7,7 +7,11 @@ package co.edu.uniandes.csw.boletas.test.logic;
 
 
 import co.edu.uniandes.csw.boletas.ejb.ComentarioLogic;
+import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
+import co.edu.uniandes.csw.boletas.entities.ClienteEntity;
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
+import co.edu.uniandes.csw.boletas.entities.CompraEntity;
+import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
 import java.util.ArrayList;
@@ -28,8 +32,9 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- *
- * @author estudiante
+ *  Pruebas de logica de comentarios
+ * 
+ * @author Diego Camacho
  */
 @RunWith(Arquillian.class)
 public class ComentarioLogicTest {
@@ -47,7 +52,11 @@ public class ComentarioLogicTest {
     
     private List<ComentarioEntity> data = new ArrayList<ComentarioEntity>();
     
-    
+    /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -99,6 +108,22 @@ public class ComentarioLogicTest {
     @Test
     public void createComentarioTest() throws BusinessLogicException {
         ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
+        EspectaculoEntity espectaculo = factory.manufacturePojo(EspectaculoEntity.class);
+        BoletaEntity boleta = factory.manufacturePojo(BoletaEntity.class);
+        ClienteEntity cliente = factory.manufacturePojo(ClienteEntity.class);
+        CompraEntity compra = factory.manufacturePojo(CompraEntity.class);
+        List<CompraEntity> listaCompras = new ArrayList<CompraEntity>();
+        List<BoletaEntity> listaBoletas = new ArrayList<BoletaEntity>();
+        boleta.setEspectaculo(espectaculo);
+        boleta.setCompra(compra);
+        listaBoletas.add(boleta);
+        compra.setBoletas(listaBoletas);
+        espectaculo.setBoletas(listaBoletas);
+        listaCompras.add(compra);
+        cliente.setCompras(listaCompras);
+        newEntity.setCliente(cliente);
+        newEntity.setEspectaculo(espectaculo);
+        
         ComentarioEntity result = comentarioLogic.createComentario(newEntity);
         Assert.assertNotNull(result);
         ComentarioEntity entity = em.find(ComentarioEntity.class, result.getId());
