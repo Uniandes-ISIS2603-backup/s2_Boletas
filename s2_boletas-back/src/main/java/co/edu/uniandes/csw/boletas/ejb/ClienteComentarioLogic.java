@@ -10,7 +10,8 @@ import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.ClientePersistence;
 import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+import co.edu.uniandes.csw.boletas.persistence.OrganizadorPersistence;
+import java.util.logging.Logger;
 import java.util.List;
 import java.util.logging.Level;
 import javax.inject.Inject;
@@ -21,6 +22,9 @@ import javax.inject.Inject;
  * @author Juan Camacho y Vilma Tirado
  */
 public class ClienteComentarioLogic {
+    
+    
+    private static final Logger LOGGER = Logger.getLogger(ClienteComentarioLogic.class.getName());
     
 //Injeccion de dependencias 
     @Inject 

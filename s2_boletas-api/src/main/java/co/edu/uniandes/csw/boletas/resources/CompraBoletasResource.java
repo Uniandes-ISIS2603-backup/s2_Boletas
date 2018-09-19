@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.boletas.resources;
 import co.edu.uniandes.csw.boletas.dtos.BoletaDTO;
 import co.edu.uniandes.csw.boletas.ejb.BoletaLogic;
 import co.edu.uniandes.csw.boletas.ejb.CompraBoletasLogic;
+import co.edu.uniandes.csw.boletas.ejb.CompraLogic;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -37,6 +38,9 @@ public class CompraBoletasResource {
 
     @Inject
     private BoletaLogic boletaLogic;
+    
+    @Inject
+    private CompraLogic compraLogic;
 
     /**
      * Guarda una boleta dentro de una compra con la informacion que recibe
@@ -126,6 +130,30 @@ public class CompraBoletasResource {
         return listaDTOs;
     }
 
+    
+    /**
+     * Elimina la conexión entre la compra y la boleta recibidos en la URL.
+     *
+     * @param compraId El ID de la compra a la cual se le va a desasociar la boleta
+     * @param boletaId El ID de la boleta que se desasocia
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la boleta o la compra.
+     */
+    @DELETE
+    @Path("{boletaId: \\d+}")
+    public void deleteBoleta(@PathParam("compraId") Long compraId, @PathParam("boletaId") Long boletaId) {
+        LOGGER.log(Level.INFO, "CompraBoletasResource deleteBoleta: input: compraId {0} , boletaId {1}", new Object[]{compraId, boletaId});
+        if (boletaLogic.getBoleta(boletaId) == null) {
+            throw new WebApplicationException("El recurso /boletas/" + boletaId + " no existe.", 404);
+        }
+        else if (compraLogic.getCompra(compraId)==null)
+        {
+            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);            
+        }
+        compraBoletasLogic.deleteBoleta(compraId, boletaId);
+        LOGGER.info("CompraBoletasResource deleteBoleta: output: void");
+    }
+    
     /**
      * Convierte una lista de BoletaEntity a una lista de BoletaDTO.
      *

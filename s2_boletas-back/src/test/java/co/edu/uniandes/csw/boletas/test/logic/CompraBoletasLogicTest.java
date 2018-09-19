@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.test.logic;
 
+import co.edu.uniandes.csw.boletas.ejb.BoletaLogic;
 import co.edu.uniandes.csw.boletas.ejb.CompraBoletasLogic;
 import co.edu.uniandes.csw.boletas.ejb.CompraLogic;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
@@ -39,6 +40,8 @@ public class CompraBoletasLogicTest {
 
     @Inject
     private CompraLogic compraLogic;
+    @Inject
+    private BoletaLogic boletaLogic;
     @Inject
     private CompraBoletasLogic compraBoletasLogic;
 
@@ -159,6 +162,46 @@ public class CompraBoletasLogicTest {
         Assert.assertEquals(boletaEntity.getVendida(), response.getVendida());
     }
 
+    
+    /**
+     * Prueba para eliminar una boleta asociada a una compra.
+     *
+     * @throws BusinessLogicException
+     */
+    @Test
+    public void deleteBoletaTest() throws BusinessLogicException {
+        CompraEntity entity = data.get(0);
+        BoletaEntity boletaEntity = boletasData.get(0);
+        compraBoletasLogic.deleteBoleta(entity.getId(), boletaEntity.getId());
+
+        entity= compraLogic.getCompra(entity.getId());
+        Assert.assertFalse(entity.getBoletas().contains(boletaEntity));
+       
+        boletaEntity = boletaLogic.getBoleta(boletaEntity.getId());
+        Assert.assertNull(boletaEntity.getCompra());
+    }
+    
+    
+    /**
+     * Prueba para eliminar todas las boletas asociadas a una compra.
+     *
+     * @throws BusinessLogicException
+     */
+    @Test
+    public void deleteBoletasTest() throws BusinessLogicException {
+        CompraEntity entity = data.get(0);
+        entity.setBoletas(boletasData.subList(0,3));
+        List<BoletaEntity> boletas = entity.getBoletas();
+        compraBoletasLogic.deleteBoletas(entity.getId());
+
+        entity = compraLogic.getCompra(entity.getId());
+        
+        Assert.assertEquals(0, entity.getBoletas().size());
+        
+//        Assert.assertNull(boletas.get(0).getCompra());
+//        Assert.assertNull(boletas.get(1).getCompra());
+//        Assert.assertNull(boletas.get(2).getCompra());
+    }
 
     /**
      * Prueba para remplazar las instancias de Boleta asociadas a una instancia

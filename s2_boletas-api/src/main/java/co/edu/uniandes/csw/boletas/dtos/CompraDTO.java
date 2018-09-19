@@ -20,6 +20,7 @@ public class CompraDTO implements Serializable {
     private Boolean envio;
     private  Date fecha;
     private String direccion;
+    private Boolean estado;
     
     public CompraDTO ()
     {
@@ -64,6 +65,15 @@ public class CompraDTO implements Serializable {
     public Integer getCostoTotal()
     {
         return costoTotal;
+    }
+    
+    /*
+     * retorna un boolean sobre el estado de la compra, vigente = True, cancelada = False
+     * @return estado
+     */
+    public Boolean getEstado()
+    {
+        return estado;
     }
     
     /**
@@ -111,6 +121,15 @@ public class CompraDTO implements Serializable {
     public void setCosto(Integer costoN)
     {
         costoTotal= costoN;
+    }
+    
+     /*
+     * modifica el estado de la compra, vigente = True, cancelada = False
+     * @return vigente
+     */
+    public void setEstado(Boolean estado)
+    {
+        this.estado = estado;
     }
     
     

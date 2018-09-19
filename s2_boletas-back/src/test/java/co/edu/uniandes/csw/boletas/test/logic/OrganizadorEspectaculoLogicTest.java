@@ -155,8 +155,6 @@ public class OrganizadorEspectaculoLogicTest
     {
         List<EspectaculoEntity> espectacul = organizadorEspectaculoLogic.getEspectaculos(espectaculos.get(0).getId());
         
-        
-        
         Assert.assertEquals(1,espectacul.size());
     }
     
