@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.boletas.dtos;
 
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
+import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -13,7 +14,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *Clase que representa un comentario
  * @author Diego Camacho
  */
-public class ComentarioDTO {
+public class ComentarioDTO implements Serializable{
     
     /**
      * Id del comentario

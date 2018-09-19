@@ -13,11 +13,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
-<<<<<<< HEAD
- * @author Sebastian Rodriguez
-=======
  * @author Sebastian Rodriguez Beltran
->>>>>>> master
  */
 public class EspectaculoDTO implements Serializable
 {
@@ -90,12 +86,14 @@ public class EspectaculoDTO implements Serializable
         
         espectaculo.setFecha(this.fecha);
         
-        espectaculo.setTipo(tipo);
+        espectaculo.setTipo(this.tipo);
         
         if(lugar != null)
         {
             espectaculo.setLugar(lugar.toEntity());
         }
+        else
+            espectaculo.setLugar(null);
         
         return espectaculo;
     }

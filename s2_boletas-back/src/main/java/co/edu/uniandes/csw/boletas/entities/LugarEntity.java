@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.boletas.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -27,11 +28,11 @@ public class LugarEntity extends BaseEntity implements Serializable{
     private String nombre;
     
     @PodamExclude
-    @OneToMany(mappedBy="lugar", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="lugar", fetch = FetchType.LAZY, cascade=CascadeType.PERSIST, orphanRemoval=true)
     private List<SillaEntity> sillas = new ArrayList<SillaEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy="lugar", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="lugar", fetch = FetchType.LAZY, cascade=CascadeType.PERSIST, orphanRemoval=true)
     private List<EspectaculoEntity> espectaculos;
  
     public List<EspectaculoEntity> getEspectaculos() {
