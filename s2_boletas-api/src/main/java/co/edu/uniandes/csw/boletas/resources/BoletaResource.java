@@ -9,6 +9,8 @@ import co.edu.uniandes.csw.boletas.dtos.BoletaDTO;
 import co.edu.uniandes.csw.boletas.ejb.BoletaLogic;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -63,7 +65,29 @@ public class BoletaResource {
         return nuevaBoletaDto;
     }
     
+    /**
+     * Busca y devuelve todas las boletas que existen en la aplicacion.
+     *
+     * @return JSONArray {@link BoletaDTO} - Las boletas encontradas en la
+     * aplicación. Si no hay ninguna retorna una lista vacía.
+     */
+    @GET
+    public List<BoletaDTO> getBoletas() {
+        LOGGER.info("BoletaResource getBoletas: input: void");
+        List<BoletaDTO> listaBoletas = listEntity2DTO(boletaLogic.getBoletas());
+        LOGGER.log(Level.INFO, "BoletaResource getBoletas: output: {0}", listaBoletas.toString());
+        return listaBoletas;
+    }
     
+    /**
+     * Busca la boleta con el id asociado recibido en la URL y lo devuelve.
+     *
+     * @param boletasId Identificador de la boleta que se esta buscando. Este debe
+     * ser una cadena de dígitos.
+     * @return JSON {@link BoletaDTO} - La boleta buscada
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la boleta.
+     */
     @GET
     @Path("{boletasId : \\d+}")
     public BoletaDTO getBoleta(@PathParam("boletasId") Long boletasId) throws WebApplicationException
@@ -79,6 +103,20 @@ public class BoletaResource {
         return boletaDTO;
     }
     
+    /**
+     * Actualiza la boleta con el id recibido en la URL con la información que se
+     * recibe en el cuerpo de la petición.
+     *
+     * @param boletasId Identificador de la boleta que se desea actualizar. Este debe
+     * ser una cadena de dígitos.
+     * @param boleta {@link BoletaDTO} La boleta que se desea guardar.
+     * @return JSON {@link BoletaDTO} - La boleta guardada.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la boleta a
+     * actualizar.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
+     * Error de lógica que se genera cuando no se puede actualizar la boleta.
+     */
     @PUT
     @Path("{boletasId: \\d+}")
     public BoletaDTO updateBoleta(@PathParam("boletasId") Long boletasId, BoletaDTO boleta) throws WebApplicationException
@@ -92,9 +130,18 @@ public class BoletaResource {
         LOGGER.log(Level.INFO, "BoletaResource updateBoleta: output: {0}", boletaDTO.toString());
         return boletaDTO;
     }
+    
+    /**
+     * Borra la boleta con el id asociado recibido en la URL.
+     *
+     * @param boletasId Identificador de la boleta que se desea borrar. Este debe ser
+     * una cadena de dígitos.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la boleta.
+     */
     @DELETE
     @Path("{boletasId: \\d+}")
-    public void deleteBoleta(@PathParam("boletasId") Long boletasId) throws BusinessLogicException
+    public void deleteBoleta(@PathParam("boletasId") Long boletasId) 
     { 
         LOGGER.log(Level.INFO, "BoletaResource deleteBoleta: input: {0}", boletasId);
         if (boletaLogic.getBoleta(boletasId) == null) {
@@ -102,6 +149,24 @@ public class BoletaResource {
         }
         boletaLogic.deleteBoleta(boletasId);
         LOGGER.info("BoletaResource deleteBoleta: output: void");
+    }
+    
+    /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos BoletaEntity a una lista de
+     * objetos BoletaDTO (json)
+     *
+     * @param entityList corresponde a la lista de libros de tipo Entity que
+     * vamos a convertir a DTO.
+     * @return la lista de boletas en forma DTO (json)
+     */
+    private List<BoletaDTO> listEntity2DTO(List<BoletaEntity> entityList) {
+        List<BoletaDTO> list = new ArrayList<>();
+        for (BoletaEntity entity : entityList) {
+            list.add(new BoletaDTO(entity));
+        }
+        return list;
     }
     
 }
