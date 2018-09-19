@@ -61,6 +61,9 @@ public class CompraBoletasResource {
         if (boletaLogic.getBoleta(boletaId) == null) {
             throw new WebApplicationException("El recurso /boletas/" + boletaId + " no existe.", 404);
         }
+        if (compraLogic.getCompra(compraId) == null) {
+            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+        }
         BoletaDTO boletaDTO = new BoletaDTO(compraBoletasLogic.createBoleta(boletaId, compraId));
         LOGGER.log(Level.INFO, "CompraBoletasResource postBoleta: output: {0}", boletaDTO.toString());
         return boletaDTO;
