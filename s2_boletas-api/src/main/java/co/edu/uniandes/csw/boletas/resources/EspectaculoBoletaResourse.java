@@ -9,6 +9,9 @@ import co.edu.uniandes.csw.boletas.dtos.BoletaDTO;
 import co.edu.uniandes.csw.boletas.ejb.BoletaLogic;
 import co.edu.uniandes.csw.boletas.ejb.EspectaculoBoletasLogic;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
+import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -50,7 +53,7 @@ public class EspectaculoBoletaResourse
      */
     @POST
     @Path("{boletasId: \\d+ }")
-    private BoletaDTO addBoleta(@PathParam("espectaculoId") Long espectaculosId, @PathParam("boletaId") Long boletasId)
+    public BoletaDTO addBoleta(@PathParam("espectaculoId") Long espectaculosId, @PathParam("boletaId") Long boletasId)
     {
         LOGGER.log(Level.INFO, "Se inicia el proceso de añadir una nueva boleta");
         
@@ -68,12 +71,50 @@ public class EspectaculoBoletaResourse
         return bole;
     }
     
-    
+    /**
+     * Metodo que define el recurso espectaculos/{id}/boletas/{idB}
+     * @param espectaculosId Id del espectaculo sobre el cual se quiere buscar las boletas
+     * @param boletasId Id de la boleta a buscar
+     * @return Un objeto de tipo BoletaDTO
+     * @throws BusinessLogicException 
+     */
     @GET 
     @Path("{boletasId: \\d+}")
-    private BoletaDTO getBoleta(@PathParam("espectaculosId") Long espectaculosId, @PathParam("boletasId") Long boletasId)
+    public BoletaDTO getBoleta(@PathParam("espectaculosId") Long espectaculosId, @PathParam("boletasId") Long boletasId) throws BusinessLogicException
     {
-        return null;
+         LOGGER.log(Level.INFO, "EspectaculoBoletarResourse getBoleta");
+        if(boletasLogic.getBoleta(boletasId) == null)
+        {
+            throw new WebApplicationException("El recurso /espectaculo/" + espectaculosId + "/boletas/" + boletasId + " no existe.", 404);
+        }    
+        
+        BoletaDTO boleta = new BoletaDTO(espectaculoBoletaLogic.getBoleta(espectaculosId, boletasId));
+       
+        
+        return boleta;
+    }
+    
+    
+    /**
+     * Devuelve toda la lista de boletas
+     * @param espectaculosId
+     * @return Una lista con objetos de BoletaDTO asociada a un espectaculo
+     */
+    @GET 
+    public List<BoletaDTO> getBoletas(@PathParam("espectaculosId") Long espectaculosId)
+    {
+        LOGGER.log(Level.INFO, "EspectaculoBoletaResource getBoletas: input: {0}", espectaculosId);
+        List<BoletaDTO> lista = boletasListEntity2DTO(espectaculoBoletaLogic.getBoletas(espectaculosId));
+        LOGGER.log(Level.INFO, "EspectaculoBoletaResource getBoletas: output: {0}", lista.toString());
+        return lista;
+    }
+    
+    public List<BoletaDTO> boletasListEntity2DTO(List<BoletaEntity> entityList) {
+        List<BoletaDTO> list = new ArrayList<>();
+        for (BoletaEntity entity : entityList) {
+            list.add(new BoletaDTO(entity));
+        }
+        return list;
     }
     
 }
