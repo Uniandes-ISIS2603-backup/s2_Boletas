@@ -8,11 +8,11 @@ package co.edu.uniandes.csw.boletas.resources;
 import co.edu.uniandes.csw.boletas.entities.ClienteEntity;
 import co.edu.uniandes.csw.boletas.dtos.ClienteDTO;
 import co.edu.uniandes.csw.boletas.dtos.ClienteDetailDTO;
-import co.edu.uniandes.csw.boletas.dtos.EspectaculoDetailDTO;
 import co.edu.uniandes.csw.boletas.ejb.ClienteLogic;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -67,7 +67,15 @@ public class ClienteResourse
     @Path("{clienteId : \\d+}")
     public ClienteDTO updateCliente(@PathParam("clienteId") Long clienteId, ClienteDTO cliente)
     {
-        return null;
+           LOGGER.log(Level.INFO, "Proceso de actualizar un cliente: PUT");
+        ClienteEntity entity= cliente.toEntity();
+         if(logica.getCliente(clienteId)==null)
+         {
+              throw new WebApplicationException("El cliente que se quiere actualizar con id:" + clienteId +" No existe");
+         }
+         ClienteEntity actualizado= logica.update(entity);
+         ClienteDTO dto= new ClienteDTO(actualizado);
+         return dto;
     }
     
     @GET
