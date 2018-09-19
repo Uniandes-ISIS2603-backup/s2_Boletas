@@ -177,4 +177,15 @@ public class OrganizadorPersistenceTest {
             org.junit.Assert.assertTrue(found);
         }
     }
+     
+     @Test
+     public void FindOrganizadorTest()
+     {
+         OrganizadorEntity organizador= data.get(0);
+         Long id= organizador.getId();
+         OrganizadorEntity encontrado= organizadorPersistence.find(id);
+         Assert.assertEquals(encontrado, organizador);
+         Assert.assertTrue(id==encontrado.getId());
+         Assert.assertNotNull(encontrado);
+     }
 }
