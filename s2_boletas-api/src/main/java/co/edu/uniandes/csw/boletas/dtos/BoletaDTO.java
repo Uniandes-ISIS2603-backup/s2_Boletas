@@ -31,7 +31,27 @@ public class BoletaDTO implements Serializable {
      */
     private Date fecha;
     
+    /**
+     * Indica si la boleta está vendida o no
+     */
     private Boolean vendida;
+    
+    /**
+     * Espectaculo de la boleta
+     */
+    private EspectaculoDTO espectaculo;
+    
+    /**
+     * Silla de la boleta
+     */
+    private SillaDTO silla;
+    
+    /**
+     * Compra a la que pertenece la boleta
+     */
+    private CompraDTO compra;
+
+
     /**
      * Constructor vacío de una boleta.
      */
@@ -54,6 +74,18 @@ public class BoletaDTO implements Serializable {
             id = boleta.getId();
             precio = boleta.getPrecio();
             fecha = boleta.getFecha();
+            if(boleta.getCompra()!=null)
+            {
+                this.compra= new CompraDTO(boleta.getCompra());
+            }
+            if(boleta.getEspectaculo()!=null)
+            {
+                this.espectaculo= new EspectaculoDTO(boleta.getEspectaculo());
+            }
+            if(boleta.getSilla()!=null)
+            {
+                this.silla=new SillaDTO(boleta.getSilla());
+            }
         }
     }
     
@@ -68,6 +100,12 @@ public class BoletaDTO implements Serializable {
         boleta.setId(id);
         boleta.setPrecio(precio);
         boleta.setFecha(fecha);
+        if(this.compra!=null){
+        boleta.setCompra(compra.toEntity());}
+        if(this.espectaculo!=null){
+        boleta.setEspectaculo(espectaculo.toEntity());}
+        if(this.silla!=null){
+        boleta.setSilla(silla.toEntity());}
         return boleta;
     }
 
@@ -151,6 +189,37 @@ public class BoletaDTO implements Serializable {
         this.vendida = vendida;
     }
     
+    /**
+     * Da el espectaculo de la boleta
+     * @return espectaculo de la boleta
+     */
+    public EspectaculoDTO getEspectaculo() {
+        return espectaculo;
+    }
+
+    /**
+     * Le asigna un espectaculo a una boleta
+     * @param espectaculo el espectaculo a asignar
+     */
+    public void setEspectaculo(EspectaculoDTO espectaculo) {
+        this.espectaculo = espectaculo;
+    }
+    
+    /**
+     * Da la silla que tiene asignada la boleta
+     * @return la silla de la boleta
+     */
+    public SillaDTO getSilla() {
+        return silla;
+    }
+    
+    /**
+     * Le asigna una silla a una boleta
+     * @param silla la silla a asignar
+     */
+    public void setSilla(SillaDTO silla) {
+        this.silla = silla;
+    }
     
     
     @Override
