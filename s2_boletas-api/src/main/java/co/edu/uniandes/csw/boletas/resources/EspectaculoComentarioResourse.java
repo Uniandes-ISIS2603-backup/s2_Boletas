@@ -26,7 +26,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  * Clase que implementa el recurso de /espectaculos/{id}/comentarios
- * @author Diego Camacho y Sebastian Rodriguez 
+ * @author  Sebastian Rodriguez 
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -42,8 +42,10 @@ public class EspectaculoComentarioResourse
     
    /**
     * Metodo que se usa para agregar un comentario a un espectaculo
+     * @param espectaculosId
+     * @param comentariosId
+     * @return 
     * @POST 
-    * 
     */
     
     @POST
