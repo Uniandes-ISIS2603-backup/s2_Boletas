@@ -29,10 +29,16 @@ public class CompraLogic
     /**
      * Crear la Compra en persistencia
      * @param compraEntity
-     * @return compraEntity, la entity de la compra despues de la persistencia
+     * @return compraEntity, la entity de la compra despues de la persistencia 
+     * @throws BusinessLogicException Si la compra a persistir ingresa con estado de eliminada.
      */
-    public CompraEntity createCompra(CompraEntity compraEntity) {
+    public CompraEntity createCompra(CompraEntity compraEntity) throws BusinessLogicException
+    {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la compra");
+        if(compraEntity.getEstado() == false)
+        {
+            throw new BusinessLogicException("No se puede crear la compra con estado cancelada (estado = false) ");
+        }
         persistence.create(compraEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la compra");
         return compraEntity;

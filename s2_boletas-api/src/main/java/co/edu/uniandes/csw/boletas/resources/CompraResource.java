@@ -46,7 +46,7 @@ public class CompraResource {
      * id autogenerado.
      */
     @POST
-    public CompraDetailDTO postCompra(CompraDetailDTO compra)
+    public CompraDetailDTO postCompra(CompraDetailDTO compra) throws BusinessLogicException
     {
        LOGGER.log(Level.INFO, "CompraResource postCompra: input: {0}", compra.toString());
        CompraEntity compraEntity = compra.toEntity();

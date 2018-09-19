@@ -132,7 +132,6 @@ public class CompraEntity extends BaseEntity implements Serializable{
         this.estado = estado;
     }
     
-    
     /**
      * modifica si se necesita un envio o no
      * @param envioP, la nueva decicion sobre el envio

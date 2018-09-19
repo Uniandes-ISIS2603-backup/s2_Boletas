@@ -103,4 +103,46 @@ public class CompraBoletasLogic {
         return boletas;
     }
     
+    
+    /**
+     * Desasocia una boleta existente de una compra existente
+     *
+     * @param compraId Identificador de la instancia de Compra
+     * @param boletaId Identificador de la instancia de Boleta
+     */
+    public void deleteBoleta(Long compraId, Long boletaId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar una boleta de la compra con id = {0}", compraId);
+        CompraEntity compraEntity = compraPersistence.find(compraId);
+        BoletaEntity boletaEntity = boletaPersistence.find(boletaId);
+        
+        boletaEntity.setCompra(null);
+        
+        List<BoletaEntity> boletas = compraEntity.getBoletas();
+        int index = boletas.indexOf(boletaEntity);
+        
+        boletas.remove(index);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar un libro del author con id = {0}", compraId);
+    }
+    
+    
+    /**
+     * Desasocia una boleta existente de una compra existente
+     *
+     * @param compraId Identificador de la instancia de Compra
+     * @param boletaId Identificador de la instancia de Boleta
+     */
+    public void deleteBoletas(Long compraId, Long boletaId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar una boleta de la compra con id = {0}", compraId);
+        CompraEntity compraEntity = compraPersistence.find(compraId);
+        BoletaEntity boletaEntity = boletaPersistence.find(boletaId);
+        
+        boletaEntity.setCompra(null);
+        
+        List<BoletaEntity> boletas = compraEntity.getBoletas();
+        int index = boletas.indexOf(boletaEntity);
+        
+        boletas.remove(index);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar un libro del author con id = {0}", compraId);
+    }
+    
 }
