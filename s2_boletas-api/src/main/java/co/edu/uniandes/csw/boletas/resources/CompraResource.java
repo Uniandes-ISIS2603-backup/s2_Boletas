@@ -81,8 +81,8 @@ public class CompraResource {
      * Error de lógica que se genera cuando no se encuentra la compra.
      */
     @GET
-    @Path("{compraid : \\d+}")
-    public CompraDetailDTO getCompra(@PathParam("compraId") Long compraId)
+    @Path("{comprasid : \\d+}")
+    public CompraDetailDTO getCompra(@PathParam("compras Id") Long compraId)
     {
         LOGGER.log(Level.INFO, "CompraResource getCompra: input: {0}", compraId);
         CompraEntity compraEntity = compraLogic.getCompra(compraId);
