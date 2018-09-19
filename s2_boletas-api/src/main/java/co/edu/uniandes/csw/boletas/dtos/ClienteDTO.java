@@ -29,11 +29,14 @@ public class ClienteDTO implements Serializable {
     
     public ClienteDTO(ClienteEntity entity )
     {
-        
+        if(entity!=null)
+        {
+       id=entity.getId();
         nombre= entity.getNombre();
         usuario=entity.getUsuario();
         pago= entity.getPago();
         cedula=entity.getCedula();
+        }
     }
     
     public ClienteEntity toEntity()

@@ -9,9 +9,9 @@ import co.edu.uniandes.csw.boletas.entities.OrganizadorEntity;
 import co.edu.uniandes.csw.boletas.dtos.OrganizadorDTO;
 import co.edu.uniandes.csw.boletas.dtos.OrganizadorDetailDTO;
 import co.edu.uniandes.csw.boletas.ejb.OrganizadorLogic;
+import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -36,65 +36,73 @@ import javax.ws.rs.WebApplicationException;
 public class OrganizadorResourse 
 {
     
-    @Inject
-    private OrganizadorLogic organizadorLogic;
-    
     private static final Logger LOGGER = Logger.getLogger(OrganizadorResourse.class.getName());
     
+    //Representacion de la clase OrganizadorLogic. Es una injeccion de dependencias
+    
+    @Inject
+    OrganizadorLogic logica;
+    
     @POST
-    public OrganizadorDTO createOrganizador(OrganizadorDTO organizador)
+    public OrganizadorDTO createOrganizador(OrganizadorDTO organizador) throws BusinessLogicException
     { 
         
         LOGGER.info("OrganizadorResourse createOrganizador: input: " + organizador.toString());
         
-        OrganizadorEntity entity = organizador.toEntity();
+        //Lo primero que se hace es pasar el DTO  a entity ya que la logica solo conoce entities
+        OrganizadorEntity entity=organizador.toEntity();
+        //Despues se le pasa el entity a la logica la cual lo guarda en persistencia 
+        //y persistencia le da un id 
+        OrganizadorEntity nuevoOrganizador= logica.createOrganizador(entity);
         
+        //Una vez creada la entity en la aplicacion esta se puede pasar nuevamente a DTO
+        OrganizadorDTO dto= new OrganizadorDTO(nuevoOrganizador);
         
-        
-        return organizador;   
+    
+        return dto;   
     }
     
     @PUT
     @Path("{organizadorId : \\d+}")
     public OrganizadorDTO updateOrganizador(@PathParam("organizadorId") Long organizadorId, OrganizadorDTO organizador)
     {
-                LOGGER.log(Level.INFO, "Proceso de actualizar un organizador: PUT");
-        
-        OrganizadorEntity entity = organizador.toEntity();
-        if(organizadorLogic.getOrganizador(organizadorId) == null)
-        {
-            throw new WebApplicationException("El organizador que se quiere actualizar con id:" + organizadorId +" No existe");
-        }    
-         
-        OrganizadorEntity actualizado = organizadorLogic.update( entity);
-        
-        OrganizadorDTO dto = new OrganizadorDTO(actualizado);
-        
-        return dto;
+        return null;
     }
     
     @GET
     @Path("{organizadorId : \\d+}")
-    public OrganizadorDTO getOrganizador(@PathParam("organizadorId") Long organizadorId)
+    public OrganizadorDTO getOrganizador(@PathParam("organizadorId") Long organizadorId) throws WebApplicationException
     {
-        return null;
+        //Se busca el entity que se quiere modificar
+        OrganizadorEntity entity = logica.getOrganizador(organizadorId);
+        //Si no existe se manda excepcion
+        if(entity==null)
+        {
+            throw new WebApplicationException("El recurso /organizadors/ "+ organizadorId+ "no existe",404);
+        }
+        //Si existe se modifica y se vuelve DTO 
+        OrganizadorDTO updatedDto= new OrganizadorDTO(logica.update(entity));
+        
+        return updatedDto;
+                
+        
     }
     
     @GET 
-    public List<OrganizadorDetailDTO> getOrganizadores()
+    public List<OrganizadorDetailDTO> getOrganizadors()
     {
-               List<OrganizadorDetailDTO> listaClientes = listEntity2DetailDTO(organizadorLogic.getOrganizadores());
-        return listaClientes;
+         List<OrganizadorDetailDTO> listaOrganizadors = listEntity2DetailDTO(logica.getOrganizadores());
+        return listaOrganizadors;
     }
     
     @DELETE
     @Path("{organizadorId: \\d+}")
     public void deleteOrganizador(@PathParam("organizadorId") Long organizadorId) 
     { 
-       organizadorLogic.delete(organizadorId);
+        logica.delete(organizadorId);
     }
     
-            private List<OrganizadorDetailDTO> listEntity2DetailDTO(List<OrganizadorEntity> entityList) {
+        private List<OrganizadorDetailDTO> listEntity2DetailDTO(List<OrganizadorEntity> entityList) {
        List<OrganizadorDetailDTO> list = new ArrayList<>();
        for (OrganizadorEntity entity : entityList) {
            list.add(new OrganizadorDetailDTO(entity));
