@@ -78,6 +78,7 @@ public class OrganizadorEspectaculoLogic {
            return organizadorPersistence.find(organizadorId).getEspectaculos();
       }
       
+      
           /**
      * Retorna un espectaculo asociado a un organizador
      *
@@ -95,14 +96,14 @@ public class OrganizadorEspectaculoLogic {
           //Se busca la lista de espectaculos del organizador 
           List<EspectaculoEntity> espectaculos  = organizadorPersistence.find(organizadorId).getEspectaculos();
          // Se busca el indice del espectaculo dentro de la lista del organizador
-        int index= espectaculos.indexOf(espectaculoEntity);
+          int index= espectaculos.indexOf(espectaculoEntity);
         //Se comprueba que si exista ese espectaculo en la lista, sino manda excepcion 
         
         
-        if(index<0)
-        {
-        throw new BusinessLogicException("El espectaculo no pertenece a este organizador");
-        }
+            if(index<0)
+            {
+                throw new BusinessLogicException("El espectaculo no pertenece a este organizador");
+            }
         
           return  espectaculos.get(index);
 
