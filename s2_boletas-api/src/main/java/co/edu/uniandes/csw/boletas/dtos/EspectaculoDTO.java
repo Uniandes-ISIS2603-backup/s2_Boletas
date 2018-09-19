@@ -90,7 +90,7 @@ public class EspectaculoDTO implements Serializable
         
         espectaculo.setFecha(this.fecha);
         
-        espectaculo.setTipo(tipo);
+        espectaculo.setTipo(this.tipo);
         
         if(lugar != null)
         {

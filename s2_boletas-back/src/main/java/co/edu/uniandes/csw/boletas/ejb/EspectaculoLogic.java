@@ -39,11 +39,6 @@ public class EspectaculoLogic
     {
         LOGGER.log(Level.INFO, "Inicia el proceso de crear un espectaculo");
         
-        if(persistence.findByName(espec.getNombre()) != null)
-        {
-            throw new BusinessLogicException("La entidad con el nombre "+espec.getNombre()+" ya existe");
-        }
-        
         persistence.create(espec);
         
         LOGGER.log(Level.INFO, "Se creo el espectaculo satisfactoriamente");
