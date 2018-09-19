@@ -35,6 +35,7 @@ public class CompraDTO implements Serializable {
         envio = compra.getEnvio();
         fecha = compra.getFecha();
         direccion = compra.getDireccion();
+        estado= compra.getEstado();
         
     }
     
@@ -46,6 +47,7 @@ public class CompraDTO implements Serializable {
         compra.setEnvio(envio);
         compra.setFecha(fecha);
         compra.setDireccion(direccion);
+        compra.setEstado(estado);
         return compra;
     }
     
