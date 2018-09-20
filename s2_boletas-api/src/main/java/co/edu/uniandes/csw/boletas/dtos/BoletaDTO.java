@@ -74,6 +74,7 @@ public class BoletaDTO implements Serializable {
             id = boleta.getId();
             precio = boleta.getPrecio();
             fecha = boleta.getFecha();
+            vendida = boleta.getVendida();
             if(boleta.getCompra()!=null)
             {
                 this.compra= new CompraDTO(boleta.getCompra());
@@ -100,6 +101,7 @@ public class BoletaDTO implements Serializable {
         boleta.setId(id);
         boleta.setPrecio(precio);
         boleta.setFecha(fecha);
+        boleta.setVendida(vendida);
         if(this.compra!=null){
         boleta.setCompra(compra.toEntity());}
         if(this.espectaculo!=null){
