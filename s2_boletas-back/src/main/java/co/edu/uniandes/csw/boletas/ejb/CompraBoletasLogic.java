@@ -44,7 +44,12 @@ public class CompraBoletasLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle una boleta a la compra con id = {0}", compraId);
         CompraEntity compraEntity = compraPersistence.find(compraId);
         BoletaEntity boletaEntity = boletaPersistence.find(boletaId);
+        
         boletaEntity.setCompra(compraEntity);
+        
+        List<BoletaEntity> lista = compraEntity.getBoletas(); 
+        lista.add(boletaEntity);
+        putBoletas(compraId, lista);
         LOGGER.log(Level.INFO, "Termina proceso de agregarle una boleta a la compra con id = {0}", compraId);
         return boletaEntity;
     }
@@ -89,7 +94,7 @@ public class CompraBoletasLogic {
      * @param compraId El id de la compra que se quiere actualizar.
      * @return La lista de boletas actualizada.
      */
-    public List<BoletaEntity> putBoletas(Long compraId, List<BoletaEntity> boletas) {
+     public List<BoletaEntity> putBoletas(Long compraId, List<BoletaEntity> boletas) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la compra con id = {0}", compraId);
         CompraEntity compraEntity = compraPersistence.find(compraId);
         List<BoletaEntity> boletaList = boletaPersistence.findAll();

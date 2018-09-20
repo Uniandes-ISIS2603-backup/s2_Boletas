@@ -54,6 +54,8 @@ public class CompraBoletasLogicTest {
     private List<CompraEntity> data = new ArrayList<CompraEntity>();
 
     private List<BoletaEntity> boletasData = new ArrayList();
+    
+    private List<BoletaEntity> boletasPrueba = new ArrayList();
 
     
     /**
@@ -109,6 +111,14 @@ public class CompraBoletasLogicTest {
             em.persist(boletas);
             boletasData.add(boletas);
         }
+        
+        for (int i = 0; i < 3; i++) 
+        {
+            BoletaEntity boletas = factory.manufacturePojo(BoletaEntity.class);
+            em.persist(boletas);
+            boletasPrueba.add(boletas);
+        }
+        
         for (int i = 0; i < 3; i++) {
             CompraEntity entity = factory.manufacturePojo(CompraEntity.class);
             em.persist(entity);
@@ -128,8 +138,12 @@ public class CompraBoletasLogicTest {
         BoletaEntity boletaEntity = boletasData.get(1);
         BoletaEntity response = compraBoletasLogic.createBoleta(boletaEntity.getId(), entity.getId());
 
+        entity = data.get(0);
+        
         Assert.assertNotNull(response);
         Assert.assertEquals(boletaEntity.getId(), response.getId());
+        Assert.assertEquals(entity, response.getCompra());
+        Assert.assertTrue(entity.getBoletas().contains(response));
     }
 
     /**
@@ -190,17 +204,19 @@ public class CompraBoletasLogicTest {
     @Test
     public void deleteBoletasTest() throws BusinessLogicException {
         CompraEntity entity = data.get(0);
-        entity.setBoletas(boletasData.subList(0,3));
-        List<BoletaEntity> boletas = entity.getBoletas();
+        
+     
+        entity.setBoletas(boletasPrueba);
+        
         compraBoletasLogic.deleteBoletas(entity.getId());
 
         entity = compraLogic.getCompra(entity.getId());
         
         Assert.assertTrue(entity.getBoletas().isEmpty());
         
-//        Assert.assertNull(boletas.get(0).getCompra());
-//        Assert.assertNull(boletas.get(1).getCompra());
-//        Assert.assertNull(boletas.get(2).getCompra());
+        Assert.assertNull(boletasPrueba.get(0).getCompra());
+        Assert.assertNull(boletasPrueba.get(1).getCompra());
+        Assert.assertNull(boletasPrueba.get(2).getCompra());
     }
 
     /**
