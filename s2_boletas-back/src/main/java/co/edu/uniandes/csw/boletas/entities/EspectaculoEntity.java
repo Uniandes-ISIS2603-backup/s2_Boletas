@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.entities;
 
+import co.edu.uniandes.csw.boletas.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,7 +31,7 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     private String nombre;
     
     @Temporal(javax.persistence.TemporalType.DATE)
-//    @PodamStrategyValue(DateStrategy.class)
+    @PodamStrategyValue(DateStrategy.class)
     private Date fecha;
 
     private String descripcion;
@@ -42,19 +43,21 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "espectaculo",cascade= CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<BoletaEntity> boletas = new ArrayList<BoletaEntity>(); 
+//    @OneToMany(mappedBy = "espectaculo")
+    private List<BoletaEntity> boletas = new ArrayList<>(); 
 
     
     @PodamExclude
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     private LugarEntity lugar;
     
     @PodamExclude
     @OneToMany(mappedBy = "espectaculo",cascade= CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
+//    @OneToMany(mappedBy = "espectaculo")
+    private List<ComentarioEntity> comentarios = new ArrayList<>();
     
     @PodamExclude
-    @ManyToOne()
+    @javax.persistence.ManyToOne()
     private OrganizadorEntity organizador;
     
     

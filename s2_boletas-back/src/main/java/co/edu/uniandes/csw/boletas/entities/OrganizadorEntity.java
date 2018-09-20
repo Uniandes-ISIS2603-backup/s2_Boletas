@@ -22,7 +22,6 @@ public class OrganizadorEntity extends BaseEntity implements Serializable{
     @OneToMany(mappedBy= "organizador", cascade=CascadeType.PERSIST, orphanRemoval=true)
     private List<EspectaculoEntity> espectaculos= new ArrayList<>();
     
-   
     private String usuario;
     private String nombre;
     private Integer  presupuesto;
