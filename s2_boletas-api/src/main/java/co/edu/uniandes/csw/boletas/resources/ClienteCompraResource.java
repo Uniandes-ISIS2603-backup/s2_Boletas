@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.boletas.resources;
 import co.edu.uniandes.csw.boletas.dtos.CompraDetailDTO;
 import co.edu.uniandes.csw.boletas.ejb.ClienteCompraLogic;
+import co.edu.uniandes.csw.boletas.ejb.ClienteLogic;
 import co.edu.uniandes.csw.boletas.ejb.CompraLogic;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import java.util.List;
@@ -39,9 +40,12 @@ public class ClienteCompraResource {
 
     @Inject
     private CompraLogic compraLogic;
+    
+    @Inject
+    private ClienteLogic clienteLogic;
 
     /**
-     * Asocia un autor existente con un cliente existente
+     * Asocia una compra existente con un cliente existente
      *
      * @param compraId El ID de la compra que se va a asociar
      * @param clienteId El ID del cliente al cual se le va a asociar la compra
@@ -55,6 +59,9 @@ public class ClienteCompraResource {
         LOGGER.log(Level.INFO, "ClienteCompraResource addCompra: input: clienteId {0} , compraId {1}", new Object[]{clienteId, compraId});
         if (compraLogic.getCompra(compraId) == null) {
             throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+        }
+        if (clienteLogic.getCliente(clienteId) == null) {
+            throw new WebApplicationException("El recurso /clientes/" + clienteId + " no existe.", 404);
         }
         CompraDetailDTO detailDTO = new CompraDetailDTO(clienteCompraLogic. addCompra(clienteId, compraId));
         LOGGER.log(Level.INFO, "ClienteCompraResource addCompra: output: {0}", detailDTO.toString());
@@ -123,24 +130,24 @@ public class ClienteCompraResource {
         return lista;
     }
 
-//    /**
-//     * Elimina la conexión entre la compra y el libro recibidos en la URL.
-//     *
-//     * @param clienteId El ID del cliente al cual se le va a desasociar la compra
-//     * @param compraId El ID de la compra que se desasocia
-//     * @throws WebApplicationException {@link WebApplicationExceptionMapper}
-//     * Error de lógica que se genera cuando no se encuentra la compra.
-//     */
-//    @DELETE
-//    @Path("{compraId: \\d+}")
-//    public void deleteCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) {
-//        LOGGER.log(Level.INFO, "ClienteCompraResource removeCompra: input: clienteId {0} , compraId {1}", new Object[]{clienteId, compraId});
-//        if (compraLogic.getCompra(compraId) == null) {
-//            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
-//        }
-//        clienteCompraLogic.removeCompra(clienteId, compraId);
-//        LOGGER.info("ClienteCompraResource removeCompra: output: void");
-//    }
+    /**
+     * Elimina la conexión entre la compra y el libro recibidos en la URL.
+     *
+     * @param clienteId El ID del cliente al cual se le va a desasociar la compra
+     * @param compraId El ID de la compra que se desasocia
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper}
+     * Error de lógica que se genera cuando no se encuentra la compra.
+     */
+    @DELETE
+    @Path("{compraId: \\d+}")
+    public void deleteCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) {
+        LOGGER.log(Level.INFO, "ClienteCompraResource removeCompra: input: clienteId {0} , compraId {1}", new Object[]{clienteId, compraId});
+        if (compraLogic.getCompra(compraId) == null) {
+            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+        }
+        clienteCompraLogic.removeCompra(clienteId, compraId);
+        LOGGER.info("ClienteCompraResource removeCompra: output: void");
+    }
 
     /**
      * Convierte una lista de CompraEntity a una lista de CompraDetailDTO.

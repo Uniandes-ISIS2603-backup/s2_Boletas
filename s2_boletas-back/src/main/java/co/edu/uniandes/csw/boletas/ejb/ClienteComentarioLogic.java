@@ -134,6 +134,21 @@ zar los comentarios de un cliente
           return comentarios;
       }
       
+      public List<ComentarioEntity> replaceComentarios(Long clientesId, List<ComentarioEntity> comentarios) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el cliente con id = {0}", clientesId);
+        ClienteEntity clienteEntity = clientePersistence.find(clientesId);
+        List<ComentarioEntity> comentarioList = comentarioPersistence.findAll();
+        for (ComentarioEntity comentario : comentarioList) {
+            if (comentarios.contains(comentario)) {
+                comentario.setCliente(clienteEntity);
+            } else if (comentario.getCliente() != null && comentario.getCliente().equals(clienteEntity)) {
+                comentario.setCliente(null);
+            }
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el cliente con id = {0}", clientesId);
+        return comentarios;
+    }
+      
       
       
     

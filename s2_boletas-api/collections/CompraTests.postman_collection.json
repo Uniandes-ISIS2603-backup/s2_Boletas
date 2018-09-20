@@ -30,7 +30,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"costo\": \"2000\", \"envio\": \"True\", \"fecha\": \"26-08-2018\", \"direccion\": \"Cra 1 #18a-12\"}"
+					"raw": "{\"costo\": \"2000\", \"envio\": true, \"fecha\": \"26-08-2018\", \"direccion\": \"Cra 1 #18a-12\", \"estado\": true}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_boletas-api/api/compras",
@@ -72,7 +72,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"costo\": \"40000\", \"envio\": \"False\", \"fecha\": \"29-08-2018\", \"direccion\": \"Carrera 7 #40 - 62\"}"
+					"raw": "{\"costo\": \"40000\", \"envio\": false, \"fecha\": \"29-08-2018\", \"direccion\": \"Carrera 7 #40 - 62\", \"estado\": false}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_boletas-api/api/compras",
@@ -109,7 +109,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compras/0",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -119,7 +119,7 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"0"
+						"6"
 					]
 				}
 			},
@@ -184,10 +184,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"costo\": \"2222\", \"envio\": \"True\", \"fecha\": \"22-02-2012\", \"direccion\": \"Cra 2 #22-22\"}"
+					"raw": "{\"costo\": 2222, \"envio\": true, \"fecha\": \"22-02-2012\", \"direccion\": \"Cra 2 #22-22\"}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compras/0",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/123",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -197,7 +197,7 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"0"
+						"123"
 					]
 				}
 			},
@@ -227,7 +227,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"costo\": \"4444\", \"envio\": \"True\", \"fecha\": \"30-03-2013\", \"direccion\": \"Cra 3 #33-33\"}"
+					"raw": "{\"costo\": \"4444\", \"envio\": \"True\", \"fecha\": \"30-03-2013\", \"direccion\": \"Cra 3 #33-33\", \"estado\": true}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_boletas-api/api/compras/1",
@@ -265,7 +265,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compras/0",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -275,7 +275,7 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"0"
+						"1"
 					]
 				}
 			},
@@ -311,6 +311,28 @@
 						"api",
 						"compras",
 						"134"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET compras",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras"
 					]
 				}
 			},

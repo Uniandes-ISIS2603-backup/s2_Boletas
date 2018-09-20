@@ -38,12 +38,10 @@ public class EspectaculoLogic
     public EspectaculoEntity createEntity(EspectaculoEntity espec) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia el proceso de crear un espectaculo");
-        
         if(persistence.findByName(espec.getNombre()) != null)
         {
-            throw new BusinessLogicException("La entidad con el nombre "+espec.getNombre()+" ya existe");
+            throw new BusinessLogicException("Exception");
         }
-        
         persistence.create(espec);
         
         LOGGER.log(Level.INFO, "Se creo el espectaculo satisfactoriamente");
@@ -103,7 +101,6 @@ public class EspectaculoLogic
     public void deleteEspectaculo(Long espectaculosId) 
     {
         
-        List<BoletaEntity> boletas = getEspectaculo(espectaculosId).getBoletas();
         
         LOGGER.log(Level.INFO, "Inicia proceso de eliminar el espectaculo con id = {0}", espectaculosId);
         

@@ -153,6 +153,18 @@ public class CompraPersistenceTest {
         CompraEntity entity = em.find(CompraEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
+        Assert.assertEquals(newEntity.getCostoTotal(), entity.getCostoTotal());
+        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
+        Assert.assertEquals(newEntity.getEnvio(), entity.getEnvio());
+        Assert.assertEquals(newEntity.getEstado(), entity.getEstado());
+        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertTrue(newEntity.getBoletas().equals(entity.getBoletas()));
+     
+        
+        
+        
+        
     }
     
     /**
@@ -175,6 +187,13 @@ public class CompraPersistenceTest {
         CompraEntity newEntity = compraPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
+        Assert.assertEquals(newEntity.getCostoTotal(), entity.getCostoTotal());
+        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
+        Assert.assertEquals(newEntity.getEnvio(), entity.getEnvio());
+        Assert.assertEquals(newEntity.getEstado(), entity.getEstado());
+        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertTrue(newEntity.getBoletas().equals(entity.getBoletas()));
     }
 
     /**

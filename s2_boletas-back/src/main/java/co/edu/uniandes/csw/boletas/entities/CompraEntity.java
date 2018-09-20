@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.entities;
 
+import co.edu.uniandes.csw.boletas.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,7 @@ import javax.persistence.TemporalType;
 
 
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 
 /**
@@ -29,6 +31,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     private Boolean envio;
     
     @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date fecha;
     
     private String direccion;    
@@ -116,11 +119,11 @@ public class CompraEntity extends BaseEntity implements Serializable{
     
     /**
      * modifica el costo de la compra
-     * @param costoN, el nuevo costo de la compra
+     * @param costo, el nuevo costo de la compra
      */
-    public void setCosto(Integer costoN)
+    public void setCosto(Integer costo)
     {
-        costoTotal= costoN;
+        this.costoTotal= costo;
     }
     
      /*
@@ -134,39 +137,39 @@ public class CompraEntity extends BaseEntity implements Serializable{
     
     /**
      * modifica si se necesita un envio o no
-     * @param envioP, la nueva decicion sobre el envio
+     * @param envio, la nueva decicion sobre el envio
      */
-    public void setEnvio(Boolean envioP)
+    public void setEnvio(Boolean envio)
     {
-        envio= envioP;
+        this.envio= envio;
     }
      
     
     /**
      * modifica la direccion ingresada
-     * @param direccionN , nueva direccion
+     * @param direccion , nueva direccion
      */
-    public void setDireccion(String direccionN)
+    public void setDireccion(String direccion)
     {
-        direccion= direccionN;
+        this.direccion= direccion;
     }
     
    /**
     * modifica la fecha de la compra
-    * @param fechaN , nueva fecha de la compra
+    * @param fecha , nueva fecha de la compra
     */
-    public void setFecha(Date fechaN)
+    public void setFecha(Date fecha)
     {
-        fecha= fechaN;
+        this.fecha= fecha;
     }
     
     /**
      * Modifica las boletas de la compra.
      *
-     * @param boletaS Las nuevas boletas.
+     * @param boletas Las nuevas boletas.
      */
-    public void setBoletas(List<BoletaEntity> boletaS) {
-        boletas = boletaS;
+    public void setBoletas(List<BoletaEntity> boletas) {
+        this.boletas = boletas;
     }
     
     /**

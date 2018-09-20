@@ -71,6 +71,11 @@ public class CompraDetailDTO extends CompraDTO implements Serializable {
             }
             compraEntity.setBoletas(boletasEntity);
         }
+        if(cliente!= null)
+        {
+            compraEntity.setCliente(cliente.toEntity());
+        }
+        
         return compraEntity;
     }
     

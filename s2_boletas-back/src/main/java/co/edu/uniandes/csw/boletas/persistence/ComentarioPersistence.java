@@ -58,4 +58,11 @@ public class ComentarioPersistence {
         return query.getResultList();
     }
     
+    public ComentarioEntity update(ComentarioEntity comentarioEntity)
+    {
+        LOGGER.log(Level.INFO, "Actualizando comentario con id 0 {0}", comentarioEntity.getId());
+        LOGGER.log(Level.INFO, "Saliendo de actualizar comentario con id = {0}", comentarioEntity.getId());
+        return em.merge(comentarioEntity);
+    }
+    
 }
