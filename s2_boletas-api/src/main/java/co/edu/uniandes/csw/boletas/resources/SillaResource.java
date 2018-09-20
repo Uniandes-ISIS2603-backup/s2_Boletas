@@ -61,6 +61,7 @@ public class SillaResource {
     {
         LOGGER.log(Level.INFO, "SillaResource updateSilla: ", sillaDTO.toString());
         SillaEntity sillaEntity = sillaDTO.toEntity();
+        sillaEntity.setId(silla_id);
         SillaEntity updated = null;
         try
         {
