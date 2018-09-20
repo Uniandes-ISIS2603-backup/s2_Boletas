@@ -7,6 +7,18 @@
 	"item": [
 		{
 			"name": "CreateLugar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7fe9405f-9eb1-4875-8c69-dfe44cad54ea",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -17,7 +29,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"numSillas\":\"2000\",\n\t\"direccion\":\"kra 6 cll 22\",\n\t\"nombre\":\"Teatro de Bogotá\"\n}"
+					"raw": "{\n\t\"numSillas\":\"2000\",\n\t\"direccion\":\"kra 6 cll 22\",\n\t\"nombre\":\"Teatro Bogotá\",\n\t\"ubicacion\": \"Teatro\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_boletas-api/api/lugares",
@@ -37,6 +49,18 @@
 		},
 		{
 			"name": "UpdateLugar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cf0ecc46-34ee-4ebf-8753-1e6c9bd6ea31",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -47,10 +71,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"numSillas\":\"2200\",\n\t\"direccion\":\"kra 6 cll 22\",\n\t\"nombre\":\"Teatro de Bogotá\"\n\t\n}"
+					"raw": "{\n\t\"numSillas\":\"2200\",\n\t\"direccion\":\"kra 7 cll 23\",\n\t\"nombre\":\"Teatro 7ma\",\n\t\"ubicacion\":\"Coliseo\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/1",
+					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -60,7 +84,7 @@
 						"s2_boletas-api",
 						"api",
 						"lugares",
-						"1"
+						"6"
 					]
 				}
 			},
@@ -73,7 +97,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/1",
+					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -83,7 +107,7 @@
 						"s2_boletas-api",
 						"api",
 						"lugares",
-						"1"
+						"6"
 					]
 				}
 			},

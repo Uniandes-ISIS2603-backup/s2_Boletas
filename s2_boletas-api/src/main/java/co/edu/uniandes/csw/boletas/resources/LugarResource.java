@@ -63,6 +63,7 @@ public class LugarResource {
     {
         LOGGER.log(Level.INFO, "LugarResource updateLugar: ", lugarDTO.toString());
         LugarEntity lugarEntity = lugarDTO.toEntity();
+        lugarEntity.setId(lugar_id);
         LugarEntity updatedEntity = null;
         try
         {
