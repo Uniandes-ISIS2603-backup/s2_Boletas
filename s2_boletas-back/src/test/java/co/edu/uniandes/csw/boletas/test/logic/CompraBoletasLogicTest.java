@@ -40,8 +40,7 @@ public class CompraBoletasLogicTest {
 
     @Inject
     private CompraLogic compraLogic;
-    @Inject
-    private BoletaLogic boletaLogic;
+
     @Inject
     private CompraBoletasLogic compraBoletasLogic;
 
@@ -54,6 +53,8 @@ public class CompraBoletasLogicTest {
     private List<CompraEntity> data = new ArrayList<CompraEntity>();
 
     private List<BoletaEntity> boletasData = new ArrayList();
+    
+    private List<BoletaEntity> boletasPrueba = new ArrayList();
 
     
     /**
@@ -109,6 +110,14 @@ public class CompraBoletasLogicTest {
             em.persist(boletas);
             boletasData.add(boletas);
         }
+        
+        for (int i = 0; i < 3; i++) 
+        {
+            BoletaEntity boletas = factory.manufacturePojo(BoletaEntity.class);
+            em.persist(boletas);
+            boletasPrueba.add(boletas);
+        }
+        
         for (int i = 0; i < 3; i++) {
             CompraEntity entity = factory.manufacturePojo(CompraEntity.class);
             em.persist(entity);
@@ -126,10 +135,13 @@ public class CompraBoletasLogicTest {
     public void addBoletaTest() {
         CompraEntity entity = data.get(0);
         BoletaEntity boletaEntity = boletasData.get(1);
-        BoletaEntity response = compraBoletasLogic.createBoleta(boletaEntity.getId(), entity.getId());
-
+        BoletaEntity response = compraBoletasLogic.addBoleta(entity.getId() , boletaEntity.getId());
+        
         Assert.assertNotNull(response);
         Assert.assertEquals(boletaEntity.getId(), response.getId());
+        Assert.assertEquals(entity, response.getCompra());
+        System.out.println(entity.getBoletas().contains(response));
+        Assert.assertTrue(entity.getBoletas().contains(response));
     }
 
     /**
@@ -170,15 +182,13 @@ public class CompraBoletasLogicTest {
      */
     @Test
     public void deleteBoletaTest() throws BusinessLogicException {
-        CompraEntity entity = data.get(0);
-        BoletaEntity boletaEntity = boletasData.get(0);
-        compraBoletasLogic.deleteBoleta(entity.getId(), boletaEntity.getId());
 
-        entity= compraLogic.getCompra(entity.getId());
+        BoletaEntity boletaEntity = boletasData.get(0);
+        compraBoletasLogic.deleteBoleta(boletaEntity.getCompra().getId(), boletaEntity.getId());
+
+        CompraEntity entity= compraLogic.getCompra(boletaEntity.getCompra().getId());
         Assert.assertFalse(entity.getBoletas().contains(boletaEntity));
        
-        boletaEntity = boletaLogic.getBoleta(boletaEntity.getId());
-        Assert.assertNull(boletaEntity.getCompra());
     }
     
     
@@ -190,17 +200,19 @@ public class CompraBoletasLogicTest {
     @Test
     public void deleteBoletasTest() throws BusinessLogicException {
         CompraEntity entity = data.get(0);
-        entity.setBoletas(boletasData.subList(0,3));
-        List<BoletaEntity> boletas = entity.getBoletas();
-        compraBoletasLogic.deleteBoletas(entity.getId());
+        
+     
+        entity.setBoletas(boletasPrueba);
+        Assert.assertFalse(entity.getBoletas().isEmpty());
+        
+        CompraEntity res = compraBoletasLogic.deleteBoletas(entity.getId());
 
         entity = compraLogic.getCompra(entity.getId());
         
-        Assert.assertTrue(entity.getBoletas().isEmpty());
+        Assert.assertTrue(res.getBoletas().isEmpty());
+        Assert.assertEquals(entity.getId(), res.getId());
         
-//        Assert.assertNull(boletas.get(0).getCompra());
-//        Assert.assertNull(boletas.get(1).getCompra());
-//        Assert.assertNull(boletas.get(2).getCompra());
+        
     }
 
     /**

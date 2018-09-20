@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7f981a0e-2383-4442-85ca-3e34ce782465",
+		"_postman_id": "f9d8fa2e-af95-4b86-bc6a-bf76ee71b570",
 		"name": "EspectaculoCollections",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -8,7 +8,7 @@
 		{
 			"name": "http://localhost:8080/s2_boletas-api/api/espectaculos",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -20,7 +20,7 @@
 					"raw": "{\n\"name\":\"yolo\"\n,\"fecha\":\"2012-03-19T07:22Z\"\n,\"descripcion\":\"es un musical\"\n,\"artista\":\"Coldplay\"\n\t\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos",
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -29,7 +29,8 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"espectaculos"
+						"espectaculos",
+						"2"
 					]
 				}
 			},
@@ -101,7 +102,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/",
 					"protocol": "http",
@@ -155,7 +159,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/2",
 					"protocol": "http",
