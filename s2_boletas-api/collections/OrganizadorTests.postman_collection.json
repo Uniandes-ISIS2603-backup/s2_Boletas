@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "c7fb1911-0fb4-493f-83d1-8ab394429635",
+		"name": "OrganizadorTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"usuario\": \"r.casalla\", \"nombre\": \"Rubby\", \"ganancia\": \"123\" , \"presupuesto\": \"345\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/organizadores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"organizadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comprobacion no usuario duplicado",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"usuario\": \"r.casalla\", \"nombre\": \"Rubby\", \"ganancia\": \"123\" , \"presupuesto\": \"345\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/organizadores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"organizadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST organizador",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"usuario\": \"r.casalla\", \"nombre\": \"Rubby\", \"ganancia\": \"123\" , \"presupuesto\": \"345\"}"
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/organizadores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"organizadores"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
