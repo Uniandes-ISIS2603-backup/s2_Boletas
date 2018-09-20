@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "e7ceb766-d0a5-4e01-ada9-8f797b6f1635",
+		"name": "ComentarioTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/comentarios/4",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mensaje\":\"No me agrado\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/4?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios",
+						"4"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/comentarios/4",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mensaje\":\"No me agrado\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/4?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios",
+						"4"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/comentarios/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mensaje\":\"Fue un gran show\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios",
+						""
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/comentarios/3",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mensaje\":\"Fue un gran show\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/3?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios",
+						"3"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/comentarios",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mensaje\":\"Fue un gran show\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

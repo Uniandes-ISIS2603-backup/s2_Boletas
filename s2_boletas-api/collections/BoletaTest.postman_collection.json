@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "c2c731d3-cb8f-4bff-a937-5b7785287008",
+		"name": "BoletaTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/boletas/5",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"precio\":100000, \n\t\"fecha\":\"19-03-2018\",\n\t\"vendida\":false\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/5?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas",
+						"5"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/boletas/5",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"precio\":100000, \n\t\"fecha\":\"19-03-2018\",\n\t\"vendida\":false\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/5?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas",
+						"5"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/boletas/5",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"precio\":200000, \n\t\"fecha\":\"19-03-2018\",\n\t\"vendida\":true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/5?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas",
+						"5"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/boletas",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"precio\":200000, \n\t\"fecha\":\"19-03-2018\",\n\t\"vendida\":true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/boletas?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

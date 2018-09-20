@@ -19,12 +19,23 @@ public class ComentarioDTO implements Serializable{
     /**
      * Id del comentario
      */
-    public Long comentarioID;
+    private Long id;
     
     /**
      * Mensaje que contiene el comentario
      */
-    public String mensaje;
+    private String mensaje;
+    
+    /**
+     * Espectaculo al que pertenece el comentario
+     */
+    private EspectaculoDTO espectaculo;
+    
+    /**
+     * Cliente al que pertenece el comentario
+     */
+    private ClienteDTO cliente;
+            
     
     /**
      * Constructor vacío de la clase
@@ -40,8 +51,17 @@ public class ComentarioDTO implements Serializable{
     {
         if(comentario!= null)
         {   
-            comentarioID = comentario.getId();
+            id = comentario.getId();
             mensaje = comentario.getMensaje();
+            if(comentario.getCliente()!=null)
+            {
+                cliente = new ClienteDTO(comentario.getCliente());
+            }
+            if(comentario.getEspectaculo()!=null)
+            {
+                espectaculo = new EspectaculoDTO(comentario.getEspectaculo());
+            }
+            
         }
     }
     
@@ -52,8 +72,16 @@ public class ComentarioDTO implements Serializable{
     public ComentarioEntity toEntity()
     {
        ComentarioEntity comentario = new ComentarioEntity();
-       comentario.setId(comentarioID);
+       comentario.setId(id);
        comentario.setMensaje(mensaje);
+       if(espectaculo!=null)
+       {
+           comentario.setEspectaculo(espectaculo.toEntity());
+       }
+       if(cliente!=null)
+       {
+           comentario.setCliente(cliente.toEntity());
+       }
        return comentario;
     }
 
@@ -62,7 +90,7 @@ public class ComentarioDTO implements Serializable{
      * @return id de comentario
      */
     public Long getComentarioID() {
-        return comentarioID;
+        return id;
     }
 
     /**
@@ -70,7 +98,7 @@ public class ComentarioDTO implements Serializable{
      * @param comentarioID id a asignar
      */
     public void setComentarioID(Long comentarioID) {
-        this.comentarioID = comentarioID;
+        this.id = comentarioID;
     }
 
     /**
@@ -88,6 +116,23 @@ public class ComentarioDTO implements Serializable{
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
+
+    public EspectaculoDTO getEspectaculo() {
+        return espectaculo;
+    }
+
+    public void setEspectaculo(EspectaculoDTO espectaculo) {
+        this.espectaculo = espectaculo;
+    }
+
+    public ClienteDTO getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteDTO cliente) {
+        this.cliente = cliente;
+    }
+    
     
     @Override
     public String toString() {
