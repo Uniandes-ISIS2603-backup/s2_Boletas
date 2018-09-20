@@ -139,8 +139,6 @@ public class CompraBoletasLogicTest {
         
         Assert.assertNotNull(response);
         Assert.assertEquals(boletaEntity.getId(), response.getId());
-        Assert.assertEquals(entity, response.getCompra());
-        Assert.assertTrue(entity.getBoletas().contains(response));
     }
 
     /**
