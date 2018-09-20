@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.ejb;
 
-import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
+
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;

@@ -18,16 +18,37 @@ import java.util.List;
  */
 public class EspectaculoDetailDTO extends EspectaculoDTO implements Serializable
 {
-    
+    /**
+     * Relacion con el objeto BoletaDTO, espectaculo contiene una lista de 
+     * boletas
+     * 
+     */
     private List<BoletaDTO> boletas;
     
+    
+    /**
+     * Relacion de espectaculo con ComentarioDTO, espectaculo tiene una lista
+     * de comentarios respecto a este
+     */
     private List<ComentarioDTO> comentarios;
     
+    
+    /**
+     * Constructor vacio de la clase
+     */
     public EspectaculoDetailDTO()
     {
        
     }
     
+    
+    /**
+     * Constructor del EspectaculoDetailDTO
+     * Primero hace un super de su superclase EspectaculoDTO, pasandole el mismo
+     * objeto como parametro
+     * @param espectaculo Un espectaculoEntity, con toda la informacion necesaria
+     * para hacer el objeto DTO
+     */
     public EspectaculoDetailDTO(EspectaculoEntity espectaculo)
     {
         super(espectaculo);
@@ -52,11 +73,20 @@ public class EspectaculoDetailDTO extends EspectaculoDTO implements Serializable
         }
     }
     
+    
+    /**
+     * Devulve la lista de boletas asociadas a el espectaculo
+     * @return 
+     */
     public List<BoletaDTO> getBoletas()
     {
         return boletas;
     }
     
+    /**
+     * Establece la lista de boletas asociadas a un espectaculo
+     * @param boletas, una lista con objetos de tipo BoletaDTO
+     */
     public void setBoletas(List<BoletaDTO> boletas)
     {
         this.boletas = boletas;
@@ -90,6 +120,10 @@ public class EspectaculoDetailDTO extends EspectaculoDTO implements Serializable
         return comentarios;
     }
     
+    /**
+     * Establece un conjunto de comentarios hacia el espectaculo
+     * @param comentarios 
+     */
     public void setComentarios(List<ComentarioDTO> comentarios)
     {
         this.comentarios = comentarios;

@@ -18,8 +18,12 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class EspectaculoDTO implements Serializable
 {
 
+    //Atributos
     
-    
+    /**
+     * Atributo que da el id de un espectaculo, este lo define la base de datos
+     * cuando se persiste
+     */
     private Long espectaculoId;
     
     private String nombre;
@@ -38,12 +42,20 @@ public class EspectaculoDTO implements Serializable
     
     private LugarDTO lugar;
     
-    
+    /**
+     * Constructor vacio de la clase
+     */
     public EspectaculoDTO()
     {
         
     }
     
+    
+    /**
+     * Constructor de la clase, que le entra un objeto EspectaculoEntity
+     * y pasa todos sus datos al DTO
+     * @param espectaculo EspectaculoEntity, contiene los valores de los atributos
+     */
     public EspectaculoDTO(EspectaculoEntity espectaculo)
     {
         if (espectaculo != null)
@@ -74,6 +86,13 @@ public class EspectaculoDTO implements Serializable
         
     }
     
+    
+    /**
+     * Metodo para convertir de un EspectaculoDTO a un espectaculoEntity
+     * Lo que hace es pasar todos los valores a un nuevo objeto de tipo 
+     * EspectaculoEntity
+     * @return Un objeto EspectaculoEntity
+     */
     public EspectaculoEntity toEntity()
     {
         EspectaculoEntity espectaculo = new EspectaculoEntity();
@@ -98,51 +117,96 @@ public class EspectaculoDTO implements Serializable
         return espectaculo;
     }
     
+    
+    /**
+     * El id del espectaculo
+     * @return 
+     */
     public Long getId()
     {
         return espectaculoId;
     }
     
+    
+    /**
+     * Establece cual es el id del DTO, este no es establecido por el usuario
+     * sino que cuando se persiste, se agrega
+     * @param id 
+     */
     public void setId(Long id)
     {
         espectaculoId = id;
     }
     
+    
+    /**
+     * @return Retorna un string con el nombre del espectaculo
+     */
     public String getNombre()
     {
         return nombre;
     }
     
+    
+    /**
+     * 
+     * @param nombre, Retorna el nombre del espectaculo
+     */
     public void setNombre(String nombre)
     {
         this.nombre = nombre;
     }
     
+    
+    /**
+     * @return fecha, Retorna un objeto de tipo Date, con la fecha, 
+     * y hora en la que se va a hacer el espectaculo
+     */
     public Date getFecha()
     {
         return fecha;
     }
     
+    
+    /**
+     * 
+     * @param pFecha, Se define la fecha en la que va a suceder el espectaculo
+     */
     public void setFecha(Date pFecha)
     {
         this.fecha = pFecha;
     }
     
+    
+    /**
+     * @return Retorna un mensaje con la informacion del espectaculo, su descripcion
+     */
     public String getDescripcion()
     {
         return descripcion;
     }
     
+    /**
+     * @param description Establece cual es la descripcion sobre un espectaculo
+     */
     public void setDescripcion(String description)
     {
         this.descripcion = description;
     }
     
+    
+    /**
+     * @return Artista, el nombre del artista o grupo
+     */
     public String getArtista()
     {
         return artista;
     }
     
+    
+    /**
+     * @param artist Un string con el nombre del artista
+     */
     public void setArtista(String artist)
     {
         this.artista = artist;

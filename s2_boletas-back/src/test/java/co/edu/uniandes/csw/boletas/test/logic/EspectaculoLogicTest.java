@@ -30,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author estudiante
+ * @author Sebastian Rodriguez Beltran
  */
 @RunWith(Arquillian.class)
 public class EspectaculoLogicTest 

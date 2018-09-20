@@ -51,7 +51,7 @@ public class ClienteCompraLogic {
     }
     
         /**
-     * Obtiene una instancia de CompraEntity asociada a una instancia de Book
+     * Obtiene una instancia de CompraEntity asociada a una instancia de Cliente
      *
      * @param clientesId Identificador de la instancia de Book
      * @param compraId Identificador de la instancia de Compra
