@@ -17,7 +17,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"numero\":\"A1\"\n}"
+					"raw": "{\n\t\"numero\":\"A2\",\n\t\"tipo\":\"palcos\",\n\t\"disponible\":true\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_boletas-api/api/sillas",
@@ -47,7 +47,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"numero\":\"Ax1\"\n}"
+					"raw": "{\n\t\"numero\":\"A1\",\n\t\"disponible\": true,\n\t\"tipo\":\"palcos\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_boletas-api/api/sillas/1",
