@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.boletas.resources;
 
 import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.dtos.LugarDTO;
+import co.edu.uniandes.csw.boletas.dtos.LugarDetailDTO;
 import co.edu.uniandes.csw.boletas.ejb.LugarLogic;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class LugarResource {
         {
             throw new WebApplicationException(bE.getMessage());
         }
-        return new LugarDTO(updatedEntity);
+        return new LugarDetailDTO(updatedEntity);
     }
     
     /**
@@ -89,7 +90,7 @@ public class LugarResource {
         {
             throw new WebApplicationException(e.getMessage());
         }
-        return new LugarDTO(finded);
+        return new LugarDetailDTO(finded);
     }
     
     @GET
@@ -98,7 +99,7 @@ public class LugarResource {
         List<LugarEntity> lugaresEntities = logic.getLugares();
         List<LugarDTO> lugaresDTO = new ArrayList<LugarDTO>();
         for(LugarEntity entitieActual : lugaresEntities)
-            lugaresDTO.add(new LugarDTO(entitieActual));
+            lugaresDTO.add(new LugarDetailDTO(entitieActual));
         return lugaresDTO;
     }
     
