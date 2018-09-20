@@ -104,49 +104,5 @@ public class CompraBoletasLogic {
         return boletas;
     }
 
-
-    /**
-     * Desasocia una boleta existente de una compra existente.
-     * A la boleta le quita la compra, y a la compra, quita la boleta de la lista.
-     *
-     * @param compraId Identificador de la instancia de Compra
-     * @param boletaId Identificador de la instancia de Boleta
-     * @return la compra a la que se le elimino la boleta
-     */
-    public CompraEntity deleteBoleta(Long compraId, Long boletaId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar una boleta de la compra con id = {0}", compraId);
-        CompraEntity compraEntity = compraPersistence.find(compraId);
-        BoletaEntity boletaEntity = boletaPersistence.find(boletaId);
-        
-        List<BoletaEntity> boletas = compraEntity.getBoletas();
-        int index = boletas.indexOf(boletaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar una boleta de la compra con id = {0}", compraId);
-        if (index >= 0) {
-            boletas.remove(index);
-            compraEntity.setBoletas(boletas);
-            return compraEntity;
-        }
-        throw new BusinessLogicException("La boleta no está asociada a la compra");
-        
-       
-    }  
-
-
-    /**
-     * Desasocia todas las boletas existentes de una compra existente
-     *
-     * @param compraId Identificador de la instancia de Compra
-     * @return la compra a la que se eliminaron sus boletas
-     */
-    public CompraEntity deleteBoletas(Long compraId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar las boletas de la compra con id = {0}", compraId);
-        CompraEntity compraEntity = compraPersistence.find(compraId);
-              
-        List<BoletaEntity> listaVacia = new ArrayList<>() ;    
-        compraEntity.setBoletas(listaVacia);
-        
-        LOGGER.log(Level.INFO, "Termina proceso de borrar las boletas de la compra con id = {0}", compraId);
-        return compraEntity;
-    }
     
 }
