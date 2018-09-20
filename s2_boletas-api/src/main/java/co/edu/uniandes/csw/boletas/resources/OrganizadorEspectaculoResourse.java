@@ -37,7 +37,7 @@ public class OrganizadorEspectaculoResourse
 {
     private static final Logger LOGGER = Logger.getLogger(OrganizadorEspectaculoResourse.class.getName());
 
-  @Inject
+   @Inject
    private OrganizadorEspectaculoLogic organizadorEspectaculoLogic;
 
     @Inject
