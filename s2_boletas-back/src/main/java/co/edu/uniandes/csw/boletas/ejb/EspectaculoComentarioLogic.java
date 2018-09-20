@@ -89,4 +89,27 @@ public class EspectaculoComentarioLogic
         throw new BusinessLogicException("El comentario no estaba asociado a el espectaculo");
     }
     
+    
+    /**
+     * Metodo que remplaza los comentarios de un espectaculo, con una lista que le entra como parametro
+     * @param espectaculosId, el Espectaculo a cambiar comentarios
+     * @param comentarios Una lista de ComentariosEntity para ser agregada a  un 
+     * espectaculo
+     * @return La lista de comentarios que fue agregada al espectaculo
+     */
+    public List<ComentarioEntity> remplazarComentarios(Long espectaculosId, List<ComentarioEntity> comentarios) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el espectaculo con id = {0}", espectaculosId);
+        EspectaculoEntity espectaculoEntity = espectaculoPersistence.find(espectaculosId);
+        List<ComentarioEntity> listaComentarios = comentarioPersistence.findAll();
+        for (ComentarioEntity comentario : listaComentarios) {
+            if (listaComentarios.contains(comentario)) {
+                comentario.setEspectaculo(espectaculoEntity);
+            } else if (comentario.getEspectaculo() != null && comentario.getEspectaculo().equals(espectaculoEntity)) {
+                comentario.setEspectaculo(null);
+            }
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar la editorial con id = {0}", espectaculosId);
+        return listaComentarios;
+    }
+    
 }

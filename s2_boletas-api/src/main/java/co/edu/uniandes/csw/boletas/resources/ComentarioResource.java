@@ -131,7 +131,7 @@ public class ComentarioResource {
             throw new WebApplicationException("El recurso /comentarios/" + comentariosId + " no existe.", 404);
         }
         ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioLogic.updateComentario(comentariosId, comentario.toEntity()));
-        LOGGER.log(Level.INFO, "BoletaResource updateBoleta: output: {0}", comentarioDTO.toString());
+        LOGGER.log(Level.INFO, "ComentarioResource updateComentario: output: {0}", comentarioDTO.toString());
         return comentarioDTO;
     }
     

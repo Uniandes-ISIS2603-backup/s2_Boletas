@@ -119,6 +119,13 @@ public class EspectaculoResourse
         return dto;
     }
     
+    
+    /**
+     * Metodo que retorna una lista de espectaculos
+     * Esta anotado con el get, devulve un JSON con todos los objetos de 
+     * EspectaculoDetailDTO
+     * @return 
+     */
     @GET 
     public List<EspectaculoDetailDTO> getEspectaculos()
     {
@@ -128,6 +135,15 @@ public class EspectaculoResourse
         return listaEspectaculos;
     }
     
+    
+    /**
+     * Metodo para eliminar un espectaculo del sistema
+     * Esta anotado con @DELETE y define la operacion de eliminar sobre
+     * /espectaculos/{id}
+     * @param espectaculoId El id del espectaculo que se quiere eliminar
+     * @throws BusinessLogicException En caso de que el espectaculo a eliminar
+     * no exista
+     */
     @DELETE
     @Path("{espectaculosId: \\d+}")
     public void deleteEspectaculo(@PathParam("espectaculosId") Long espectaculoId) throws BusinessLogicException 
@@ -152,6 +168,15 @@ public class EspectaculoResourse
        return list;
     }
     
+    
+    /**
+     * Cuando se quiera acceder de espectaculos a sus comentarios, este metodo 
+     * va a retornar la clase de EspectaculoComentarioResourse
+     * que va a tener sus propios metodos para devolver lo solicitado
+     * @param espectaculosId El recurso sobre el cual se quieren hacer las 
+     * consultas o operaciones
+     * @return La clase de EspectaculoComentarioResourse
+     */
     @Path("{espectaculosId: \\d+}/comentarios")
     public Class<EspectaculoComentarioResourse> getEditorialBooksResource(@PathParam("espectaculosId") Long espectaculosId) {
         if (espectaculoLogic.getEspectaculo(espectaculosId)== null) {

@@ -41,21 +41,39 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     private String tipo;
 
     
+    /**
+     * Relacion de uno a muchos con boletas, un espectaculo tiene muchas boletas
+     */
     @PodamExclude
     @OneToMany(mappedBy = "espectaculo",cascade= CascadeType.PERSIST, fetch = FetchType.LAZY)
 //    @OneToMany(mappedBy = "espectaculo")
     private List<BoletaEntity> boletas = new ArrayList<>(); 
 
-    
+    /**
+     * Relacion de muchos a uno, un lugar puede tener muchos espectaculos
+     * y un espectaculo tiene un solo lugar
+     */
     @PodamExclude
     @ManyToOne(fetch = FetchType.LAZY)
     private LugarEntity lugar;
     
+    
+    /**
+     * Relacion con comentarios, un espectaculo va a tener muchos comentarios
+     * y cada comentario es sobre solo un espectaculo
+     * Se define el cascade persist, en caso de eliminar el espectaculo sus 
+     * comentarios tambien se eliminan
+     */
     @PodamExclude
     @OneToMany(mappedBy = "espectaculo",cascade= CascadeType.PERSIST, fetch = FetchType.LAZY)
 //    @OneToMany(mappedBy = "espectaculo")
     private List<ComentarioEntity> comentarios = new ArrayList<>();
     
+    
+    /**
+     * Relacion de muchos a uno, un organizador tiene muchos espectaculos
+     * y un espectaculo es hecho por un organizador
+     */
     @PodamExclude
     @javax.persistence.ManyToOne()
     private OrganizadorEntity organizador;
