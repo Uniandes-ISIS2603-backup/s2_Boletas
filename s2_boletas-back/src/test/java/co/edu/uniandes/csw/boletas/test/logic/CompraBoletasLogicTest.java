@@ -40,8 +40,7 @@ public class CompraBoletasLogicTest {
 
     @Inject
     private CompraLogic compraLogic;
-    @Inject
-    private BoletaLogic boletaLogic;
+
     @Inject
     private CompraBoletasLogic compraBoletasLogic;
 
@@ -136,7 +135,7 @@ public class CompraBoletasLogicTest {
     public void addBoletaTest() {
         CompraEntity entity = data.get(0);
         BoletaEntity boletaEntity = boletasData.get(1);
-        BoletaEntity response = compraBoletasLogic.createBoleta(entity.getId() , boletaEntity.getId());
+        BoletaEntity response = compraBoletasLogic.addBoleta(entity.getId() , boletaEntity.getId());
         
         Assert.assertNotNull(response);
         Assert.assertEquals(boletaEntity.getId(), response.getId());
@@ -183,15 +182,13 @@ public class CompraBoletasLogicTest {
      */
     @Test
     public void deleteBoletaTest() throws BusinessLogicException {
-        CompraEntity entity = data.get(0);
-        BoletaEntity boletaEntity = boletasData.get(0);
-        compraBoletasLogic.deleteBoleta(entity.getId(), boletaEntity.getId());
 
-        entity= compraLogic.getCompra(entity.getId());
+        BoletaEntity boletaEntity = boletasData.get(0);
+        compraBoletasLogic.deleteBoleta(boletaEntity.getCompra().getId(), boletaEntity.getId());
+
+        CompraEntity entity= compraLogic.getCompra(boletaEntity.getCompra().getId());
         Assert.assertFalse(entity.getBoletas().contains(boletaEntity));
        
-        boletaEntity = boletaLogic.getBoleta(boletaEntity.getId());
-        Assert.assertNull(boletaEntity.getCompra());
     }
     
     
@@ -206,16 +203,16 @@ public class CompraBoletasLogicTest {
         
      
         entity.setBoletas(boletasPrueba);
+        Assert.assertFalse(entity.getBoletas().isEmpty());
         
-        compraBoletasLogic.deleteBoletas(entity.getId());
+        CompraEntity res = compraBoletasLogic.deleteBoletas(entity.getId());
 
         entity = compraLogic.getCompra(entity.getId());
         
-        Assert.assertTrue(entity.getBoletas().isEmpty());
+        Assert.assertTrue(res.getBoletas().isEmpty());
+        Assert.assertEquals(entity.getId(), res.getId());
         
-        Assert.assertNull(boletasPrueba.get(0).getCompra());
-        Assert.assertNull(boletasPrueba.get(1).getCompra());
-        Assert.assertNull(boletasPrueba.get(2).getCompra());
+        
     }
 
     /**
