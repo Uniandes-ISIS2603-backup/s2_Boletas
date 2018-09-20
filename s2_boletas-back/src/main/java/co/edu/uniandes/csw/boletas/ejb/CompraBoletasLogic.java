@@ -39,7 +39,7 @@ public class CompraBoletasLogic {
      * @param compraId, id de la compra en donde se va a guardar la boleta
      * @return la boleta creada
      */
-    public BoletaEntity createBoleta(Long boletaId, Long compraId) 
+    public BoletaEntity createBoleta(Long compraId, Long boletaId ) 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle una boleta a la compra con id = {0}", compraId);
         CompraEntity compraEntity = compraPersistence.find(compraId);
@@ -48,8 +48,10 @@ public class CompraBoletasLogic {
         boletaEntity.setCompra(compraEntity);
         
         List<BoletaEntity> lista = compraEntity.getBoletas(); 
-        lista.add(boletaEntity);
+        lista.add(boletaEntity);        
         putBoletas(compraId, lista);
+        
+        System.out.println(compraEntity.getBoletas().contains(boletaEntity)+ "KUSO");
         LOGGER.log(Level.INFO, "Termina proceso de agregarle una boleta a la compra con id = {0}", compraId);
         return boletaEntity;
     }
@@ -138,7 +140,7 @@ public class CompraBoletasLogic {
      * @param compraId Identificador de la instancia de Compra
      * @param boletaId Identificador de la instancia de Boleta
      */
-    public void deleteBoleta(Long compraId, Long boletaId) {
+    public void deleteBoleta(Long compraId, Long boletaId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar una boleta de la compra con id = {0}", compraId);
         CompraEntity compraEntity = compraPersistence.find(compraId);
         BoletaEntity boletaEntity = boletaPersistence.find(boletaId);
@@ -147,12 +149,14 @@ public class CompraBoletasLogic {
         
         List<BoletaEntity> boletas = compraEntity.getBoletas();
         int index = boletas.indexOf(boletaEntity);
-        
-        boletas.remove(index);
-        
-        putBoletas(compraId, boletas);
-        
         LOGGER.log(Level.INFO, "Termina proceso de borrar una boleta de la compra con id = {0}", compraId);
+        if (index >= 0) {
+            boletas.remove(index);
+            putBoletas(compraId, boletas);
+        }
+        throw new BusinessLogicException("La boleta no está asociada a la compra");
+        
+       
     }
     
 }

@@ -136,13 +136,12 @@ public class CompraBoletasLogicTest {
     public void addBoletaTest() {
         CompraEntity entity = data.get(0);
         BoletaEntity boletaEntity = boletasData.get(1);
-        BoletaEntity response = compraBoletasLogic.createBoleta(boletaEntity.getId(), entity.getId());
-
-        entity = data.get(0);
+        BoletaEntity response = compraBoletasLogic.createBoleta(entity.getId() , boletaEntity.getId());
         
         Assert.assertNotNull(response);
         Assert.assertEquals(boletaEntity.getId(), response.getId());
         Assert.assertEquals(entity, response.getCompra());
+        System.out.println(entity.getBoletas().contains(response));
         Assert.assertTrue(entity.getBoletas().contains(response));
     }
 
