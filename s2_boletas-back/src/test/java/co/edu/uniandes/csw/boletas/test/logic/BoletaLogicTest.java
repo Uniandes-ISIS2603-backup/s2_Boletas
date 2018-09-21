@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.BoletaPersistence;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -117,6 +118,7 @@ public class BoletaLogicTest {
     public void createBoletaTest() throws BusinessLogicException {
         BoletaEntity newEntity = factory.manufacturePojo(BoletaEntity.class);
         EspectaculoEntity espEntity = factory.manufacturePojo(EspectaculoEntity.class);
+        espEntity.setFecha(new Date(2020,2,2));
         espEntity = espLogic.createEntity(espEntity);
         newEntity.setEspectaculo(espEntity);
         BoletaEntity result = boletaLogic.createBoleta(newEntity);
