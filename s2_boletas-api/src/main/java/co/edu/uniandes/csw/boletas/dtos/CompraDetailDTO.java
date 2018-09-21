@@ -24,7 +24,7 @@ public class CompraDetailDTO extends CompraDTO implements Serializable {
 
     
     
-    private ClienteDTO cliente;
+
     
     /**
      * Constructor por defecto
@@ -48,10 +48,6 @@ public class CompraDetailDTO extends CompraDTO implements Serializable {
                 }
             }
             
-            if (compraEntity.getCliente()!=null)
-            {
-                    cliente=new ClienteDTO(compraEntity.getCliente());
-            }
         }
     }
     
@@ -71,11 +67,7 @@ public class CompraDetailDTO extends CompraDTO implements Serializable {
             }
             compraEntity.setBoletas(boletasEntity);
         }
-        if(cliente!= null)
-        {
-            compraEntity.setCliente(cliente.toEntity());
-        }
-        
+                
         return compraEntity;
     }
     

@@ -12,10 +12,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "614f2e6b-acd5-4984-b150-ad0a1645bb7a",
+						"id": "64575822-77e2-4255-ad37-1ef3c1cfb972",
 						"type": "text/javascript",
 						"exec": [
-							""
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
 						]
 					}
 				}
@@ -54,10 +56,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "fc088aee-3573-435a-bbc7-ff04842c818c",
+						"id": "7885f00e-f4e8-4c4d-bd0d-83dbc44b82e7",
 						"type": "text/javascript",
 						"exec": [
-							""
+							"pm.test(\"Status code is 412\", function () {",
+							"    pm.response.to.have.status(412);",
+							"});"
 						]
 					}
 				}
@@ -96,10 +100,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1a4d1bef-e687-4a23-8e74-0f6df704b16f",
+						"id": "05b12c82-8123-442a-a2d3-128ffef2a3bd",
 						"type": "text/javascript",
 						"exec": [
-							""
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
 						]
 					}
 				}
@@ -109,7 +115,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compras/6",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/8",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -119,7 +125,7 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"6"
+						"8"
 					]
 				}
 			},
@@ -131,10 +137,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c8165bb1-d062-42b2-85d2-e1f6574d8c73",
+						"id": "bc49ad90-3aeb-4a5f-a1bd-eaff5d24d575",
 						"type": "text/javascript",
 						"exec": [
-							""
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
 						]
 					}
 				}
@@ -166,10 +174,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1d4d8cca-140f-4a73-b54a-c2aadd91a4be",
+						"id": "582ee16f-bad6-4578-8d2d-0525e1a21fa4",
 						"type": "text/javascript",
 						"exec": [
-							""
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
 						]
 					}
 				}
@@ -209,10 +219,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f8d7bfa0-5ee9-4d91-bc49-5f542da7b062",
+						"id": "32de7d66-c37d-47cd-8792-2ab5fba96916",
 						"type": "text/javascript",
 						"exec": [
-							""
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
 						]
 					}
 				}
@@ -252,10 +264,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4d8d54e3-d1de-46dd-9567-37c5139feff7",
+						"id": "7d396b9b-f13f-45d4-87d3-2f7725a0baac",
 						"type": "text/javascript",
 						"exec": [
-							""
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
 						]
 					}
 				}
@@ -287,10 +301,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c6d1ca27-d1e6-4397-93d3-fcedbfae598b",
+						"id": "caa5cba5-0fb1-4c5c-9563-6602a3843853",
 						"type": "text/javascript",
 						"exec": [
-							""
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
 						]
 					}
 				}
@@ -318,6 +334,20 @@
 		},
 		{
 			"name": "GET compras",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd86dbbe-9e9d-4173-adfe-2994c0fcc25a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],

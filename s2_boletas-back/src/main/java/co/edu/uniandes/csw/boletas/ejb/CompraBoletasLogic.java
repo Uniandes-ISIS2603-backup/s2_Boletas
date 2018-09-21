@@ -45,7 +45,8 @@ public class CompraBoletasLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de asociarle una boleta a la compra con id = {0}", comprasId);
         CompraEntity compraEntity = compraPersistence.find(comprasId);
         BoletaEntity boletaEntity = boletaPersistence.find(boletasId);
-        compraEntity.getBoletas().add(boletaEntity);
+       // compraEntity.getBoletas().add(boletaEntity);
+        boletaEntity.setCompra(compraEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociarle una compra a la compra con id = {0}", comprasId);
 	return boletaPersistence.find(boletasId);
     }
