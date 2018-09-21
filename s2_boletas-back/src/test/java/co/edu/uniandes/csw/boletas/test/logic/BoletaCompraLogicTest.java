@@ -5,13 +5,14 @@
  */
 package co.edu.uniandes.csw.boletas.test.logic;
 
+import co.edu.uniandes.csw.boletas.ejb.BoletaCompraLogic;
 import co.edu.uniandes.csw.boletas.ejb.BoletaLogic;
-import co.edu.uniandes.csw.boletas.ejb.CompraBoletasLogic;
-import co.edu.uniandes.csw.boletas.ejb.CompraLogic;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.CompraPersistence;
+import org.jboss.arquillian.junit.Arquillian;
+import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -34,15 +35,14 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Gabriel Hamilton
  */
 @RunWith(Arquillian.class)
-public class CompraBoletasLogicTest {
+public class BoletaCompraLogicTest {
     
-    private PodamFactory factory = new PodamFactoryImpl();
+      private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
-    private CompraLogic compraLogic;
-
+    private BoletaLogic boletasLogic;
     @Inject
-    private CompraBoletasLogic compraBoletasLogic;
+    private BoletaCompraLogic boletaCompraLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -53,10 +53,7 @@ public class CompraBoletasLogicTest {
     private List<CompraEntity> data = new ArrayList<CompraEntity>();
 
     private List<BoletaEntity> boletasData = new ArrayList();
-    
-    private List<BoletaEntity> boletasPrueba = new ArrayList();
 
-    
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
      * El jar contiene las clases, el descriptor de la base de datos y el
@@ -66,7 +63,7 @@ public class CompraBoletasLogicTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(CompraEntity.class.getPackage())
-                .addPackage(CompraLogic.class.getPackage())
+                .addPackage(BoletaLogic.class.getPackage())
                 .addPackage(CompraPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
@@ -106,18 +103,10 @@ public class CompraBoletasLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            BoletaEntity boletas = factory.manufacturePojo(BoletaEntity.class);
-            em.persist(boletas);
-            boletasData.add(boletas);
+            BoletaEntity books = factory.manufacturePojo(BoletaEntity.class);
+            em.persist(books);
+            boletasData.add(books);
         }
-        
-        for (int i = 0; i < 3; i++) 
-        {
-            BoletaEntity boletas = factory.manufacturePojo(BoletaEntity.class);
-            em.persist(boletas);
-            boletasPrueba.add(boletas);
-        }
-        
         for (int i = 0; i < 3; i++) {
             CompraEntity entity = factory.manufacturePojo(CompraEntity.class);
             em.persist(entity);
@@ -129,62 +118,27 @@ public class CompraBoletasLogicTest {
     }
 
     /**
-     * Prueba para asociar una boleta existente a un compra.
-     */
-    @Test
-    public void addBoletaTest() {
-        CompraEntity entity = data.get(0);
-        BoletaEntity boletaEntity = boletasData.get(1);
-        BoletaEntity response = compraBoletasLogic.addBoleta(entity.getId() , boletaEntity.getId());
-        
-        Assert.assertNotNull(response);
-        Assert.assertEquals(boletaEntity.getId(), response.getId());
-    }
-
-    /**
-     * Prueba para obtener una colección de instancias de Boletas asociadas a una
-     * instancia Compra.
-     */
-    @Test
-    public void getBoletasTest() {
-        List<BoletaEntity> list = compraBoletasLogic.getBoletas(data.get(0).getId());
-
-        Assert.assertEquals(1, list.size());
-    }
-
-    /**
-     * Prueba para obtener una instancia de Boleta asociada a una instancia
-     * Compra.
-     *
-     * @throws BusinessLogicException
-     */
-    @Test
-    public void getBoletaTest() throws BusinessLogicException {
-        CompraEntity entity = data.get(0);
-        BoletaEntity boletaEntity = boletasData.get(0);
-        BoletaEntity response = compraBoletasLogic.getBoleta(entity.getId(), boletaEntity.getId());
-
-        Assert.assertEquals(boletaEntity.getId(), response.getId());
-        Assert.assertEquals(boletaEntity.getFecha(), response.getFecha());
-        Assert.assertEquals(boletaEntity.getPrecio(), response.getPrecio());
-        Assert.assertEquals(boletaEntity.getSilla(), response.getSilla());
-        Assert.assertEquals(boletaEntity.getVendida(), response.getVendida());
-    }
-
-    /**
-     * Prueba para remplazar las instancias de Boleta asociadas a una instancia
+     * Prueba para remplazar las instancias de Boletas asociadas a una instancia
      * de Compra.
      */
     @Test
-    public void putBoletasTest() {
-        CompraEntity entity = data.get(0);
-        List<BoletaEntity> list = boletasData.subList(1, 3);
-        compraBoletasLogic.putBoletas(entity.getId(), list);
-
-        entity = compraLogic.getCompra(entity.getId());
-        Assert.assertFalse(entity.getBoletas().contains(boletasData.get(0)));
-        Assert.assertTrue(entity.getBoletas().contains(boletasData.get(1)));
-        Assert.assertTrue(entity.getBoletas().contains(boletasData.get(2)));
+    public void putCompraTest() {
+        BoletaEntity entity = boletasData.get(0);
+        boletaCompraLogic.replaceCompra(entity.getId(), data.get(1).getId());
+        entity = boletasLogic.getBoleta(entity.getId());
+        Assert.assertEquals(entity.getCompra(), data.get(1));
     }
+
+    /**
+     * Prueba para desasociar una boleta existente de una compra existente
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test
+    public void removeBoletaTest() throws BusinessLogicException {
+        boletaCompraLogic.removeCompra(boletasData.get(0).getId());
+        BoletaEntity response = boletasLogic.getBoleta(boletasData.get(0).getId());
+        Assert.assertNull(response.getCompra());
+}
     
 }

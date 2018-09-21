@@ -21,6 +21,7 @@ public class CompraDTO implements Serializable {
     private  Date fecha;
     private String direccion;
     private Boolean estado;
+    private ClienteDTO cliente;
     
     public CompraDTO ()
     {
@@ -36,6 +37,11 @@ public class CompraDTO implements Serializable {
         fecha = compra.getFecha();
         direccion = compra.getDireccion();
         estado= compra.getEstado();
+        if (compra.getCliente()!=null)
+            {
+                    cliente=new ClienteDTO(compra.getCliente());
+            }
+
         
     }
     
@@ -48,6 +54,11 @@ public class CompraDTO implements Serializable {
         compra.setFecha(fecha);
         compra.setDireccion(direccion);
         compra.setEstado(estado);
+        if(cliente!= null)
+        {
+            compra.setCliente(cliente.toEntity());
+        }
+        
         return compra;
     }
     
@@ -89,6 +100,15 @@ public class CompraDTO implements Serializable {
     
     
     /**
+     * retorna el cliente
+     * @return cliente
+     */
+    public ClienteDTO getCliente()
+    {
+        return cliente;
+    }
+    
+    /**
      * retorna la fecha de la compra
      * @return fecha
      */
@@ -115,6 +135,16 @@ public class CompraDTO implements Serializable {
     {
         id=idN;
     }
+    
+    /**
+     * modifica el cliente
+     * @param cliente el cliente nuevo
+     */
+    public void setCliente(ClienteDTO cliente)
+    {
+        this.cliente = cliente;
+    }
+    
     
     /**
      * modifica el costo de la compra
