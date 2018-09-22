@@ -9,6 +9,7 @@ package co.edu.uniandes.csw.boletas.ejb;
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +41,14 @@ public class EspectaculoLogic
         LOGGER.log(Level.INFO, "Inicia el proceso de crear un espectaculo");
         if(persistence.findByName(espec.getNombre()) != null)
         {
-            throw new BusinessLogicException("Exception");
+            throw new BusinessLogicException("Ya existe un espectaculo con ese nombre");
+        }
+        
+        Date date = new Date(2018,9,10);
+        
+        if(espec.getFecha().before(date))
+        {
+            throw new BusinessLogicException("La fecha que se estipulo es anterior a la actual");
         }
         persistence.create(espec);
         

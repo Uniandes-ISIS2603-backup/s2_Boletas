@@ -53,7 +53,7 @@ public class EspectaculoResourse
     public EspectaculoDTO createEspectaculo(EspectaculoDTO espectaculo) throws BusinessLogicException
     { 
         
-        LOGGER.info("EspectaculoResourse createEspectaculo: input: " + espectaculo.toString());
+        LOGGER.log(Level.INFO, "EspectaculoResourse createEspectaculo: input: {0}", espectaculo.toString());
         
         EspectaculoEntity entity = espectaculo.toEntity();
         
@@ -114,7 +114,7 @@ public class EspectaculoResourse
         
         EspectaculoDetailDTO dto = new EspectaculoDetailDTO(entity);
         
-        LOGGER.log(Level.INFO, "EspectaculoResourse getEspectaculo" + dto.toString());
+        LOGGER.log(Level.INFO, "EspectaculoResourse getEspectaculo{0}", dto.toString());
         
         return dto;
     }
@@ -157,7 +157,7 @@ public class EspectaculoResourse
         
        espectaculoLogic.deleteEspectaculo(espectaculoId);
        
-       LOGGER.log(Level.INFO, "Espectaculo con id :" + espectaculoId+"ha sido elimiado");
+       LOGGER.log(Level.INFO, "Espectaculo con id :{0}ha sido elimiado", espectaculoId);
     }
     
     private List<EspectaculoDetailDTO> listEntity2DetailDTO(List<EspectaculoEntity> entityList) {

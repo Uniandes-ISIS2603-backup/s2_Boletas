@@ -43,8 +43,7 @@ public class OrganizadorEspectaculoResourse
     @Inject
     private EspectaculoLogic espectaculoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
-    @Inject
-    private OrganizadorLogic comentarioLogic;
+    
     
     
     
@@ -57,9 +56,9 @@ public class OrganizadorEspectaculoResourse
             throw new WebApplicationException("El recurso /espectaculos" + espectaculosId + " no existe.", 404);
         }
         EspectaculoDTO espectaculoDTO = new EspectaculoDTO(organizadorEspectaculoLogic.addEspectaculo(espectaculosId, organizadoresId));
-//        ComentarioDTO comentarioDTO = new ComentarioDTO(espectaculoComentarioLogic.addComentario(comentariosId, espectaculosId));
-//        LOGGER.log(Level.INFO, "EspectaculoComentarioResourse agregarComentario: output: {0}", comentarioDTO.toString());
-        return new EspectaculoDTO();
+        
+        LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: output: {0}", espectaculoDTO.toString());
+        return espectaculoDTO;
     }
     
     @GET

@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -100,6 +101,8 @@ public class EspectaculoLogicTest
         }
         for (int i = 0; i < 3; i++) {
             EspectaculoEntity entity = factory.manufacturePojo(EspectaculoEntity.class);
+            entity.setFecha(new Date(2022,i,i));
+            System.out.println(entity.getFecha().getYear());
             em.persist(entity);
             data.add(entity);
             if (i == 0) {
@@ -117,6 +120,7 @@ public class EspectaculoLogicTest
     public void createEspectaculoTest() throws BusinessLogicException
     {
         EspectaculoEntity newEntity = factory.manufacturePojo(EspectaculoEntity.class);
+        newEntity.setFecha(new Date(2019,2,2));
         EspectaculoEntity result = espectaculoLogic.createEntity(newEntity);
         Assert.assertNotNull(result);
         EspectaculoEntity entity = em.find(EspectaculoEntity.class, result.getId());
@@ -196,5 +200,20 @@ public class EspectaculoLogicTest
         espectaculoLogic.deleteEspectaculo(entity.getId());
         EspectaculoEntity deleted = em.find(EspectaculoEntity.class, entity.getId());
         Assert.assertNull(deleted);
+    }
+    
+    /**
+     * Prueba para cuando un espectaculo se crea con una fecha anterior a la actual
+     * @throws co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void fechaAnteriorTest() throws BusinessLogicException
+    {
+        EspectaculoEntity entity = factory.manufacturePojo(EspectaculoEntity.class);
+        Date date = new Date(2000,12,12);
+        
+        
+        entity.setFecha(date);
+        espectaculoLogic.createEntity(entity);
     }
 }

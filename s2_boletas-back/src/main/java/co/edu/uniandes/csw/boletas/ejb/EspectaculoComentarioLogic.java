@@ -41,11 +41,11 @@ public class EspectaculoComentarioLogic
      */
     public ComentarioEntity addComentario(Long comentarioId, Long espectaculoId) 
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de agregarle un libro a la editorial con id = {0}", espectaculoId);
+        LOGGER.log(Level.INFO, "Inicia proceso de agregarle un comentario a una editorial con id = {0}", espectaculoId);
         EspectaculoEntity espectaculoEntity = espectaculoPersistence.find(espectaculoId);
         ComentarioEntity comentarioEntity = comentarioPersistence.find(comentarioId);
         comentarioEntity.setEspectaculo(espectaculoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de agregarle un libro a la editorial con id = {0}", espectaculoEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de agregarle un comentario a una editorial con id = {0}", espectaculoEntity);
         return comentarioEntity;
     } 
     
