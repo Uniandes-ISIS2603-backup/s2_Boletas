@@ -60,7 +60,7 @@ private static final Logger LOGGER = Logger.getLogger(BoletaCompraResource.class
         if (clienteLogic.getCliente(cliente.getId()) == null) {
             throw new WebApplicationException("El recurso /clientes/" + cliente.getId() + " no existe.", 404);
         }
-        CompraDetailDTO compraDetailDTO = new CompraDetailDTO(compraClienteLogic.replaceCompra(comprasId, cliente.getId()));
+        CompraDetailDTO compraDetailDTO = new CompraDetailDTO(compraClienteLogic.replaceCliente(comprasId, cliente.getId()));
         LOGGER.log(Level.INFO, "CompraClienteResource replaceCliente: output: {0}", compraDetailDTO.toString());
         return compraDetailDTO;
     }
