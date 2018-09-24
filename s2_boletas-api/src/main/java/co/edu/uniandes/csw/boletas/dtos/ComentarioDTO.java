@@ -89,16 +89,16 @@ public class ComentarioDTO implements Serializable{
      * Retorna el id de un comentario
      * @return id de comentario
      */
-    public Long getComentarioID() {
+    public Long getId() {
         return id;
     }
 
     /**
      * Asigna un identificador a un comentario
-     * @param comentarioID id a asignar
+     * @param id id a asignar
      */
-    public void setComentarioID(Long comentarioID) {
-        this.id = comentarioID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**

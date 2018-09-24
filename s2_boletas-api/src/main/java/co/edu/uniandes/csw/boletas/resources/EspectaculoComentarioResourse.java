@@ -117,8 +117,8 @@ public class EspectaculoComentarioResourse
     public List<ComentarioDTO> remplazarComentarios(@PathParam("espectaculosId") Long espectaculosId, List<ComentarioDTO> listaComentarios)
     {
         for (ComentarioDTO comentario : listaComentarios) {
-            if (comentarioLogic.getComentario(comentario.getComentarioID()) == null) {
-                throw new WebApplicationException("El recurso /comentarios/" + comentario.getComentarioID() + " no existe.", 404);
+            if (comentarioLogic.getComentario(comentario.getId()) == null) {
+                throw new WebApplicationException("El recurso /comentarios/" + comentario.getId() + " no existe.", 404);
             }
         }
     

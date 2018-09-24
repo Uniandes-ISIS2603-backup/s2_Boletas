@@ -19,7 +19,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
- * @author estudiante
+ * @author Diego Camacho
  */
 @Entity
 public class BoletaEntity extends BaseEntity implements Serializable       

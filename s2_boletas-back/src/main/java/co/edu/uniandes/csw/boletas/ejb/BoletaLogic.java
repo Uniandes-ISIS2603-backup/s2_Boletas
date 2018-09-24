@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.BoletaPersistence;
 import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +45,15 @@ public class BoletaLogic {
         if(boleta.getEspectaculo()==null|| espectaculoPersistence.find(boleta.getEspectaculo().getId())==null)
         {
             throw new BusinessLogicException("El espectaculo es invalido");
+        }
+        Date ya= new Date();
+        if(boleta.getFecha()!=null && boleta.getFecha().before(ya))
+        {
+            throw new BusinessLogicException("La fecha de la boleta debe ser despues de la fecha actual");
+        }
+        if(boleta.getFecha()!=null && espectaculoPersistence.find(boleta.getEspectaculo().getId()).getFecha()!=null &&(boleta.getFecha().compareTo(espectaculoPersistence.find(boleta.getEspectaculo().getId()).getFecha())!=0))
+        {
+            throw new BusinessLogicException("La fecha de la boleta debe corresponder con la prueba del espectaculo");
         }
         persistence.create(boleta);
         LOGGER.log(Level.INFO, "Termina proceso de la creación de la boleta");
