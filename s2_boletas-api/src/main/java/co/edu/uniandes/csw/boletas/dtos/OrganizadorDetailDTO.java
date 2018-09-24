@@ -19,7 +19,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class OrganizadorDetailDTO extends OrganizadorDTO implements Serializable  {
     
-    public List<EspectaculoDTO> espectaculos;
+    private List<EspectaculoDTO> espectaculos;
     
        public OrganizadorDetailDTO() {
     }

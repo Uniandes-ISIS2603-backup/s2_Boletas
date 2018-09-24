@@ -64,9 +64,17 @@ public class OrganizadorResourse
     
     @PUT
     @Path("{organizadorId : \\d+}")
-    public OrganizadorDTO updateOrganizador(@PathParam("organizadorId") Long organizadorId, OrganizadorDTO organizador)
+    public OrganizadorDetailDTO updateOrganizador(@PathParam("organizadorId") Long organizadorId, OrganizadorDetailDTO organizador)
     {
-        return null;
+        organizador.setId(organizadorId);
+        
+        if(logica.getOrganizador(organizadorId)== null)
+        {
+            throw new WebApplicationException("El recurso/organizadores/"+ organizadorId+" no existe");
+        }
+        OrganizadorDetailDTO updatedDTO= new OrganizadorDetailDTO(logica.update(organizador.toEntity()));
+        return updatedDTO;
+        
     }
     
     @GET
@@ -81,9 +89,9 @@ public class OrganizadorResourse
             throw new WebApplicationException("El recurso /organizadors/ "+ organizadorId+ "no existe",404);
         }
         //Si existe se modifica y se vuelve DTO 
-        OrganizadorDTO updatedDto= new OrganizadorDTO(logica.update(entity));
+        OrganizadorDTO detailDTO= new OrganizadorDTO(entity);
         
-        return updatedDto;
+        return detailDTO;
                 
         
     }
