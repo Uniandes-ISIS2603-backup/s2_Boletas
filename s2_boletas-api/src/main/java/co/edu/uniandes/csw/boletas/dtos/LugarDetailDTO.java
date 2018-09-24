@@ -19,6 +19,18 @@ public class LugarDetailDTO extends LugarDTO implements Serializable {
     
     private List<SillaDTO> sillas;
     
+    /**
+     * Constructor vacío de la clase.
+     */
+    public LugarDetailDTO()
+    {
+        
+    }
+    
+    /**
+     * Constructor de la clase con parámetros.
+     * @param entity 
+     */
     public LugarDetailDTO(LugarEntity entity)
     {
         super(entity);
@@ -30,6 +42,11 @@ public class LugarDetailDTO extends LugarDTO implements Serializable {
                 this.sillas.add(new SillaDTO(sillaEntityActual));
     }
     
+    /**
+     * Método para transformar la clase a un LugarEntity.
+     * @return 
+     */
+    @Override
     public LugarEntity toEntity()
     {
         LugarEntity lugarEntity = super.toEntity();

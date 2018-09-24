@@ -26,11 +26,22 @@ public class LugarLogic {
     @Inject
     private LugarPersistence persistence;
     
+    /**
+     * Método que retorna una entidad Lugar según su nombre.
+     * @param name
+     * @return 
+     */
     public LugarEntity getLugarByName(String name)
     {
         return persistence.findByName(name);
     }
     
+    /**
+     * Método que crea una entidad Lugar en la base de datos.
+     * @param entity
+     * @return
+     * @throws BusinessLogicException 
+     */
     public LugarEntity createLugar(LugarEntity entity)throws BusinessLogicException
     {
         LugarEntity alreadyExists = getLugarByName(entity.getNombre());
@@ -40,11 +51,20 @@ public class LugarLogic {
         return persistence.create(entity);
     }
     
+    /**
+     * Método que retorna una lista con todas las entidades Lugar en la base de datos.
+     * @return 
+     */
     public List<LugarEntity> getLugares()
     {
         return persistence.findAll();
     }
     
+    /**
+     * Método que retorna una entidad lugar según su id.
+     * @param lugarId
+     * @return 
+     */
     public LugarEntity getLugarById(Long lugarId)
     {
         LOGGER.log(Level.INFO, "Iniciando proceso de retornar lugar por id.");
@@ -53,6 +73,13 @@ public class LugarLogic {
         return lugar;
     }
     
+    /**
+     * Método que altera una entidad Lugar.
+     * @param lugarId
+     * @param lugarAModificar
+     * @return
+     * @throws BusinessLogicException 
+     */
     public LugarEntity updateLugar(Long lugarId, LugarEntity lugarAModificar)throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Iniciando proceso de modificar lugar.");
@@ -64,6 +91,12 @@ public class LugarLogic {
         return modificado;
     }
     
+    /**
+     * Método que elimina una entidad Lugar.
+     * @param lugarId
+     * @return
+     * @throws BusinessLogicException 
+     */
     public LugarEntity deleteLugar(Long lugarId)throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Iniciando proceso de remover lugar.");
