@@ -39,6 +39,12 @@ public class SillaResource {
     @Inject
     private SillaLogic logic;
     
+    /**
+     * Método correspondiente al servicio Post Silla.
+     * @param sillaDTO
+     * @return
+     * @throws WebApplicationException 
+     */
     @POST
     public SillaDTO createSilla(SillaDTO sillaDTO)throws WebApplicationException
     {
@@ -55,6 +61,13 @@ public class SillaResource {
         return new SillaDTO(created);
     }
     
+    /**
+     * Método correspondiente al servicio Put Silla.
+     * @param silla_id
+     * @param sillaDTO
+     * @return
+     * @throws WebApplicationException 
+     */
     @PUT
     @Path("{silla_id : \\d+}")
     public SillaDTO updateSilla(@PathParam("silla_id") Long silla_id, SillaDTO sillaDTO)throws WebApplicationException
@@ -73,6 +86,11 @@ public class SillaResource {
         return new SillaDTO(updated);
     }
     
+    /**
+     * Método correspondiente al servicio Get Silla.
+     * @param silla_id
+     * @return 
+     */
     @GET
     @Path("{silla_id: \\d+}")
     public SillaDTO getSilla(@PathParam("silla_id")Long silla_id)
@@ -81,6 +99,10 @@ public class SillaResource {
         return new SillaDTO(finded);
     }
     
+    /**
+     * Método correspondiente al servicio Get Sillas.
+     * @return 
+     */
     @GET
     public List<SillaDTO> getSillas()
     {
@@ -91,6 +113,12 @@ public class SillaResource {
         return sillasDTO;
     }
     
+    /**
+     * Método correspondiente al servicio Delete Silla.
+     * @param silla_id
+     * @return
+     * @throws WebApplicationException 
+     */
     @DELETE
     @Path("{silla_id: \\d+}")
     public SillaDTO deleteSilla(@PathParam("silla_id")Long silla_id)throws WebApplicationException

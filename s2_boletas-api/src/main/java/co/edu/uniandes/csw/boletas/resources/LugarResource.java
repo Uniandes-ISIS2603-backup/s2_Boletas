@@ -38,6 +38,13 @@ public class LugarResource {
     private static final Logger LOGGER = Logger.getLogger(LugarResource.class.getName());
     @Inject
     private LugarLogic logic;
+    
+    /**
+     * Método correspondiente al servicio Post Lugar.
+     * @param lugarDTO
+     * @return
+     * @throws WebApplicationException 
+     */
     @POST
     public LugarDTO createLugar(LugarDTO lugarDTO)throws WebApplicationException
     {
@@ -57,6 +64,13 @@ public class LugarResource {
         return createdDTO;
     }
     
+    /**
+     * Método correspondiente al servicio Put Lugar.
+     * @param lugar_id
+     * @param lugarDTO
+     * @return
+     * @throws WebApplicationException 
+     */
     @PUT
     @Path("{lugar_id : \\d+}")
     public LugarDTO updateLugar(@PathParam("lugar_id")Long lugar_id, LugarDTO lugarDTO) throws WebApplicationException
@@ -76,7 +90,7 @@ public class LugarResource {
     }
     
     /**
-     * 
+     * Método correspondiente al servicio Get Lugar.
      * @param id
      * @return 
      */
@@ -94,6 +108,10 @@ public class LugarResource {
         return new LugarDetailDTO(finded);
     }
     
+    /**
+     * Método correspondiente al servicio Get Lugares.
+     * @return 
+     */
     @GET
     public List<LugarDTO> getLugares()
     {
@@ -104,6 +122,12 @@ public class LugarResource {
         return lugaresDTO;
     }
     
+    /**
+     * Método correspondiente al servicio Delete Lugar.
+     * @param lugar_id
+     * @return
+     * @throws WebApplicationException 
+     */
     @DELETE
     @Path("{lugar_id : \\d+}")
     public LugarDTO deleteLugar(@PathParam("lugar_id") Long lugar_id)throws WebApplicationException
