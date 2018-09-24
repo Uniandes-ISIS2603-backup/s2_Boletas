@@ -34,10 +34,10 @@ public class CompraBoletasResource {
   private static final Logger LOGGER = Logger.getLogger(CompraBoletasResource.class.getName());
 
     @Inject
-    private CompraBoletasLogic compraBoletasLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+    private CompraBoletasLogic compraBoletasLogic;
 
     @Inject
-    private BoletaLogic boletaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+    private BoletaLogic boletaLogic; 
 
     /**
      * Guarda una boleta dentro de una compra con la informacion que recibe el
