@@ -47,24 +47,33 @@ public class ComentarioLogic {
         {
             throw new BusinessLogicException("El comentario debe estar asociado a un espectáculo");
         }
+        if(comentario.getMensaje()==null || comentario.getMensaje().equals(""))
+        {
+            throw new BusinessLogicException("El comentario debe tener un contenido");
+        }
         boolean vacia = true;
         boolean corresponde = false;
-        for(CompraEntity compra: comentario.getCliente().getCompras())
-        {
-            if(compra!=null)
+        if(comentario.getCliente().getCompras()!=null)
+        {   
+            for(CompraEntity compra: comentario.getCliente().getCompras())
             {
-                if(!compra.getBoletas().isEmpty())
+                if(compra!=null)
                 {
-                    vacia = false;
+                    if(compra.getBoletas()!=null && !compra.getBoletas().isEmpty())
+                    {
+                     vacia = false;
+                    }
+                    if(compra.getBoletas()!=null)
+                    {
+                        for(BoletaEntity boleta: compra.getBoletas())
+                        {
+                            if(boleta!=null && boleta.getEspectaculo().getId().equals(comentario.getEspectaculo().getId()) && espectaculoPersistence.find(comentario.getEspectaculo().getId())!=null)
+                            {
+                                corresponde = true;
+                            }
+                        }
+                    }
                 }
-           
-                for(BoletaEntity boleta: compra.getBoletas())
-                {
-                  if(boleta!=null && boleta.getEspectaculo().getId().equals(comentario.getEspectaculo().getId()) && espectaculoPersistence.find(comentario.getEspectaculo().getId())!=null)
-                  {
-                      corresponde = true;
-                  }
-                }   
             }
         }
         if(vacia)
