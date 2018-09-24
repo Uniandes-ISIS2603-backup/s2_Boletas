@@ -332,11 +332,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5e93770d-572b-4f66-9c54-74b031b7d4a5",
+						"id": "0527fb6f-8193-4cd7-a79c-3cdbcd876386",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,202]);",
 							"});"
 						]
 					}
