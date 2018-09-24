@@ -102,9 +102,21 @@ public class EspectaculoLogic
      * @param espectaculosId El espectaculo a buscar
      * @param espectaculoEntity Objeto tipo EspectaculoEntity que contiene los datos a actualizar 
      * @return El espectaculo entity con los datos actualizados
+     * @throws co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException
      */
-    public EspectaculoEntity updateEspectaculo(Long espectaculosId, EspectaculoEntity espectaculoEntity) {
+    public EspectaculoEntity updateEspectaculo(Long espectaculosId, EspectaculoEntity espectaculoEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la editorial con id = {0}", espectaculosId);
+        
+        
+        Date date;
+        
+        Calendar c = Calendar.getInstance();
+        date = c.getTime();
+        
+        if(espectaculoEntity.getFecha().before(date))
+        {
+            throw new BusinessLogicException("La fecha es anterior a la actual");
+        }
         
         EspectaculoEntity newEntity = persistence.update(espectaculoEntity);
         

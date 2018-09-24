@@ -72,10 +72,11 @@ public class EspectaculoResourse
      * @param espectaculoId El id del espectaculo a actualizar
      * @param espec Objeto de tipo EspectaculoDTO que llega como objeto JSON
      * @return El objeto EspectaculoDTO actualizado
+     * @throws co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException
      */
     @PUT
     @Path("{espectaculosId : \\d+}")
-    public EspectaculoDetailDTO uptadeEspectaculo(@PathParam("espectaculosId") Long espectaculoId, EspectaculoDetailDTO espec)
+    public EspectaculoDetailDTO uptadeEspectaculo(@PathParam("espectaculosId") Long espectaculoId, EspectaculoDetailDTO espec) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Proceso de actualizar un espectaculo: PUT");
         
@@ -83,10 +84,18 @@ public class EspectaculoResourse
         EspectaculoEntity entity = espec.toEntity();
         if(espectaculoLogic.getEspectaculo(espectaculoId) == null)
         {
-            throw new WebApplicationException("El espectaculo que se quiere actualizar con id:" + espectaculoId +" No existe");
-        }    
-         
-        EspectaculoEntity actualizado = espectaculoLogic.updateEspectaculo(espectaculoId, entity);
+            throw new WebApplicationException("El espectaculo que se quiere actualizar con id:" + espectaculoId +" No existe",404);
+        }
+        
+        EspectaculoEntity actualizado;
+        try 
+        {
+            actualizado = espectaculoLogic.updateEspectaculo(espectaculoId, entity);
+        }
+        catch(BusinessLogicException e)
+        {
+            throw new WebApplicationException(e.getMessage(),412);
+        }
         
         EspectaculoDetailDTO dto = new EspectaculoDetailDTO(actualizado);
         
@@ -109,7 +118,7 @@ public class EspectaculoResourse
         
         if(entity == null)
         {
-            throw new WebApplicationException("El espectaculo buscado con id:" + espectaculoId + " no existe" );
+            throw new WebApplicationException("El espectaculo buscado con id:" + espectaculoId + " no existe",404 );
         }
         
         EspectaculoDetailDTO dto = new EspectaculoDetailDTO(entity);
@@ -152,7 +161,7 @@ public class EspectaculoResourse
         
         if(espectaculoLogic.getEspectaculo(espectaculoId) == null)
         {
-            throw new WebApplicationException("El espectaculo con id: " + espectaculoId + "No existe");
+            throw new WebApplicationException("El recurso /espectaculos/" + espectaculoId + " no existe.", 404);
         }
         
        espectaculoLogic.deleteEspectaculo(espectaculoId);

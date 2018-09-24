@@ -127,6 +127,7 @@ public class EspectaculoLogicTest
         EspectaculoEntity entity = em.find(EspectaculoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
     }
     
     
@@ -178,12 +179,14 @@ public class EspectaculoLogicTest
     /**
      * Prueba para actualizar un espectaculo, se quiere que se actualice un espectaculo
      * y despues sea posible encontrarlo y que coincida 
+     * @throws co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException
      */
      @Test
-    public void updateEspectaculoTest() {
+    public void updateEspectaculoTest() throws BusinessLogicException {
         EspectaculoEntity entity = data.get(0);
         EspectaculoEntity pojoEntity = factory.manufacturePojo(EspectaculoEntity.class);
         pojoEntity.setId(entity.getId());
+        pojoEntity.setFecha(new Date(2023-1900,3,2));
         espectaculoLogic.updateEspectaculo(pojoEntity.getId(), pojoEntity);
         EspectaculoEntity resp = em.find(EspectaculoEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());

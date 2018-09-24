@@ -1,0 +1,288 @@
+{
+	"info": {
+		"_postman_id": "20780db5-448f-4d3b-9258-0754eabd4ac3",
+		"name": "ComentariosTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/comentarios/11",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d89d53fd-0039-47f7-bcc9-c56fd8f69280",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/comentarios/11",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d89d53fd-0039-47f7-bcc9-c56fd8f69280",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida y me gusto el artista\",\n        \"espectaculo\":{\"id\":20}\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/comentarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d89d53fd-0039-47f7-bcc9-c56fd8f69280",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida\",\n        \"espectaculo\":{\"id\":20}\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/comentarios/11",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d89d53fd-0039-47f7-bcc9-c56fd8f69280",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida\",\n        \"espectaculo\":{\"id\":20}\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/comentarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d89d53fd-0039-47f7-bcc9-c56fd8f69280",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida\",\n        \"espectaculo\":{\"id\":20}\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/espectaculos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d89d53fd-0039-47f7-bcc9-c56fd8f69280",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n        \"artista\": \"El mejor artista\",\n        \"descripcion\": \"el mejor show de la historia, con los mejores artistas\",\n        \"fecha\": \"2019-08-20T00:00:00-05:00\",\n        \"nombre\": \"el gran show parte 2\",\n        \"boletas\": [],\n        \"comentarios\": []\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

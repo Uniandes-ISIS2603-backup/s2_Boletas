@@ -14,6 +14,7 @@ import co.edu.uniandes.csw.boletas.persistence.OrganizadorPersistence;
 import java.util.logging.Logger;
 import java.util.List;
 import java.util.logging.Level;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
@@ -21,6 +22,7 @@ import javax.inject.Inject;
  * cliente y un comentario
  * @author Juan Camacho y Vilma Tirado
  */
+@Stateless
 public class ClienteComentarioLogic {
     
     

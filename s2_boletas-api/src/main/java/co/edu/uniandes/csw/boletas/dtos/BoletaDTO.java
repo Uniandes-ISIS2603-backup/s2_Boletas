@@ -111,21 +111,6 @@ public class BoletaDTO implements Serializable {
         return boleta;
     }
 
-    /**
-     * retorna el identificador de la boleta
-     * @return id de Boleta
-     */
-    public Long getID() {
-        return id;
-    }
-    
-    /**
-     * Asigna un identificador a la boleta
-     * @param boletaID id a asignar a la boleta
-     */
-    public void setidID(Long boletaID) {
-        this.id = boletaID;
-    }
 
     /**
      * Da el precio de la boleta 
