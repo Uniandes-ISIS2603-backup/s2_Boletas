@@ -97,6 +97,8 @@ public class EspectaculoDTO implements Serializable
     {
         EspectaculoEntity espectaculo = new EspectaculoEntity();
         
+        espectaculo.setId(this.espectaculoId);
+        
         espectaculo.setNombre(this.nombre);
         
         espectaculo.setArtista(this.artista);

@@ -49,20 +49,20 @@ public class OrganizadorEspectaculoResourse
     
     @POST
     @Path("{espectaculosId: \\d+}")
-    public EspectaculoDTO addEspectaculo(@PathParam("organizadorId") Long organizadoresId, @PathParam("espectaculoId") Long espectaculosId)
+    public EspectaculoDetailDTO addEspectaculo(@PathParam("organizadorId") Long organizadoresId, @PathParam("espectaculoId") Long espectaculosId)
     {
         LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: input: organizadorId: "+ organizadoresId +", espectaculosId: " + espectaculosId, new Object[]{organizadoresId, espectaculosId});
         if (espectaculoLogic.getEspectaculo(espectaculosId) == null) {
             throw new WebApplicationException("El recurso /espectaculos" + espectaculosId + " no existe.", 404);
         }
-        EspectaculoDTO espectaculoDTO = new EspectaculoDTO(organizadorEspectaculoLogic.addEspectaculo(espectaculosId, organizadoresId));
+        EspectaculoDetailDTO espectaculoDTO = new EspectaculoDetailDTO(organizadorEspectaculoLogic.addEspectaculo(espectaculosId, organizadoresId));
         
         LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: output: {0}", espectaculoDTO.toString());
         return espectaculoDTO;
     }
     
     @GET
-    @Path("{espectaculosId: \\+d}")
+    @Path("{organizadoresId: \\+d}")
     public EspectaculoDetailDTO getEspectaculo (@PathParam("espectaculosid") Long espectaculosId, @PathParam("organizadoresId") Long organizadoresId) throws BusinessLogicException      
     {
         if (espectaculoLogic.getEspectaculo(espectaculosId)==null)
