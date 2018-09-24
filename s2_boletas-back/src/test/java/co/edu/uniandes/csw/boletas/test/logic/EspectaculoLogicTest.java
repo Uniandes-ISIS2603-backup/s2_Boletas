@@ -180,7 +180,7 @@ public class EspectaculoLogicTest
      * y despues sea posible encontrarlo y que coincida 
      */
      @Test
-    public void updateEspectaculoTest() {
+    public void updateEspectaculoTest() throws BusinessLogicException {
         EspectaculoEntity entity = data.get(0);
         EspectaculoEntity pojoEntity = factory.manufacturePojo(EspectaculoEntity.class);
         pojoEntity.setId(entity.getId());
