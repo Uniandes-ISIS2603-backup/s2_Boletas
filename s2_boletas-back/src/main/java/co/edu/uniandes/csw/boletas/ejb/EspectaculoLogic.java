@@ -9,6 +9,7 @@ package co.edu.uniandes.csw.boletas.ejb;
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -38,13 +39,24 @@ public class EspectaculoLogic
      */
     public EspectaculoEntity createEntity(EspectaculoEntity espec) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "Inicia el proceso de crear un espectaculo");
+        LOGGER.log(Level.INFO, "Inicia el proceso de crear un espectaculo{0}");
         if(persistence.findByName(espec.getNombre()) != null)
         {
             throw new BusinessLogicException("Ya existe un espectaculo con ese nombre");
         }
         
-        Date date = new Date(2018,9,10);
+        Date date;
+        
+        Calendar c = Calendar.getInstance();
+        date = c.getTime();
+        
+//        System.out.println("DBG 2 date current: " + date.getYear());
+//        System.out.println("DBG 3 date especta: " + espec.getFecha().getYear());
+//
+//        System.out.println("DBG 4 date current: " + date.getTime());
+//        System.out.println("DBG 5 date especta: " + espec.getFecha().getTime());
+
+
         
         if(espec.getFecha().before(date))
         {

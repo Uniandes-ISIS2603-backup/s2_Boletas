@@ -63,6 +63,11 @@ public class OrganizadorEspectaculoLogic {
            return espectaculoEntity;
       }
       
+      public OrganizadorEntity addOrganizador(Long espectaculoId, Long organizadorId)
+      {
+          return new OrganizadorEntity();
+      }
+      
           /**
      * Retorna todos los espectaculos  asociados a un organizador
      *
@@ -77,6 +82,12 @@ public class OrganizadorEspectaculoLogic {
            System.out.println(organizadorPersistence.find(organizadorId));
            
            return organizadorPersistence.find(organizadorId).getEspectaculos();
+      }
+      
+      
+      public OrganizadorEntity getOrganizador(Long espectaculoId,Long organizadorId)
+      {
+          return null;
       }
       
       
@@ -139,6 +150,10 @@ zar los espectaculos de un organizador
       }
       
       
+      public EspectaculoEntity replaceOrganizador(Long espectaculoId, Long organizadorId)
+      {
+          return null;
+      }
       
     
 }
