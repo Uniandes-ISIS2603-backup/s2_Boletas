@@ -194,10 +194,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"costo\": 2222, \"envio\": true, \"fecha\": \"22-02-2012\", \"direccion\": \"Cra 2 #22-22\"}"
+					"raw": "{\"costo\": 2222, \"envio\": true, \"fecha\": \"2012-02-20T18:25:43.511Z\", \"direccion\": \"Cra 2 #22-22\", \"estado\": true}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compras/2",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -207,7 +207,7 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"2"
+						"1"
 					]
 				}
 			},

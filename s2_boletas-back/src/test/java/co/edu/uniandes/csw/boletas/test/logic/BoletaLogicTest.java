@@ -12,7 +12,9 @@ import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.BoletaPersistence;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -118,15 +120,20 @@ public class BoletaLogicTest {
     public void createBoletaTest() throws BusinessLogicException {
         BoletaEntity newEntity = factory.manufacturePojo(BoletaEntity.class);
         EspectaculoEntity espEntity = factory.manufacturePojo(EspectaculoEntity.class);
-        espEntity.setFecha(new Date(2020,2,2));
+        Calendar cal = new GregorianCalendar(2020, 12, 12);
+        Date fecha = cal.getTime();
+        espEntity.setFecha(fecha);
+        
+        
         espEntity = espLogic.createEntity(espEntity);
         newEntity.setEspectaculo(espEntity);
+        newEntity.setFecha(fecha);
         BoletaEntity result = boletaLogic.createBoleta(newEntity);
         Assert.assertNotNull(result);
         BoletaEntity entity = em.find(BoletaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getPrecio(), entity.getPrecio());
-        //Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
         Assert.assertEquals(newEntity.getVendida(), entity.getVendida());
         
     }
