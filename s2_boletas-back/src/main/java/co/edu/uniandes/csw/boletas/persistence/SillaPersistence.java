@@ -26,6 +26,11 @@ public class SillaPersistence {
     @PersistenceContext(unitName = "DnsPU")
     EntityManager em;
     
+    /**
+     * Método que crea una entidad Silla en la base de datos.
+     * @param silla
+     * @return 
+     */
     public SillaEntity create(SillaEntity silla)
     {
         LOGGER.log(Level.INFO, "Creando una nueva silla.");
@@ -34,11 +39,22 @@ public class SillaPersistence {
         return silla;
     }
     
+    /**
+     * Método que retorna una entidad Silla según su id.
+     * @param id
+     * @return 
+     */
     public SillaEntity find(Long id)
     {
         return em.find(SillaEntity.class, id);
     }
     
+    /**
+     * Método que retorna una entidad Silla según su número de silla y el id del lugar al que pertenece.
+     * @param numero
+     * @param lugarId
+     * @return 
+     */
     public SillaEntity findByNumeroAndLugar(String numero, Long lugarId)
     {
         TypedQuery<SillaEntity> query = em.createQuery("Select e from SillaEntity e where e.numero =:numero",SillaEntity.class);
@@ -52,17 +68,30 @@ public class SillaPersistence {
         return null;
     }
     
+    /**
+     * Método que retorna una lista con todas las entidades sillas existentes en la base de datos.
+     * @return 
+     */
     public List<SillaEntity> findAll()
     {
         TypedQuery<SillaEntity> query = em.createQuery("select e from SillaEntity e", SillaEntity.class);
         return query.getResultList();
     }
     
+    /**
+     * Método que altera una entidad silla en la base de datos.
+     * @param silla
+     * @return 
+     */
     public SillaEntity update(SillaEntity silla)
     {
         return em.merge(silla);
     }
     
+    /**
+     * Método que elimina una entidad silla de la base de datos. 
+     * @param id 
+     */
     public void delete(Long id)
     {
         SillaEntity silla = find(id);
