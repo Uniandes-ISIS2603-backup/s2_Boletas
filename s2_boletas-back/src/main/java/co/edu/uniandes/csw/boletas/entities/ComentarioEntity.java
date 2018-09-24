@@ -12,7 +12,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author Diego Camacho
  */
 @Entity
 public class ComentarioEntity extends BaseEntity implements Serializable

@@ -42,6 +42,7 @@ public class ClienteDTO implements Serializable {
     public ClienteEntity toEntity()
     {
         ClienteEntity entity= new ClienteEntity();
+        entity.setId(this.id);
         entity.setPago(this.getPago());
         entity.setNombre(getNombre());
         entity.setUsuario(getUsuario());

@@ -1,12 +1,26 @@
 {
 	"info": {
-		"_postman_id": "c2c731d3-cb8f-4bff-a937-5b7785287008",
+		"_postman_id": "a6850b78-ef30-4e33-bc66-6d9587c49996",
 		"name": "BoletaTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/boletas/5",
+			"name": "http://localhost:8080/s2_boletas-api/api/boletas/13",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ef809f2-5fd2-4254-8830-26b0878789f5",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -18,10 +32,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"precio\":100000, \n\t\"fecha\":\"19-03-2018\",\n\t\"vendida\":false\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/5?",
+					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/13?",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -31,7 +45,7 @@
 						"s2_boletas-api",
 						"api",
 						"boletas",
-						"5"
+						"13"
 					],
 					"query": [
 						{
@@ -50,7 +64,21 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/boletas/5",
+			"name": "http://localhost:8080/s2_boletas-api/api/boletas/13",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ef809f2-5fd2-4254-8830-26b0878789f5",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -62,10 +90,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"precio\":100000, \n\t\"fecha\":\"19-03-2018\",\n\t\"vendida\":false\n}"
+					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":19},\n\t\"vendida\":true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/5?",
+					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/13?",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -75,7 +103,7 @@
 						"s2_boletas-api",
 						"api",
 						"boletas",
-						"5"
+						"13"
 					],
 					"query": [
 						{
@@ -94,7 +122,21 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/boletas/5",
+			"name": "http://localhost:8080/s2_boletas-api/api/boletas/13",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ef809f2-5fd2-4254-8830-26b0878789f5",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -106,10 +148,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"precio\":200000, \n\t\"fecha\":\"19-03-2018\",\n\t\"vendida\":true\n}"
+					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"espectaculo\":{\"id\":19},\n\t\"vendida\":false\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/5?",
+					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/13?",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -119,7 +161,7 @@
 						"s2_boletas-api",
 						"api",
 						"boletas",
-						"5"
+						"13"
 					],
 					"query": [
 						{
@@ -138,7 +180,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/boletas",
+			"name": "http://localhost:8080/s2_boletas-api/api/boletas/",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -150,10 +192,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"precio\":200000, \n\t\"fecha\":\"19-03-2018\",\n\t\"vendida\":true\n}"
+					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"espectaculo\":{\"id\":19},\n\t\"vendida\":false\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/boletas?",
+					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/?",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -162,7 +204,52 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"boletas"
+						"boletas",
+						""
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/espectaculos/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"nombre\":\"El gran show\",\n\t\"descripcion\": \"el mejor show jamas presentado\"\n\t\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						""
 					],
 					"query": [
 						{
