@@ -137,6 +137,7 @@ public class CompraClienteLogicTest {
     public void removeComprasTest() throws BusinessLogicException {
         compraClienteLogic.removeCliente(comprasData.get(0).getId());
         CompraEntity response = compraLogic.getCompra(comprasData.get(0).getId());
+        System.out.println(response.getCliente());
         Assert.assertNull(response.getCliente());
     }
     
