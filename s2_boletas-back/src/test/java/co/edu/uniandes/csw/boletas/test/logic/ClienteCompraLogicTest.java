@@ -182,7 +182,7 @@ public class ClienteCompraLogicTest
     public void replaceComprasTest() {
         ClienteEntity entity = data.get(0);
         List<CompraEntity> list = comprasData.subList(1, 3);
-        clienteCompraLogic.updateClienteCompras(entity.getId(), list);
+        clienteCompraLogic.updateCompras(entity.getId(), list);
 
         entity = clienteLogic.getCliente(entity.getId());
         Assert.assertFalse(entity.getCompras().contains(comprasData.get(0)));

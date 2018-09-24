@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.boletas.ejb.ClienteCompraLogic;
 import co.edu.uniandes.csw.boletas.ejb.ClienteLogic;
 import co.edu.uniandes.csw.boletas.ejb.CompraLogic;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
+import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -95,7 +96,7 @@ public class ClienteCompraResource {
      */
     @GET
     @Path("{compraId: \\d+}")
-    public CompraDetailDTO getCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) {
+    public CompraDetailDTO getCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ClienteCompraResource getCompra: input: clienteId {0} , compraId {1}", new Object[]{clienteId, compraId});
         if (compraLogic.getCompra(compraId) == null) {
             throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
