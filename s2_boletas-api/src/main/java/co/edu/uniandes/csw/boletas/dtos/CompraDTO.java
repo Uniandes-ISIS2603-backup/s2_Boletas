@@ -16,7 +16,7 @@ import java.util.Date;
 public class CompraDTO implements Serializable {
     
     private Long id;
-    private Integer costoTotal;
+    private Double costoTotal;
     private Boolean envio;
     private  Date fecha;
     private String direccion;
@@ -75,7 +75,7 @@ public class CompraDTO implements Serializable {
      * retorna el costo total de la compra
      * @return costoTotal
      */
-    public Integer getCostoTotal()
+    public Double getCostoTotal()
     {
         return costoTotal;
     }
@@ -150,7 +150,7 @@ public class CompraDTO implements Serializable {
      * modifica el costo de la compra
      * @param costoN, el nuevo costo de la compra
      */
-    public void setCosto(Integer costoN)
+    public void setCosto(Double costoN)
     {
         costoTotal= costoN;
     }

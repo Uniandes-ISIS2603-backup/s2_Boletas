@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.boletas.test.logic;
 
-import co.edu.uniandes.csw.boletas.ejb.CompraClienteLogic;
-import co.edu.uniandes.csw.boletas.ejb.CompraLogic;
+import co.edu.uniandes.csw.boletas.ejb.ClienteCompraLogic;
+import co.edu.uniandes.csw.boletas.ejb.ClienteLogic;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import co.edu.uniandes.csw.boletas.entities.ClienteEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
@@ -30,17 +30,17 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Gabriel Hamilton y Vilma Tirado
+ * @author Gabriel Hamilton
  */
 @RunWith(Arquillian.class)
-public class CompraClienteLogicTest {
-    
+public class ClienteCompraLogicTest 
+{
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
-    private CompraLogic compraLogic;
+    private ClienteLogic clienteLogic;
     @Inject
-    private CompraClienteLogic compraClienteLogic;
+    private ClienteCompraLogic clienteCompraLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -52,7 +52,6 @@ public class CompraClienteLogicTest {
 
     private List<CompraEntity> comprasData = new ArrayList();
 
-    //----------------------------------------------------
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
      * El jar contiene las clases, el descriptor de la base de datos y el
@@ -62,7 +61,7 @@ public class CompraClienteLogicTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(ClienteEntity.class.getPackage())
-                .addPackage(CompraLogic.class.getPackage())
+                .addPackage(ClienteLogic.class.getPackage())
                 .addPackage(ClientePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
@@ -115,29 +114,79 @@ public class CompraClienteLogicTest {
             }
         }
     }
-    //------------------------------------------------------
+
     /**
-     * Prueba para remplazar las instancias de Compra asociadas a una instancia
-     * de Cliente.
+     * Prueba para asociar una Compra existente a un Cliente.
      */
     @Test
-    public void replaceClienteTest() {
-        CompraEntity entity = comprasData.get(0);
-        compraClienteLogic.replaceCliente(entity.getId(), data.get(1).getId());
-        entity = compraLogic.getCompra(entity.getId());
-        Assert.assertEquals(entity.getCliente(), data.get(1));
+    public void addComprasTest() {
+        ClienteEntity entity = data.get(0);
+        CompraEntity compraEntity = comprasData.get(1);
+        CompraEntity response = clienteCompraLogic.addCompra(compraEntity.getId(), entity.getId());
+
+        Assert.assertNotNull(response);
+        Assert.assertEquals(compraEntity.getId(), response.getId());
     }
 
     /**
-     * Prueba para desasociar un Compra existente de un Cliente existente
+     * Prueba para obtener una colección de instancias de Compra asociadas a una
+     * instancia Cliente.
+     */
+    @Test
+    public void getComprasTest() {
+        List<CompraEntity> list = clienteCompraLogic.getCompras(data.get(0).getId());
+
+        Assert.assertEquals(1, list.size());
+    }
+
+    /**
+     * Prueba para obtener una instancia de Compras asociada a una instancia
+     * Cliente.
      *
      * @throws co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException
      */
     @Test
-    public void removeComprasTest() throws BusinessLogicException {
-        compraClienteLogic.removeCliente(comprasData.get(0).getId());
-        CompraEntity response = compraLogic.getCompra(comprasData.get(0).getId());
-        Assert.assertNull(response.getCliente());
+    public void getCompraTest() throws BusinessLogicException {
+        ClienteEntity entity = data.get(0);
+        CompraEntity compraEntity = comprasData.get(0);
+        CompraEntity response = clienteCompraLogic.getCompra(entity.getId(), compraEntity.getId());
+
+        Assert.assertEquals(compraEntity.getId(), response.getId());
+        Assert.assertEquals(compraEntity.getCliente(), response.getCliente());
+        Assert.assertEquals(compraEntity.getCostoTotal(), response.getCostoTotal());
+        Assert.assertEquals(compraEntity.getDireccion(), response.getDireccion());
+        Assert.assertEquals(compraEntity.getEnvio(), response.getEnvio());
+        Assert.assertEquals(compraEntity.getEstado(), response.getEstado());
+        Assert.assertEquals(compraEntity.getFecha(), response.getFecha());
+        Assert.assertTrue(compraEntity.getBoletas().equals(response.getBoletas()));
     }
-    
+
+    /**
+     * Prueba para obtener una instancia de Compra asociada a una instancia
+     * Cliente que no le pertenece.
+     *
+     * @throws co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void getCompraNoAsociadoTest() throws BusinessLogicException {
+        ClienteEntity entity = data.get(0);
+        CompraEntity compraEntity = comprasData.get(1);
+        clienteCompraLogic.getCompra(entity.getId(), compraEntity.getId());
+    }
+
+    /**
+     * Prueba para remplazar las instancias de Compras asociadas a una instancia
+     * de Cliente.
+     */
+    @Test
+    public void replaceComprasTest() {
+        ClienteEntity entity = data.get(0);
+        List<CompraEntity> list = comprasData.subList(1, 3);
+        clienteCompraLogic.updateClienteCompras(entity.getId(), list);
+
+        entity = clienteLogic.getCliente(entity.getId());
+        Assert.assertFalse(entity.getCompras().contains(comprasData.get(0)));
+        Assert.assertTrue(entity.getCompras().contains(comprasData.get(1)));
+        Assert.assertTrue(entity.getCompras().contains(comprasData.get(2)));
+}
 }

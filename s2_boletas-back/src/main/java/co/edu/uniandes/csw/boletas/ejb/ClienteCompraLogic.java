@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.boletas.ejb;
 
 import co.edu.uniandes.csw.boletas.entities.ClienteEntity;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
+import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.ClientePersistence;
 import co.edu.uniandes.csw.boletas.persistence.CompraPersistence;
 import java.util.List;
@@ -55,9 +56,11 @@ public class ClienteCompraLogic {
      *
      * @param clientesId Identificador de la instancia de Book
      * @param compraId Identificador de la instancia de Compra
-     * @return La entidad del Autor asociada al libro
+     * @return La entidad de la compra asociada al cliente
+     * @throws BusinessLogicException Si el libro no se encuentra en la
+     * editorial
      */
-    public CompraEntity getCompra(Long clientesId, Long compraId) {
+    public CompraEntity getCompra(Long clientesId, Long compraId)throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una compra del cliente con id = {0}", clientesId);
         List<CompraEntity> compras = clientePersistence.find(clientesId).getCompras();
         CompraEntity compraEntity = compraPersistence.find(compraId);
@@ -66,7 +69,7 @@ public class ClienteCompraLogic {
         if (index >= 0) {
             return compras.get(index);
         }
-        return null;
+        throw new BusinessLogicException("La compra no está asociada al cliente");
     }
       
             /**
@@ -87,11 +90,11 @@ public class ClienteCompraLogic {
             
               
           /**
-     * Remplazar los compras de un cliente
+     * Remplazar el cliente de unas compras
      *
-     * @param compras  Lista de compras  que serán los del cliente.
+     * @param compras  Lista de compras  que serán las del cliente.
      * @param clienteId  El id del cliente que se quiere actualizar.
-     * @return Lalista de compras actualizados.
+     * @return La lista de compras actualizados.
      */
       
       public List<CompraEntity> updateClientesCompras (List<CompraEntity> compras,Long clienteId)
