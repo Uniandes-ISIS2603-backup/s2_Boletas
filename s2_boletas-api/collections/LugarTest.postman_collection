@@ -11,10 +11,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7fe9405f-9eb1-4875-8c69-dfe44cad54ea",
+						"id": "f32dc8d1-c218-4992-be3a-45ad56724ada",
 						"type": "text/javascript",
 						"exec": [
-							""
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
 						]
 					}
 				}
@@ -53,10 +55,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cf0ecc46-34ee-4ebf-8753-1e6c9bd6ea31",
+						"id": "d093f8ff-faa2-4bba-b34e-769e0e4eedca",
 						"type": "text/javascript",
 						"exec": [
-							""
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
 						]
 					}
 				}
@@ -74,7 +78,7 @@
 					"raw": "{\n\t\"numSillas\":\"2200\",\n\t\"direccion\":\"kra 7 cll 23\",\n\t\"nombre\":\"Teatro 7ma\",\n\t\"ubicacion\":\"Coliseo\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/6",
+					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/9",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -84,7 +88,7 @@
 						"s2_boletas-api",
 						"api",
 						"lugares",
-						"6"
+						"9"
 					]
 				}
 			},
@@ -92,12 +96,26 @@
 		},
 		{
 			"name": "GetLugar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f38cc07-85bd-4445-8227-c0f591802d1a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/6",
+					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/9",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -107,7 +125,7 @@
 						"s2_boletas-api",
 						"api",
 						"lugares",
-						"6"
+						"9"
 					]
 				}
 			},
@@ -115,6 +133,20 @@
 		},
 		{
 			"name": "GetLugares",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bb1c357f-25e2-4c28-877f-fff085863362",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -137,12 +169,26 @@
 		},
 		{
 			"name": "DeleteLugar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "20e8ecaa-b7c0-4f3e-b389-108f3ec0e138",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/1",
+					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/9",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -152,7 +198,7 @@
 						"s2_boletas-api",
 						"api",
 						"lugares",
-						"1"
+						"9"
 					]
 				}
 			},
