@@ -97,6 +97,7 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
 
     public void setFecha(Date date) {
         fecha = date;
+                
     }
 
     public String getDescripcion() {
