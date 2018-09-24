@@ -68,6 +68,15 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
             }
             clienteEntity.setComentarios(comentariosEntity);
         }
+        if (compras!=null)
+        {
+            List<CompraEntity> compraEntity = new ArrayList<>();
+            for (CompraDTO dtoCompra: compras)
+            {
+                compraEntity.add(dtoCompra.toEntity());
+            }
+            clienteEntity.setCompras(compraEntity);
+        }
         return clienteEntity;
     }
 
