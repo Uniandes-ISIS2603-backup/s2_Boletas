@@ -46,7 +46,13 @@ public class OrganizadorEspectaculoResourse
     
     
     
-    
+    /**
+     * Metodo que define el recurso organizadores/{id}/espectaculos
+     * para agregar un organizador a un espectaculo
+     * @param organizadoresId
+     * @param espectaculosId
+     * @return Un espectaculo con su organizador definido
+     */
     @POST
     @Path("{espectaculosId: \\d+}")
     public EspectaculoDetailDTO addEspectaculo(@PathParam("organizadorId") Long organizadoresId, @PathParam("espectaculoId") Long espectaculosId)
@@ -61,6 +67,15 @@ public class OrganizadorEspectaculoResourse
         return espectaculoDTO;
     }
     
+    
+    /**
+     * Retorna un espectaculo buscado por su id, asociado a un organizador asociado
+     * a su id
+     * @param espectaculosId
+     * @param organizadoresId
+     * @return
+     * @throws BusinessLogicException 
+     */
     @GET
     @Path("{organizadoresId: \\+d}")
     public EspectaculoDetailDTO getEspectaculo (@PathParam("espectaculosid") Long espectaculosId, @PathParam("organizadoresId") Long organizadoresId) throws BusinessLogicException      
@@ -76,8 +91,7 @@ public class OrganizadorEspectaculoResourse
         /**
      * Busca y devuelve todos los espectaculos que estan asociados al organizador.
      *
-     * @param organizadorId Identificador del organizador que se esta buscando.
-     * Este debe ser una cadena de dígitos.
+     * @param espectaculosId
      * @return JSONArray {@link EspectaculoDetailDTO} - Los espectaculos asociados al
      * organizador. Si no hay ninguno retorna una lista vacía.
      */

@@ -33,17 +33,31 @@ public class LugarPersistence {
         return lugar;
     }
     
+    /**
+     * Método que retorna una entidad Lugar según su id dado.
+     * @param id
+     * @return 
+     */
     public LugarEntity find(Long id)
     {
         return em.find(LugarEntity.class, id);
     }
     
+    /**
+     * Método que retorna una lista con todas las entidades Lugar existentes en la base de datos.
+     * @return 
+     */
     public List<LugarEntity> findAll()
     {
         TypedQuery<LugarEntity> query = em.createQuery("select e from LugarEntity e", LugarEntity.class);
         return query.getResultList();
     }
     
+    /**
+     * Método que retorna un lugar según su nombre.
+     * @param name
+     * @return 
+     */
     public LugarEntity findByName(String name)
     {
         TypedQuery query = em.createQuery("Select e from LugarEntity e where e.nombre =:nombre", LugarEntity.class);
@@ -56,11 +70,20 @@ public class LugarPersistence {
         return lugar;
     }
     
+    /**
+     * Método que altera una entidad Lugar en la base de datos.
+     * @param lugar
+     * @return 
+     */
     public LugarEntity update(LugarEntity lugar)
     {
         return em.merge(lugar);
     }
     
+    /**
+     * Método que elimina una entidad lugar de la base de datos.
+     * @param id 
+     */
     public void delete(Long id)
     {
         LugarEntity lugar = find(id);
