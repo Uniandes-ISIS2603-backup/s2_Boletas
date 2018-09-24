@@ -79,6 +79,13 @@ public class EspectaculoOrganizadorResourse {
         return organizador;
     }
     
+    
+    /**
+     * Metodo que cambia el organizador  de un espectaculo
+     * @param espectaculoId, el id del espectaculo a modificar
+     * @param organizador, un objeto OrganizadorDetailDTO
+     * @return Un espectaculo Detail DTO con su atributo cambiado
+     */
     @PUT 
     public EspectaculoDetailDTO replaceOrganizador(Long espectaculoId, OrganizadorDetailDTO organizador)
     {
