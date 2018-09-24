@@ -20,9 +20,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
-    public List <ComentarioDTO> comentarios;
+    private List <ComentarioDTO> comentarios;
     
-    public List<CompraDTO> compras;
+    private List<CompraDTO> compras;
     
     
        public ClienteDetailDTO() {
