@@ -29,34 +29,34 @@ public class CompraClienteLogic {
     private ClientePersistence clientePersistence;
 
     /**
-     * Remplazar la cliente de un compra.
+     * Remplazar la compra de un cliente.
      *
-     * @param comprasId id del libro que se quiere actualizar.
-     * @param clientesId El id de la cliente que se será del libro.
-     * @return el nuevo libro.
+     * @param comprasId id de la compra que se quiere actualizar.
+     * @param clientesId El id del cliente que del cual será la compra.
+     * @return la nueva compra.
      */
     public CompraEntity replaceCliente(Long comprasId, Long clientesId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar libro con id = {0}", comprasId);
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la compra con id = {0}", comprasId);
         ClienteEntity clienteEntity = clientePersistence.find(clientesId);
         CompraEntity compraEntity = compraPersistence.find(comprasId);
         compraEntity.setCliente(clienteEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar libro con id = {0}", compraEntity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar la compra con id = {0}", compraEntity.getId());
         return compraEntity;
     }
 
     /**
-     * Borrar un compra de una cliente. Este metodo se utiliza para borrar la
-     * relacion de un libro.
+     * Borrar un compra de un cliente. Este metodo se utiliza para borrar la
+     * relacion de una compra.
      *
-     * @param comprasId El libro que se desea borrar de la cliente.
+     * @param comprasId La compra que se desea borrar del cliente.
      */
     public void removeCliente(Long comprasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar la Cliente del libro con id = {0}", comprasId);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el Cliente de la compra con id = {0}", comprasId);
         CompraEntity compraEntity = compraPersistence.find(comprasId);
         ClienteEntity clienteEntity = clientePersistence.find(compraEntity.getCliente().getId());
         compraEntity.setCliente(null);
         clienteEntity.getCompras().remove(compraEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar la Cliente del libro con id = {0}", compraEntity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el Cliente de la compra con id = {0}", compraEntity.getId());
     }
     
 }

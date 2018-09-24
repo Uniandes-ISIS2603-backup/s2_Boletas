@@ -32,7 +32,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"costo\": \"2000\", \"envio\": true, \"fecha\": \"26-08-2018\", \"direccion\": \"Cra 1 #18a-12\", \"estado\": true}"
+					"raw": "{\"costoTotal\": \"2000\", \"envio\": true, \"fecha\": \"2018-10-20T18:25:43.511Z\", \"direccion\": \"Cra 1 #18a-12\", \"estado\": true}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_boletas-api/api/compras",
@@ -51,12 +51,12 @@
 			"response": []
 		},
 		{
-			"name": "POST compra 2",
+			"name": "POST compra cancelada",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "7885f00e-f4e8-4c4d-bd0d-83dbc44b82e7",
+						"id": "4528dbfc-fbd1-4ade-9a74-57d799b6aae0",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 412\", function () {",
@@ -76,7 +76,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"costo\": \"40000\", \"envio\": false, \"fecha\": \"29-08-2018\", \"direccion\": \"Carrera 7 #40 - 62\", \"estado\": false}"
+					"raw": "{\"costo\": \"40000\", \"envio\": false, \"fecha\": \"2018-10-20T18:25:43.511Z\", \"direccion\": \"Carrera 7 #40 - 62\", \"estado\": false}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_boletas-api/api/compras",
@@ -132,7 +132,7 @@
 			"response": []
 		},
 		{
-			"name": "GET compra 2",
+			"name": "GET compra que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -174,52 +174,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "582ee16f-bad6-4578-8d2d-0525e1a21fa4",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"costo\": 2222, \"envio\": true, \"fecha\": \"22-02-2012\", \"direccion\": \"Cra 2 #22-22\"}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compras/123",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s2_boletas-api",
-						"api",
-						"compras",
-						"123"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PUT compra 2",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "32de7d66-c37d-47cd-8792-2ab5fba96916",
+						"id": "0f281f66-4108-4efb-a0a3-bcd3ceb5b7b7",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
@@ -239,10 +194,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"costo\": \"4444\", \"envio\": \"True\", \"fecha\": \"30-03-2013\", \"direccion\": \"Cra 3 #33-33\", \"estado\": true}"
+					"raw": "{\"costo\": 2222, \"envio\": true, \"fecha\": \"22-02-2012\", \"direccion\": \"Cra 2 #22-22\"}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compras/1",
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -252,7 +207,52 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"1"
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT compra que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "41f736f5-65fa-4cfb-8c82-7e5da9d8bd76",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"costo\": \"4444\", \"envio\": \"True\", \"fecha\": \"30-03-2013\", \"direccion\": \"Cra 3 #33-33\", \"estado\": true}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/compras/123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"123"
 					]
 				}
 			},
@@ -296,7 +296,7 @@
 			"response": []
 		},
 		{
-			"name": "DELETE compra 2",
+			"name": "DELETE compra que no existe",
 			"event": [
 				{
 					"listen": "test",

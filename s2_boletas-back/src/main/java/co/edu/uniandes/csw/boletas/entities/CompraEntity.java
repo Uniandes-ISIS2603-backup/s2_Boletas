@@ -26,7 +26,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     
 
 
-    private Integer costoTotal;
+    private Double costoTotal;
     
     private Boolean envio;
     
@@ -54,7 +54,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
      * retorna el costo total de la compra
      * @return costoTotal
      */
-    public Integer getCostoTotal()
+    public Double getCostoTotal()
     {
         return costoTotal;
     }
@@ -121,7 +121,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
      * modifica el costo de la compra
      * @param costo, el nuevo costo de la compra
      */
-    public void setCosto(Integer costo)
+    public void setCosto(Double costo)
     {
         this.costoTotal= costo;
     }

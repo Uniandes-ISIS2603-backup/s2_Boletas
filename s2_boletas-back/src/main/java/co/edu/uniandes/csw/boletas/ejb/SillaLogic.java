@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.boletas.ejb;
 
-import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.entities.SillaEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.SillaPersistence;
@@ -27,16 +26,33 @@ public class SillaLogic {
     @Inject
     private SillaPersistence persistence;
     
+    /**
+     * Método que retorna una entidad Silla según su id.
+     * @param id
+     * @return 
+     */
     public SillaEntity getSillaById(Long id)
     {
         return persistence.find(id);
     }
     
+    /**
+     * Método que retorna una entidad silla según su número.
+     * @param numero
+     * @param lugarId
+     * @return 
+     */
     public SillaEntity getSillaByNumero(String numero, Long lugarId)
     {
         return persistence.findByNumeroAndLugar(numero, lugarId);
     }
     
+    /**
+     * Método que crea una entidad silla en la base de datos.
+     * @param entity
+     * @return
+     * @throws BusinessLogicException 
+     */
     public SillaEntity createSilla(SillaEntity entity) throws BusinessLogicException
     {
         SillaEntity alreadyExists = null;
@@ -53,11 +69,22 @@ public class SillaLogic {
        
     }
     
+    /**
+     * Método que retorna una lista con todas  las entidades Silla en la base de datos.
+     * @return 
+     */
     public List<SillaEntity> getSillas()
     {
         return persistence.findAll();
     }
     
+    /**
+     * Método que altera una entidad Silla.
+     * @param sillaId
+     * @param sillaAModificar
+     * @return
+     * @throws BusinessLogicException 
+     */
     public SillaEntity updateSilla(Long sillaId, SillaEntity sillaAModificar)throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicando proceso de modificar una silla.");
@@ -68,6 +95,12 @@ public class SillaLogic {
         return modificada;
     }
     
+    /**
+     * Método que elimina una entidad Silla.
+     * @param sillaId
+     * @return
+     * @throws BusinessLogicException 
+     */
     public SillaEntity deleteSilla(Long sillaId)throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Iniciando proceso de eliminar silla.");
