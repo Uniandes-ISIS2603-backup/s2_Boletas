@@ -39,10 +39,10 @@ public class ComentarioLogic {
     public ComentarioEntity createComentario(ComentarioEntity comentario) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia el proceso de la creación del comentario");
-        if(comentario.getCliente()==null || clientePersistence.find(comentario.getCliente().getId())== null)
+        /*if(comentario.getCliente()==null || clientePersistence.find(comentario.getCliente().getId())== null)
         {
             throw new BusinessLogicException("El comentario debe tener un cliente que lo realizó");
-        }
+        }*/
         if(comentario.getEspectaculo() == null || espectaculoPersistence.find(comentario.getEspectaculo().getId())==null )
         {
             throw new BusinessLogicException("El comentario debe estar asociado a un espectáculo");
@@ -51,7 +51,7 @@ public class ComentarioLogic {
         {
             throw new BusinessLogicException("El comentario debe tener un contenido");
         }
-        boolean vacia = true;
+        /*boolean vacia = true;
         boolean corresponde = false;
         if(comentario.getCliente().getCompras()!=null)
         {   
@@ -83,7 +83,7 @@ public class ComentarioLogic {
         if(!corresponde)
         {
             throw new BusinessLogicException("El cliente no puede comentar ya que no ha participado en el espectaculo "+ comentario.getEspectaculo().getNombre());
-        }
+        }*/
         persistence.create(comentario);
         LOGGER.log(Level.INFO, "Termina proceso de la creación del comentario");
         return comentario;
@@ -107,7 +107,7 @@ public class ComentarioLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el comentario con id = {0}", comentarioId);
         ComentarioEntity comentarioEntity = persistence.find(comentarioId);
         if (comentarioEntity == null) {
-            LOGGER.log(Level.SEVERE, "La boleta con el id = {0} no existe", comentarioId);
+            LOGGER.log(Level.SEVERE, "el comentario con el id = {0} no existe", comentarioId);
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar la boleta con id = {0}", comentarioId);
         return comentarioEntity;

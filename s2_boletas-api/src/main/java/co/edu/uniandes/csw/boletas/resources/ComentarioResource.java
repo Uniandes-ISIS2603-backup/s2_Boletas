@@ -93,8 +93,8 @@ public class ComentarioResource {
      * Error de lógica que se genera cuando no se encuentra la boleta.
      */
     @GET
-    @Path("{comentarioid : \\d+}")
-    public ComentarioDTO getComentario(@PathParam("comentariosId") Long comentariosId)
+    @Path("{comentariosId : \\d+}")
+    public ComentarioDTO getComentario(@PathParam("comentariosId") Long comentariosId) throws WebApplicationException
     {
         LOGGER.log(Level.INFO,"ComentarioResource getComentario: input: {0}", comentariosId);
         ComentarioEntity comentarioEntity = comentarioLogic.getComentario(comentariosId);
@@ -126,7 +126,7 @@ public class ComentarioResource {
     public ComentarioDTO updateComentario(@PathParam("comentariosId") Long comentariosId, ComentarioDTO comentario) throws WebApplicationException
     {
         LOGGER.log(Level.INFO, "ComentarioResource updateComentario: input: id:{0} , comentario: {1}", new Object[]{comentariosId, comentario.toString()});
-        comentario.setComentarioID(comentariosId);
+        comentario.setId(comentariosId);
         if (comentarioLogic.getComentario(comentariosId) == null) {
             throw new WebApplicationException("El recurso /comentarios/" + comentariosId + " no existe.", 404);
         }

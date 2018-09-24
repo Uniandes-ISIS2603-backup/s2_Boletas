@@ -123,8 +123,8 @@ public class ClienteComentariosResource {
     public List<ComentarioDTO> replaceComentarios(@PathParam("clientesId") Long clientesId, List<ComentarioDTO> comentarios) {
         LOGGER.log(Level.INFO, "ClienteComentariosResource replaceComentarios: input: clientesId: {0} , comentarios: {1}", new Object[]{clientesId, comentarios.toString()});
         for (ComentarioDTO comentario : comentarios) {
-            if (comentarioLogic.getComentario(comentario.getComentarioID()) == null) {
-                throw new WebApplicationException("El recurso /comentarios/" + comentario.getComentarioID() + " no existe.", 404);
+            if (comentarioLogic.getComentario(comentario.getId()) == null) {
+                throw new WebApplicationException("El recurso /comentarios/" + comentario.getId() + " no existe.", 404);
             }
         }
         List<ComentarioDTO> listaDTOs = listEntity2DTO(clienteComentarioLogic.replaceComentarios(clientesId, listDTO2Entity(comentarios)));

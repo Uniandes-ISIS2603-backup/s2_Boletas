@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.boletas.persistence;
 
 /**
  *
- * @author estudiante
+ * @author Diego Camacho
  */
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import java.util.List;
