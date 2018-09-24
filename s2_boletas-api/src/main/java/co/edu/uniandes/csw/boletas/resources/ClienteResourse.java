@@ -80,7 +80,7 @@ public class ClienteResourse
     
     @GET
     @Path("{clienteId : \\d+}")
-    public ClienteDTO getCliente(@PathParam("clienteId") Long clienteId) throws WebApplicationException
+    public ClienteDetailDTO getCliente(@PathParam("clienteId") Long clienteId) throws WebApplicationException
     {
         //Se busca el entity que se quiere modificar
         ClienteEntity entity = logica.getCliente(clienteId);
@@ -90,7 +90,7 @@ public class ClienteResourse
             throw new WebApplicationException("El recurso /clientes/ "+ clienteId+ "no existe",404);
         }
         //Si existe se modifica y se vuelve DTO 
-        ClienteDTO updatedDto= new ClienteDTO(logica.update(entity));
+        ClienteDetailDTO updatedDto= new ClienteDetailDTO(logica.update(entity));
         
         return updatedDto;
                 
