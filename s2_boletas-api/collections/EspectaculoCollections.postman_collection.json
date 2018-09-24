@@ -1,85 +1,30 @@
 {
 	"info": {
-		"_postman_id": "f9d8fa2e-af95-4b86-bc6a-bf76ee71b570",
+		"_postman_id": "7f981a0e-2383-4442-85ca-3e34ce782465",
 		"name": "EspectaculoCollections",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/espectaculos",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
+			"name": "Obtener un espectaculo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b17eb276-6b07-4fd9-9b0b-025221ecb693",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});"
+						]
 					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\"name\":\"yolo\"\n,\"fecha\":\"2012-03-19T07:22Z\"\n,\"descripcion\":\"es un musical\"\n,\"artista\":\"Coldplay\"\n\t\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s2_boletas-api",
-						"api",
-						"espectaculos",
-						"2"
-					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Post",
+			],
 			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\"name\":\"yolo\"\n,\"fecha\":\"2012-03-19T07:22Z\"\n,\"descripcion\":\"es un musical\"\n,\"artista\":\"Coldplay\"\n\t\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s2_boletas-api",
-						"api",
-						"espectaculos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Editar un espectaculo que no existe",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\"name\":\"yolo\"\n,\"fecha\":\"2012-03-19T07:22Z\"\n,\"descripcion\":\"es un musical\"\n,\"artista\":\"Coldplay\"\n\t\n}"
-				},
+				"method": "GET",
+				"header": [],
+				"body": {},
 				"url": {
 					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/2",
 					"protocol": "http",
@@ -99,12 +44,315 @@
 		},
 		{
 			"name": "Obtener los espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5dc0cd7c-7119-40c7-87aa-8639792419b1",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un espectaculo que existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b18f4c6c-39b1-4a51-8515-bec6a8fae898",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualiza un espectaculo con una fecha no permitida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a982bcc2-d8ce-47ed-89f1-127805ff1450",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"    pm.response.to.have.status(412);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"nombre\":\"En los 2000\"\n\t,\"fecha\":\"2000-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"Es un nuevo genero\"\n\t,\"artista\":\"Coldplay\"\n\t,\"tipo\":\"Concierto\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un espectaculo que no existe",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"hola\"\n,\"fecha\":\"2012-03-19T07:22Z\"\n,\"descripcion\":\"es un musical\"\n,\"artista\":\"Coldplay\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualiza un espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "81885df1-8731-411d-a924-5e06354253f8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"yolo\"\n\t,\"fecha\":\"2019-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical\"\n\t,\"artista\":\"Coldplay\"\n\t,\"tipo\":\"tipo\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"1"
+					]
+				},
+				"description": "Se movio la fecha del evento \n"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear espectaculo con fecha no permitida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3c8638e6-9808-4b9e-bcc8-b76b8ff2a1bc",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"    pm.response.to.have.status(412);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"Menudo\"\n\t,\"fecha\":\"2000-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"Esta remasterizado\"\n\t,\"artista\":\"Menudo\"\n\t,\"tipo\":\"Concierto\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s2_boletas-api/api/espectaculos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd635105-bf73-49a2-947e-7a33e4856ce6",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"yolo\"\n\t,\"fecha\":\"2020-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical\"\n\t,\"artista\":\"Coldpla\"\n\t,\"tipo\":\"tipo\"\n\t\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crea un espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e93770d-572b-4f66-9c54-74b031b7d4a5",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"nombre\":\"Andres Carne de res\"\n,\"descripcion\":\"Va a ser en chia :)\"\n,\"fecha\":\"2019-02-20T00:00:00-12:00\"\n,\"artista\":\"Carranga\"\n,\"tipo\":\"Concierto\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/",
@@ -125,6 +373,20 @@
 		},
 		{
 			"name": "Crea un espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd635105-bf73-49a2-947e-7a33e4856ce6",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -135,10 +397,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"nombre\":\"yolo\"\n,\"descripcion\":\"es un musical\"\n,\"fecha\":\"2000-08-20T00:00:00-05:00\"\n,\"artista\":\"Coldplay\"\n,\"tipo\":\"Concierto\"\n}"
+					"raw": "{\n\t\"nombre\":\"yolo\"\n\t,\"fecha\":\"2020-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical\"\n\t,\"artista\":\"Coldpla\"\n\t,\"tipo\":\"tipo\"\n\t\n}\n"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/",
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -147,24 +409,34 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"espectaculos",
-						""
+						"espectaculos"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener un espectaculo que no existe",
+			"name": "Borra un espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8ec7f9bf-f841-4633-8a04-5424ff944f71",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
+				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/2",
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -174,7 +446,44 @@
 						"s2_boletas-api",
 						"api",
 						"espectaculos",
-						"2"
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borra un espectaculo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a310b1f-b05c-48bf-a087-c9d6e2a7e33c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/22",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"22"
 					]
 				}
 			},
