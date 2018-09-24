@@ -53,10 +53,14 @@ public class CompraClienteLogic {
     public void removeCliente(Long comprasId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el Cliente de la compra con id = {0}", comprasId);
         CompraEntity compraEntity = compraPersistence.find(comprasId);
+        System.out.println("LLEGO CON "+compraEntity.getCliente().getId() );
         ClienteEntity clienteEntity = clientePersistence.find(compraEntity.getCliente().getId());
+        System.out.println("PASO POR AQUI");
         compraEntity.setCliente(null);
-        clienteEntity.getCompras().remove(compraEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el Cliente de la compra con id = {0}", compraEntity.getId());
+        System.out.println(compraEntity.getCliente()+ " SOY ??");
+       clienteEntity.getCompras().remove(compraEntity);
+        System.out.println(compraEntity.getCliente()+ " SIGO ??");
+       LOGGER.log(Level.INFO, "Termina proceso de borrar el Cliente de la compra con id = {0}", compraEntity.getId());
     }
     
 }
