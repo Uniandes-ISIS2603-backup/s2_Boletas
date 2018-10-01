@@ -34,12 +34,12 @@
 					"raw": "{\n\t\"numero\":\"A2\",\n\t\"tipo\":\"palcos\",\n\t\"disponible\":true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/sillas",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/sillas",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -78,12 +78,12 @@
 					"raw": "{\n\t\"numero\":\"A1\",\n\t\"disponible\": true,\n\t\"tipo\":\"palcos\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/sillas/2",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/sillas/2",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -115,12 +115,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/sillas/2",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/sillas/2",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -152,12 +152,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/sillas",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/sillas",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -188,12 +188,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/sillas/2",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/sillas/2",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",

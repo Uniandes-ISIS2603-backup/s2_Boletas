@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/boletas/13",
+			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/13",
 			"event": [
 				{
 					"listen": "test",
@@ -35,12 +35,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/13?",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/13?",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -64,7 +64,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/boletas/13",
+			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/13",
 			"event": [
 				{
 					"listen": "test",
@@ -93,12 +93,12 @@
 					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":19},\n\t\"vendida\":true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/13?",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/13?",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -122,7 +122,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/boletas/13",
+			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/13",
 			"event": [
 				{
 					"listen": "test",
@@ -151,12 +151,12 @@
 					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"espectaculo\":{\"id\":19},\n\t\"vendida\":false\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/13?",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/13?",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -180,7 +180,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/boletas/",
+			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -195,12 +195,12 @@
 					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"espectaculo\":{\"id\":19},\n\t\"vendida\":false\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/?",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/?",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -224,7 +224,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/espectaculos/",
+			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -239,12 +239,12 @@
 					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"nombre\":\"El gran show\",\n\t\"descripcion\": \"el mejor show jamas presentado\"\n\t\n\t\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/?",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/?",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",

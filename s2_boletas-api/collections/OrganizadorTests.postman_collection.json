@@ -20,12 +20,12 @@
 					"raw": "{\"usuario\": \"r.casalla\", \"nombre\": \"Rubby\", \"ganancia\": \"123\" , \"presupuesto\": \"345\"}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/organizadores",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -50,12 +50,12 @@
 					"raw": "{\"usuario\": \"r.casalla\", \"nombre\": \"Rubby\", \"ganancia\": \"123\" , \"presupuesto\": \"345\"}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/organizadores",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -92,12 +92,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/organizadores",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",

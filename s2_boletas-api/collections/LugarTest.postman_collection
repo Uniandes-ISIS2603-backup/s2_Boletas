@@ -34,12 +34,12 @@
 					"raw": "{\n\t\"numSillas\":\"2000\",\n\t\"direccion\":\"kra 6 cll 22\",\n\t\"nombre\":\"Teatro Bogotá\",\n\t\"ubicacion\": \"Teatro\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/lugares",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -78,12 +78,12 @@
 					"raw": "{\n\t\"numSillas\":\"2200\",\n\t\"direccion\":\"kra 7 cll 23\",\n\t\"nombre\":\"Teatro 7ma\",\n\t\"ubicacion\":\"Coliseo\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/9",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/9",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -115,12 +115,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/9",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/9",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -152,12 +152,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/lugares",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -188,12 +188,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/lugares/9",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/9",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
