@@ -7,6 +7,21 @@
 	"item": [
 		{
 			"name": "POST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa3e30e2-656d-4db1-b4ac-eef22a43f4ee",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody)",
+							"postman.setGlobalVariable(\"new_id_o\",data.id )",
+							"tests [\"no genera error en el post\"]=responseCode.code=200",
+							""
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -37,6 +52,19 @@
 		},
 		{
 			"name": "Comprobacion no usuario duplicado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1b417de9-1e31-4257-8b94-9d3af0e72936",
+						"type": "text/javascript",
+						"exec": [
+							"test [\"no crea con el mismo nombre\"]=responseCode.code=== 412;",
+							"test [\"Mensaje correcto de error\"]=responseBody.has(\"Ya existe un organizador con ese nombre\")"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -66,7 +94,271 @@
 			"response": []
 		},
 		{
-			"name": "POST organizador",
+			"name": "GET all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"organizadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un organizador que existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f83641fb-e46b-4add-af2f-4a9081ad0583",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_o}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"organizadores",
+						"{{new_id_o}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un organizador que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d4915f3-5f15-47cc-b9e5-b1ac1b6b47f1",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /editorials/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"organizadores",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un organizador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2c61cced-606e-4884-95fa-5964a2ca3dbb",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_o}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"organizadores",
+						"{{new_id_o}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST organizador 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"usuario\": \"s.rodriguezb\", \"nombre\": \"Sebastian\", \"ganancia\": \"200\" , \"presupuesto\": \"110\"}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"organizadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar la ganancia de un organizador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9562a3f3-569e-4a21-adce-31b6b1cd684d",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"usuario\": \"r.casalla\", \"nombre\": \"Rubby\", \"ganancia\": \"4567\" , \"presupuesto\": \"345\"}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_o}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"organizadores",
+						"{{new_id_o}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un organizador que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0cb5b0f8-7493-42ec-8d61-8da742d08966",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /editorials/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"usuario\": \"r.casalla\", \"nombre\": \"Rubby\", \"ganancia\": \"123\" , \"presupuesto\": \"345\"}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"organizadores",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa3e30e2-656d-4db1-b4ac-eef22a43f4ee",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody)",
+							"postman.setGlobalVariable(\"new_id_o\",data.id )",
+							"tests [\"no genera error en el post\"]=responseCode.code=200",
+							""
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -79,18 +371,6 @@
 					"mode": "raw",
 					"raw": "{\"usuario\": \"r.casalla\", \"nombre\": \"Rubby\", \"ganancia\": \"123\" , \"presupuesto\": \"345\"}"
 				},
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET all",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores",
 					"protocol": "http",

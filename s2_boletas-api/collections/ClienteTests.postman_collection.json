@@ -7,6 +7,21 @@
 	"item": [
 		{
 			"name": "ID 12",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a283d652-5003-486f-a358-c508f505c8ce",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody)",
+							"postman.setGlobalVariable(\"new_id_c\",data.id )",
+							"tests [\"no genera error en el post\"]=responseCode.code=200",
+							""
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -37,18 +52,56 @@
 		},
 		{
 			"name": "GET ID 12",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f854d23-0199-473a-98f0-b1a183381220",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": ""
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_c}}"
+					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/12",
+			"name": "GET cliente que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9851eb96-fc72-4d5f-9d77-7bf46b85bb25",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /editorials/0 no existe.\");"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -62,17 +115,17 @@
 					"raw": "{\"usuario\": \"n.f\",\"nombre\": \"Nicolas\", \"pago\": \"Tajeta\", \"cedula\":\"123\"}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/12",
+					"raw": "http://localhost:8080/s2_boletas-api/api/clientes/0",
 					"protocol": "http",
 					"host": [
-						"{{ip}}"
+						"localhost"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s2_boletas-api",
 						"api",
 						"clientes",
-						"12"
+						"0"
 					]
 				}
 			},
@@ -80,6 +133,20 @@
 		},
 		{
 			"name": "PUT ID 6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5cd17b3d-181f-431d-bff1-107d0d1f92c4",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -93,12 +160,12 @@
 					"raw": "{\"cedula\": \"1234\",\n        \"id\": 6,\n        \"nombre\": \"Nicolas \",\n        \"pago\": \"Efectivo\",\n        \"usuario\": \"n.segura\"}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/6",
+					"raw": "http://localhost:8080/s2_boletas-api/api/clientes/6",
 					"protocol": "http",
 					"host": [
-						"{{ip}}"
+						"localhost"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -111,17 +178,29 @@
 		},
 		{
 			"name": "DELETE CLIENTE 9",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e51ef814-5284-463d-b936-f91e25698397",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/9",
+					"raw": "http://localhost:8080/s2_boletas-api/api/clientes/9",
 					"protocol": "http",
 					"host": [
-						"{{ip}}"
+						"localhost"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s2_boletas-api",
 						"api",
