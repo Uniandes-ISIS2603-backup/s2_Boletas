@@ -65,7 +65,7 @@ public class ClienteResourse
     
     @PUT
     @Path("{clienteId : \\d+}")
-    public ClienteDTO updateCliente(@PathParam("clienteId") Long clienteId, ClienteDTO cliente)
+    public ClienteDetailDTO updateCliente(@PathParam("clienteId") Long clienteId, ClienteDetailDTO cliente)
     {
            LOGGER.log(Level.INFO, "Proceso de actualizar un cliente: PUT");
         ClienteEntity entity= cliente.toEntity();
@@ -74,7 +74,7 @@ public class ClienteResourse
               throw new WebApplicationException("El cliente que se quiere actualizar con id:" + clienteId +" No existe");
          }
          ClienteEntity actualizado= logica.update(entity);
-         ClienteDTO dto= new ClienteDTO(actualizado);
+         ClienteDetailDTO dto= new ClienteDetailDTO(actualizado);
          return dto;
     }
     
