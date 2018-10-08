@@ -1,0 +1,450 @@
+{
+	"info": {
+		"_postman_id": "24d4d40b-ec0f-4c97-bd7c-1b7b6683a232",
+		"name": "EspectaculoCollections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear espectaculo con fecha no permitida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "08d5da3c-e2e5-44e2-8a44-e077c42c7e00",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"    pm.response.to.have.status(412);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"Menudo\"\n\t,\"fecha\":\"2000-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"Esta remasterizado\"\n\t,\"artista\":\"Menudo\"\n\t,\"tipo\":\"Concierto\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crea un espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8287b62d-9968-4d0f-91e2-5795bb9eb99d",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"colo\"\n\t,\"fecha\":\"2020-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical\"\n\t,\"artista\":\"Coldpla\"\n\t,\"tipo\":\"tipo\"\n\t\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un espectaculo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c62ab9a-b000-437b-b461-c405b0e00dc4",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /espectaculos/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener los espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5dc0cd7c-7119-40c7-87aa-8639792419b1",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un espectaculo que existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d007e90d-f2de-413d-aed4-778e3d724893",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualiza un espectaculo con una fecha no permitida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a982bcc2-d8ce-47ed-89f1-127805ff1450",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"    pm.response.to.have.status(412);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"En los 2000\"\n\t,\"fecha\":\"2000-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"Es un nuevo genero\"\n\t,\"artista\":\"Coldplay\"\n\t,\"tipo\":\"Concierto\"\n}"
+				},
+				"url": {
+					"raw": "http:/{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/1",
+					"host": [
+						"http:"
+					],
+					"port": "",
+					"path": [
+						"{{ip}}:{{puerto}}",
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un espectaculo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "250c0094-d204-4bd3-8328-58052e757400",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /espectaculos/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"hola\"\n,\"fecha\":\"2012-03-19T07:22Z\"\n,\"descripcion\":\"es un musical\"\n,\"artista\":\"Coldplay\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualiza un espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e695d74-5aeb-4fc2-a70f-bed7efece0b7",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"yolo\"\n\t,\"fecha\":\"2019-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical\"\n\t,\"artista\":\"Coldplay\"\n\t,\"tipo\":\"tipo\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"{{new_id_e}}"
+					]
+				},
+				"description": "Se movio la fecha del evento \n"
+			},
+			"response": []
+		},
+		{
+			"name": "Borra un espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ecf93fd-4762-4acc-90e1-1d93ad375c67",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borra un espectaculo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ff548134-2371-4451-8c54-ae4be5462efe",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No borra con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /espectaculo/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3c696a3c-5732-4c09-8171-0d22e0d3f6c5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6339d6c4-daeb-4c98-8bd0-468244ec6dc4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
