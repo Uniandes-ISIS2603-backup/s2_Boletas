@@ -118,11 +118,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-<<<<<<< HEAD
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id}}",
-=======
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/8",
->>>>>>> origin/master
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -159,11 +155,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-<<<<<<< HEAD
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/0",
-=======
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/123",
->>>>>>> origin/master
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -208,11 +200,7 @@
 					"raw": "{\"costo\": 2222, \"envio\": true, \"fecha\": \"2012-02-20T18:25:43.511Z\", \"direccion\": \"Cra 2 #22-22\", \"estado\": true}"
 				},
 				"url": {
-<<<<<<< HEAD
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id}}",
-=======
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/1",
->>>>>>> origin/master
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -257,11 +245,7 @@
 					"raw": "{\"costo\": \"4444\", \"envio\": \"True\", \"fecha\": \"30-03-2013\", \"direccion\": \"Cra 3 #33-33\", \"estado\": true}"
 				},
 				"url": {
-<<<<<<< HEAD
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/0",
-=======
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/123",
->>>>>>> origin/master
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -298,11 +282,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-<<<<<<< HEAD
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id}}",
-=======
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/1",
->>>>>>> origin/master
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -339,11 +319,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-<<<<<<< HEAD
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/0",
-=======
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/134",
->>>>>>> origin/master
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
