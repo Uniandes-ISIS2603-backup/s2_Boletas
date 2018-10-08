@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/comentarios/11",
+			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/11",
 			"event": [
 				{
 					"listen": "test",
@@ -36,12 +36,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/11",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/11",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -53,7 +53,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/comentarios/11",
+			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/11",
 			"event": [
 				{
 					"listen": "test",
@@ -83,12 +83,12 @@
 					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida y me gusto el artista\",\n        \"espectaculo\":{\"id\":20}\n\t\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/11",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/11",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -100,7 +100,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/comentarios",
+			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios",
 			"event": [
 				{
 					"listen": "test",
@@ -130,12 +130,12 @@
 					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida\",\n        \"espectaculo\":{\"id\":20}\n\t\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -146,7 +146,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/comentarios/11",
+			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/11",
 			"event": [
 				{
 					"listen": "test",
@@ -176,12 +176,12 @@
 					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida\",\n        \"espectaculo\":{\"id\":20}\n\t\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/11",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/11",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -193,7 +193,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/comentarios",
+			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios",
 			"event": [
 				{
 					"listen": "test",
@@ -223,12 +223,12 @@
 					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida\",\n        \"espectaculo\":{\"id\":20}\n\t\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -239,7 +239,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s2_boletas-api/api/espectaculos",
+			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
 			"event": [
 				{
 					"listen": "test",
@@ -269,12 +269,12 @@
 					"raw": "{ \n        \"artista\": \"El mejor artista\",\n        \"descripcion\": \"el mejor show de la historia, con los mejores artistas\",\n        \"fecha\": \"2019-08-20T00:00:00-05:00\",\n        \"nombre\": \"el gran show parte 2\",\n        \"boletas\": [],\n        \"comentarios\": []\n\t\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
