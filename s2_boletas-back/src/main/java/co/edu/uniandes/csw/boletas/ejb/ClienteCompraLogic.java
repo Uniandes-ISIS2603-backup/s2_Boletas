@@ -82,9 +82,19 @@ public class ClienteCompraLogic {
      */
             public List<CompraEntity> updateCompras(Long clienteId, List<CompraEntity> listaNueva )
             {
+                LOGGER.log(Level.INFO, "Inicia proceso de actualizar las compras del cliente con id = {0}", clienteId);
                 ClienteEntity clienteEntity= clientePersistence.find(clienteId);
+                List<CompraEntity> compraList = compraPersistence.findAll();
+                for (CompraEntity compra : compraList) {
+                        if (listaNueva.contains(compra)) {
+                        compra.setCliente(clienteEntity);
+                        } else if (compra.getCliente() != null && compra.getCliente().equals(clienteEntity)) {
+                        compra.setCliente(null);
+                        }
+                }
                 clienteEntity.setCompras(listaNueva);
-                return clientePersistence.find(clienteId).getCompras();
+                LOGGER.log(Level.INFO, "Termina proceso de actualizar las compras del cliente con id = {0}", clienteId);
+                return listaNueva;
             }
                
             
