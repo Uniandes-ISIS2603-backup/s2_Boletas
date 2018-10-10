@@ -93,10 +93,10 @@ public class ComentarioLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from ComentarioEntity").executeUpdate();
-        //em.createQuery("delete from EspectaculoEntity").executeUpdate();
-        //em.createQuery("delete from BoletaEntity").executeUpdate();
-        //em.createQuery("delete from CompraEntity").executeUpdate();
-       // em.createQuery("delete from ClienteEntity").executeUpdate();
+        em.createQuery("delete from BoletaEntity").executeUpdate();
+        em.createQuery("delete from CompraEntity").executeUpdate();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
+        em.createQuery("delete from EspectaculoEntity").executeUpdate();
     }
 
     /**
