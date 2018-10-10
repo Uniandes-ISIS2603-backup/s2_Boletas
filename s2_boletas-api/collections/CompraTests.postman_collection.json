@@ -12,12 +12,15 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "64575822-77e2-4255-ad37-1ef3c1cfb972",
+						"id": "7e1ffb4f-d43f-4967-a28b-81101d3c0246",
 						"type": "text/javascript",
 						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newCompra_id\",data.id);",
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
-							"});"
+							"});",
+							""
 						]
 					}
 				}
@@ -115,7 +118,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/8",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -125,7 +128,7 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"8"
+						"{{newCompra_id}}"
 					]
 				}
 			},
@@ -152,7 +155,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/123",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -162,7 +165,7 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"123"
+						"0"
 					]
 				}
 			},
@@ -197,7 +200,7 @@
 					"raw": "{\"costo\": 2222, \"envio\": true, \"fecha\": \"2012-02-20T18:25:43.511Z\", \"direccion\": \"Cra 2 #22-22\", \"estado\": true}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -207,7 +210,7 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"1"
+						"{{newCompra_id}}"
 					]
 				}
 			},
@@ -242,7 +245,7 @@
 					"raw": "{\"costo\": \"4444\", \"envio\": \"True\", \"fecha\": \"30-03-2013\", \"direccion\": \"Cra 3 #33-33\", \"estado\": true}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/123",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -252,7 +255,7 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"123"
+						"0"
 					]
 				}
 			},
@@ -279,7 +282,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -289,7 +292,7 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"1"
+						"{{newCompra_id}}"
 					]
 				}
 			},
@@ -316,7 +319,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/134",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -326,7 +329,7 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"134"
+						"0"
 					]
 				}
 			},
