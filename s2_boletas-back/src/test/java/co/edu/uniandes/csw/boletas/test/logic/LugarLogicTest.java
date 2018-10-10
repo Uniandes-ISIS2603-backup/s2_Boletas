@@ -10,6 +10,8 @@ import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.LugarPersistence;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -133,5 +135,23 @@ public class LugarLogicTest {
         LugarEntity sourced = logic.getLugarById(entity.getId());
         Assert.assertNotNull(sourced);
         Assert.assertEquals(sourced, entity);
+    }
+    
+    @Test
+    public void estaDisponibleTest()
+    {
+        //Está disponible dado que no tiene espectáculos. El lugar con el id 1.
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        boolean disponible = false;
+        try
+        {
+             disponible = logic.estaDisponible(date, data.get(0).getId());
+        }catch(BusinessLogicException bLE)
+        {
+            Assert.fail("El lugar debería existir.");
+        }
+       
+        Assert.assertTrue(disponible);
     }
 }
