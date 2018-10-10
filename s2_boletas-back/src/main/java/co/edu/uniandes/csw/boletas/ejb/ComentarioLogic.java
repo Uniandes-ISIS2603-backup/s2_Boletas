@@ -71,12 +71,18 @@ public class ComentarioLogic {
         {
             if(compra.getBoletas()!=null && compraPersistence.find(compra.getId())!=null&&compraPersistence.find(compra.getId()).getBoletas()!=null )
             {
+                
+                
                 for(BoletaEntity boleta: compraPersistence.find(compra.getId()).getBoletas())
                 {
+                    
+                    
                     if(boleta.getEspectaculo()!=null && boletaPersistence.find(boleta.getId())!=null && boletaPersistence.find(boleta.getId()).getEspectaculo()!=null )
                     {
-                        if(boletaPersistence.find(boleta.getId()).getEspectaculo()==comentario.getEspectaculo())
+                        
+                        if(boletaPersistence.find(boleta.getId()).getEspectaculo().equals(comentario.getEspectaculo()))
                         {
+                            
                             corresponde = true;
                         }
                     }

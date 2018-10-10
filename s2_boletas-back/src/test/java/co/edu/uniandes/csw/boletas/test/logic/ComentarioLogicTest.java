@@ -15,6 +15,9 @@ import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -106,18 +109,17 @@ public class ComentarioLogicTest {
     private void insertData() {
         for (int i = 0; i < 3; i++) {
             EspectaculoEntity espEntity = factory.manufacturePojo(EspectaculoEntity.class);
-            em.persist(espEntity);
             espectaculoData.add(espEntity);
         }
         for (int i = 0; i < 3; i++) {
             ClienteEntity cliEntity = factory.manufacturePojo(ClienteEntity.class);
-            em.persist(cliEntity);
+            
             clienteData.add(cliEntity);
         }
         for (int i = 0; i < 3; i++) {
             BoletaEntity bolEntity = factory.manufacturePojo(BoletaEntity.class);
             bolEntity.setEspectaculo(espectaculoData.get(0));
-            em.persist(bolEntity);
+            
             boletaData.add(bolEntity);
         }
         
@@ -126,20 +128,36 @@ public class ComentarioLogicTest {
             CompraEntity compEntity = factory.manufacturePojo(CompraEntity.class);
             compEntity.setBoletas(boletaData);
             compEntity.setCliente(clienteData.get(0));
-            em.persist(compEntity);
+           
             compraData.add(compEntity);
+            
         }
+        clienteData.get(0).setCompras(compraData);
+        
         for (int i = 0; i < 3; i++) {
             ComentarioEntity entity = factory.manufacturePojo(ComentarioEntity.class);
-            clienteData.get(0).setCompras(compraData);
             entity.setCliente(clienteData.get(0));
             entity.setEspectaculo(espectaculoData.get(0));
             em.persist(entity);
             data.add(entity);
 
         }
+        Calendar cal = new GregorianCalendar(2018, 03, 03);
+        Date fecha = cal.getTime();
+        espectaculoData.get(0).setFecha(fecha);
         espectaculoData.get(0).setComentarios(data);
+        espectaculoData.get(0).setBoletas(boletaData);
+        em.persist(espectaculoData.get(0));
         clienteData.get(0).setComentarios(data);
+        clienteData.get(0).setCompras(compraData);
+        compraData.get(0).setBoletas(boletaData);
+        boletaData.get(0).setCompra(compraData.get(0));
+        boletaData.get(0).setEspectaculo(espectaculoData.get(0));
+        em.persist(boletaData.get(0));
+        em.persist(compraData.get(0));
+        
+
+        em.persist(clienteData.get(0));
     }
     
     /**
@@ -150,6 +168,9 @@ public class ComentarioLogicTest {
     public void createComentarioTest() throws BusinessLogicException {
         ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
         newEntity.setCliente(clienteData.get(0));
+        System.out.println(newEntity.getCliente().getCompras().size());
+        System.out.println(newEntity.getCliente().getCompras().get(0).getBoletas().size());
+        System.out.println(newEntity.getCliente().getCompras().get(0).getId());
         newEntity.setEspectaculo(espectaculoData.get(0));
         ComentarioEntity result = comentarioLogic.createComentario(newEntity);
         Assert.assertNotNull(result);
