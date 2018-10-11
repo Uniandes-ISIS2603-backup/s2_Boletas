@@ -6,12 +6,16 @@
 package co.edu.uniandes.csw.boletas.ejb;
 
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
+import co.edu.uniandes.csw.boletas.entities.ClienteEntity;
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.boletas.persistence.BoletaPersistence;
 import co.edu.uniandes.csw.boletas.persistence.ClientePersistence;
 import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
+import co.edu.uniandes.csw.boletas.persistence.CompraPersistence;
 import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,13 +40,19 @@ public class ComentarioLogic {
     @Inject
     private EspectaculoPersistence espectaculoPersistence;
     
+    @Inject
+    private BoletaPersistence boletaPersistence;
+    
+    @Inject 
+    private CompraPersistence compraPersistence;
+    
     public ComentarioEntity createComentario(ComentarioEntity comentario) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia el proceso de la creación del comentario");
-        /*if(comentario.getCliente()==null || clientePersistence.find(comentario.getCliente().getId())== null)
+        if(comentario.getCliente()==null || clientePersistence.find(comentario.getCliente().getId())== null)
         {
             throw new BusinessLogicException("El comentario debe tener un cliente que lo realizó");
-        }*/
+        }
         if(comentario.getEspectaculo() == null || espectaculoPersistence.find(comentario.getEspectaculo().getId())==null )
         {
             throw new BusinessLogicException("El comentario debe estar asociado a un espectáculo");
@@ -51,39 +61,43 @@ public class ComentarioLogic {
         {
             throw new BusinessLogicException("El comentario debe tener un contenido");
         }
-        /*boolean vacia = true;
+        ClienteEntity cliente = clientePersistence.find(comentario.getCliente().getId());
+        if(cliente.getCompras()==null)
+        {
+            throw new BusinessLogicException("El cliente no tiene compras");
+        }
         boolean corresponde = false;
-        if(comentario.getCliente().getCompras()!=null)
-        {   
-            for(CompraEntity compra: comentario.getCliente().getCompras())
+        for(CompraEntity compra: cliente.getCompras())
+        {
+            if(compra.getBoletas()!=null && compraPersistence.find(compra.getId())!=null&&compraPersistence.find(compra.getId()).getBoletas()!=null )
             {
-                if(compra!=null)
+                
+                
+                for(BoletaEntity boleta: compraPersistence.find(compra.getId()).getBoletas())
                 {
-                    if(compra.getBoletas()!=null && !compra.getBoletas().isEmpty())
+                    
+                    
+                    if(boleta.getEspectaculo()!=null && boletaPersistence.find(boleta.getId())!=null && boletaPersistence.find(boleta.getId()).getEspectaculo()!=null )
                     {
-                     vacia = false;
-                    }
-                    if(compra.getBoletas()!=null)
-                    {
-                        for(BoletaEntity boleta: compra.getBoletas())
+                        
+                        if(boletaPersistence.find(boleta.getId()).getEspectaculo().equals(comentario.getEspectaculo()))
                         {
-                            if(boleta!=null && boleta.getEspectaculo().getId().equals(comentario.getEspectaculo().getId()) && espectaculoPersistence.find(comentario.getEspectaculo().getId())!=null)
-                            {
-                                corresponde = true;
-                            }
+                            
+                            corresponde = true;
                         }
                     }
                 }
             }
         }
-        if(vacia)
-        {
-            throw new BusinessLogicException("El cliente que intenta hacer el comentario no tiene compras asociadas");
-        }
         if(!corresponde)
         {
-            throw new BusinessLogicException("El cliente no puede comentar ya que no ha participado en el espectaculo "+ comentario.getEspectaculo().getNombre());
-        }*/
+            throw new BusinessLogicException("El cliente que quiere hacer el comentario no tiene boletas de este espectaculo");
+        }
+        Date ya = new Date();
+        if(comentario.getEspectaculo().getFecha()!=null && comentario.getEspectaculo().getFecha().after(ya))
+        {
+            throw new BusinessLogicException("No se puede comentar ya que el espectaculo aun no se ha dado");
+        }
         persistence.create(comentario);
         LOGGER.log(Level.INFO, "Termina proceso de la creación del comentario");
         return comentario;
