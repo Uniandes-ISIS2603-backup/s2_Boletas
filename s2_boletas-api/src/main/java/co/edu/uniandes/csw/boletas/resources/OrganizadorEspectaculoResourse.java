@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -102,6 +103,28 @@ public class OrganizadorEspectaculoResourse
         List<EspectaculoDetailDTO> listaDetailDTO= espectaculosListEntity2DTO(organizadorEspectaculoLogic.getEspectaculos(espectaculosId));
         return listaDetailDTO;
         
+    }
+    
+    /**
+     * Metodo que remplaza los espectaculos de un organizador
+     * @param organizadoresId
+     * @param listaEspectaculo
+     * @return 
+     */
+    @PUT
+    public List<EspectaculoDetailDTO> remplazarEspectaculos(@PathParam("organizadoresId") Long organizadoresId, List<EspectaculoDetailDTO> listaEspectaculo)
+    {
+        for (EspectaculoDetailDTO espectaculo : listaEspectaculo) 
+        {
+          if(espectaculoLogic.getEspectaculo(espectaculo.getId()) == null)
+          {
+              throw new WebApplicationException("El recurso /espectaculos/" + espectaculo.getId()+ " no existe",404);
+          }
+        }
+        
+        List<EspectaculoDetailDTO> listaEspec = espectaculosListEntity2DTO(organizadorEspectaculoLogic.updateEspectaculos(espectaculoListDTO2Entity(listaEspectaculo), organizadoresId));
+        
+        return listaEspec;
     }
     
         /**

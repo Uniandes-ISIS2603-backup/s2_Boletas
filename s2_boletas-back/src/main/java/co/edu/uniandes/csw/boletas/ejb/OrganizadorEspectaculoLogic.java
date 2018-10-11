@@ -123,8 +123,7 @@ public class OrganizadorEspectaculoLogic {
       }
       
           /**
-     * Rempla        throw new BusinessLogicException("El espectaculo no pertenece a este organizador");
-zar los espectaculos de un organizador
+     * Remplazar los espectaculos de un organizador
      *
      * @param espectaculos  Lista de espectaculos  que serán los del organizador.
      * @param organizadorId  El id del organizador que se quiere actualizar.
