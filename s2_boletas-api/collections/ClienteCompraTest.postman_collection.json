@@ -1,0 +1,734 @@
+{
+	"info": {
+		"_postman_id": "3d343ea6-ad7f-4a2b-a525-7be5250007ce",
+		"name": "ClienteCompraTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST crear cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e864a547-48bf-4e14-b747-f0758946ef0b",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody)",
+							"postman.setGlobalVariable(\"new_id_cc1\",data.id )",
+							"tests [\"no genera error en el post\"]=responseCode.code=200",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"usuario\": \"NMAAL\",\"nombre\": \"NicolasMAAAAL\", \"pago\": \"Tajeta\", \"cedula\":\"123\"}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST crear cliente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f57e1c82-a82c-4347-acc0-b4115d636eb9",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody)",
+							"postman.setGlobalVariable(\"new_id_cc2\",data.id )",
+							"tests [\"no genera error en el post\"]=responseCode.code=200",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"usuario\": \"JABLO\",\"nombre\": \"JuanpABLO\", \"pago\": \"Tajeta\", \"cedula\":\"321\"}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87540d6e-3751-4d6a-bb1f-34a7f101b33b",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newCompraCli_id1\",data.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"costoTotal\": \"2000\", \"envio\": true, \"fecha\": \"2018-10-20T18:25:43.511Z\", \"direccion\": \"Cra 1 #18a-12\", \"estado\": true}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST compra 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "976020d3-a1b4-4640-8a0b-062fa971170a",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newCompraCli_id2\",data.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"costoTotal\": \"2000\", \"envio\": false, \"fecha\": \"2018-11-20T18:25:43.511Z\", \"direccion\": \"\", \"estado\": true}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Asignar una compra a un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3d423685-1096-47bf-ba27-4fef9c259d54",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cc1}}/compras/{{newCompraCli_id1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cc1}}",
+						"compras",
+						"{{newCompraCli_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Asignar una compra a un cliente Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3d423685-1096-47bf-ba27-4fef9c259d54",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cc1}}/compras/{{newCompraCli_id2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cc1}}",
+						"compras",
+						"{{newCompraCli_id2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Asignar una compra que no existe a un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "56e5cba5-2f1b-45bf-99c9-c103a04402b5",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /compras/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cc1}}/compras/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cc1}}",
+						"compras",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Obtener las compras de un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6c167bd-9cd1-491d-bb53-a0a747ab672e",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cc1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cc1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Obtener una compra del cliente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cc1}}/compras/{{newCompraCli_id1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cc1}}",
+						"compras",
+						"{{newCompraCli_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Obtener una compra no asociada al cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9cb7a923-7b55-4fa4-9f0e-90c1c2bc019a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"    pm.response.to.have.status(412);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cc2}}/compras/{{newCompraCli_id1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cc2}}",
+						"compras",
+						"{{newCompraCli_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Obtener una compra que no existe del cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc33d7c5-ea5f-4377-af6e-18d18200854d",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cc1}}/compras/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cc1}}",
+						"compras",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT asignar compras a un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5214abaf-1331-4cb2-b2c9-716d9e551399",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\"costoTotal\": \"2000\", \"envio\": true, \"fecha\": \"2018-10-20T18:25:43.511Z\", \"direccion\": \"Cra 1 #18a-12\", \"estado\": true, \"id\": {{newCompraCli_id1}} , \"cliente\":{\"usuario\": \"n.f\",\"nombre\": \"Juan\", \"pago\": \"Tajeta\", \"cedula\":\"321\", \"id\": {{new_id_cc2}} }\n    \t\n    },\n    {\"costoTotal\": \"2000\", \"envio\": false, \"fecha\": \"2018-11-20T18:25:43.511Z\", \"direccion\": \"\", \"estado\": true, \"id\": {{newCompraCli_id2}} , \"cliente\":{\"usuario\": \"n.f\",\"nombre\": \"Juan\", \"pago\": \"Tajeta\", \"cedula\":\"321\", \"id\": {{new_id_cc2}} }\n    \t\n    }\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cc2}}/compras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cc2}}",
+						"compras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT asignar compras que no existen a un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5214abaf-1331-4cb2-b2c9-716d9e551399",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\"costoTotal\": \"2000\", \"envio\": true, \"fecha\": \"2018-10-20T18:25:43.511Z\", \"direccion\": \"Cra 1 #18a-12\", \"estado\": true, \"id\": 0 }\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cc2}}/compras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cc2}}",
+						"compras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e51ef814-5284-463d-b936-f91e25698397",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cc1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cc1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar cliente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e51ef814-5284-463d-b936-f91e25698397",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cc2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cc2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d396b9b-f13f-45d4-87d3-2f7725a0baac",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompraCli_id1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompraCli_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar compra 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d396b9b-f13f-45d4-87d3-2f7725a0baac",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompraCli_id2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompraCli_id2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET compras",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

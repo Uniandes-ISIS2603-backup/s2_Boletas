@@ -129,11 +129,11 @@ public class CompraDTO implements Serializable {
     
     /**
      * modifica el id de la compra
-     * @param idN , el nuevo id
+     * @param id , el nuevo id
      */
-    public void setId(Long idN)
+    public void setId(Long id)
     {
-        id=idN;
+        this.id=id;
     }
     
     /**
@@ -148,11 +148,11 @@ public class CompraDTO implements Serializable {
     
     /**
      * modifica el costo de la compra
-     * @param costoN, el nuevo costo de la compra
+     * @param costo, el nuevo costo de la compra
      */
-    public void setCosto(Double costoN)
+    public void setCosto(Double costo)
     {
-        costoTotal= costoN;
+        costoTotal= costo;
     }
     
      /*
@@ -167,30 +167,30 @@ public class CompraDTO implements Serializable {
     
     /**
      * modifica si se necesita un envio o no
-     * @param envioP, la nueva decicion sobre el envio
+     * @param envio, la nueva decicion sobre el envio
      */
-    public void setEnvio(Boolean envioP)
+    public void setEnvio(Boolean envio)
     {
-        envio= envioP;
+        this.envio= envio;
     }
      
     
     /**
      * modifica la direccion ingresada
-     * @param direccionN , nueva direccion
+     * @param direccion , nueva direccion
      */
-    public void setDireccion(String direccionN)
+    public void setDireccion(String direccion)
     {
-        direccion= direccionN;
+        this.direccion= direccion;
     }
     
    /**
     * modifica la fecha de la compra
-    * @param fechaN , nueva fecha de la compra
+    * @param fecha , nueva fecha de la compra
     */
-    public void setFecha(Date fechaN)
+    public void setFecha(Date fecha)
     {
-        fecha= fechaN;
+        this.fecha= fecha;
     }
    
     
