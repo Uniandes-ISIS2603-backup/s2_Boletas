@@ -1,245 +1,40 @@
 {
 	"info": {
-		"_postman_id": "a6850b78-ef30-4e33-bc66-6d9587c49996",
+		"_postman_id": "2af39e27-ada9-44e7-9548-27875e94c747",
 		"name": "BoletaTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/13",
+			"name": "Crear un espectaculo",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "9ef809f2-5fd2-4254-8830-26b0878789f5",
-						"type": "text/javascript",
+						"id": "1da7657d-2eee-44c8-95d8-f399a3cf8d95",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						]
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"disabled": false
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/13?",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s2_boletas-api",
-						"api",
-						"boletas",
-						"13"
-					],
-					"query": [
-						{
-							"key": "precio",
-							"value": "500",
-							"disabled": true
-						},
-						{
-							"key": "fecha",
-							"value": "\"12-12-2012\"",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/13",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "9ef809f2-5fd2-4254-8830-26b0878789f5",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"disabled": false
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":19},\n\t\"vendida\":true\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/13?",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s2_boletas-api",
-						"api",
-						"boletas",
-						"13"
-					],
-					"query": [
-						{
-							"key": "precio",
-							"value": "500",
-							"disabled": true
-						},
-						{
-							"key": "fecha",
-							"value": "\"12-12-2012\"",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/13",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "9ef809f2-5fd2-4254-8830-26b0878789f5",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"disabled": false
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"espectaculo\":{\"id\":19},\n\t\"vendida\":false\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/13?",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s2_boletas-api",
-						"api",
-						"boletas",
-						"13"
-					],
-					"query": [
-						{
-							"key": "precio",
-							"value": "500",
-							"disabled": true
-						},
-						{
-							"key": "fecha",
-							"value": "\"12-12-2012\"",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"disabled": false
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"espectaculo\":{\"id\":19},\n\t\"vendida\":false\n}"
+					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"nombre\":\"El gran show\",\n\t\"descripcion\": \"el mejor show jamas presentado\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/?",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s2_boletas-api",
-						"api",
-						"boletas",
-						""
-					],
-					"query": [
-						{
-							"key": "precio",
-							"value": "500",
-							"disabled": true
-						},
-						{
-							"key": "fecha",
-							"value": "\"12-12-2012\"",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"disabled": false
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"nombre\":\"El gran show\",\n\t\"descripcion\": \"el mejor show jamas presentado\"\n\t\n\t\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/?",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -250,6 +45,272 @@
 						"api",
 						"espectaculos",
 						""
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una boleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "770060a3-2d41-4232-80e0-fdc42da20fbf",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_b\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"espectaculo\":{\"id\":{{new_id_e}}},\n\t\"vendida\":false\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas",
+						""
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las boletas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "034dd37a-72aa-407a-965e-5aa3cff58381",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"boletas count\"] = data.length >= 0;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una boleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ef809f2-5fd2-4254-8830-26b0878789f5",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"espectaculo\":{\"id\":19},\n\t\"vendida\":false\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas",
+						"{{new_id_b}}"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar una boleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ef809f2-5fd2-4254-8830-26b0878789f5",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":{{new_id_e}}},\n\t\"vendida\":true\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas",
+						"{{new_id_b}}"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una boleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ef809f2-5fd2-4254-8830-26b0878789f5",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas",
+						"{{new_id_b}}"
 					],
 					"query": [
 						{
