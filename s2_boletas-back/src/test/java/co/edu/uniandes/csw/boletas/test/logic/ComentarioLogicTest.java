@@ -142,9 +142,9 @@ public class ComentarioLogicTest {
             data.add(entity);
 
         }
-        Calendar cal = new GregorianCalendar(2018, 03, 03);
-        Date fecha = cal.getTime();
-        espectaculoData.get(0).setFecha(fecha);
+        //Calendar cal = new GregorianCalendar(2018, 03, 03);
+        //Date fecha = cal.getTime();
+        //espectaculoData.get(0).setFecha(fecha);
         espectaculoData.get(0).setComentarios(data);
         espectaculoData.get(0).setBoletas(boletaData);
         em.persist(espectaculoData.get(0));
