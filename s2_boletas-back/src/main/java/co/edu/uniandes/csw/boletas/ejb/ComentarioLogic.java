@@ -93,11 +93,11 @@ public class ComentarioLogic {
         {
             throw new BusinessLogicException("El cliente que quiere hacer el comentario no tiene boletas de este espectaculo");
         }
-        Date ya = new Date();
-        if(comentario.getEspectaculo().getFecha()!=null && comentario.getEspectaculo().getFecha().after(ya))
-        {
-            throw new BusinessLogicException("No se puede comentar ya que el espectaculo aun no se ha dado");
-        }
+       // Date ya = new Date();
+       // if(comentario.getEspectaculo().getFecha()!=null && comentario.getEspectaculo().getFecha().after(ya))
+        //{
+         //   throw new BusinessLogicException("No se puede comentar ya que el espectaculo aun no se ha dado");
+        //}
         persistence.create(comentario);
         LOGGER.log(Level.INFO, "Termina proceso de la creación del comentario");
         return comentario;
