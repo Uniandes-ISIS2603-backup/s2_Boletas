@@ -1,0 +1,867 @@
+{
+	"info": {
+		"_postman_id": "fd64e829-3877-45fd-a752-824109170e9d",
+		"name": "CompraBoletaTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST Crear un espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f9a5ace-25b3-44ea-811a-d426342d549d",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_eCB\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"nombre\":\"El gran show\",\n\t\"descripcion\": \"el mejor show jamas presentado\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "31aacdcb-5d38-49f4-80d9-2586adce02b0",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newCompra_id1\",data.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"costoTotal\": \"2000\", \"envio\": true, \"fecha\": \"2018-10-20T18:25:43.511Z\", \"direccion\": \"Cra 1 #18a-12\", \"estado\": true}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST compra 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09753ac4-7257-45cd-a008-ae2a6c9ebee7",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newCompra_id2\",data.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"costoTotal\": \"2000\", \"envio\": false, \"fecha\": \"2018-11-20T18:25:43.511Z\", \"direccion\": \"\", \"estado\": true}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una boleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bb434968-c40f-4bb7-b3c3-7ead2d30604b",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_b1\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"espectaculo\":{\"id\":{{new_id_eCB}}},\n\t\"vendida\":false\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una boleta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eaa2ee4b-9848-439c-bb59-579027774849",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_b2\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n\t\"fecha\":\"2020-09-20T00:00:00-05:00\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":{{new_id_eCB}}},\n\t\"vendida\":false\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST agregar boleta a compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03363d41-e1f5-4e3d-96dd-4d964181e8c3",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n\t\"fecha\":\"2020-09-20T00:00:00-05:00\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":{{new_id_eCB}}},\n\t\"vendida\":false\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id1}}/boletas/{{new_id_b1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_id1}}",
+						"boletas",
+						"{{new_id_b1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST agregar boleta a compra Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5a2d89c-5b42-42fd-86a5-19323d3f1906",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n\t\"fecha\":\"2020-09-20T00:00:00-05:00\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":{{new_id_eCB}}},\n\t\"vendida\":false\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id1}}/boletas/{{newBoleta_id2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_id1}}",
+						"boletas",
+						"{{newBoleta_id2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST agregar una boleta que no existe a una compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9a94250-89e0-4ef2-adb7-7606d63c9007",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /boletas/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id1}}/boletas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_id1}}",
+						"boletas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Obterener las boletas de una compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "927d77b9-25c0-4d82-83e5-156f198845f0",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Obtener una boleta de la compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0cc3fe07-695e-4cbf-ac25-57220618ea2d",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id1}}/boletas/{{newBoleta_id1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_id1}}",
+						"boletas",
+						"{{newBoleta_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Obtener una boleta no asociada  de la compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "11c38e8d-70b6-4760-ba25-443225bfa914",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"    pm.response.to.have.status(412);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id2}}/boletas/{{newBoleta_id1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_id2}}",
+						"boletas",
+						"{{newBoleta_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Obtener una boleta no asociada  de la compra Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4ba2d46-b3d2-4306-8469-07a18ec15a2e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id2}}/boletas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_id2}}",
+						"boletas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT asignar boleta a una compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "60b3c216-f33c-451d-af0d-8d8088c5e7c5",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"espectaculo\":{\"id\":{{new_id_eCB}}},\n\t\"vendida\":false ,\n\t\"id\": {{new_id_b1}},\n\t\"compra\": {\"costoTotal\": \"2000\", \"envio\": false, \"fecha\": \"2018-11-20T18:25:43.511Z\", \"direccion\": \"\", \"estado\": true,\n\t\t\"id\": {{newCompra_id2}} }\n\t}\n    ,\n    {\t\n\t\"fecha\":\"2020-09-20T00:00:00-05:00\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":{{new_id_eCB}}},\n\t\"vendida\":false , \n\t\"id\": {{new_id_b2}},\n\t\"compra\": {\"costoTotal\": \"2000\", \"envio\": false, \"fecha\": \"2018-11-20T18:25:43.511Z\", \"direccion\": \"\", \"estado\": true,\n\t\t\"id\": {{newCompra_id2}} }\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_id2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT asignar boleta que no existe a una compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "70e0d4d0-d510-4ea8-9443-61f55c769c93",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se pueden asociar las boletas ya que estas no existen\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /boletas/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"vendida\":false ,\n\t\"id\": 0\n    }\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_id2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab9de0c9-63aa-426f-8c7d-ec4782552e2f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_id1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar compra 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab9de0c9-63aa-426f-8c7d-ec4782552e2f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_id2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Borrar una boleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ef809f2-5fd2-4254-8830-26b0878789f5",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas",
+						"{{new_id_b1}}"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Borrar una boleta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ef809f2-5fd2-4254-8830-26b0878789f5",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas",
+						"{{new_id_b2}}"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Borrar un espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ef809f2-5fd2-4254-8830-26b0878789f5",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_eCB}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"{{new_id_eCB}}"
+					],
+					"query": [
+						{
+							"key": "precio",
+							"value": "500",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "\"12-12-2012\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
