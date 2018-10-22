@@ -36,6 +36,8 @@ public class EspectaculoDTO implements Serializable
     
     private String tipo;
     
+    private String imagen;
+    
     /**
      * Espectaculo tiene una asociacion, de modo que tiene un lugar asignado
      */
@@ -71,6 +73,8 @@ public class EspectaculoDTO implements Serializable
             descripcion = espectaculo.getDescripcion();
             
             tipo = espectaculo.getTipo();
+            
+            imagen = espectaculo.getImagen();
             
             if(espectaculo.darLugar() != null)
             {
@@ -108,6 +112,8 @@ public class EspectaculoDTO implements Serializable
         espectaculo.setFecha(this.fecha);
         
         espectaculo.setTipo(this.tipo);
+        
+        espectaculo.setImagen(imagen);
         
         if(lugar != null)
         {
@@ -247,5 +253,22 @@ public class EspectaculoDTO implements Serializable
      */
     public void setLugar(LugarDTO lugar) {
         this.lugar = lugar;
+    }
+    
+    /**
+     * @return Metodo para dar la url de la imagen 
+     */
+    public String darImagen()
+    {
+        return imagen;
+    }
+    
+    /**
+     * Metodo que inserta la url de la imagen al espectaculo
+     * @param imagen 
+     */
+    public void setImagen(String imagen)
+    {
+        this.imagen = imagen;
     }
 }

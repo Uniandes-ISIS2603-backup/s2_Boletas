@@ -39,6 +39,8 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     private String artista;
     
     private String tipo;
+    
+    private String imagen;
 
     
     /**
@@ -134,6 +136,20 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
     public void setLugar(LugarEntity pLugar)
     {
         this.lugar = pLugar;
+    }
+    
+    /**
+    * Retorna 
+    * @return la url de la imagen
+    */
+    public String getImagen()
+    {
+        return imagen;
+    }
+    
+    public void setImagen(String imagen)
+    {
+        this.imagen = imagen;
     }
 
     /**
