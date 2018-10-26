@@ -32,6 +32,7 @@ public class OrganizadorDTO implements Serializable  {
         this.nombre= organizador.getNombre();
         this.ganancia=organizador.getGanancia();
         this.presupuesto=organizador.getPresupuesto();
+        this.id = organizador.getId();
     }
     
     public OrganizadorEntity toEntity()
@@ -46,7 +47,7 @@ public class OrganizadorDTO implements Serializable  {
         
     }
     
-        public Long getOrganizadorId() {
+    public Long getOrganizadorId() {
         return id;
     }
 
@@ -82,7 +83,7 @@ public class OrganizadorDTO implements Serializable  {
         this.ganancia = ganancia;
     }
     
-        public Long getId() {
+    public Long getId() {
         return id;
     }
 
