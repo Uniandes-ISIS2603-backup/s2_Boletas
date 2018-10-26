@@ -113,7 +113,7 @@ public class EspectaculoDTO implements Serializable
         
         espectaculo.setTipo(this.tipo);
         
-        espectaculo.setImagen(imagen);
+        espectaculo.setImagen(this.imagen);
         
         if(lugar != null)
         {
@@ -258,7 +258,7 @@ public class EspectaculoDTO implements Serializable
     /**
      * @return Metodo para dar la url de la imagen 
      */
-    public String darImagen()
+    public String getImagen()
     {
         return imagen;
     }
