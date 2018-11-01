@@ -5,9 +5,11 @@
  */
 package co.edu.uniandes.csw.boletas.dtos;
 
+import co.edu.uniandes.csw.boletas.adapters.DateAdapter;
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -28,6 +30,7 @@ public class EspectaculoDTO implements Serializable
     
     private String nombre;
     
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fecha;
     
     private String descripcion;
