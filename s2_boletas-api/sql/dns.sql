@@ -19,3 +19,20 @@ insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, im
 insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, imagen) values (800, 'Middle of Nowhere', '2018-06-19T22:53:19Z', 'Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.', 'Charmain Ewart', 'Drama|Romance','');
 insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, imagen) values (900, 'Close Your Eyes (Hypnotic) (Doctor Sleep)', '2018-10-14T03:44:52Z', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.', 'Ricki Bradnum', 'Crime|Thriller','');
 insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, imagen) values (1000, 'Glenn, the Flying Robot', '2018-05-17T02:23:53Z', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.', 'Nelle Newland', 'Sci-Fi');
+
+--TABLA LUGAR ENTITY
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (201, 'cra 9e 5-29', 'Stang', 77, 'teatro');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (202, 'cra 4k 9-78', 'Teatro de Bogota', 26, 'teatro');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (203, 'cra 6m 0-10', 'Buell', 60, 'teatro');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (204, 'cra 1v 8-27', 'Everett', 77, 'teatro');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (205, 'cra 0l 1-05', 'Hoepker', 70, 'teatro');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (206, 'cra 0z 7-32', 'New Castle', 21, 'teatro');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (207, 'cra 3y 6-49', 'Old Shore', 42, 'teatro');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (208, 'cra 2a 1-93', 'Burrows', 77, 'teatro');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (209, 'cra 3f 0-28', 'Shoshone', 33, 'teatro');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (210, 'cra 3h 0-93', 'Forster', 58, 'coliseo');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (211, 'cra 2f 3-68', 'Sullivan', 58, 'coliseo');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (212, 'cra 1d 8-22', 'Arkansas', 62, 'coliseo');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (213, 'cra 5c 4-45', 'El Campin', 50, 'coliseo');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (214, 'cra 6f 3-56', 'The Turtle', 36, 'coliseo');
+insert into LugarEntity (id, direccion, nombre, numsillas, ubicacion) values (215, 'cra 1o 6-10', 'Teatro de México', 49, 'teatro');

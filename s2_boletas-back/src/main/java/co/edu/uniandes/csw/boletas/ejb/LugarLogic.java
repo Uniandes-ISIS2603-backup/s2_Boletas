@@ -49,7 +49,8 @@ public class LugarLogic {
         LugarEntity alreadyExists = getLugarByName(entity.getNombre());
         if(alreadyExists != null)
             throw new BusinessLogicException("Ya existe un lugar con el nombre dado.");
-        
+        if(!(entity.getUbicacion().equals("teatro") || entity.getUbicacion().equals("coliseo")))
+            throw new BusinessLogicException("El tipo de lugar no es aceptado por el sistema.");
         return persistence.create(entity);
     }
     
