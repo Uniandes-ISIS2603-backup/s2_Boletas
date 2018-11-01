@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -19,8 +19,8 @@ public class ClienteDTO implements Serializable {
     private Long id;
     private String nombre;
     private String usuario;
-    private String pago;
     private String cedula;
+    private String pago;
     
     public ClienteDTO()
     {
@@ -34,8 +34,8 @@ public class ClienteDTO implements Serializable {
        id=entity.getId();
         nombre= entity.getNombre();
         usuario=entity.getUsuario();
-        pago= entity.getPago();
         cedula=entity.getCedula();
+        pago= entity.getPago();
         }
     }
     
