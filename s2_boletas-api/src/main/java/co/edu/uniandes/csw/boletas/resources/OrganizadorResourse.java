@@ -79,7 +79,7 @@ public class OrganizadorResourse
     
     @GET
     @Path("{organizadorId : \\d+}")
-    public OrganizadorDTO getOrganizador(@PathParam("organizadorId") Long organizadorId) throws WebApplicationException
+    public OrganizadorDetailDTO getOrganizador(@PathParam("organizadorId") Long organizadorId) throws WebApplicationException
     {
         //Se busca el entity que se quiere modificar
         OrganizadorEntity entity = logica.getOrganizador(organizadorId);
@@ -89,7 +89,7 @@ public class OrganizadorResourse
             throw new WebApplicationException("El recurso /organizadors/ "+ organizadorId+ "no existe",404);
         }
         //Si existe se modifica y se vuelve DTO 
-        OrganizadorDTO detailDTO= new OrganizadorDTO(entity);
+        OrganizadorDetailDTO detailDTO= new OrganizadorDetailDTO(entity);
         
         return detailDTO;
                 
@@ -97,7 +97,7 @@ public class OrganizadorResourse
     }
     
     @GET 
-    public List<OrganizadorDetailDTO> getOrganizadors()
+    public List<OrganizadorDetailDTO> getOrganizadores()
     {
          List<OrganizadorDetailDTO> listaOrganizadors = listEntity2DetailDTO(logica.getOrganizadores());
         return listaOrganizadors;
@@ -116,5 +116,23 @@ public class OrganizadorResourse
            list.add(new OrganizadorDetailDTO(entity));
        }
        return list;
+    }
+
+    /* * Este método conecta la ruta de /editorials con las rutas de /books que
+     * dependen de la editorial, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los libros de una editorial.
+     *
+     * @param editorialsId El ID de la editorial con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de libros para esta editorial en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la editorial.
+     */
+    @Path("{organizadorId: \\d+}/espectaculos")
+    public Class<OrganizadorEspectaculoResourse> getOrganizadoresEspectaculoResourse(@PathParam("organizadorId") Long organizadorId) {
+        if (logica.getOrganizador(organizadorId) == null) {
+            throw new WebApplicationException("El recurso /organizadores/" + organizadorId + " no existe.", 404);
+        }
+        return OrganizadorEspectaculoResourse.class;
     }
 }
