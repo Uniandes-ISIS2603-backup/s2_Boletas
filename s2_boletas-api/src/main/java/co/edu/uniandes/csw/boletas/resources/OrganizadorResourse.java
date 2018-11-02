@@ -97,7 +97,7 @@ public class OrganizadorResourse
     }
     
     @GET 
-    public List<OrganizadorDetailDTO> getOrganizadors()
+    public List<OrganizadorDetailDTO> getOrganizadores()
     {
          List<OrganizadorDetailDTO> listaOrganizadors = listEntity2DetailDTO(logica.getOrganizadores());
         return listaOrganizadors;
@@ -116,5 +116,23 @@ public class OrganizadorResourse
            list.add(new OrganizadorDetailDTO(entity));
        }
        return list;
+    }
+
+    /* * Este método conecta la ruta de /editorials con las rutas de /books que
+     * dependen de la editorial, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los libros de una editorial.
+     *
+     * @param editorialsId El ID de la editorial con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de libros para esta editorial en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la editorial.
+     */
+    @Path("{organizadorId: \\d+}/espectaculos")
+    public Class<OrganizadorEspectaculoResourse> getOrganizadoresEspectaculoResourse(@PathParam("organizadorId") Long organizadorId) {
+        if (logica.getOrganizador(organizadorId) == null) {
+            throw new WebApplicationException("El recurso /organizadores/" + organizadorId + " no existe.", 404);
+        }
+        return OrganizadorEspectaculoResourse.class;
     }
 }
