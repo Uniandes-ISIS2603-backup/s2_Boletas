@@ -79,7 +79,7 @@ public class OrganizadorResourse
     
     @GET
     @Path("{organizadorId : \\d+}")
-    public OrganizadorDTO getOrganizador(@PathParam("organizadorId") Long organizadorId) throws WebApplicationException
+    public OrganizadorDetailDTO getOrganizador(@PathParam("organizadorId") Long organizadorId) throws WebApplicationException
     {
         //Se busca el entity que se quiere modificar
         OrganizadorEntity entity = logica.getOrganizador(organizadorId);
@@ -89,7 +89,7 @@ public class OrganizadorResourse
             throw new WebApplicationException("El recurso /organizadors/ "+ organizadorId+ "no existe",404);
         }
         //Si existe se modifica y se vuelve DTO 
-        OrganizadorDTO detailDTO= new OrganizadorDTO(entity);
+        OrganizadorDetailDTO detailDTO= new OrganizadorDetailDTO(entity);
         
         return detailDTO;
                 
