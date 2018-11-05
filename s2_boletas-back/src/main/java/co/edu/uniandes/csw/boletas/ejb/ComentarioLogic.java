@@ -66,7 +66,7 @@ public class ComentarioLogic {
         {
             throw new BusinessLogicException("El cliente no tiene compras");
         }
-        boolean corresponde = false;
+        /*boolean corresponde = false;
         for(CompraEntity compra: cliente.getCompras())
         {
             if(compra.getBoletas()!=null && compraPersistence.find(compra.getId())!=null&&compraPersistence.find(compra.getId()).getBoletas()!=null )
@@ -92,7 +92,7 @@ public class ComentarioLogic {
         if(!corresponde)
         {
             throw new BusinessLogicException("El cliente que quiere hacer el comentario no tiene boletas de este espectaculo");
-        }
+        }*/
        // Date ya = new Date();
        // if(comentario.getEspectaculo().getFecha()!=null && comentario.getEspectaculo().getFecha().after(ya))
         //{
