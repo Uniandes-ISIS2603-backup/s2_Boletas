@@ -56,7 +56,7 @@ public class OrganizadorEspectaculoResourse
      */
     @POST
     @Path("{espectaculosId: \\d+}")
-    public EspectaculoDetailDTO addEspectaculo(@PathParam("organizadorId") Long organizadoresId, @PathParam("espectaculoId") Long espectaculosId)
+    public EspectaculoDetailDTO addEspectaculo(@PathParam("organizadorId") Long organizadoresId, @PathParam("espectaculosId") Long espectaculosId)
     {
         LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: input: organizadorId: "+ organizadoresId +", espectaculosId: " + espectaculosId, new Object[]{organizadoresId, espectaculosId});
         if (espectaculoLogic.getEspectaculo(espectaculosId) == null) {
@@ -78,11 +78,12 @@ public class OrganizadorEspectaculoResourse
      * @throws BusinessLogicException 
      */
     @GET
-    @Path("{organizadoresId: \\+d}")
-    public EspectaculoDetailDTO getEspectaculo (@PathParam("espectaculosid") Long espectaculosId, @PathParam("organizadoresId") Long organizadoresId) throws BusinessLogicException      
+    @Path("{espectaculosId: \\+d}")
+    public EspectaculoDetailDTO getEspectaculo ( @PathParam("organizadorId") Long organizadoresId,@PathParam("espectaculosId") Long espectaculosId) throws BusinessLogicException      
     {
         if (espectaculoLogic.getEspectaculo(espectaculosId)==null)
             throw new WebApplicationException("El recurso organizadores/"+ organizadoresId+ "/espectaculos / "+ espectaculosId + "No existe",404);
+        LOGGER.log(Level.INFO, "Estoy bien");
         EspectaculoDetailDTO espectaculoDetailDto= new EspectaculoDetailDTO(organizadorEspectaculoLogic.getEspectaculo(organizadoresId, espectaculosId));
         
         return espectaculoDetailDto;
@@ -98,8 +99,9 @@ public class OrganizadorEspectaculoResourse
      */
     
     @GET
-    public List<EspectaculoDetailDTO> getEspectaculos (@PathParam("espectaculosId") Long espectaculosId)
+    public List<EspectaculoDetailDTO> getEspectaculos (@PathParam("organizadorId") Long espectaculosId)
     {
+        LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: output: {0}", espectaculosId);
         List<EspectaculoDetailDTO> listaDetailDTO= espectaculosListEntity2DTO(organizadorEspectaculoLogic.getEspectaculos(espectaculosId));
         return listaDetailDTO;
         
