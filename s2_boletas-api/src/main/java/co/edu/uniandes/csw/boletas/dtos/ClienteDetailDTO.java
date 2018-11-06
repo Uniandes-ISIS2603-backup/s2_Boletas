@@ -85,7 +85,7 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
      *
      * @return the comentarios
      */
-    public List<ComentarioDTO> getComentario() {
+    public List<ComentarioDTO> getComentarios() {
         return comentarios;
     }
 
@@ -96,6 +96,14 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
      */
     public void setComentarios(List<ComentarioDTO> comentarios) {
         this.comentarios = comentarios;
+    }
+    
+        public List<CompraDTO> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<CompraDTO> compras) {
+        this.compras = compras;
     }
 
     @Override
