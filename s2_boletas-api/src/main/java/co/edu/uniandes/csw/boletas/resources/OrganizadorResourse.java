@@ -118,13 +118,13 @@ public class OrganizadorResourse
        return list;
     }
 
-    /* * Este método conecta la ruta de /editorials con las rutas de /books que
-     * dependen de la editorial, es una redirección al servicio que maneja el
-     * segmento de la URL que se encarga de los libros de una editorial.
+    /* * Este método conecta la ruta de /organizadores con las rutas de /espectaculo que
+     * dependen del organizador, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los espectaculos  de un organizador.
      *
-     * @param editorialsId El ID de la editorial con respecto a la cual se
+     * @param organizadorId El ID de la organizador con respecto a la cual se
      * accede al servicio.
-     * @return El servicio de libros para esta editorial en paricular.
+     * @return El servicio de espectaculos para este organizador en paricular.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la editorial.
      */
