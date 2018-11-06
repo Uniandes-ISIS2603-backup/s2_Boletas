@@ -90,9 +90,9 @@ public class ClienteResourse
             throw new WebApplicationException("El recurso /clientes/ "+ clienteId+ "no existe",404);
         }
         //Si existe se modifica y se vuelve DTO 
-        ClienteDetailDTO updatedDto= new ClienteDetailDTO(logica.update(entity));
+        ClienteDetailDTO detailDTO= new ClienteDetailDTO(entity);
         
-        return updatedDto;
+        return detailDTO;
                 
         
     }
