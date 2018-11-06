@@ -55,7 +55,7 @@ public class ClienteComentariosResource {
      */
     @POST
     @Path("{comentariosId: \\d+}")
-    public ComentarioDTO addComentario(@PathParam("clientesId") Long clientesId, @PathParam("comentariosId") Long comentariosId) {
+    public ComentarioDTO addComentario(@PathParam("clienteId") Long clientesId, @PathParam("comentariosId") Long comentariosId) {
         LOGGER.log(Level.INFO, "ClienteComentariosResource addComentario: input: clientesId: {0} , comentariosId: {1}", new Object[]{clientesId, comentariosId});
         if (comentarioLogic.getComentario(comentariosId) == null) {
             throw new WebApplicationException("El recurso /comentarios/" + comentariosId + " no existe.", 404);
@@ -74,7 +74,7 @@ public class ClienteComentariosResource {
      * cliente. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<ComentarioDTO> getComentarios(@PathParam("clientesId") Long clientesId) {
+    public List<ComentarioDTO> getComentarios(@PathParam("clienteId") Long clientesId) {
         LOGGER.log(Level.INFO, "ClienteComentariosResource getComentarios: input: {0}", clientesId);
         List<ComentarioDTO> lista = listEntity2DTO(clienteComentarioLogic.getComentarios(clientesId));
         LOGGER.log(Level.INFO, "ClienteComentarioResource getComentarios: output: {0}", lista.toString());
@@ -97,7 +97,7 @@ public class ClienteComentariosResource {
      */
     @GET
     @Path("{comentariosId: \\d+}")
-    public ComentarioDTO getComentario(@PathParam("clientesId") Long clientesId, @PathParam("clientesId") Long comentariosId) throws BusinessLogicException {
+    public ComentarioDTO getComentario(@PathParam("clienteId") Long clientesId, @PathParam("comentariosId") Long comentariosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ClienteComentariosResource getComentario: input: clientesId: {0} , comentariosId: {1}", new Object[]{clientesId, comentariosId});
         if (comentarioLogic.getComentario(comentariosId) == null) {
             throw new WebApplicationException("El recurso /clientes/" + clientesId + "/comentarios/" + comentariosId + " no existe.", 404);
