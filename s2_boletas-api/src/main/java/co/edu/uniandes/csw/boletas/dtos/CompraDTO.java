@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.boletas.dtos;
+import co.edu.uniandes.csw.boletas.adapters.DateAdapter;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 /**
  *
  * @author Gabriel Hamilton
@@ -16,9 +18,10 @@ import java.util.Date;
 public class CompraDTO implements Serializable {
     
     private Long id;
-    private Double costoTotal;
+    private Integer costoTotal;
     private Boolean envio;
-    private  Date fecha;
+    @XmlJavaTypeAdapter(DateAdapter.class)
+    private Date fecha;
     private String direccion;
     private Boolean estado;
     private ClienteDTO cliente;
@@ -49,7 +52,7 @@ public class CompraDTO implements Serializable {
     {
         CompraEntity compra = new CompraEntity();
         compra.setId(id);
-        compra.setCosto(costoTotal);
+        compra.setCostoTotal(costoTotal);
         compra.setEnvio(envio);
         compra.setFecha(fecha);
         compra.setDireccion(direccion);
@@ -71,14 +74,6 @@ public class CompraDTO implements Serializable {
         return id;
     }
     
-   /*
-     * retorna el costo total de la compra
-     * @return costoTotal
-     */
-    public Double getCostoTotal()
-    {
-        return costoTotal;
-    }
     
     /*
      * retorna un boolean sobre el estado de la compra, vigente = True, cancelada = False
@@ -146,13 +141,12 @@ public class CompraDTO implements Serializable {
     }
     
     
-    /**
-     * modifica el costo de la compra
-     * @param costo, el nuevo costo de la compra
-     */
-    public void setCosto(Double costo)
-    {
-        costoTotal= costo;
+    public void setCostoTotal(Integer costoTotal){
+        this.costoTotal=costoTotal;
+    }
+    
+    public Integer getCostoTotal (){
+            return costoTotal;
     }
     
      /*

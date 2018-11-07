@@ -49,6 +49,7 @@ public class CompraResource {
     public CompraDetailDTO postCompra(CompraDetailDTO compra) throws BusinessLogicException
     {
        LOGGER.log(Level.INFO, "CompraResource postCompra: input: {0}", compra.toString());
+       LOGGER.log(Level.INFO, "CompraResource postCompra: costoTotal: {0}", compra.getCostoTotal());
        CompraEntity compraEntity = compra.toEntity();
        CompraEntity nuevaCompraEntity = compraLogic.createCompra(compraEntity);
        CompraDetailDTO nuevaCompraDTO = new CompraDetailDTO(nuevaCompraEntity);
@@ -108,8 +109,8 @@ public class CompraResource {
      * actualizar.
      */
     @PUT
-    @Path("{compraid : \\d+}")
-    public CompraDetailDTO putCompra(@PathParam("compraid") Long compraId, CompraDetailDTO compra)
+    @Path("{comprasId : \\d+}")
+    public CompraDetailDTO putCompra(@PathParam("comprasId") Long compraId, CompraDetailDTO compra)
     {
         LOGGER.log(Level.INFO, "CompraResource putCompra: input: id:{0} , compra: {1}", new Object[]{compraId, compra.toString()});
         compra.setId(compraId);
@@ -131,8 +132,8 @@ public class CompraResource {
      * Error de lógica que se genera cuando no se encuentra la compra.
      */
     @DELETE
-    @Path("{compraid : \\d+}")
-    public void deleteCompra (@PathParam("compraid") Long compraId) throws BusinessLogicException
+    @Path("{comprasId : \\d+}")
+    public void deleteCompra (@PathParam("comprasId") Long compraId) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "CompraResource deleteCompra: input: {0}", compraId);
         if (compraLogic.getCompra(compraId) == null) {
