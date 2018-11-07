@@ -74,7 +74,6 @@ public class ClienteComentarioLogic {
       {
            LOGGER.log(Level.INFO, "Inicia proceso de consultar los comentarios  asociados al cliente con id = {0}", clienteId);
            
-           
            return clientePersistence.find(clienteId).getComentarios();
       }
       
