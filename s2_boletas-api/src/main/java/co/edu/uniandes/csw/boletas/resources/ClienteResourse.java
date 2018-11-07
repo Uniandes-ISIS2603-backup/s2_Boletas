@@ -90,9 +90,9 @@ public class ClienteResourse
             throw new WebApplicationException("El recurso /clientes/ "+ clienteId+ "no existe",404);
         }
         //Si existe se modifica y se vuelve DTO 
-        ClienteDetailDTO updatedDto= new ClienteDetailDTO(logica.update(entity));
+        ClienteDetailDTO detailDTO= new ClienteDetailDTO(entity);
         
-        return updatedDto;
+        return detailDTO;
                 
         
     }
@@ -102,6 +102,44 @@ public class ClienteResourse
     {
          List<ClienteDetailDTO> listaClientes = listEntity2DetailDTO(logica.getClientes());
         return listaClientes;
+    }
+    
+     /* * Este método conecta la ruta de /clientes con las rutas de /compras que
+     * dependen del cliente, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de las compras  de un cliente.
+     *
+     * @param clientesId El ID de la clientes con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de compras para este cliente en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la editorial.
+     */
+    @Path("{clienteId: \\d+}/compras")
+    public Class<ClienteCompraResource> getClienteCompraResourse(@PathParam("clienteId") Long clienteId) {
+        if (logica.getCliente(clienteId) == null) {
+            throw new WebApplicationException("El recurso /clientes/" + clienteId + " no existe.", 404);
+        }
+        return ClienteCompraResource.class;
+        
+    }
+    
+         /* * Este método conecta la ruta de /clientes con las rutas de /comentarios que
+     * dependen del cliente, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los comentarios  de un cliente.
+     *
+     * @param clientesId El ID de la clientes con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de comentarios para este cliente en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la cliente.
+     */
+    @Path("{clienteId: \\d+}/comentarios")
+    public Class<ClienteComentariosResource> getClienteComentariosResource(@PathParam("clienteId") Long clienteId) {
+        if (logica.getCliente(clienteId) == null) {
+            throw new WebApplicationException("El recurso /clientes/" + clienteId + " no existe.", 404);
+        }
+        return ClienteComentariosResource.class;
+        
     }
     
     @DELETE

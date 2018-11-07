@@ -111,6 +111,7 @@ public class OrganizadorEspectaculoLogic {
           int index= espectaculos.indexOf(espectaculoEntity);
         //Se comprueba que si exista ese espectaculo en la lista, sino manda excepcion 
         
+        LOGGER.log(Level.INFO, "Se encontraro los objetos");
         
             if(index<0)
             {
