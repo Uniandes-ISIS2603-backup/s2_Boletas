@@ -4,9 +4,10 @@ DELETE FROM CLIENTEENTITY
 DELETE FROM COMENTARIOENTITY
 DELETE FROM COMPRAENTITY
 DELETE FROM ESPECTACULOENTITY
+DELETE FROM SILLAENTITY
 DELETE FROM LUGARENTITY
 DELETE FROM ORGANIZADORENTITY
-DELETE FROM SILLAENTITY
+
 
 --TABLA ESPECTACULO ENTITY
 insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, imagen) values (100, 'Lost Patrol, The', '2018-02-07T00:14:52Z', 'Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.', 'Hubey Prattington', 'Adventure|Drama|War','https://m.media-amazon.com/images/M/MV5BMTQxMjY0MzgzMl5BMl5BanBnXkFtZTcwNjc0NjQ2OA@@._V1_.jpg');
