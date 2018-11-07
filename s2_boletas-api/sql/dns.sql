@@ -19,3 +19,26 @@ insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, im
 insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, imagen) values (800, 'Middle of Nowhere', '2018-06-19T22:53:19Z', 'Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.', 'Charmain Ewart', 'Drama|Romance','');
 insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, imagen) values (900, 'Close Your Eyes (Hypnotic) (Doctor Sleep)', '2018-10-14T03:44:52Z', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.', 'Ricki Bradnum', 'Crime|Thriller','');
 insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, imagen) values (1000, 'Glenn, the Flying Robot', '2018-05-17T02:23:53Z', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.', 'Nelle Newland', 'Sci-Fi');
+
+
+--TABLA COMPRA ENTITY
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (101, 23763, '5 Straubel Crossing', true, true, '3/1/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (102, 8530, '01 Eastlawn Way', false, true, '6/16/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (103, 49893, '956 Manitowish Circle', true, true, '2/9/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (104, 97883, '523 Miller Place', true, true, '8/26/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (105, 28452, '56209 Arkansas Avenue', false, true, '10/29/2017', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (106, 10597, '8 Vernon Center', false, true, '12/9/2017', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (107, 91131, '886 Dakota Street', true, true, '3/10/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (108, 2553, '46853 Eastlawn Junction', true, true, '1/12/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (109, 78483, '0 Thierer Point', true, true, '8/15/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (110, 64259, '6526 Daystar Terrace', true, true, '3/20/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (111, 8624, '7079 Nevada Drive', false, true, '2/4/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (112, 49075, '9 Fair Oaks Road', false, true, '5/3/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (113, 58134, '18993 Kingsford Street', true, true, '3/17/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (114, 6686, '75 Garrison Circle', false, true, '1/23/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (115, 25494, '88 Mifflin Way', false, true, '7/9/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (116, 46948, '40 Trailsway Parkway', false, true, '3/7/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (117, 6263, '7 Pleasure Junction', true, true, '6/15/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (118, 42636, '109 Marcy Street', true, true, '7/23/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (119, 7691, '23 Northfield Terrace', true, true, '5/25/2018', 100);
+insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (120, 72314, '574 Lakewood Avenue', true, true, '11/10/2017', 100);
