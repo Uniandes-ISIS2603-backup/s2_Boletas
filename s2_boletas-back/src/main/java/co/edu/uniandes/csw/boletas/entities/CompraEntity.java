@@ -48,6 +48,27 @@ public class CompraEntity extends BaseEntity implements Serializable{
     @javax.persistence.ManyToOne()
     ClienteEntity cliente;
     
+    @PodamExclude
+    @javax.persistence.OneToOne()
+    DevolucionEntity devolucion;
+
+   
+    /*
+     * retorna la devolucion asociada a la compra
+     * @return devolucion
+     */
+    public DevolucionEntity getDevolucion() {
+        return devolucion;
+    }
+
+     /**
+     * Modifica la devolucion asociada a la compra.
+     * @param devolucion La nueva devolucion.
+     */
+    public void setDevolucion(DevolucionEntity devolucion) {
+        this.devolucion = devolucion;
+    }
+    
 
     
     /*

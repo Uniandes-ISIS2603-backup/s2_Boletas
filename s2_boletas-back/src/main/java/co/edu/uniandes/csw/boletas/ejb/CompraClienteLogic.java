@@ -13,12 +13,14 @@ import co.edu.uniandes.csw.boletas.persistence.CompraPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Gabriel Hamilton Vilma Tirado
  */
+@Stateless
 public class CompraClienteLogic {
     private static final Logger LOGGER = Logger.getLogger(CompraClienteLogic.class.getName());
 
