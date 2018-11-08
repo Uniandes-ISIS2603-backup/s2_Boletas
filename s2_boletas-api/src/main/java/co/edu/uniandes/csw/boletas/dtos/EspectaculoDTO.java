@@ -26,7 +26,7 @@ public class EspectaculoDTO implements Serializable
      * Atributo que da el id de un espectaculo, este lo define la base de datos
      * cuando se persiste
      */
-    private Long espectaculoId;
+    private Long id;
     
     private String nombre;
     
@@ -65,7 +65,7 @@ public class EspectaculoDTO implements Serializable
     {
         if (espectaculo != null)
         {
-            espectaculoId = espectaculo.getId();
+            id = espectaculo.getId();
             
             nombre = espectaculo.getNombre();
         
@@ -104,7 +104,7 @@ public class EspectaculoDTO implements Serializable
     {
         EspectaculoEntity espectaculo = new EspectaculoEntity();
         
-        espectaculo.setId(this.espectaculoId);
+        espectaculo.setId(this.id);
         
         espectaculo.setNombre(this.nombre);
         
@@ -135,7 +135,7 @@ public class EspectaculoDTO implements Serializable
      */
     public Long getId()
     {
-        return espectaculoId;
+        return id;
     }
     
     
@@ -146,7 +146,7 @@ public class EspectaculoDTO implements Serializable
      */
     public void setId(Long id)
     {
-        espectaculoId = id;
+        this.id = id;
     }
     
     
