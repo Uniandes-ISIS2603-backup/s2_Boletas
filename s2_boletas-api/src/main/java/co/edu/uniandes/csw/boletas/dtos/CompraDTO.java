@@ -25,6 +25,7 @@ public class CompraDTO implements Serializable {
     private String direccion;
     private Boolean estado;
     private ClienteDTO cliente;
+    private DevolucionDTO devolucion;
     
     public CompraDTO ()
     {
@@ -34,19 +35,27 @@ public class CompraDTO implements Serializable {
     
     public CompraDTO (CompraEntity compra)
     {
+        if(compra != null)
+        {
         id = compra.getId();
         costoTotal = compra.getCostoTotal();
         envio = compra.getEnvio();
         fecha = compra.getFecha();
         direccion = compra.getDireccion();
         estado= compra.getEstado();
+        if (compra.getDevolucion()!=null)
+            {
+                    devolucion=new DevolucionDTO(compra.getDevolucion());
+            }
         if (compra.getCliente()!=null)
             {
                     cliente=new ClienteDTO(compra.getCliente());
             }
-
-        
+            
+        }
     }
+
+ 
     
     public CompraEntity toEntity()
     {
@@ -59,10 +68,30 @@ public class CompraDTO implements Serializable {
         compra.setEstado(estado);
         if(cliente!= null)
         {
+            compra.setDevolucion(devolucion.toEntity());
+        }
+        if(cliente!= null)
+        {
             compra.setCliente(cliente.toEntity());
         }
         
         return compra;
+    }
+    /**
+     * retorna la devolucion asociada a la compra
+     * @return devolucion
+     */
+    public DevolucionDTO getDevolucion() {
+        return devolucion;
+    }
+    
+    /**
+     * modifica la devolucion de la compra
+     * @param devolucion , la nueva devolucion
+     */
+    public void setDevolucion(DevolucionDTO devolucion) 
+    {
+        this.devolucion = devolucion;
     }
     
     /**
