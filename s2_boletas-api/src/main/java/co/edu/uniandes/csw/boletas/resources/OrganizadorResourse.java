@@ -128,7 +128,7 @@ public class OrganizadorResourse
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la editorial.
      */
-    @Path("{organizadorId: \\d+}/espectaculos/{espectaculosId:  \\d+}")
+    @Path("{organizadorId: \\d+}/espectaculos")
     public Class<OrganizadorEspectaculoResourse> getOrganizadoresEspectaculoResourse(@PathParam("organizadorId") Long organizadorId) {
         if (logica.getOrganizador(organizadorId) == null) {
             throw new WebApplicationException("El recurso /organizadores/" + organizadorId + " no existe.", 404);
