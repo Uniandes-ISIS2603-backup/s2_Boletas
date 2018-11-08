@@ -207,6 +207,24 @@ public class BoletaDTO implements Serializable {
     public void setSilla(SillaDTO silla) {
         this.silla = silla;
     }
+
+    /**
+     * Retorna la compra a la que pertenece la boleta
+     * @return la cmpra de la boleta 
+     */
+    public CompraDTO getCompra() {
+        return compra;
+    }
+
+    /**
+     * Le asigna una cmpra nueva a la boleta
+     * @param compra La compra a asignar
+     */
+    public void setCompra(CompraDTO compra) {
+        this.compra = compra;
+    }
+    
+    
     
     
     @Override
