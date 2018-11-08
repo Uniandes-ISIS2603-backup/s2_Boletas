@@ -31,7 +31,7 @@ public class CompraClienteLogic {
     private ClientePersistence clientePersistence;
 
     /**
-     * Remplazar la compra de un cliente.
+     * Remplazar la  compra de un cliente.
      *
      * @param comprasId id de la compra que se quiere actualizar.
      * @param clientesId El id del cliente que del cual será la compra.
