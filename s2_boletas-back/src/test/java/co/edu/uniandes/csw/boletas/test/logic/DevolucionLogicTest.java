@@ -159,8 +159,6 @@ public class DevolucionLogicTest {
     @Test
     public void deleteDevolucionTest() throws BusinessLogicException {
         DevolucionEntity entity = data.get(0);
-        List<Long> nuevalista = new ArrayList<>();
-        entity.setBoletas(nuevalista);
         devolucionLogic.deleteDevolucion(entity.getId());
         DevolucionEntity deleted = em.find(DevolucionEntity.class, entity.getId());
         Assert.assertNull(deleted);
