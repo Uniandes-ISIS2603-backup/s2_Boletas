@@ -106,14 +106,14 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
         /**
      * Devuelve la lista de compras del cliente.
      *
-     * @return the comentarios
+     * @return the compra
      */
         public List<CompraDTO> getCompras() {
         return compras;
     }
 
-         /* * Modifica la lista de comentarios del cliente
-     * @param comentarios the comentarios to set
+         /* * Modifica la lista de compras del cliente
+     * @param lista de compras para arreglar
      */
     public void setCompras(List<CompraDTO> compras) {
         this.compras = compras;
