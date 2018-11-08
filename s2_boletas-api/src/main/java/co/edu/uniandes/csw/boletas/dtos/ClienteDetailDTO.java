@@ -20,8 +20,14 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
+    /**
+     * Lista de comentarios hechos por el cliente
+     * */
     private List <ComentarioDTO> comentarios;
     
+        /**
+     * Lista de compras hechos por el cliente
+     * */
     private List<CompraDTO> compras;
     
     
@@ -81,7 +87,7 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     }
 
     /**
-     * Devuelve la lista de libros de la cliente.
+     * Devuelve la lista de comentarios del cliente.
      *
      * @return the comentarios
      */
@@ -90,18 +96,25 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     }
 
     /**
-     * Modifica la lista de libros de la cliente.
-     *
+     * Modifica la lista de comentarios del cliente
      * @param comentarios the comentarios to set
      */
     public void setComentarios(List<ComentarioDTO> comentarios) {
         this.comentarios = comentarios;
     }
     
+        /**
+     * Devuelve la lista de compras del cliente.
+     *
+     * @return the comentarios
+     */
         public List<CompraDTO> getCompras() {
         return compras;
     }
 
+         /* * Modifica la lista de comentarios del cliente
+     * @param comentarios the comentarios to set
+     */
     public void setCompras(List<CompraDTO> compras) {
         this.compras = compras;
     }
