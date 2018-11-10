@@ -42,15 +42,16 @@ public class ClienteCompraLogic {
     public CompraEntity addCompra (Long compraId, Long clienteId)
     {
         //Busca la compra con el id dado 
-        CompraEntity compra= compraPersistence.find(compraId);
         
+        CompraEntity compra= compraPersistence.find(compraId);
         //Busca el cliente con el id dado
         ClienteEntity cliente= clientePersistence.find(clienteId);
+       
         
         //Asocia a la lista de compras del cliente la compra
-        cliente.getCompras().add(compra);
+        compra.setCliente(cliente);
         
-        return compra;
+        return compraPersistence.find(compraId);
     }
     
         /**
@@ -82,19 +83,20 @@ public class ClienteCompraLogic {
      * de cliente
      * @return Nueva colección de CompraEntity asociada a la instancia de Cliente
      */
-            public List<CompraEntity> updateCompras(Long clienteId, List<CompraEntity> listaNueva )
-            {
-                LOGGER.log(Level.INFO, "Inicia proceso de actualizar las compras del cliente con id = {0}", clienteId);
-                ClienteEntity clienteEntity= clientePersistence.find(clienteId);
-                List<CompraEntity> compraList = compraPersistence.findAll();
-                for (CompraEntity compra : compraList) {
-                        if (listaNueva.contains(compra)) {
+      public List<CompraEntity> updateCompras(Long clienteId, List<CompraEntity> listaNueva )
+      {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar las compras del cliente con id = {0}", clienteId);
+        ClienteEntity clienteEntity= clientePersistence.find(clienteId);
+        List<CompraEntity> compraList = compraPersistence.findAll();
+        for (CompraEntity compra : compraList) {
+                if (listaNueva.contains(compra)) {
                         compra.setCliente(clienteEntity);
-                        } else if (compra.getCliente() != null && compra.getCliente().equals(clienteEntity)) {
+                    } 
+                else if (compra.getCliente() != null && compra.getCliente().equals(clienteEntity)) {
                         compra.setCliente(null);
                         }
                 }
-                clienteEntity.setCompras(listaNueva);
+                
                 LOGGER.log(Level.INFO, "Termina proceso de actualizar las compras del cliente con id = {0}", clienteId);
                 return listaNueva;
             }
