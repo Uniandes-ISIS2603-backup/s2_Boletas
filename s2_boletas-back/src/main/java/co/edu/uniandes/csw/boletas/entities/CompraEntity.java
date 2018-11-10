@@ -49,7 +49,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     ClienteEntity cliente;
     
     @PodamExclude
-    @javax.persistence.OneToOne()
+    @javax.persistence.OneToOne(mappedBy = "compra")
     DevolucionEntity devolucion;
 
    
