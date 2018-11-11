@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -47,7 +48,11 @@ public class EspectaculoLogic
         
         Date date;
         
-        Calendar c = Calendar.getInstance();
+        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
         date = c.getTime();
         
 //        System.out.println("DBG 2 date current: " + date.getYear());
@@ -57,8 +62,9 @@ public class EspectaculoLogic
 //        System.out.println("DBG 5 date especta: " + espec.getFecha().getTime());
 
 
+        System.out.println();
         
-        if(espec.getFecha().before(date))
+        if(espec.getFecha().compareTo(date)<=0)
         {
             throw new BusinessLogicException("La fecha que se estipulo es anterior a la actual");
         }
@@ -111,7 +117,10 @@ public class EspectaculoLogic
         Date date;
         
         Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_MONTH, -1);
         date = c.getTime();
+        System.out.println("La fecha de hoy es "+date);
+        System.out.println("La fecha ingresada  es "+espectaculoEntity.getFecha());
         
         if(espectaculoEntity.getFecha().before(date))
         {
