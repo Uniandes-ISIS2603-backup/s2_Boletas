@@ -6,9 +6,11 @@
 package co.edu.uniandes.csw.boletas.dtos;
 
 
+import co.edu.uniandes.csw.boletas.adapters.DateAdapter;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 /**
@@ -29,6 +31,7 @@ public class BoletaDTO implements Serializable {
     /**
      * Fecha a la que corresponde la realización del evento en la boleta
      */
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fecha;
     
     /**
