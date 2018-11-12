@@ -15,8 +15,10 @@ import co.edu.uniandes.csw.boletas.persistence.ClientePersistence;
 import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
 import co.edu.uniandes.csw.boletas.persistence.CompraPersistence;
 import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -66,7 +68,7 @@ public class ComentarioLogic {
         {
             throw new BusinessLogicException("El cliente no tiene compras");
         }
-        /*boolean corresponde = false;
+        boolean corresponde = false;
         for(CompraEntity compra: cliente.getCompras())
         {
             if(compra.getBoletas()!=null && compraPersistence.find(compra.getId())!=null&&compraPersistence.find(compra.getId()).getBoletas()!=null )
@@ -92,12 +94,18 @@ public class ComentarioLogic {
         if(!corresponde)
         {
             throw new BusinessLogicException("El cliente que quiere hacer el comentario no tiene boletas de este espectaculo");
-        }*/
-       // Date ya = new Date();
-       // if(comentario.getEspectaculo().getFecha()!=null && comentario.getEspectaculo().getFecha().after(ya))
-        //{
-         //   throw new BusinessLogicException("No se puede comentar ya que el espectaculo aun no se ha dado");
-        //}
+        }
+        Date ya;
+        
+         Calendar c = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        c.set(Calendar.HOUR_OF_DAY, 23);
+        c.set(Calendar.MINUTE, 59);
+        c.set(Calendar.SECOND, 59);
+        ya = c.getTime();
+        if((comentario.getEspectaculo().getFecha()!=null && comentario.getEspectaculo().getFecha().compareTo(ya)>=0)||(espectaculoPersistence.find(comentario.getEspectaculo().getId()).getFecha()!=null && espectaculoPersistence.find(comentario.getEspectaculo().getId()).getFecha().compareTo(ya)>=0)  )
+        {
+            throw new BusinessLogicException("No se puede comentar ya que el espectaculo aun no se ha dado");
+        }
         persistence.create(comentario);
         LOGGER.log(Level.INFO, "Termina proceso de la creación del comentario");
         return comentario;
