@@ -28,11 +28,15 @@ public class OrganizadorDTO implements Serializable  {
     
     public OrganizadorDTO(OrganizadorEntity organizador )
     {
-        this.usuario= organizador.getUsuario();
-        this.nombre= organizador.getNombre();
-        this.ganancia=organizador.getGanancia();
-        this.presupuesto=organizador.getPresupuesto();
-        this.id = organizador.getId();
+        if(organizador != null)
+        {
+            this.usuario= organizador.getUsuario();
+            this.nombre= organizador.getNombre();
+            this.ganancia=organizador.getGanancia();
+            this.presupuesto=organizador.getPresupuesto();
+            this.id = organizador.getId();
+        }
+        
     }
     
     public OrganizadorEntity toEntity()

@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.boletas.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.FetchType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,7 +27,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     
 
 
-    private Double costoTotal;
+    private Integer costoTotal;
     
     private Boolean envio;
     
@@ -48,15 +49,45 @@ public class CompraEntity extends BaseEntity implements Serializable{
     @javax.persistence.ManyToOne()
     ClienteEntity cliente;
     
+    @PodamExclude
+    @javax.persistence.OneToOne(mappedBy = "compra",fetch = FetchType.LAZY)
+    DevolucionEntity devolucion;
+
+   
+    /*
+     * retorna la devolucion asociada a la compra
+     * @return devolucion
+     */
+    public DevolucionEntity getDevolucion() {
+        return devolucion;
+    }
+
+     /**
+     * Modifica la devolucion asociada a la compra.
+     * @param devolucion La nueva devolucion.
+     */
+    public void setDevolucion(DevolucionEntity devolucion) {
+        this.devolucion = devolucion;
+    }
+    
 
     
     /*
      * retorna el costo total de la compra
      * @return costoTotal
      */
-    public Double getCostoTotal()
+    public Integer getCostoTotal()
     {
         return costoTotal;
+    }
+    
+        /**
+     * modifica el costo de la compra
+     * @param costo, el nuevo costo de la compra
+     */
+    public void setCostoTotal(Integer costoTotal)
+    {
+        this.costoTotal= costoTotal;
     }
     
     
@@ -117,14 +148,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     }
     
     
-    /**
-     * modifica el costo de la compra
-     * @param costo, el nuevo costo de la compra
-     */
-    public void setCosto(Double costo)
-    {
-        this.costoTotal= costo;
-    }
+
     
      /*
      * modifica el estado de la compra, vigente = True, cancelada = False

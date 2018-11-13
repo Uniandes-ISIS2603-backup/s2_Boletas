@@ -64,7 +64,7 @@ public class ClienteCompraResource {
         if (clienteLogic.getCliente(clienteId) == null) {
             throw new WebApplicationException("El recurso /clientes/" + clienteId + " no existe.", 404);
         }
-        CompraDetailDTO detailDTO = new CompraDetailDTO(clienteCompraLogic. addCompra(clienteId, compraId));
+        CompraDetailDTO detailDTO = new CompraDetailDTO(clienteCompraLogic. addCompra(compraId, clienteId));
         LOGGER.log(Level.INFO, "ClienteCompraResource addCompra: output: {0}", detailDTO.toString());
         return detailDTO;
     }

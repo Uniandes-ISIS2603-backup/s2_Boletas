@@ -1,0 +1,361 @@
+{
+	"info": {
+		"_postman_id": "3e719c9c-5171-407e-aca1-9e38ed8c880e",
+		"name": "DevolucionTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST devolucion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba206791-6d7a-40de-9ada-31b5541ec98b",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newDevolucion_id\",data.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/devoluciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"devoluciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET devolucion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c6cc5330-ffb8-45d6-ab2f-14e5bf8c0925",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"compra\": {\"costoTotal\": \"2000\", \"envio\": true, \"fecha\": \"2018-10-20T18:25:43.511Z\", \"direccion\": \"Cra 1 #18a-12\", \"estado\": true},\n\t\"boletas\": [100, 101]\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/devoluciones/{{newDevolucion_id}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"devoluciones",
+						"{{newDevolucion_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET devolucion que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "886d0e0b-1b4a-49d5-8a28-e9f2f999b61f",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"compra\": {\"costoTotal\": \"2000\", \"envio\": true, \"fecha\": \"2018-10-20T18:25:43.511Z\", \"direccion\": \"Cra 1 #18a-12\", \"estado\": true},\n\t\"boletas\": [100, 101]\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/devoluciones/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"devoluciones",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT devolucion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7b81630-f856-4874-aa8e-b2b81ef4dff6",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\"boletas\": [100, 101]\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/devoluciones/{{newDevolucion_id}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"devoluciones",
+						"{{newDevolucion_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT devolucion que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be4dcd49-f73b-4ff3-8c5a-3de0e1505f01",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\"boletas\": [100, 101]\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/devoluciones/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"devoluciones",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE devolucion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52887993-bb3f-4d67-b1d3-2383082dea3c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/devoluciones/{{newDevolucion_id}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"devoluciones",
+						"{{newDevolucion_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE devolucion Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e2a593e-eba2-4e37-bf11-ebb0049fa3d7",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/devoluciones/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"devoluciones",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET devoluciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c78f3196-4054-44a0-91dc-952a192bca19",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/devoluciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"devoluciones"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

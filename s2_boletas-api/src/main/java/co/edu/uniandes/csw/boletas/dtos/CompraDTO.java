@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.boletas.dtos;
+import co.edu.uniandes.csw.boletas.adapters.DateAdapter;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 /**
  *
  * @author Gabriel Hamilton
@@ -16,12 +18,14 @@ import java.util.Date;
 public class CompraDTO implements Serializable {
     
     private Long id;
-    private Double costoTotal;
+    private Integer costoTotal;
     private Boolean envio;
-    private  Date fecha;
+    @XmlJavaTypeAdapter(DateAdapter.class)
+    private Date fecha;
     private String direccion;
     private Boolean estado;
     private ClienteDTO cliente;
+    private DevolucionDTO devolucion;
     
     public CompraDTO ()
     {
@@ -31,35 +35,63 @@ public class CompraDTO implements Serializable {
     
     public CompraDTO (CompraEntity compra)
     {
+        if(compra != null)
+        {
         id = compra.getId();
         costoTotal = compra.getCostoTotal();
         envio = compra.getEnvio();
         fecha = compra.getFecha();
         direccion = compra.getDireccion();
         estado= compra.getEstado();
+        if (compra.getDevolucion()!=null)
+            {
+                    devolucion=new DevolucionDTO(compra.getDevolucion());
+            }
         if (compra.getCliente()!=null)
             {
                     cliente=new ClienteDTO(compra.getCliente());
             }
-
-        
+            
+        }
     }
+
+ 
     
     public CompraEntity toEntity()
     {
         CompraEntity compra = new CompraEntity();
         compra.setId(id);
-        compra.setCosto(costoTotal);
+        compra.setCostoTotal(costoTotal);
         compra.setEnvio(envio);
         compra.setFecha(fecha);
         compra.setDireccion(direccion);
         compra.setEstado(estado);
+        if(devolucion!= null)
+        {
+            compra.setDevolucion(devolucion.toEntity());
+        }
         if(cliente!= null)
         {
             compra.setCliente(cliente.toEntity());
         }
         
         return compra;
+    }
+    /**
+     * retorna la devolucion asociada a la compra
+     * @return devolucion
+     */
+    public DevolucionDTO getDevolucion() {
+        return devolucion;
+    }
+    
+    /**
+     * modifica la devolucion de la compra
+     * @param devolucion , la nueva devolucion
+     */
+    public void setDevolucion(DevolucionDTO devolucion) 
+    {
+        this.devolucion = devolucion;
     }
     
     /**
@@ -71,14 +103,6 @@ public class CompraDTO implements Serializable {
         return id;
     }
     
-   /*
-     * retorna el costo total de la compra
-     * @return costoTotal
-     */
-    public Double getCostoTotal()
-    {
-        return costoTotal;
-    }
     
     /*
      * retorna un boolean sobre el estado de la compra, vigente = True, cancelada = False
@@ -146,13 +170,12 @@ public class CompraDTO implements Serializable {
     }
     
     
-    /**
-     * modifica el costo de la compra
-     * @param costo, el nuevo costo de la compra
-     */
-    public void setCosto(Double costo)
-    {
-        costoTotal= costo;
+    public void setCostoTotal(Integer costoTotal){
+        this.costoTotal=costoTotal;
+    }
+    
+    public Integer getCostoTotal (){
+            return costoTotal;
     }
     
      /*
