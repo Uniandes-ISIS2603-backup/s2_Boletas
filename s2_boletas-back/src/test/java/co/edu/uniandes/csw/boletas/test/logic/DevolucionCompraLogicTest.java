@@ -7,10 +7,13 @@ package co.edu.uniandes.csw.boletas.test.logic;
 
 import co.edu.uniandes.csw.boletas.ejb.CompraDevolucionLogic;
 import co.edu.uniandes.csw.boletas.ejb.CompraLogic;
+import co.edu.uniandes.csw.boletas.ejb.DevolucionCompraLogic;
+import co.edu.uniandes.csw.boletas.ejb.DevolucionLogic;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import co.edu.uniandes.csw.boletas.entities.DevolucionEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.CompraPersistence;
+import co.edu.uniandes.csw.boletas.persistence.DevolucionPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -33,15 +36,15 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author estudiante
  */
 @RunWith(Arquillian.class)
-public class CompraDevolucionLogicTest {
+public class DevolucionCompraLogicTest {
     
     private PodamFactory factory = new PodamFactoryImpl();
     
     @Inject
-    private CompraLogic compraLogic;
+    private DevolucionLogic devolucionLogic;
 
     @Inject
-    private CompraDevolucionLogic compraDevolucionLogic;
+    private DevolucionCompraLogic devolucionCompraLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -61,9 +64,9 @@ public class CompraDevolucionLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CompraEntity.class.getPackage())
-                .addPackage(CompraLogic.class.getPackage())
-                .addPackage(CompraPersistence.class.getPackage())
+                .addPackage(DevolucionEntity.class.getPackage())
+                .addPackage(DevolucionLogic.class.getPackage())
+                .addPackage(DevolucionPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -93,8 +96,9 @@ public class CompraDevolucionLogicTest {
      */
     private void clearData() {
         
-        em.createQuery("delete from DevolucionEntity").executeUpdate();
+       
         em.createQuery("delete from CompraEntity").executeUpdate();
+        em.createQuery("delete from DevolucionEntity").executeUpdate();
         
     }
     
@@ -119,50 +123,23 @@ public class CompraDevolucionLogicTest {
     }
     
     
+   
     @Test
-    public void addDevolucion()
-    {
-        CompraEntity compra = compras.get(1);
+    public void replaceCompraTest() {
+        DevolucionEntity entity = devoluciones.get(1);
+        devolucionCompraLogic.replaceCompra(entity.getId(), compras.get(1).getId());
         
-        DevolucionEntity dev = devoluciones.get(1);
+        DevolucionEntity dev = devolucionLogic.getDevolucion(entity.getId());
         
-        DevolucionEntity res = compraDevolucionLogic.addDevolucion(dev.getId(), compra.getId());
-        
-        Assert.assertNotNull(res);
-        Assert.assertEquals(dev.getId(), res.getId());
-    }
-    
-    @Test 
-    public void getDevolucion() throws BusinessLogicException
-    {
-        DevolucionEntity dev = compraDevolucionLogic.getDevolucion(compras.get(0).getId());
-        
-        Assert.assertEquals(dev.getId(), devoluciones.get(0).getId());
-        
+        Assert.assertEquals(dev.getCompra().getId(), compras.get(1).getId());
+        Assert.assertEquals(dev.getCompra().getEstado(), compras.get(1).getEstado());
     }
     
     @Test
-    public void updateDevolucion()
-    {
-        DevolucionEntity dev = devoluciones.get(1);
-        
-        CompraEntity com = compras.get(0);
-        
-        DevolucionEntity dev2 = compraDevolucionLogic.updateDevolucion(com.getId(), dev);
-        
-        Assert.assertEquals(dev2.getId(), dev.getId());
-    }
-    
-    @Test
-    public void removeDevolucion()
-    {
-         DevolucionEntity dev = devoluciones.get(0);
-        
-        CompraEntity com = compras.get(0);
-        
-        compraDevolucionLogic.removeDevolucion(com.getId(), dev.getId());
-        
-        Assert.assertNull(com.getDevolucion());
+    public void removeCompra() throws BusinessLogicException {
+        devolucionCompraLogic.removeCompra(devoluciones.get(0).getId());
+        DevolucionEntity response = devolucionLogic.getDevolucion(devoluciones.get(0).getId());
+        Assert.assertNull(response.getCompra());
     }
     
 }
