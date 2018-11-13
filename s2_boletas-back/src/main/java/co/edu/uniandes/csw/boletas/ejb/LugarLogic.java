@@ -63,6 +63,19 @@ public class LugarLogic {
         return persistence.findAll();
     }
     
+    public List<LugarEntity> getLugaresByNumSillas(Integer numSillas)throws BusinessLogicException
+    {
+        if(numSillas <= 0)
+            throw new BusinessLogicException("El número de sillas introducido no es válido.");
+        return persistence.findByNSillas(numSillas);
+    }
+    
+    public List<LugarEntity> getLugaresByUbicacion(String ubicacion)throws BusinessLogicException
+    {
+        if(!(ubicacion.equals("coliseo") || ubicacion.equals("teatro")))
+            throw new BusinessLogicException("El tipo de lugar ingresado está mal.");
+        return persistence.findByUbicacion(ubicacion);
+    }
     /**
      * Método que retorna una entidad lugar según su id.
      * @param lugarId

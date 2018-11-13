@@ -116,10 +116,23 @@ public class LugarResource {
     public List<LugarDetailDTO> getLugares()
     {
         List<LugarEntity> lugaresEntities = logic.getLugares();
-        List<LugarDetailDTO> lugaresDTO = new ArrayList<LugarDetailDTO>();
-        for(LugarEntity entitieActual : lugaresEntities)
-            lugaresDTO.add(new LugarDetailDTO(entitieActual));
-        return lugaresDTO;
+        return convertEntitiesToDTO(lugaresEntities);
+    }
+    
+    @GET
+    @Path("{numSillas: \\d+}")
+    public List<LugarDetailDTO> getLugaresByNumSillas(@PathParam("numSillas") Integer numSillas)throws WebApplicationException
+    {
+        List<LugarEntity> lugaresEntities = null;
+        try
+        {
+            lugaresEntities = logic.getLugaresByNumSillas(numSillas);
+        }catch(BusinessLogicException bLE)
+        {
+            throw new WebApplicationException(bLE.getMessage());
+        }
+        return convertEntitiesToDTO(lugaresEntities);
+        
     }
     
     /**
@@ -141,5 +154,13 @@ public class LugarResource {
             throw new WebApplicationException(bE.getMessage());
         }
         return new LugarDTO(deleted);
+    }
+    
+    private List<LugarDetailDTO> convertEntitiesToDTO(List<LugarEntity> lugaresEntities)
+    {
+        List<LugarDetailDTO> lugaresDTO = new ArrayList<LugarDetailDTO>();
+        for(LugarEntity entitieActual : lugaresEntities)
+            lugaresDTO.add(new LugarDetailDTO(entitieActual));
+        return lugaresDTO;
     }
 }
