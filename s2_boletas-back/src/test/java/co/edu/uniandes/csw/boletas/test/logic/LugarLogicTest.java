@@ -99,6 +99,7 @@ public class LugarLogicTest {
     public void createLugarTest()throws BusinessLogicException
     {
         LugarEntity entity = factory.manufacturePojo(LugarEntity.class);
+        entity.setUbicacion("coliseo");
         LugarEntity result = logic.createLugar(entity);
         Assert.assertNotNull(result);
         

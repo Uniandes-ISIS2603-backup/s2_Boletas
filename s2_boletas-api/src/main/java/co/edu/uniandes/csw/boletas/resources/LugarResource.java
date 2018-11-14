@@ -118,7 +118,7 @@ public class LugarResource {
         List<LugarEntity> lugaresEntities = logic.getLugares();
         return convertEntitiesToDTO(lugaresEntities);
     }
-    
+    /*
     @GET
     @Path("{numSillas: \\d+}")
     public List<LugarDetailDTO> getLugaresByNumSillas(@PathParam("numSillas") Integer numSillas)throws WebApplicationException
@@ -134,6 +134,7 @@ public class LugarResource {
         return convertEntitiesToDTO(lugaresEntities);
         
     }
+    */
     
     /**
      * Método correspondiente al servicio Delete Lugar.
