@@ -120,8 +120,7 @@ public class LugarResource {
     }
     /*
     @GET
-    @Path("{numSillas: \\d+}")
-    public List<LugarDetailDTO> getLugaresByNumSillas(@PathParam("numSillas") Integer numSillas)throws WebApplicationException
+    public List<LugarDetailDTO> getLugaresByNumSillas()throws WebApplicationException
     {
         List<LugarEntity> lugaresEntities = null;
         try
