@@ -70,6 +70,19 @@ public class LugarPersistence {
         return lugar;
     }
     
+    public List<LugarEntity> findByNSillas(Integer numSillas)
+    {
+        TypedQuery query = em.createQuery("Select l from LugarEntity l where l.numSillas >=:numSillas", LugarEntity.class);
+        query = query.setParameter("numSillas", numSillas);
+        return query.getResultList();    
+    }
+    
+    public List<LugarEntity> findByUbicacion(String ubicacion)
+    {
+        TypedQuery query = em.createQuery("Select l from LugarEntity l where l.ubicacion =:ubicacion", LugarEntity.class);
+        query = query.setParameter("ubicacion", ubicacion);
+        return query.getResultList();
+    }
     /**
      * Método que altera una entidad Lugar en la base de datos.
      * @param lugar

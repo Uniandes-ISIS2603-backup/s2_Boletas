@@ -4,9 +4,10 @@ DELETE FROM CLIENTEENTITY
 DELETE FROM COMENTARIOENTITY
 DELETE FROM COMPRAENTITY
 DELETE FROM ESPECTACULOENTITY
+DELETE FROM SILLAENTITY
 DELETE FROM LUGARENTITY
 DELETE FROM ORGANIZADORENTITY
-DELETE FROM SILLAENTITY
+
 
 --TABLA ESPECTACULO ENTITY
 insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, imagen) values (100, 'Lost Patrol, The', '2018-02-07T00:14:52Z', 'Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.', 'Hubey Prattington', 'Adventure|Drama|War','https://m.media-amazon.com/images/M/MV5BMTQxMjY0MzgzMl5BMl5BanBnXkFtZTcwNjc0NjQ2OA@@._V1_.jpg');
@@ -19,6 +20,7 @@ insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, im
 insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, imagen) values (800, 'Middle of Nowhere', '2018-06-19T22:53:19Z', 'Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.', 'Charmain Ewart', 'Drama|Romance','');
 insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, imagen) values (900, 'Close Your Eyes (Hypnotic) (Doctor Sleep)', '2018-10-14T03:44:52Z', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.', 'Ricki Bradnum', 'Crime|Thriller','');
 insert into ESPECTACULOENTITY (id, nombre, fecha, descripcion, artista, tipo, imagen) values (1000, 'Glenn, the Flying Robot', '2018-05-17T02:23:53Z', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.', 'Nelle Newland', 'Sci-Fi');
+
 
 
 --TABLA COMPRA ENTITY
@@ -42,3 +44,4 @@ insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, clien
 insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (118, 42636, '109 Marcy Street', true, true, '7/23/2018', 100);
 insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (119, 7691, '23 Northfield Terrace', true, true, '5/25/2018', 100);
 insert into COMPRAENTITY (id, costoTotal, direccion, envio, estado, fecha, cliente_id) values (120, 72314, '574 Lakewood Avenue', true, true, '11/10/2017', 100);
+>>>>>>> 81717be9fc591d24b13cb90ca3f4388aa1edfc3f

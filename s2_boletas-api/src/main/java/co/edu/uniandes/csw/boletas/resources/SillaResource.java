@@ -128,7 +128,7 @@ public class SillaResource {
         {
             deleted = logic.deleteSilla(silla_id);
         }catch(BusinessLogicException bE)
-        {
+        { 
             throw new WebApplicationException(bE.getMessage());
         }
         return new SillaDTO(deleted);

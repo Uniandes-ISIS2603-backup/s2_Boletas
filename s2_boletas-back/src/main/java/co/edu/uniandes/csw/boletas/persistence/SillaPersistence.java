@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.boletas.persistence;
 
 import co.edu.uniandes.csw.boletas.entities.SillaEntity;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,6 +50,21 @@ public class SillaPersistence {
         return em.find(SillaEntity.class, id);
     }
     
+    public List<SillaEntity> findByLugar(Long lugarId)
+    {
+        //No funciona el desgraciado query
+        //TypedQuery<SillaEntity> query = em.createQuery("Select e from SillaEntity e where e.lugar_id =:lugar_id", SillaEntity.class);
+        //query = query.setParameter("lugar_id", lugarId);
+         List<SillaEntity> sillas = new ArrayList<SillaEntity>();
+        List<SillaEntity> sillasTodas = findAll();
+        for(SillaEntity actual : sillasTodas)
+            if(actual.getLugar().getId().equals( lugarId ))
+                sillas.add(actual);
+       
+        return sillas;
+        //Falta mejorar el algoritmo o implementar la búsqueda con ambos parámetros en el query.
+    }
+    
     /**
      * Método que retorna una entidad Silla según su número de silla y el id del lugar al que pertenece.
      * @param numero
@@ -57,7 +73,7 @@ public class SillaPersistence {
      */
     public SillaEntity findByNumeroAndLugar(String numero, Long lugarId)
     {
-        TypedQuery<SillaEntity> query = em.createQuery("Select e from SillaEntity e where e.numero =:numero",SillaEntity.class);
+        TypedQuery<SillaEntity> query = em.createQuery("Select e from SillaEntity e where e.numero =:numero", SillaEntity.class);
         query = query.setParameter("numero", numero);
         List<SillaEntity> sillas = query.getResultList();
         //Falta mejorar el algoritmo o implementar la búsqueda con ambos parámetros en el query.
