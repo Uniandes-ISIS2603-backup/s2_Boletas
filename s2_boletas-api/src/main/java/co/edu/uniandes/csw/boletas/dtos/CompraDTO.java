@@ -66,7 +66,7 @@ public class CompraDTO implements Serializable {
         compra.setFecha(fecha);
         compra.setDireccion(direccion);
         compra.setEstado(estado);
-        if(cliente!= null)
+        if(devolucion!= null)
         {
             compra.setDevolucion(devolucion.toEntity());
         }

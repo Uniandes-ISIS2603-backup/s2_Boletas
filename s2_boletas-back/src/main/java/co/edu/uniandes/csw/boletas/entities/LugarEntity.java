@@ -84,6 +84,9 @@ public class LugarEntity extends BaseEntity implements Serializable{
         this.ubicacion = ubicacion;
     }
     
-    
+    public void setSilla(SillaEntity silla)
+    {
+        sillas.add(silla);
+    }
     
 }

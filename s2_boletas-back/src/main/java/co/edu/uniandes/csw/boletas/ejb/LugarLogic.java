@@ -5,9 +5,11 @@
  */
 package co.edu.uniandes.csw.boletas.ejb;
 
+import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.LugarPersistence;
+import java.util.Date;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.util.List;
@@ -47,7 +49,8 @@ public class LugarLogic {
         LugarEntity alreadyExists = getLugarByName(entity.getNombre());
         if(alreadyExists != null)
             throw new BusinessLogicException("Ya existe un lugar con el nombre dado.");
-        
+        if(!(entity.getUbicacion().equals("teatro") || entity.getUbicacion().equals("coliseo")))
+            throw new BusinessLogicException("El tipo de lugar no es aceptado por el sistema.");
         return persistence.create(entity);
     }
     
@@ -60,6 +63,19 @@ public class LugarLogic {
         return persistence.findAll();
     }
     
+    public List<LugarEntity> getLugaresByNumSillas(Integer numSillas)throws BusinessLogicException
+    {
+        if(numSillas <= 0)
+            throw new BusinessLogicException("El número de sillas introducido no es válido.");
+        return persistence.findByNSillas(numSillas);
+    }
+    
+    public List<LugarEntity> getLugaresByUbicacion(String ubicacion)throws BusinessLogicException
+    {
+        if(!(ubicacion.equals("coliseo") || ubicacion.equals("teatro")))
+            throw new BusinessLogicException("El tipo de lugar ingresado está mal.");
+        return persistence.findByUbicacion(ubicacion);
+    }
     /**
      * Método que retorna una entidad lugar según su id.
      * @param lugarId
@@ -107,5 +123,25 @@ public class LugarLogic {
         persistence.delete(lugarId);
         LOGGER.log(Level.INFO,"Terminando proceso de remover lugar.");
         return lugarAEliminar;
+    }
+    
+    /**
+     * Método que verifica si un lugar específico está disponible en una fecha dada.
+     * @param fecha
+     * @param lugarId
+     * @return
+     * @throws BusinessLogicException 
+     */
+    public boolean estaDisponible(Date fecha, Long lugarId)throws BusinessLogicException
+    {
+         LugarEntity lugar = getLugarById(lugarId);
+         if(lugar == null)
+             throw new BusinessLogicException("El lugar con el id dado por parámetro no existe.");
+         
+         List<EspectaculoEntity> espectaculos = lugar.getEspectaculos();
+         for(EspectaculoEntity espectaculoActual: espectaculos)
+             if(espectaculoActual.getFecha().equals(fecha))// falta implementar la duración de cada espectáculo <- <- <- <- 
+                 return false;
+        return true;
     }
 }
