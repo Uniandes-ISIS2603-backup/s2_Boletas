@@ -165,7 +165,55 @@ public class CompraResource {
         }
         return CompraBoletasResource.class;
     }
+    
+    
+       /**
+     * Conexión con el servicio de boletas para una compra.
+     * {@link CompraDevolucionResource}
+     *
+     * Este método conecta la ruta de /compras con la ruta de /devoluciones que
+     * depende de la compra, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de la devolucion de una compra.
+     *
+     * @param compraId El ID de la compra con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de devolucion para esta compra en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la compra.
+     */
+    @Path("{comprasId: \\d+}/devoluciones")
+    public Class<CompraDevolucionResource> getCompraDevolucionResource(@PathParam("comprasId") Long compraId) {
+        if (compraLogic.getCompra(compraId) == null) {
+            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+        }
+        return CompraDevolucionResource.class;
+    }
 
+    
+    
+    /**
+     * Conexión con el servicio de cliente para una compra.
+     * {@link CompraClienteResource}
+     *
+     * Este método conecta la ruta de /compras con la ruta de /clientes que
+     * depende de la compra, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga del cliente de una compra.
+     *
+     * @param compraId El ID de la compra con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de cliente para esta compra en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la compra.
+     */
+    @Path("{comprasId: \\d+}/clientes")
+    public Class<CompraClienteResource> getCompraClienteResource(@PathParam("comprasId") Long compraId) {
+        if (compraLogic.getCompra(compraId) == null) {
+            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+        }
+        return CompraClienteResource.class;
+    }
+    
+    
     /**
      * Convierte una lista de entidades a DTO.
      *
