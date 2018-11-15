@@ -34,10 +34,14 @@ public class SillaDTO implements Serializable{
      */
     public SillaDTO(SillaEntity entity)
     {
-        this.id = entity.getId();
-        this.numero = entity.getNumero();
-        this.tipo = entity.getTipo();
-        this.disponible = entity.getDisponible();
+        if(entity != null)
+        {
+            this.id = entity.getId();
+            this.numero = entity.getNumero();
+            this.tipo = entity.getTipo();
+            this.disponible = entity.getDisponible();
+        }
+        
     }
     
     /**
@@ -49,7 +53,7 @@ public class SillaDTO implements Serializable{
         SillaEntity sillaEntity = new SillaEntity();
         sillaEntity.setId(this.id);
         sillaEntity.setNumero(this.numero);
-        sillaEntity.setTipo(this.tipo);;
+        sillaEntity.setTipo(this.tipo);
         sillaEntity.setDisponible(this.disponible);
         return sillaEntity;
     }
