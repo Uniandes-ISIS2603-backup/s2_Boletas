@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.TimeZone;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -147,6 +148,14 @@ public class ComentarioLogicTest {
         //espectaculoData.get(0).setFecha(fecha);
         espectaculoData.get(0).setComentarios(data);
         espectaculoData.get(0).setBoletas(boletaData);
+        Date d;
+        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        d = c.getTime();
+        espectaculoData.get(0).setFecha(d);
         em.persist(espectaculoData.get(0));
         clienteData.get(0).setComentarios(data);
         clienteData.get(0).setCompras(compraData);
@@ -168,9 +177,7 @@ public class ComentarioLogicTest {
     public void createComentarioTest() throws BusinessLogicException {
         ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
         newEntity.setCliente(clienteData.get(0));
-        System.out.println(newEntity.getCliente().getCompras().size());
-        System.out.println(newEntity.getCliente().getCompras().get(0).getBoletas().size());
-        System.out.println(newEntity.getCliente().getCompras().get(0).getId());
+        
         newEntity.setEspectaculo(espectaculoData.get(0));
         ComentarioEntity result = comentarioLogic.createComentario(newEntity);
         Assert.assertNotNull(result);
