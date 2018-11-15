@@ -46,7 +46,7 @@ public class LugarResource {
      * @throws WebApplicationException 
      */
     @POST
-    public LugarDTO createLugar(LugarDTO lugarDTO)throws WebApplicationException
+    public LugarDetailDTO createLugar(LugarDTO lugarDTO)throws WebApplicationException
     {
         LOGGER.log(Level.INFO, "LugarResource createLugar: ", lugarDTO.toString());
         LugarEntity lugarEntity = null;
@@ -58,7 +58,7 @@ public class LugarResource {
             throw new WebApplicationException(bE.getMessage());
         }
         
-        LugarDTO createdDTO = new LugarDTO(lugarEntity);
+        LugarDetailDTO createdDTO = new LugarDetailDTO(lugarEntity);
         LOGGER.log(Level.INFO, createdDTO.toString());
         
         return createdDTO;
@@ -73,7 +73,7 @@ public class LugarResource {
      */
     @PUT
     @Path("{lugar_id : \\d+}")
-    public LugarDTO updateLugar(@PathParam("lugar_id")Long lugar_id, LugarDTO lugarDTO) throws WebApplicationException
+    public LugarDetailDTO updateLugar(@PathParam("lugar_id")Long lugar_id, LugarDTO lugarDTO) throws WebApplicationException
     {
         LOGGER.log(Level.INFO, "LugarResource updateLugar: ", lugarDTO.toString());
         LugarEntity lugarEntity = lugarDTO.toEntity();
@@ -98,14 +98,17 @@ public class LugarResource {
      */
     @GET
     @Path("{id: \\d+}")
+<<<<<<< HEAD
     public LugarDetailDTO getLugar(@PathParam("id") Long id)throws WebApplicationException
+=======
+    public LugarDetailDTO getLugar(@PathParam("id") Long id)
+>>>>>>> 8472e8e4ddfcf1c96321140aa997fc041f1ef5e5
     { 
-        LugarEntity finded = null;
-        try{
-         finded = logic.getLugarById(id);
-        }catch(Exception e)
+        LugarEntity finded = logic.getLugarById(id);
+        if(finded == null)
         {
-            throw new WebApplicationException(e.getMessage());
+             throw new WebApplicationException("El lugar buscado con id:" + id + " no existe",404 );
+      
         }
         if(finded == null)
             throw new WebApplicationException("El lugar con el id " + id + " no existe.");

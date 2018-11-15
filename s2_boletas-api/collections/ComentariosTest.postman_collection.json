@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3243ad5f-112f-4227-99c0-cefa303487cc",
+		"_postman_id": "45224c82-8129-4fde-99fb-70cb3b9d36c2",
 		"name": "ComentariosTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -49,12 +49,12 @@
 					"raw": "{ \n        \"artista\": \"El mejor artista\",\n        \"descripcion\": \"el mejor show de la historia, con los mejores artistas\",\n        \"fecha\": \"{{isoTime}}\",\n        \"nombre\": \"el gran show parte 2\"\n        \n\t\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -105,12 +105,12 @@
 					"raw": "{\t\n\t\"fecha\":\"{{isoTime}}\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":{{new_id_e}}, \"fecha\":\"{{isoTime}}\"},\n\t\"vendida\":true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/boletas",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -151,12 +151,12 @@
 					"raw": "{\"costoTotal\": \"2000\", \"envio\": true, \"fecha\": \"2018-10-20T18:25:43.511Z\", \"direccion\": \"Cra 1 #18a-12\", \"estado\": true}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compras",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -176,12 +176,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compras/{{new_id_c}}/boletas/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{new_id_c}}/boletas/{{new_id_b}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -225,12 +225,12 @@
 					"raw": "{\"usuario\": \"n.f\",\"nombre\": \"Nicolas\", \"pago\": \"Tajeta\", \"cedula\":\"123\"}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/clientes",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -263,12 +263,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/clientes/{{new_id_cl}}/compras/{{new_id_c}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cl}}/compras/{{new_id_c}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -311,12 +311,12 @@
 					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida\",\n        \"espectaculo\":{\"id\":{{new_id_e}}},\n        \"cliente\":{\"id\":{{new_id_cl}}}\n\t\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -356,12 +356,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -401,12 +401,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/{{new_id_co}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/{{new_id_co}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -447,12 +447,12 @@
 					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida y me gusto el artista\",\n        \"espectaculo\":{\"id\":{{new_id_e}}},\n        \"cliente\":{\"id\":{{new_id_cl}}}\n\t\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/{{new_id_co}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/{{new_id_co}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -491,12 +491,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/comentarios/{{new_id_co}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/{{new_id_co}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -509,6 +509,18 @@
 		},
 		{
 			"name": "Borrar una boleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39fe9e74-92e3-494f-b24b-c51776de4a45",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -517,12 +529,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/boletas/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -535,6 +547,18 @@
 		},
 		{
 			"name": "Borrar una compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "17655c32-9ee3-4a7d-9b79-7be023cde19c",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -543,12 +567,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/compras/{{new_id_c}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{new_id_c}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -561,6 +585,18 @@
 		},
 		{
 			"name": "Borrar un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9d30329f-4c55-4a89-a54e-b03817006907",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -569,12 +605,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/clientes/{{new_id_cl}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cl}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
@@ -597,6 +633,16 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "62e4c609-00d8-424f-9dc5-db529bad541b",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -607,12 +653,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_boletas-api/api/espectaculos/{{new_id_e}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_e}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_boletas-api",
 						"api",
