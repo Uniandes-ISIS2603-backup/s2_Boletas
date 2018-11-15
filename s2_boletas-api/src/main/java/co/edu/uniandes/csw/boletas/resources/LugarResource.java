@@ -98,11 +98,7 @@ public class LugarResource {
      */
     @GET
     @Path("{id: \\d+}")
-<<<<<<< HEAD
     public LugarDetailDTO getLugar(@PathParam("id") Long id)throws WebApplicationException
-=======
-    public LugarDetailDTO getLugar(@PathParam("id") Long id)
->>>>>>> 8472e8e4ddfcf1c96321140aa997fc041f1ef5e5
     { 
         LugarEntity finded = logic.getLugarById(id);
         if(finded == null)
