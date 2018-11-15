@@ -50,7 +50,7 @@ public class LugarSillaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de retornar sillas pertenecientes al lugar con id = {0}", lugarId);
         if(lugarPersistence.find(lugarId)==null)
             throw new BusinessLogicException("El lugar con el id dado por parámetro no existe.");
-        List<SillaEntity> sillas = sillaPersistence.findByLugar( lugarId);
+        List<SillaEntity> sillas = lugarPersistence.find(lugarId).getSillas();
         LOGGER.log(Level.INFO, "Termina proceso de retornar sillas pertenecientes al lugar con id = {0}", lugarId);
         return sillas;
     }
