@@ -13,39 +13,43 @@ import java.io.Serializable;
  *
  * @author ja.amortegui10
  */
- 
+
 public class LugarDTO implements Serializable {
     private Long id;
-    private Integer numSillas; 
+    private Integer numSillas;
     private String direccion;
     private String nombre;
     private String ubicacion;
 
-   
+
     /**
      * Constructor vacío
      */
     public LugarDTO()
     {
-        
+
     }
-    
+
     /**
      * Constructor con parámetros
-     * @param entity 
+     * @param entity
      */
     public LugarDTO(LugarEntity entity)
     {
-        this.id = entity.getId();
-        this.numSillas = entity.getNumSillas();
-        this.direccion = entity.getDireccion();
-        this.nombre = entity.getNombre();
-        this.ubicacion = entity.getUbicacion();
+        if(entity != null)
+        {
+            this.id = entity.getId();
+            this.ubicacion = entity.getUbicacion();
+            this.numSillas = entity.getNumSillas();
+            this.direccion = entity.getDireccion();
+            this.nombre = entity.getNombre();
+        }
+
     }
-    
+
     /**
      * Convertir de dto a entity.
-     * @return 
+     * @return
      */
     public LugarEntity toEntity()
     {
@@ -57,11 +61,12 @@ public class LugarDTO implements Serializable {
         lugarEntity.setUbicacion(this.ubicacion);
         return lugarEntity;
     }
+    
+     public Long getId() {
 
-    public Long getId() {
         return id;
     }
-
+ 
     public Integer getNumSillas() {
         return numSillas;
     }
@@ -89,7 +94,7 @@ public class LugarDTO implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
      public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
@@ -97,5 +102,5 @@ public class LugarDTO implements Serializable {
     public String getUbicacion() {
         return ubicacion;
     }
-    
+
 }
