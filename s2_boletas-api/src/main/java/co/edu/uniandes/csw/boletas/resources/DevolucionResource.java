@@ -149,6 +149,29 @@ public class DevolucionResource {
         LOGGER.info("DevolucionResource deleteDevolucion: output: void");
     }
        
+      
+    /**
+     * Conexión con el servicio de compra para una devolucion.
+     * {@link DevolucionCompraResource}
+     *
+     * Este método conecta la ruta de /devoluciones con la ruta de /compras que
+     * depende de la devolucion, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de la compra de una devolucion.
+     *
+     * @param devolucionesId El ID de la devolucion con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de compra para esta devolucion en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la devolucion.
+     */
+    @Path("{devolucionesId: \\d+}/clientes")
+    public Class<DevolucionCompraResource> getDevolucionCompraResource(@PathParam("devolucionesId") Long devolucionesId) {
+        if (devolucionLogic.getDevolucion(devolucionesId) == null) {
+            throw new WebApplicationException("El recurso /compras/" + devolucionesId + " no existe.", 404);
+        }
+        return DevolucionCompraResource.class;
+    }
+    
     /**
      * Convierte una lista de entidades a DTO.
      *
