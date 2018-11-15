@@ -46,7 +46,7 @@ public class LugarResource {
      * @throws WebApplicationException 
      */
     @POST
-    public LugarDTO createLugar(LugarDTO lugarDTO)throws WebApplicationException
+    public LugarDetailDTO createLugar(LugarDTO lugarDTO)throws WebApplicationException
     {
         LOGGER.log(Level.INFO, "LugarResource createLugar: ", lugarDTO.toString());
         LugarEntity lugarEntity = null;
@@ -58,7 +58,7 @@ public class LugarResource {
             throw new WebApplicationException(bE.getMessage());
         }
         
-        LugarDTO createdDTO = new LugarDTO(lugarEntity);
+        LugarDetailDTO createdDTO = new LugarDetailDTO(lugarEntity);
         LOGGER.log(Level.INFO, createdDTO.toString());
         
         return createdDTO;
@@ -73,7 +73,7 @@ public class LugarResource {
      */
     @PUT
     @Path("{lugar_id : \\d+}")
-    public LugarDTO updateLugar(@PathParam("lugar_id")Long lugar_id, LugarDTO lugarDTO) throws WebApplicationException
+    public LugarDetailDTO updateLugar(@PathParam("lugar_id")Long lugar_id, LugarDTO lugarDTO) throws WebApplicationException
     {
         LOGGER.log(Level.INFO, "LugarResource updateLugar: ", lugarDTO.toString());
         LugarEntity lugarEntity = lugarDTO.toEntity();
@@ -96,14 +96,13 @@ public class LugarResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public LugarDTO getLugar(@PathParam("id") Long id)throws WebApplicationException
+    public LugarDetailDTO getLugar(@PathParam("id") Long id)
     { 
-        LugarEntity finded = null;
-        try{
-         finded = logic.getLugarById(id);
-        }catch(Exception e)
+        LugarEntity finded = logic.getLugarById(id);
+        if(finded == null)
         {
-            throw new WebApplicationException(e.getMessage());
+             throw new WebApplicationException("El lugar buscado con id:" + id + " no existe",404 );
+      
         }
         return new LugarDetailDTO(finded);
     }
@@ -118,10 +117,9 @@ public class LugarResource {
         List<LugarEntity> lugaresEntities = logic.getLugares();
         return convertEntitiesToDTO(lugaresEntities);
     }
-    
+    /*
     @GET
-    @Path("{numSillas: \\d+}")
-    public List<LugarDetailDTO> getLugaresByNumSillas(@PathParam("numSillas") Integer numSillas)throws WebApplicationException
+    public List<LugarDetailDTO> getLugaresByNumSillas()throws WebApplicationException
     {
         List<LugarEntity> lugaresEntities = null;
         try
@@ -134,6 +132,7 @@ public class LugarResource {
         return convertEntitiesToDTO(lugaresEntities);
         
     }
+    */
     
     /**
      * Método correspondiente al servicio Delete Lugar.

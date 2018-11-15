@@ -34,12 +34,16 @@ public class LugarDetailDTO extends LugarDTO implements Serializable {
     public LugarDetailDTO(LugarEntity entity)
     {
         super(entity);
-        sillas = new ArrayList<SillaDTO>();
+        if(entity != null)
+        {
+            sillas = new ArrayList<SillaDTO>();
         
         List<SillaEntity> sillasEntities = entity.getSillas();
         if(sillasEntities != null)
             for(SillaEntity sillaEntityActual : sillasEntities)
                 this.sillas.add(new SillaDTO(sillaEntityActual));
+        }
+        
     }
     
     /**
@@ -50,10 +54,14 @@ public class LugarDetailDTO extends LugarDTO implements Serializable {
     public LugarEntity toEntity()
     {
         LugarEntity lugarEntity = super.toEntity();
-        List<SillaEntity> sillasEntities = new ArrayList<SillaEntity>();
-        for(SillaDTO sillaDTOActual : sillas)
-            sillasEntities.add(sillaDTOActual.toEntity());
-        lugarEntity.setSillas(sillasEntities);
+        if(sillas != null)
+        {
+            List<SillaEntity> sillasEntities = new ArrayList<SillaEntity>();
+            for(SillaDTO sillaDTOActual : sillas)
+                sillasEntities.add(sillaDTOActual.toEntity());
+            lugarEntity.setSillas(sillasEntities);
+        }
+        
         return lugarEntity;
     }
 

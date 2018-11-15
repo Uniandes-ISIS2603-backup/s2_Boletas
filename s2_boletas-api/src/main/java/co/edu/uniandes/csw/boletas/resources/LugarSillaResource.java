@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.boletas.resources;
 
 import co.edu.uniandes.csw.boletas.dtos.SillaDTO;
 import co.edu.uniandes.csw.boletas.ejb.LugarSillaLogic;
+import co.edu.uniandes.csw.boletas.ejb.SillaLogic;
 import co.edu.uniandes.csw.boletas.entities.SillaEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,22 +35,34 @@ public class LugarSillaResource {
     private final static Logger LOGGER = Logger.getLogger(LugarSillaResource.class.getName());
     
     @Inject
-    private LugarSillaLogic logic;
+    private LugarSillaLogic lugarSillaLogic;
+    
+    @Inject 
+    private SillaLogic sillaLogic;
     
     @POST
-    @Path("{sillaId: \\d+}")
-    public SillaDTO addSilla(@PathParam("lugarId") Long lugarId, @PathParam("sillaId") Long sillaId)
+    @Path("{sillasId: \\d+}")
+    public SillaDTO addSilla(@PathParam("lugarId") Long lugarId, @PathParam("sillasId") Long sillaId)
     {
         LOGGER.log(Level.INFO, "LugarSillaResource addBSilla: input: lugarId: {0} , sillaId: {1}", new Object[]{lugarId, sillaId});
-        SillaDTO sillaAgregada = null;
-        try
+        
+        if(sillaLogic.getSillaById(sillaId) == null)
         {
-            sillaAgregada = new SillaDTO( logic.addSilla(lugarId, sillaId) );
-        }catch(Exception e)
-        {
-            throw new WebApplicationException(e.getMessage());
+            throw new WebApplicationException("El recurso /sillas" + sillaId + " no existe.", 404);
+        
         }
-        return sillaAgregada;
+        
+        SillaDTO silla = new SillaDTO(lugarSillaLogic.addSilla(lugarId,sillaId));
+//        SillaDTO sillaAgregada = null;
+//        try
+//        {
+//            sillaAgregada = new SillaDTO( lugarSillaLogic.addSilla(lugarId, sillaId) );
+//        }catch(Exception e)
+//        {
+//            throw new WebApplicationException(e.getMessage());
+//        }
+//        return sillaAgregada;
+        return silla;
     }
     
     @GET
@@ -59,7 +72,7 @@ public class LugarSillaResource {
         List<SillaDTO> sillasDTO = null;
         try
         {
-            List<SillaEntity> sillasEntity = logic.getSillas(lugarId) ;
+            List<SillaEntity> sillasEntity = lugarSillaLogic.getSillas(lugarId) ;
             sillasDTO = entityToDTO(sillasEntity);
         }catch(Exception e)
         {
