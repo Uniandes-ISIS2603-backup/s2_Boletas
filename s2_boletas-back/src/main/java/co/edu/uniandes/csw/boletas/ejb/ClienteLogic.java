@@ -94,16 +94,17 @@ public class ClienteLogic {
     /**
      *PUT 
      *Actualiza el entity recibido como parametro 
-     * @param entity. La entidad que se quiere actualizar
+     * @param clienteId
+     * @param clienteEntity La entidad que se quiere actualizar
      * @return La entidad actualizada 
      * 
      */
-    public ClienteEntity update(ClienteEntity entity)
+    public ClienteEntity updateCliente( Long clienteId,ClienteEntity clienteEntity)
     {
-        LOGGER.log(Level.INFO, "Entrando a actualizar el cliente con el nombre", entity.getNombre());
-        entity=persistence.update(entity);
-        LOGGER.log(Level.INFO, "saliendo de actualizar el cliente con el nombre", entity.getNombre());
-        return entity;
+        LOGGER.log(Level.INFO, "Entrando a actualizar el cliente con el con id = {0}", clienteId);
+        ClienteEntity newEntity= persistence.update(clienteEntity);
+        LOGGER.log(Level.INFO, "saliendo de actualizar el cliente con el el con id = {0}", clienteId);
+        return newEntity;
     }
     
     /**DELETE
