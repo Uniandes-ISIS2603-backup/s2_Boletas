@@ -9,7 +9,6 @@ import co.edu.uniandes.csw.boletas.dtos.DevolucionDTO;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.ejb.DevolucionLogic;
 import co.edu.uniandes.csw.boletas.entities.DevolucionEntity;
-import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -38,6 +37,9 @@ public class DevolucionResource {
     
      private static final Logger LOGGER = Logger.getLogger(DevolucionResource.class.getName());
     
+    private static final String recurso = "El Recurso /devoluciones/ ";
+    private static final String existe = " /no existe";
+    
     @Inject
     private DevolucionLogic devolucionLogic; 
 
@@ -53,13 +55,13 @@ public class DevolucionResource {
      * id autogenerado.
      */
     @POST
-    public DevolucionDTO postDevolucion(DevolucionDTO devolucion) throws BusinessLogicException
+    public DevolucionDTO postDevolucion(DevolucionDTO devolucion) 
     {
-       LOGGER.log(Level.INFO, "DevolucionResource postDevolucion: input: {0}", devolucion.toString());
+       LOGGER.log(Level.INFO, "DevolucionResource postDevolucion: input: {0}", devolucion);
        DevolucionEntity devolucionEntity = devolucion.toEntity();
        DevolucionEntity nuevaDevolucionEntity = devolucionLogic.createDevolucion(devolucionEntity);
        DevolucionDTO nuevaDevolucionDTO = new DevolucionDTO(nuevaDevolucionEntity);
-       LOGGER.log(Level.INFO, "DevolucionResource postDevolucion: output: {0}", nuevaDevolucionDTO.toString());
+       LOGGER.log(Level.INFO, "DevolucionResource postDevolucion: output: {0}", nuevaDevolucionDTO);
        return nuevaDevolucionDTO;   
     }
     
@@ -74,7 +76,7 @@ public class DevolucionResource {
     public List<DevolucionDTO> getDevoluciones() {
         LOGGER.info("DevolucionResource getDevoluciones: input: void");
         List<DevolucionDTO> listaDevoluciones = listEntity2DetailDTO(devolucionLogic.getDevoluciones());
-        LOGGER.log(Level.INFO, "DevolucionResource getDevoluciones: output: {0}", listaDevoluciones.toString());
+        LOGGER.log(Level.INFO, "DevolucionResource getDevoluciones: output: {0}", listaDevoluciones);
         return listaDevoluciones;
     }
     
@@ -94,10 +96,10 @@ public class DevolucionResource {
         LOGGER.log(Level.INFO, "DevolucionResource getDevolucion: input: {0}", devolucionId);
         DevolucionEntity devolucionEntity = devolucionLogic.getDevolucion(devolucionId);
         if (devolucionEntity == null) {
-            throw new WebApplicationException("El recurso /devoluciones/" + devolucionId + " no existe.", 404);
+            throw new WebApplicationException(recurso + devolucionId + existe, 404);
         }
         DevolucionDTO detailDTO = new DevolucionDTO(devolucionEntity);
-        LOGGER.log(Level.INFO, "DevolucionResource getDevolucion: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "DevolucionResource getDevolucion: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -118,13 +120,13 @@ public class DevolucionResource {
     @Path("{devolucionesId : \\d+}")
     public DevolucionDTO putDevolucion(@PathParam("devolucionesId") Long devolucionId, DevolucionDTO devolucion)
     {
-        LOGGER.log(Level.INFO, "DevolucionResource putDevolucion: input: id:{0} , devolucion: {1}", new Object[]{devolucionId, devolucion.toString()});
+        LOGGER.log(Level.INFO, "DevolucionResource putDevolucion: input: id:{0} , devolucion: {1}", new Object[]{devolucionId, devolucion});
         devolucion.setId(devolucionId);
         if (devolucionLogic.getDevolucion(devolucionId) == null) {
-            throw new WebApplicationException("El recurso /devoluciones/" + devolucionId + " no existe.", 404);
+            throw new WebApplicationException(recurso + devolucionId + existe, 404);
         }
         DevolucionDTO detailDTO = new DevolucionDTO(devolucionLogic.updateDevolucion(devolucionId, devolucion.toEntity()));
-        LOGGER.log(Level.INFO, "DevolucionResource putDevolucion: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "DevolucionResource putDevolucion: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -138,14 +140,14 @@ public class DevolucionResource {
      * Error de lógica que se genera cuando no se encuentra la devolucion.
      */
     @DELETE
-    @Path("{devolucionesId : \\d+}")
-    public void deleteDevolucion (@PathParam("devolucionesId") Long devolucionesId) throws BusinessLogicException
+    @Path("{devolucionId : \\d+}")
+    public void deleteDevolucion (@PathParam("devolucionId") Long devolucionId) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "DevolucionResource deleteDevolucion: input: {0}", devolucionesId);
-        if (devolucionLogic.getDevolucion(devolucionesId) == null) {
-            throw new WebApplicationException("El recurso /devoluciones/" + devolucionesId + " no existe.", 404);
+        LOGGER.log(Level.INFO, "DevolucionResource deleteDevolucion: input: {0}", devolucionId);
+        if (devolucionLogic.getDevolucion(devolucionId) == null) {
+            throw new WebApplicationException(recurso + devolucionId + existe, 404);
         }
-        devolucionLogic.deleteDevolucion(devolucionesId);
+        devolucionLogic.deleteDevolucion(devolucionId);
         LOGGER.info("DevolucionResource deleteDevolucion: output: void");
     }
        
@@ -158,16 +160,16 @@ public class DevolucionResource {
      * depende de la devolucion, es una redirección al servicio que maneja el
      * segmento de la URL que se encarga de la compra de una devolucion.
      *
-     * @param devolucionesId El ID de la devolucion con respecto a la cual se
+     * @param devolucionId El ID de la devolucion con respecto a la cual se
      * accede al servicio.
      * @return El servicio de compra para esta devolucion en paricular.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la devolucion.
      */
-    @Path("{devolucionesId: \\d+}/clientes")
-    public Class<DevolucionCompraResource> getDevolucionCompraResource(@PathParam("devolucionesId") Long devolucionesId) {
-        if (devolucionLogic.getDevolucion(devolucionesId) == null) {
-            throw new WebApplicationException("El recurso /compras/" + devolucionesId + " no existe.", 404);
+    @Path("{devolucionId: \\d+}/clientes")
+    public Class<DevolucionCompraResource> getDevolucionCompraResource(@PathParam("devolucionId") Long devolucionId) {
+        if (devolucionLogic.getDevolucion(devolucionId) == null) {
+            throw new WebApplicationException(recurso + devolucionId + existe, 404);
         }
         return DevolucionCompraResource.class;
     }
