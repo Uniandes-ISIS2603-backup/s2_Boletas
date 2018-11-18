@@ -32,10 +32,6 @@ public class DevolucionDTO implements Serializable
         if(devolucion != null)
         {
             id = devolucion.getId();
-            if (devolucion.getCompra()!=null)
-            {
-                    compra=new CompraDTO(devolucion.getCompra());
-            }
             if (devolucion.getBoletas() != null) {
                 boletas = new ArrayList<>();
                 for (long boleta : devolucion.getBoletas()) {
