@@ -35,6 +35,8 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped //A partir de ahí va a iniciar una transacción.
 public class SillaResource {
+    private static final String recurso = "El Recurso /sillas/ ";
+    private static final String existe = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(SillaResource.class.getName());
     @Inject
     private SillaLogic logic;
@@ -48,56 +50,54 @@ public class SillaResource {
     @POST
     public SillaDTO createSilla(SillaDTO sillaDTO) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "SillaResource createSilla: ", sillaDTO.toString());
+        LOGGER.log(Level.INFO, "SillaResource createSilla: ", sillaDTO);
         
         SillaEntity silla = sillaDTO.toEntity();
         
         SillaEntity nuevo = logic.createSilla(silla);
         
-        SillaDTO dto = new SillaDTO(nuevo);
+        return  new SillaDTO(nuevo);
 
-        
-        return dto;
     }
     
     /**
      * Método correspondiente al servicio Put Silla.
-     * @param silla_id
+     * @param sillaId
      * @param sillaDTO
      * @return
      * @throws BusinessLogicException 
      */
     @PUT
-    @Path("{silla_id : \\d+}")
-    public SillaDTO updateSilla(@PathParam("silla_id") Long silla_id, SillaDTO sillaDTO)throws BusinessLogicException
+    @Path("{sillaId : \\d+}")
+    public SillaDTO updateSilla(@PathParam("sillaId") Long sillaId, SillaDTO sillaDTO)throws BusinessLogicException
     {
         
-        LOGGER.log(Level.INFO, "SillaResource updateSilla: ", sillaDTO.toString());
-        sillaDTO.setId(silla_id);
+        LOGGER.log(Level.INFO, "SillaResource updateSilla: ", sillaDTO);
+        sillaDTO.setId(sillaId);
         SillaEntity sillaEntity = sillaDTO.toEntity();
-        if(logic.getSillaById(silla_id) == null)
+        if(logic.getSillaById(sillaId) == null)
         {
-            throw new WebApplicationException("La silla que se quiere actualizar con id:" + silla_id+ " no exite", 404);
+            throw new WebApplicationException(recurso + sillaId+ existe, 404);
         }
         
-        SillaDTO silla = new SillaDTO(logic.updateSilla(silla_id, sillaEntity));
+        return new SillaDTO(logic.updateSilla(sillaId, sillaEntity));
         
-        return silla;
+     
     }
     
     /**
      * Método correspondiente al servicio Get Silla.
-     * @param silla_id
+     * @param sillaId
      * @return 
      */
     @GET
-    @Path("{silla_id: \\d+}")
-    public SillaDTO getSilla(@PathParam("silla_id")Long silla_id)
+    @Path("{sillaId: \\d+}")
+    public SillaDTO getSilla(@PathParam("sillaId")Long sillaId)
     {
-        SillaEntity finded = logic.getSillaById(silla_id);
+        SillaEntity finded = logic.getSillaById(sillaId);
         if(finded == null)
         {
-            throw new WebApplicationException("La silla con el id :" + silla_id + " no existe",404 );
+            throw new WebApplicationException(recurso + sillaId + existe,404 );
         }
         return new SillaDTO(finded);
     }
@@ -110,7 +110,7 @@ public class SillaResource {
     public List<SillaDTO> getSillas()
     {
         List<SillaEntity> sillasEntity = logic.getSillas();
-        List<SillaDTO> sillasDTO = new ArrayList<SillaDTO>();
+        List<SillaDTO> sillasDTO = new ArrayList<>();
         for(SillaEntity entitieActual : sillasEntity)
             sillasDTO.add(new SillaDTO(entitieActual));
         return sillasDTO;
@@ -118,20 +118,20 @@ public class SillaResource {
     
     /**
      * Método correspondiente al servicio Delete Silla.
-     * @param silla_id
+     * @param sillaId
      * @throws BusinessLogicException 
      */
     @DELETE
-    @Path("{silla_id: \\d+}")
-    public void deleteSilla(@PathParam("silla_id")Long silla_id)throws BusinessLogicException
+    @Path("{sillaId: \\d+}")
+    public void deleteSilla(@PathParam("sillaId")Long sillaId)throws BusinessLogicException
     {
         
-        if(logic.getSillaById(silla_id) == null)
+        if(logic.getSillaById(sillaId) == null)
         {
-            throw new WebApplicationException("El recurso /silla/" + silla_id + " no existe.", 404);
+            throw new WebApplicationException(recurso + sillaId + existe, 404);
         }
         
-        logic.deleteSilla(silla_id);
+        logic.deleteSilla(sillaId);
         
 //        SillaEntity deleted = null;
 //        try

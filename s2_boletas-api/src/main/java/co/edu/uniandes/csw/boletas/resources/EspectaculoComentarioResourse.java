@@ -33,6 +33,10 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class EspectaculoComentarioResourse 
 {
+    
+    private static final String recursoEs = "El Recurso /espectaculos/ ";
+    private static final String recursoCom = "El Recurso /comentarios/ ";
+    private static final String existe = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(EspectaculoComentarioResourse.class.getName());
 
     @Inject
@@ -53,12 +57,12 @@ public class EspectaculoComentarioResourse
     @Path("{comentariosId: \\d+}")
     public ComentarioDTO addComentario(@PathParam("espectaculoId") Long espectaculosId, @PathParam("comentarioId") Long comentariosId)
     {
-        LOGGER.log(Level.INFO, "EspectaculoComentarioResourse addComentario: input: espectaculoId: "+ espectaculosId +", comentariosId: " + comentariosId, new Object[]{espectaculosId, comentariosId});
+        LOGGER.log(Level.INFO, "EspectaculoComentarioResourse addComentario: input: espectaculoId: {0}, comentariosId: {1}" , new Object[]{espectaculosId, comentariosId});
         if (comentarioLogic == null) {
-            throw new WebApplicationException("El recurso /comentarios/" + comentariosId + " no existe.", 404);
+            throw new WebApplicationException(recursoCom + comentariosId + existe, 404);
         }
         ComentarioDTO comentarioDTO = new ComentarioDTO(espectaculoComentarioLogic.addComentario(comentariosId, espectaculosId));
-        LOGGER.log(Level.INFO, "EspectaculoComentarioResourse agregarComentario: output: {0}", comentarioDTO.toString());
+        LOGGER.log(Level.INFO, "EspectaculoComentarioResourse agregarComentario: output: {0}", comentarioDTO);
         return new ComentarioDTO();
     }
     
@@ -75,7 +79,7 @@ public class EspectaculoComentarioResourse
         LOGGER.log(Level.INFO, "EspectaculoComentarioResourse getComentarios: input: {0}", espectaculosId);
         
         List<ComentarioDTO> listaDetailDTOs = comentariosListEntity2DTO(espectaculoComentarioLogic.darComentarios(espectaculosId));
-        LOGGER.log(Level.INFO, "EditorialBooksResource getBooks: output: {0}", listaDetailDTOs.toString());
+        LOGGER.log(Level.INFO, "EditorialBooksResource getBooks: output: {0}", listaDetailDTOs);
         return listaDetailDTOs;
     }
     
@@ -96,13 +100,11 @@ public class EspectaculoComentarioResourse
         LOGGER.log(Level.INFO, "EspectaculoComentarioResourse getComentario");
         if(comentarioLogic.getComentario(comentariosId) == null)
         {
-            throw new WebApplicationException("El recurso /espectaculo/" + espectaculosId + "/comentarios/" + comentariosId + " no existe.", 404);
+            throw new WebApplicationException(recursoEs + espectaculosId + "/comentarios/" + comentariosId + existe, 404);
         }    
         
-        ComentarioDTO comentario = new ComentarioDTO(espectaculoComentarioLogic.getComentario(espectaculosId, comentariosId));
+        return new ComentarioDTO(espectaculoComentarioLogic.getComentario(espectaculosId, comentariosId));
         
-        
-        return comentario;
     }
     
     
@@ -118,13 +120,12 @@ public class EspectaculoComentarioResourse
     {
         for (ComentarioDTO comentario : listaComentarios) {
             if (comentarioLogic.getComentario(comentario.getId()) == null) {
-                throw new WebApplicationException("El recurso /comentarios/" + comentario.getId() + " no existe.", 404);
+                throw new WebApplicationException(recursoCom + comentario.getId() +existe, 404);
             }
         }
     
-         List<ComentarioDTO> listaComentario = comentariosListEntity2DTO(espectaculoComentarioLogic.remplazarComentarios(espectaculosId, booksListDTO2Entity(listaComentarios)));
+         return comentariosListEntity2DTO(espectaculoComentarioLogic.remplazarComentarios(espectaculosId, booksListDTO2Entity(listaComentarios)));
     
-        return listaComentario;
     } 
     
     private List<ComentarioDTO> comentariosListEntity2DTO(List<ComentarioEntity> entityList) {

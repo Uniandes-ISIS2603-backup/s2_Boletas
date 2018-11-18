@@ -36,7 +36,9 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class ClienteResourse 
 {
-    
+   
+    private static final String recurso = "El Recurso /clientes/ ";
+    private static final String existe = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(ClienteResourse.class.getName());
     
     //Representacion de la clase ClienteLogic. Es una injeccion de dependencias
@@ -48,7 +50,7 @@ public class ClienteResourse
     public ClienteDTO createCliente(ClienteDTO cliente) throws BusinessLogicException
     { 
         
-        LOGGER.info("ClienteResourse createCliente: input: " + cliente.toString());
+        LOGGER.info("ClienteResourse createCliente: input: " + cliente);
         
         //Lo primero que se hace es pasar el DTO  a entity ya que la logica solo conoce entities
         ClienteEntity entity=cliente.toEntity();
@@ -56,11 +58,9 @@ public class ClienteResourse
         //y persistencia le da un id 
         ClienteEntity nuevoCliente= logica.createCliente(entity);
         
-        //Una vez creada la entity en la aplicacion esta se puede pasar nuevamente a DTO
-        ClienteDTO dto= new ClienteDTO(nuevoCliente);
-        
-    
-        return dto;   
+        //Una vez creada la entity en la aplicacion esta se puede pasar nuevamente a DTO 
+        return new ClienteDTO(nuevoCliente);
+          
     }
     
     @PUT
@@ -71,7 +71,7 @@ public class ClienteResourse
         ClienteEntity entity= cliente.toEntity();
          if(logica.getCliente(clienteId)==null)
          {
-              throw new WebApplicationException("El cliente que se quiere actualizar con id:" + clienteId +" No existe");
+              throw new WebApplicationException(recurso + clienteId +existe);
          }
          ClienteEntity actualizado= logica.update(entity);
          ClienteDetailDTO dto= new ClienteDetailDTO(actualizado);

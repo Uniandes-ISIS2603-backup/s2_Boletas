@@ -36,7 +36,8 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class EspectaculoResourse 
 {
-    
+    private static final String recurso = "El Recurso /espectaculos/ ";
+    private static final String existe = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(EspectaculoResourse.class.getName());
     
     @Inject
@@ -53,7 +54,7 @@ public class EspectaculoResourse
     public EspectaculoDTO createEspectaculo(EspectaculoDTO espectaculo) throws BusinessLogicException
     { 
         
-        LOGGER.log(Level.INFO, "EspectaculoResourse createEspectaculo: input: {0}", espectaculo.toString());
+        LOGGER.log(Level.INFO, "EspectaculoResourse createEspectaculo: input: {0}", espectaculo);
         
         EspectaculoEntity entity = espectaculo.toEntity();
         
@@ -61,7 +62,7 @@ public class EspectaculoResourse
         
         EspectaculoDTO dto = new EspectaculoDTO(nuevo);
         
-        LOGGER.log(Level.INFO, dto.toString());
+        LOGGER.log(Level.INFO, "EspectaculoResource createEspectaculo terminado: input: {0}",dto );
         
         return dto;   
     }
@@ -84,7 +85,7 @@ public class EspectaculoResourse
         EspectaculoEntity entity = espec.toEntity();
         if(espectaculoLogic.getEspectaculo(espectaculoId) == null)
         {
-            throw new WebApplicationException("El espectaculo que se quiere actualizar con id:" + espectaculoId +" No existe",404);
+            throw new WebApplicationException(recurso + espectaculoId +existe,404);
         }
         
         EspectaculoEntity actualizado;
@@ -97,9 +98,9 @@ public class EspectaculoResourse
             throw new WebApplicationException(e.getMessage(),412);
         }
         
-        EspectaculoDetailDTO dto = new EspectaculoDetailDTO(actualizado);
+        return new EspectaculoDetailDTO(actualizado);
         
-        return dto;
+       
     }
     
     
@@ -118,12 +119,12 @@ public class EspectaculoResourse
         
         if(entity == null)
         {
-            throw new WebApplicationException("El espectaculo buscado con id:" + espectaculoId + " no existe",404 );
+            throw new WebApplicationException(recurso + espectaculoId + existe,404 );
         }
         
         EspectaculoDetailDTO dto = new EspectaculoDetailDTO(entity);
         
-        LOGGER.log(Level.INFO, "EspectaculoResourse getEspectaculo{0}", dto.toString());
+        LOGGER.log(Level.INFO, "EspectaculoResourse getEspectaculo{0}", dto);
         
         return dto;
     }
@@ -140,7 +141,7 @@ public class EspectaculoResourse
     {
         LOGGER.info("EspectaculoResourse getEspectaculos: input: void");
         List<EspectaculoDetailDTO> listaEspectaculos = listEntity2DetailDTO(espectaculoLogic.getEspectaculos());
-        LOGGER.log(Level.INFO, "EspectaculoResourse getEspectaculos: output: {0}", listaEspectaculos.toString());
+        LOGGER.log(Level.INFO, "EspectaculoResourse getEspectaculos: output: {0}", listaEspectaculos);
         return listaEspectaculos;
     }
     
@@ -161,7 +162,7 @@ public class EspectaculoResourse
         
         if(espectaculoLogic.getEspectaculo(espectaculoId) == null)
         {
-            throw new WebApplicationException("El recurso /espectaculos/" + espectaculoId + " no existe.", 404);
+            throw new WebApplicationException(recurso + espectaculoId + existe, 404);
         }
         
        espectaculoLogic.deleteEspectaculo(espectaculoId);
@@ -189,7 +190,7 @@ public class EspectaculoResourse
     @Path("{espectaculosId: \\d+}/comentarios")
     public Class<EspectaculoComentarioResourse> getEditorialBooksResource(@PathParam("espectaculosId") Long espectaculosId) {
         if (espectaculoLogic.getEspectaculo(espectaculosId)== null) {
-            throw new WebApplicationException("El recurso /espectaculos/" + espectaculosId + " no existe.", 404);
+            throw new WebApplicationException(recurso + espectaculosId + existe, 404);
         }
         return EspectaculoComentarioResourse.class;
     }

@@ -35,6 +35,8 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @RequestScoped
 public class LugarResource {
+    private static final String recurso = "El Recurso /lugares/ ";
+    private static final String existe = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(LugarResource.class.getName());
     @Inject
     private LugarLogic logic;
@@ -46,9 +48,9 @@ public class LugarResource {
      * @throws WebApplicationException 
      */
     @POST
-    public LugarDetailDTO createLugar(LugarDTO lugarDTO)throws WebApplicationException
+    public LugarDetailDTO createLugar(LugarDTO lugarDTO)
     {
-        LOGGER.log(Level.INFO, "LugarResource createLugar: ", lugarDTO.toString());
+        LOGGER.log(Level.INFO, "LugarResource createLugar: ", lugarDTO);
         LugarEntity lugarEntity = null;
         try
         {
@@ -59,7 +61,7 @@ public class LugarResource {
         }
         
         LugarDetailDTO createdDTO = new LugarDetailDTO(lugarEntity);
-        LOGGER.log(Level.INFO, createdDTO.toString());
+        LOGGER.log(Level.INFO,"LugarResource createLugar Terminado:" ,createdDTO);
         
         return createdDTO;
     }
@@ -73,9 +75,9 @@ public class LugarResource {
      */
     @PUT
     @Path("{lugar_id : \\d+}")
-    public LugarDetailDTO updateLugar(@PathParam("lugar_id")Long lugar_id, LugarDTO lugarDTO) throws WebApplicationException
+    public LugarDetailDTO updateLugar(@PathParam("lugar_id")Long lugar_id, LugarDTO lugarDTO) 
     {
-        LOGGER.log(Level.INFO, "LugarResource updateLugar: ", lugarDTO.toString());
+        LOGGER.log(Level.INFO, "LugarResource updateLugar: ", lugarDTO);
         LugarEntity lugarEntity = lugarDTO.toEntity();
         lugarEntity.setId(lugar_id);
         LugarEntity updatedEntity = null;
@@ -101,7 +103,7 @@ public class LugarResource {
         LugarEntity finded = logic.getLugarById(id);
         if(finded == null)
         {
-             throw new WebApplicationException("El lugar buscado con id:" + id + " no existe",404 );
+             throw new WebApplicationException(recurso + id + existe,404 );
       
         }
         return new LugarDetailDTO(finded);
@@ -142,7 +144,7 @@ public class LugarResource {
      */
     @DELETE
     @Path("{lugar_id : \\d+}")
-    public LugarDTO deleteLugar(@PathParam("lugar_id") Long lugar_id)throws WebApplicationException
+    public LugarDTO deleteLugar(@PathParam("lugar_id") Long lugar_id)
     {
         LugarEntity deleted = null;
         try
@@ -157,7 +159,7 @@ public class LugarResource {
     
     private List<LugarDetailDTO> convertEntitiesToDTO(List<LugarEntity> lugaresEntities)
     {
-        List<LugarDetailDTO> lugaresDTO = new ArrayList<LugarDetailDTO>();
+        List<LugarDetailDTO> lugaresDTO = new ArrayList<>();
         for(LugarEntity entitieActual : lugaresEntities)
             lugaresDTO.add(new LugarDetailDTO(entitieActual));
         return lugaresDTO;

@@ -41,6 +41,9 @@ public class BoletaResource {
     @Inject 
     private BoletaLogic boletaLogic;
     
+    private static final String recurso = "El Recurso /boletas/ ";
+    private static final String existe = " /no existe";
+    
     private static final Logger LOGGER = Logger.getLogger(BoletaResource.class.getName());
     
     /**
@@ -57,11 +60,11 @@ public class BoletaResource {
     @POST
     public BoletaDTO postBoleta(BoletaDTO boleta) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "BoletaResource postBoleta: input: {0}", boleta.toString());
+        LOGGER.log(Level.INFO, "BoletaResource postBoleta: input: {0}", boleta);
         BoletaEntity boletaEntity = boleta.toEntity();
         BoletaEntity nuevaBoletaEntity = boletaLogic.createBoleta(boletaEntity);
         BoletaDTO nuevaBoletaDto =new BoletaDTO(nuevaBoletaEntity);
-        LOGGER.log(Level.INFO, "BoletaResource createBoleta: output: {0}", nuevaBoletaDto.toString());
+        LOGGER.log(Level.INFO, "BoletaResource createBoleta: output: {0}", nuevaBoletaDto);
         return nuevaBoletaDto;
     }
     
@@ -75,7 +78,7 @@ public class BoletaResource {
     public List<BoletaDTO> getBoletas() {
         LOGGER.info("BoletaResource getBoletas: input: void");
         List<BoletaDTO> listaBoletas = listEntity2DTO(boletaLogic.getBoletas());
-        LOGGER.log(Level.INFO, "BoletaResource getBoletas: output: {0}", listaBoletas.toString());
+        LOGGER.log(Level.INFO, "BoletaResource getBoletas: output: {0}", listaBoletas);
         return listaBoletas;
     }
     
@@ -90,16 +93,16 @@ public class BoletaResource {
      */
     @GET
     @Path("{boletasId : \\d+}")
-    public BoletaDTO getBoleta(@PathParam("boletasId") Long boletasId) throws WebApplicationException
+    public BoletaDTO getBoleta(@PathParam("boletasId") Long boletasId) 
     {
         LOGGER.log(Level.INFO,"BoletaResource getBoleta: input: {0}", boletasId);
         BoletaEntity boletaEntity = boletaLogic.getBoleta(boletasId);
         if(boletaEntity == null)
         {
-            throw new WebApplicationException("El recurso /boletas/"+boletasId+" no existe.", 404);
+            throw new WebApplicationException(recurso+boletasId+existe, 404);
         }
         BoletaDTO boletaDTO = new BoletaDTO(boletaEntity);
-        LOGGER.log(Level.INFO, "BoletaResource getBoleta: output: {0}", boletasId.toString());
+        LOGGER.log(Level.INFO, "BoletaResource getBoleta: output: {0}", boletasId);
         return boletaDTO;
     }
     
@@ -119,15 +122,15 @@ public class BoletaResource {
      */
     @PUT
     @Path("{boletasId: \\d+}")
-    public BoletaDTO updateBoleta(@PathParam("boletasId") Long boletasId, BoletaDTO boleta) throws WebApplicationException
+    public BoletaDTO updateBoleta(@PathParam("boletasId") Long boletasId, BoletaDTO boleta)
     {
-        LOGGER.log(Level.INFO, "BoletaResource updateBoleta: input: id:{0} , boleta: {1}", new Object[]{boletasId, boleta.toString()});
+        LOGGER.log(Level.INFO, "BoletaResource updateBoleta: input: id:{0} , boleta: {1}", new Object[]{boletasId, boleta});
         boleta.setId(boletasId);
         if (boletaLogic.getBoleta(boletasId) == null) {
-            throw new WebApplicationException("El recurso /boletas/" + boletasId + " no existe.", 404);
+            throw new WebApplicationException(recurso + boletasId + existe, 404);
         }
         BoletaDTO boletaDTO = new BoletaDTO(boletaLogic.updateBoleta(boletasId, boleta.toEntity()));
-        LOGGER.log(Level.INFO, "BoletaResource updateBoleta: output: {0}", boletaDTO.toString());
+        LOGGER.log(Level.INFO, "BoletaResource updateBoleta: output: {0}", boletaDTO);
         return boletaDTO;
     }
     
@@ -145,7 +148,7 @@ public class BoletaResource {
     { 
         LOGGER.log(Level.INFO, "BoletaResource deleteBoleta: input: {0}", boletasId);
         if (boletaLogic.getBoleta(boletasId) == null) {
-            throw new WebApplicationException("El recurso /boletas/" + boletasId + " no existe.", 404);
+            throw new WebApplicationException(recurso + boletasId + existe, 404);
         }
         boletaLogic.deleteBoleta(boletasId);
         LOGGER.info("BoletaResource deleteBoleta: output: void");

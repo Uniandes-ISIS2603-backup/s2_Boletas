@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.boletas.resources;
 
 import co.edu.uniandes.csw.boletas.dtos.ComentarioDTO;
-import co.edu.uniandes.csw.boletas.ejb.BoletaLogic;
 import co.edu.uniandes.csw.boletas.ejb.ClienteComentarioLogic;
 import co.edu.uniandes.csw.boletas.ejb.ComentarioLogic;
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
@@ -33,7 +32,9 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ClienteComentariosResource {
-    
+    private static final String recursoCom = "El Recurso /comentarios/ ";
+    private static final String recursoCl = "El Recurso /clientes/ ";
+    private static final String existe = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(ClienteComentariosResource.class.getName());
     
     @Inject
@@ -58,10 +59,10 @@ public class ClienteComentariosResource {
     public ComentarioDTO addComentario(@PathParam("clienteId") Long clientesId, @PathParam("comentariosId") Long comentariosId) {
         LOGGER.log(Level.INFO, "ClienteComentariosResource addComentario: input: clientesId: {0} , comentariosId: {1}", new Object[]{clientesId, comentariosId});
         if (comentarioLogic.getComentario(comentariosId) == null) {
-            throw new WebApplicationException("El recurso /comentarios/" + comentariosId + " no existe.", 404);
+            throw new WebApplicationException(recursoCom + comentariosId + existe, 404);
         }
         ComentarioDTO comentarioDTO = new ComentarioDTO(clienteComentarioLogic.addComentario(comentariosId, clientesId));
-        LOGGER.log(Level.INFO, "ClienteComentariosResource addComentario: output: {0}", comentarioDTO.toString());
+        LOGGER.log(Level.INFO, "ClienteComentariosResource addComentario: output: {0}", comentarioDTO);
         return comentarioDTO;
     }
     
@@ -77,7 +78,7 @@ public class ClienteComentariosResource {
     public List<ComentarioDTO> getComentarios(@PathParam("clienteId") Long clientesId) {
         LOGGER.log(Level.INFO, "ClienteComentariosResource getComentarios: input: {0}", clientesId);
         List<ComentarioDTO> lista = listEntity2DTO(clienteComentarioLogic.getComentarios(clientesId));
-        LOGGER.log(Level.INFO, "ClienteComentarioResource getComentarios: output: {0}", lista.toString());
+        LOGGER.log(Level.INFO, "ClienteComentarioResource getComentarios: output: {0}", lista);
         return lista;
     }
     
@@ -100,10 +101,10 @@ public class ClienteComentariosResource {
     public ComentarioDTO getComentario(@PathParam("clienteId") Long clientesId, @PathParam("comentariosId") Long comentariosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ClienteComentariosResource getComentario: input: clientesId: {0} , comentariosId: {1}", new Object[]{clientesId, comentariosId});
         if (comentarioLogic.getComentario(comentariosId) == null) {
-            throw new WebApplicationException("El recurso /clientes/" + clientesId + "/comentarios/" + comentariosId + " no existe.", 404);
+            throw new WebApplicationException(recursoCl + clientesId + "/comentarios/" + comentariosId + existe, 404);
         }
         ComentarioDTO comentarioDTO = new ComentarioDTO(clienteComentarioLogic.getComentario(clientesId, comentariosId));
-        LOGGER.log(Level.INFO, "ClienteComentariosResource getComentario: output: {0}", comentarioDTO.toString());
+        LOGGER.log(Level.INFO, "ClienteComentariosResource getComentario: output: {0}", comentarioDTO);
         return comentarioDTO;
     }
     
@@ -121,14 +122,14 @@ public class ClienteComentariosResource {
      */
     @PUT
     public List<ComentarioDTO> replaceComentarios(@PathParam("clientesId") Long clientesId, List<ComentarioDTO> comentarios) {
-        LOGGER.log(Level.INFO, "ClienteComentariosResource replaceComentarios: input: clientesId: {0} , comentarios: {1}", new Object[]{clientesId, comentarios.toString()});
+        LOGGER.log(Level.INFO, "ClienteComentariosResource replaceComentarios: input: clientesId: {0} , comentarios: {1}", new Object[]{clientesId, comentarios});
         for (ComentarioDTO comentario : comentarios) {
             if (comentarioLogic.getComentario(comentario.getId()) == null) {
-                throw new WebApplicationException("El recurso /comentarios/" + comentario.getId() + " no existe.", 404);
+                throw new WebApplicationException(recursoCom + comentario.getId() + existe, 404);
             }
         }
         List<ComentarioDTO> listaDTOs = listEntity2DTO(clienteComentarioLogic.replaceComentarios(clientesId, listDTO2Entity(comentarios)));
-        LOGGER.log(Level.INFO, "ClienteComentariosResource replaceComentarios: output: {0}", listaDTOs.toString());
+        LOGGER.log(Level.INFO, "ClienteComentariosResource replaceComentarios: output: {0}", listaDTOs);
         return listaDTOs;
     }
     
