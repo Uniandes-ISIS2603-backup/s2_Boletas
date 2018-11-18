@@ -6,11 +6,9 @@
 package co.edu.uniandes.csw.boletas.resources;
 
 import co.edu.uniandes.csw.boletas.dtos.EspectaculoDetailDTO;
-import co.edu.uniandes.csw.boletas.dtos.OrganizadorDTO;
 import co.edu.uniandes.csw.boletas.dtos.OrganizadorDetailDTO;
 import co.edu.uniandes.csw.boletas.ejb.OrganizadorEspectaculoLogic;
 import co.edu.uniandes.csw.boletas.ejb.OrganizadorLogic;
-import co.edu.uniandes.csw.boletas.entities.OrganizadorEntity;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -32,7 +30,9 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EspectaculoOrganizadorResourse {
-    
+    private static final String recursoEs = "El Recurso /espectaculos/ ";
+    private static final String recursoOr = "El Recurso /organizadores/ ";
+    private static final String existe = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(EspectaculoOrganizadorResourse.class.getName());
     
     @Inject
@@ -51,13 +51,13 @@ public class EspectaculoOrganizadorResourse {
     @Path("{organizadoresId: \\d+}")
     public OrganizadorDetailDTO addEspectaculo(@PathParam("espectaculosId") Long espectaculosId, @PathParam("organizadoresId") Long organizadoresId)
     {
-        LOGGER.log(Level.INFO, "EspectaculoOrganizadorResourse addOrganizador: input: organizadorId: "+ organizadoresId +", espectaculosId: " + espectaculosId, new Object[]{organizadoresId, espectaculosId});
+        LOGGER.log(Level.INFO, "EspectaculoOrganizadorResourse addOrganizador: input: organizadorId: {0}, espectaculosId: {1}" , new Object[]{organizadoresId, espectaculosId});
         if (organizadorLogic.getOrganizador(organizadoresId) == null) {
-            throw new WebApplicationException("El recurso /espectaculos" + espectaculosId + " no existe.", 404);
+            throw new WebApplicationException(recursoEs + espectaculosId + existe, 404);
         }
         OrganizadorDetailDTO organizadorDTO = new OrganizadorDetailDTO(organizadorEspectaculoLogic.addOrganizador(espectaculosId, organizadoresId));
         
-        LOGGER.log(Level.INFO, "EspectaculoOrganizadorResourse addOrganizador: output: {0}", organizadorDTO.toString());
+        LOGGER.log(Level.INFO, "EspectaculoOrganizadorResourse addOrganizador: output: {0}", organizadorDTO);
         return organizadorDTO;
     }
     
@@ -73,10 +73,9 @@ public class EspectaculoOrganizadorResourse {
     public OrganizadorDetailDTO getOrganizador(@PathParam("espectaculosid") Long espectaculosId, @PathParam("organizadoresId") Long organizadoresId)
     {
         if (organizadorLogic.getOrganizador(organizadoresId)==null)
-            throw new WebApplicationException("El recurso espectaculos/"+ espectaculosId+ "/organizadores/ "+ organizadoresId + "No existe",404);
-        OrganizadorDetailDTO organizador= new OrganizadorDetailDTO(organizadorEspectaculoLogic.getOrganizador(espectaculosId, organizadoresId));
-        
-        return organizador;
+            throw new WebApplicationException(recursoEs+ espectaculosId+ "/organizadores/ "+ organizadoresId + existe,404);
+        return new OrganizadorDetailDTO(organizadorEspectaculoLogic.getOrganizador(espectaculosId, organizadoresId));
+       
     }
     
     
@@ -92,12 +91,11 @@ public class EspectaculoOrganizadorResourse {
         LOGGER.log(Level.INFO, "EspectaculoOrganizadorResourse replaceOrganizador");
         if(organizadorLogic.getOrganizador(organizador.getId() )==null)
         {
-            throw new WebApplicationException("El organizador con id " + organizador.getId() + " no existe");
+            throw new WebApplicationException(recursoOr+ organizador.getId() + existe);
         }
         
-        EspectaculoDetailDTO actualizado = new EspectaculoDetailDTO(organizadorEspectaculoLogic.replaceOrganizador(espectaculoId, organizador.getId()));
+        return new EspectaculoDetailDTO(organizadorEspectaculoLogic.replaceOrganizador(espectaculoId, organizador.getId()));
         
-        return actualizado;
     }
     
     

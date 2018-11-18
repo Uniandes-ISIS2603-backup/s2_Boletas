@@ -30,6 +30,9 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class BoletaCompraResource {
 
+    private static final String recursoCo = "El Recurso /compras/ ";
+    private static final String recursoBo = "El Recurso /boletas/ ";
+    private static final String existe = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(BoletaCompraResource.class.getName());
 
     @Inject
@@ -55,15 +58,15 @@ public class BoletaCompraResource {
      */
     @PUT
     public BoletaDTO replaceCompra(@PathParam("boletasId") Long boletasId, CompraDetailDTO compra) {
-        LOGGER.log(Level.INFO, "BoletaCompraResource replaceCompra: input: boletasId{0} , Compra:{1}", new Object[]{boletasId, compra.toString()});
+        LOGGER.log(Level.INFO, "BoletaCompraResource replaceCompra: input: boletasId{0} , Compra:{1}", new Object[]{boletasId, compra});
         if (boletaLogic.getBoleta(boletasId) == null) {
-            throw new WebApplicationException("El recurso /boletas/" + boletasId + " no existe.", 404);
+            throw new WebApplicationException(recursoBo + boletasId + existe, 404);
         }
         if (compraLogic.getCompra(compra.getId()) == null) {
-            throw new WebApplicationException("El recurso /compras/" + compra.getId() + " no existe.", 404);
+            throw new WebApplicationException(recursoCo + compra.getId() + existe, 404);
         }
         BoletaDTO boletaDetailDTO = new BoletaDTO(boletaCompraLogic.replaceCompra(boletasId, compra.getId()));
-        LOGGER.log(Level.INFO, "BoletaCompraResource replaceCompra: output: {0}", boletaDetailDTO.toString());
+        LOGGER.log(Level.INFO, "BoletaCompraResource replaceCompra: output: {0}", boletaDetailDTO);
         return boletaDetailDTO;
     }
 }

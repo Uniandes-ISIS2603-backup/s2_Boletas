@@ -53,7 +53,7 @@ private static final Logger LOGGER = Logger.getLogger(BoletaCompraResource.class
      */
     @PUT
     public CompraDetailDTO replaceCliente(@PathParam("comprasId") Long comprasId, ClienteDetailDTO cliente) {
-        LOGGER.log(Level.INFO, "CompraClienteResource replaceCliente: input: comprasId{0} , Compra:{1}", new Object[]{comprasId, cliente.toString()});
+        LOGGER.log(Level.INFO, "CompraClienteResource replaceCliente: input: comprasId{0} , Compra:{1}", new Object[]{comprasId, cliente});
         if (compraLogic.getCompra(comprasId) == null) {
             throw new WebApplicationException("El recurso /compras/" + comprasId + " no existe.", 404);
         }
@@ -61,7 +61,7 @@ private static final Logger LOGGER = Logger.getLogger(BoletaCompraResource.class
             throw new WebApplicationException("El recurso /clientes/" + cliente.getId() + " no existe.", 404);
         }
         CompraDetailDTO compraDetailDTO = new CompraDetailDTO(compraClienteLogic.replaceCliente(comprasId, cliente.getId()));
-        LOGGER.log(Level.INFO, "CompraClienteResource replaceCliente: output: {0}", compraDetailDTO.toString());
+        LOGGER.log(Level.INFO, "CompraClienteResource replaceCliente: output: {0}", compraDetailDTO);
         return compraDetailDTO;
     }
     
