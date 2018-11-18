@@ -36,7 +36,9 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class ClienteResourse 
 {
-    
+   
+    private static final String recurso = "El Recurso /clientes/ ";
+    private static final String existe = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(ClienteResourse.class.getName());
     
     //Representacion de la clase ClienteLogic. Es una injeccion de dependencias
@@ -48,7 +50,7 @@ public class ClienteResourse
     public ClienteDTO createCliente(ClienteDTO cliente) throws BusinessLogicException
     { 
         
-        LOGGER.info("ClienteResourse createCliente: input: " + cliente.toString());
+        LOGGER.info("ClienteResourse createCliente: input: " + cliente);
         
         //Lo primero que se hace es pasar el DTO  a entity ya que la logica solo conoce entities
         ClienteEntity entity=cliente.toEntity();
@@ -56,11 +58,9 @@ public class ClienteResourse
         //y persistencia le da un id 
         ClienteEntity nuevoCliente= logica.createCliente(entity);
         
-        //Una vez creada la entity en la aplicacion esta se puede pasar nuevamente a DTO
-        ClienteDTO dto= new ClienteDTO(nuevoCliente);
-        
-    
-        return dto;   
+        //Una vez creada la entity en la aplicacion esta se puede pasar nuevamente a DTO 
+        return new ClienteDTO(nuevoCliente);
+          
     }
     
     @PUT
@@ -68,32 +68,32 @@ public class ClienteResourse
     public ClienteDetailDTO updateCliente(@PathParam("clienteId") Long clienteId, ClienteDetailDTO cliente)
     {
            LOGGER.log(Level.INFO, "Proceso de actualizar un cliente: PUT");
-           LOGGER.log(Level.INFO, "ClienteResource  updateCliente: input: id:{0} , cliente: {1}", new Object[]{clienteId, cliente.toString()});
+           LOGGER.log(Level.INFO, "ClienteResource  updateCliente: input: id:{0} , cliente: {1}", new Object[]{clienteId, cliente});
         cliente.setId(clienteId);
          if(logica.getCliente(clienteId)==null)
          {
-              throw new WebApplicationException("El cliente que se quiere actualizar con id:" + clienteId +" No existe");
+              throw new WebApplicationException(recurso + clienteId +existe,404);
          }
          ClienteEntity actualizado= logica.updateCliente(clienteId,cliente.toEntity());
-         ClienteDetailDTO dto= new ClienteDetailDTO(actualizado);
-         return dto;
+         return new ClienteDetailDTO(actualizado);
+        
     }
     
     @GET
     @Path("{clienteId : \\d+}")
-    public ClienteDetailDTO getCliente(@PathParam("clienteId") Long clienteId) throws WebApplicationException
+    public ClienteDetailDTO getCliente(@PathParam("clienteId") Long clienteId) 
     {
         //Se busca el entity que se quiere modificar
         ClienteEntity entity = logica.getCliente(clienteId);
         //Si no existe se manda excepcion
         if(entity==null)
         {
-            throw new WebApplicationException("El recurso /clientes/ "+ clienteId+ "no existe",404);
+            throw new WebApplicationException(recurso+ clienteId+ existe,404);
         }
         //Si existe se modifica y se vuelve DTO 
-        ClienteDetailDTO detailDTO= new ClienteDetailDTO(entity);
+        return new ClienteDetailDTO(entity);
         
-        return detailDTO;
+        
                 
         
     }
@@ -101,8 +101,8 @@ public class ClienteResourse
     @GET 
     public List<ClienteDetailDTO> getClientes()
     {
-         List<ClienteDetailDTO> listaClientes = listEntity2DetailDTO(logica.getClientes());
-        return listaClientes;
+         return listEntity2DetailDTO(logica.getClientes());
+        
     }
     
      /* * Este método conecta la ruta de /clientes con las rutas de /compras que
@@ -118,7 +118,7 @@ public class ClienteResourse
     @Path("{clienteId: \\d+}/compras")
     public Class<ClienteCompraResource> getClienteCompraResourse(@PathParam("clienteId") Long clienteId) {
         if (logica.getCliente(clienteId) == null) {
-            throw new WebApplicationException("El recurso /clientes/" + clienteId + " no existe.", 404);
+            throw new WebApplicationException(recurso + clienteId + existe, 404);
         }
         return ClienteCompraResource.class;
         
@@ -137,7 +137,7 @@ public class ClienteResourse
     @Path("{clienteId: \\d+}/comentarios")
     public Class<ClienteComentariosResource> getClienteComentariosResource(@PathParam("clienteId") Long clienteId) {
         if (logica.getCliente(clienteId) == null) {
-            throw new WebApplicationException("El recurso /clientes/" + clienteId + " no existe.", 404);
+            throw new WebApplicationException(recurso + clienteId + existe, 404);
         }
         return ClienteComentariosResource.class;
         

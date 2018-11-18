@@ -34,6 +34,8 @@ public class CompraResource {
     @Inject
     private CompraLogic compraLogic; 
 
+    private static final String recursoCompras = "El Recurso /compras/ ";
+    private static final String existe = " /no existe";
     
     /**
      * Crea una nueva compra con la informacion que se recibe en el cuerpo de
@@ -48,12 +50,12 @@ public class CompraResource {
     @POST
     public CompraDetailDTO postCompra(CompraDetailDTO compra) throws BusinessLogicException
     {
-       LOGGER.log(Level.INFO, "CompraResource postCompra: input: {0}", compra.toString());
+       LOGGER.log(Level.INFO, "CompraResource postCompra: input: {0}", compra);
        LOGGER.log(Level.INFO, "CompraResource postCompra: costoTotal: {0}", compra.getCostoTotal());
        CompraEntity compraEntity = compra.toEntity();
        CompraEntity nuevaCompraEntity = compraLogic.createCompra(compraEntity);
        CompraDetailDTO nuevaCompraDTO = new CompraDetailDTO(nuevaCompraEntity);
-       LOGGER.log(Level.INFO, "CompraResource postCompra: output: {0}", nuevaCompraDTO.toString());
+       LOGGER.log(Level.INFO, "CompraResource postCompra: output: {0}", nuevaCompraDTO);
        return nuevaCompraDTO;   
     }
     
@@ -68,7 +70,7 @@ public class CompraResource {
     public List<CompraDetailDTO> getCompras() {
         LOGGER.info("CompraResource getCompras: input: void");
         List<CompraDetailDTO> listaCompras = listEntity2DetailDTO(compraLogic.getCompras());
-        LOGGER.log(Level.INFO, "CompraResource getCompras: output: {0}", listaCompras.toString());
+        LOGGER.log(Level.INFO, "CompraResource getCompras: output: {0}", listaCompras);
         return listaCompras;
     }
     
@@ -88,10 +90,10 @@ public class CompraResource {
         LOGGER.log(Level.INFO, "CompraResource getCompra: input: {0}", compraId);
         CompraEntity compraEntity = compraLogic.getCompra(compraId);
         if (compraEntity == null) {
-            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+            throw new WebApplicationException(recursoCompras + compraId + existe, 404);
         }
         CompraDetailDTO detailDTO = new CompraDetailDTO(compraEntity);
-        LOGGER.log(Level.INFO, "CompraResource getCompra: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "CompraResource getCompra: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -112,13 +114,13 @@ public class CompraResource {
     @Path("{comprasId : \\d+}")
     public CompraDetailDTO putCompra(@PathParam("comprasId") Long compraId, CompraDetailDTO compra)
     {
-        LOGGER.log(Level.INFO, "CompraResource putCompra: input: id:{0} , compra: {1}", new Object[]{compraId, compra.toString()});
+        LOGGER.log(Level.INFO, "CompraResource putCompra: input: id:{0} , compra: {1}", new Object[]{compraId, compra});
         compra.setId(compraId);
         if (compraLogic.getCompra(compraId) == null) {
-            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+            throw new WebApplicationException(recursoCompras + compraId + existe, 404);
         }
         CompraDetailDTO detailDTO = new CompraDetailDTO(compraLogic.updateCompra(compraId, compra.toEntity()));
-        LOGGER.log(Level.INFO, "CompraResource putCompra: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "CompraResource putCompra: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -137,7 +139,7 @@ public class CompraResource {
     {
         LOGGER.log(Level.INFO, "CompraResource deleteCompra: input: {0}", compraId);
         if (compraLogic.getCompra(compraId) == null) {
-            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+            throw new WebApplicationException(recursoCompras + compraId + existe, 404);
         }
         compraLogic.deleteCompra(compraId);
         LOGGER.info("CompraResource deleteCompra: output: void");
@@ -161,14 +163,14 @@ public class CompraResource {
     @Path("{comprasId: \\d+}/boletas")
     public Class<CompraBoletasResource> getCompraBoletasResource(@PathParam("comprasId") Long compraId) {
         if (compraLogic.getCompra(compraId) == null) {
-            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+            throw new WebApplicationException(recursoCompras + compraId + existe, 404);
         }
         return CompraBoletasResource.class;
     }
     
     
        /**
-     * Conexión con el servicio de boletas para una compra.
+     * Conexión con el servicio de devolucion para una compra.
      * {@link CompraDevolucionResource}
      *
      * Este método conecta la ruta de /compras con la ruta de /devoluciones que
@@ -184,7 +186,7 @@ public class CompraResource {
     @Path("{comprasId: \\d+}/devoluciones")
     public Class<CompraDevolucionResource> getCompraDevolucionResource(@PathParam("comprasId") Long compraId) {
         if (compraLogic.getCompra(compraId) == null) {
-            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+            throw new WebApplicationException(recursoCompras + compraId + existe, 404);
         }
         return CompraDevolucionResource.class;
     }

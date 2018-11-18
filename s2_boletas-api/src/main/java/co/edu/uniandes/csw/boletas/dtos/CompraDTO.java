@@ -45,7 +45,8 @@ public class CompraDTO implements Serializable {
         estado= compra.getEstado();
         if (compra.getDevolucion()!=null)
             {
-                    devolucion=new DevolucionDTO(compra.getDevolucion());
+                devolucion.setCompra(this);
+                devolucion=new DevolucionDTO(compra.getDevolucion());
             }
         if (compra.getCliente()!=null)
             {

@@ -88,10 +88,8 @@ public class EspectaculoBoletaResourse
             throw new WebApplicationException("El recurso /espectaculo/" + espectaculosId + "/boletas/" + boletasId + " no existe.", 404);
         }    
         
-        BoletaDTO boleta = new BoletaDTO(espectaculoBoletaLogic.getBoleta(espectaculosId, boletasId));
-       
-        
-        return boleta;
+        return new BoletaDTO(espectaculoBoletaLogic.getBoleta(espectaculosId, boletasId));
+    
     }
     
     
@@ -105,7 +103,7 @@ public class EspectaculoBoletaResourse
     {
         LOGGER.log(Level.INFO, "EspectaculoBoletaResource getBoletas: input: {0}", espectaculosId);
         List<BoletaDTO> lista = boletasListEntity2DTO(espectaculoBoletaLogic.getBoletas(espectaculosId));
-        LOGGER.log(Level.INFO, "EspectaculoBoletaResource getBoletas: output: {0}", lista.toString());
+        LOGGER.log(Level.INFO, "EspectaculoBoletaResource getBoletas: output: {0}", lista);
         return lista;
     }
     

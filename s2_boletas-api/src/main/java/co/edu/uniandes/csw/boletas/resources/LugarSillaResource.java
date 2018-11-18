@@ -31,8 +31,10 @@ import java.util.logging.Logger;
 @Produces(MediaType.APPLICATION_JSON)
 @Path("lugares/{lugarId: \\d+}/sillas")
 public class LugarSillaResource {
-    
-    private final static Logger LOGGER = Logger.getLogger(LugarSillaResource.class.getName());
+    private static final String recursoLu = "El Recurso /lugares/ ";
+    private static final String recursoSi = "El Recurso /sillas/ ";
+    private static final String existe = " /no existe";
+    private static final Logger LOGGER = Logger.getLogger(LugarSillaResource.class.getName());
     
     @Inject
     private LugarSillaLogic lugarSillaLogic;
@@ -48,11 +50,11 @@ public class LugarSillaResource {
         
         if(sillaLogic.getSillaById(sillaId) == null)
         {
-            throw new WebApplicationException("El recurso /sillas" + sillaId + " no existe.", 404);
+            throw new WebApplicationException(recursoSi + sillaId + existe, 404);
         
         }
         
-        SillaDTO silla = new SillaDTO(lugarSillaLogic.addSilla(lugarId,sillaId));
+        return new SillaDTO(lugarSillaLogic.addSilla(lugarId,sillaId));
 //        SillaDTO sillaAgregada = null;
 //        try
 //        {
@@ -62,7 +64,7 @@ public class LugarSillaResource {
 //            throw new WebApplicationException(e.getMessage());
 //        }
 //        return sillaAgregada;
-        return silla;
+        
     }
     
     @GET
@@ -83,7 +85,7 @@ public class LugarSillaResource {
     
     private List<SillaDTO> entityToDTO(List<SillaEntity> sillasEntity)
     {
-        List<SillaDTO> sillasDTO = new ArrayList<SillaDTO>();
+        List<SillaDTO> sillasDTO = new ArrayList<>();
         for(SillaEntity sillaActual: sillasEntity)
             sillasDTO.add(new SillaDTO(sillaActual));
         return sillasDTO;

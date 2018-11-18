@@ -8,7 +8,6 @@ package co.edu.uniandes.csw.boletas.resources;
 import co.edu.uniandes.csw.boletas.dtos.BoletaDTO;
 import co.edu.uniandes.csw.boletas.ejb.BoletaLogic;
 import co.edu.uniandes.csw.boletas.ejb.CompraBoletasLogic;
-import co.edu.uniandes.csw.boletas.ejb.CompraLogic;
 import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -30,7 +29,9 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class CompraBoletasResource {
     
-    
+    private static final String recursoCo = "El Recurso /compras/ ";
+    private static final String recursoBo = "El Recurso /boletas/ ";
+    private static final String existe = " /no existe";
   private static final Logger LOGGER = Logger.getLogger(CompraBoletasResource.class.getName());
 
     @Inject
@@ -56,10 +57,10 @@ public class CompraBoletasResource {
     public BoletaDTO addBoleta(@PathParam("comprasId") Long comprasId, @PathParam("boletasId") Long boletasId) {
         LOGGER.log(Level.INFO, "CompraBoletasResource addBoleta: input: comprasID: {0} , boletasId: {1}", new Object[]{comprasId, boletasId});
         if (boletaLogic.getBoleta(boletasId) == null) {
-            throw new WebApplicationException("El recurso /boletas/" + boletasId + " no existe.", 404);
+            throw new WebApplicationException(recursoBo + boletasId + existe, 404);
         }
         BoletaDTO boletaDTO = new BoletaDTO(compraBoletasLogic.addBoleta(comprasId, boletasId));
-        LOGGER.log(Level.INFO, "CompraBoletasResource addBoleta: output: {0}", boletaDTO.toString());
+        LOGGER.log(Level.INFO, "CompraBoletasResource addBoleta: output: {0}", boletaDTO);
         return boletaDTO;
     }
 
@@ -75,7 +76,7 @@ public class CompraBoletasResource {
     public List<BoletaDTO> getBoletas(@PathParam("comprasId") Long comprasId) {
         LOGGER.log(Level.INFO, "CompraBoletasResource getBoletas: input: {0}", comprasId);
         List<BoletaDTO> listaDetailDTOs = boletasListEntity2DTO(compraBoletasLogic.getBoletas(comprasId));
-        LOGGER.log(Level.INFO, "CompraBoletasResource getBoletas: output: {0}", listaDetailDTOs.toString());
+        LOGGER.log(Level.INFO, "CompraBoletasResource getBoletas: output: {0}", listaDetailDTOs);
         return listaDetailDTOs;
     }
 
@@ -98,10 +99,10 @@ public class CompraBoletasResource {
     public BoletaDTO getBoleta(@PathParam("comprasId") Long comprasId, @PathParam("boletasId") Long boletasId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "CompraBoletasResource getBoleta: input: comprasID: {0} , boletasId: {1}", new Object[]{comprasId, boletasId});
         if (boletaLogic.getBoleta(boletasId) == null) {
-            throw new WebApplicationException("El recurso /compras/" + comprasId + "/boletas/" + boletasId + " no existe.", 404);
+            throw new WebApplicationException(recursoCo + comprasId + "/boletas/" + boletasId + existe, 404);
         }
         BoletaDTO boletaDetailDTO = new BoletaDTO(compraBoletasLogic.getBoleta(comprasId, boletasId));
-        LOGGER.log(Level.INFO, "CompraBoletasResource getBoleta: output: {0}", boletaDetailDTO.toString());
+        LOGGER.log(Level.INFO, "CompraBoletasResource getBoleta: output: {0}", boletaDetailDTO);
         return boletaDetailDTO;
     }
 
@@ -119,14 +120,14 @@ public class CompraBoletasResource {
      */
     @PUT
     public List<BoletaDTO> replaceBoletas(@PathParam("comprasId") Long comprasId, List<BoletaDTO> boletas) {
-        LOGGER.log(Level.INFO, "CompraBoletasResource replaceBoletas: input: comprasId: {0} , boletas: {1}", new Object[]{comprasId, boletas.toString()});
+        LOGGER.log(Level.INFO, "CompraBoletasResource replaceBoletas: input: comprasId: {0} , boletas: {1}", new Object[]{comprasId, boletas});
         for (BoletaDTO boleta : boletas) {
             if (boletaLogic.getBoleta(boleta.getId()) == null) {
-                throw new WebApplicationException("El recurso /boletas/" + boleta.getId() + " no existe.", 404);
+                throw new WebApplicationException(recursoBo + boleta.getId() + existe, 404);
             }
         }
         List<BoletaDTO> listaDetailDTOs = boletasListEntity2DTO(compraBoletasLogic.putBoletas(comprasId, boletasListDTO2Entity(boletas)));
-        LOGGER.log(Level.INFO, "CompraBoletasResource replaceBoletas: output: {0}", listaDetailDTOs.toString());
+        LOGGER.log(Level.INFO, "CompraBoletasResource replaceBoletas: output: {0}", listaDetailDTOs);
         return listaDetailDTOs;
     }
 

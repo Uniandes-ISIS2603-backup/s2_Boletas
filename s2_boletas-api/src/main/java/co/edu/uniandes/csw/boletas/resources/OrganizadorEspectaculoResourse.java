@@ -6,11 +6,8 @@
 package co.edu.uniandes.csw.boletas.resources;
 
 import co.edu.uniandes.csw.boletas.ejb.OrganizadorEspectaculoLogic;
-import co.edu.uniandes.csw.boletas.dtos.ComentarioDTO;
-import co.edu.uniandes.csw.boletas.dtos.EspectaculoDTO;
 import co.edu.uniandes.csw.boletas.dtos.EspectaculoDetailDTO;
 import co.edu.uniandes.csw.boletas.ejb.EspectaculoLogic;
-import co.edu.uniandes.csw.boletas.ejb.OrganizadorLogic;
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -36,6 +33,10 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class OrganizadorEspectaculoResourse 
 {
+    
+    private static final String recursoEs = "El Recurso /espectaculos/ ";
+    private static final String recursoOr = "El Recurso /organizadores/ ";
+    private static final String existe = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(OrganizadorEspectaculoResourse.class.getName());
 
    @Inject
@@ -58,13 +59,13 @@ public class OrganizadorEspectaculoResourse
     @Path("{espectaculosId: \\d+}")
     public EspectaculoDetailDTO addEspectaculo(@PathParam("organizadorId") Long organizadoresId, @PathParam("espectaculosId") Long espectaculosId)
     {
-        LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: input: organizadorId: "+ organizadoresId +", espectaculosId: " + espectaculosId, new Object[]{organizadoresId, espectaculosId});
+        LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: input: organizadorId: {0}, espectaculosId: {1}", new Object[]{organizadoresId, espectaculosId});
         if (espectaculoLogic.getEspectaculo(espectaculosId) == null) {
-            throw new WebApplicationException("El recurso /espectaculos" + espectaculosId + " no existe.", 404);
+            throw new WebApplicationException(recursoEs + espectaculosId + existe, 404);
         }
         EspectaculoDetailDTO espectaculoDTO = new EspectaculoDetailDTO(organizadorEspectaculoLogic.addEspectaculo(espectaculosId, organizadoresId));
         
-        LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: output: {0}", espectaculoDTO.toString());
+        LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: output: {0}", espectaculoDTO);
         return espectaculoDTO;
     }
     
@@ -82,11 +83,10 @@ public class OrganizadorEspectaculoResourse
     public EspectaculoDetailDTO getEspectaculo ( @PathParam("organizadorId") Long organizadoresId,@PathParam("espectaculosId") Long espectaculosId) throws BusinessLogicException      
     {
         if (espectaculoLogic.getEspectaculo(espectaculosId)==null)
-            throw new WebApplicationException("El recurso organizadores/"+ organizadoresId+ "/espectaculos / "+ espectaculosId + "No existe",404);
-        LOGGER.log(Level.INFO, "Estoy bien");
-        EspectaculoDetailDTO espectaculoDetailDto= new EspectaculoDetailDTO(organizadorEspectaculoLogic.getEspectaculo(organizadoresId, espectaculosId));
+            throw new WebApplicationException(recursoOr+ organizadoresId+ "/espectaculos / "+ espectaculosId + existe,404);
+        LOGGER.log(Level.INFO, "Estoy bien, (seguro?)");
+        return new EspectaculoDetailDTO(organizadorEspectaculoLogic.getEspectaculo(organizadoresId, espectaculosId));
         
-        return espectaculoDetailDto;
     }
     
     
@@ -102,8 +102,8 @@ public class OrganizadorEspectaculoResourse
     public List<EspectaculoDetailDTO> getEspectaculos (@PathParam("organizadorId") Long espectaculosId)
     {
         LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: output: {0}", espectaculosId);
-        List<EspectaculoDetailDTO> listaDetailDTO= espectaculosListEntity2DTO(organizadorEspectaculoLogic.getEspectaculos(espectaculosId));
-        return listaDetailDTO;
+        return espectaculosListEntity2DTO(organizadorEspectaculoLogic.getEspectaculos(espectaculosId));
+        
         
     }
     
@@ -120,13 +120,12 @@ public class OrganizadorEspectaculoResourse
         {
           if(espectaculoLogic.getEspectaculo(espectaculo.getId()) == null)
           {
-              throw new WebApplicationException("El recurso /espectaculos/" + espectaculo.getId()+ " no existe",404);
+              throw new WebApplicationException(recursoEs + espectaculo.getId()+ existe,404);
           }
         }
         
-        List<EspectaculoDetailDTO> listaEspec = espectaculosListEntity2DTO(organizadorEspectaculoLogic.updateEspectaculos(espectaculoListDTO2Entity(listaEspectaculo), organizadoresId));
+        return espectaculosListEntity2DTO(organizadorEspectaculoLogic.updateEspectaculos(espectaculoListDTO2Entity(listaEspectaculo), organizadoresId));
         
-        return listaEspec;
     }
     
         /**

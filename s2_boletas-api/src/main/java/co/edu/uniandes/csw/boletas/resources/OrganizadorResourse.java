@@ -35,6 +35,8 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class OrganizadorResourse 
 {
+    private static final String recurso = "El Recurso /organizadores/ ";
+    private static final String existe = " /no existe";
     
     private static final Logger LOGGER = Logger.getLogger(OrganizadorResourse.class.getName());
     
@@ -47,7 +49,7 @@ public class OrganizadorResourse
     public OrganizadorDTO createOrganizador(OrganizadorDTO organizador) throws BusinessLogicException
     { 
         
-        LOGGER.info("OrganizadorResourse createOrganizador: input: " + organizador.toString());
+        LOGGER.info("OrganizadorResourse createOrganizador: input: " + organizador);
         
         //Lo primero que se hace es pasar el DTO  a entity ya que la logica solo conoce entities
         OrganizadorEntity entity=organizador.toEntity();
@@ -56,10 +58,9 @@ public class OrganizadorResourse
         OrganizadorEntity nuevoOrganizador= logica.createOrganizador(entity);
         
         //Una vez creada la entity en la aplicacion esta se puede pasar nuevamente a DTO
-        OrganizadorDTO dto= new OrganizadorDTO(nuevoOrganizador);
+        return new OrganizadorDTO(nuevoOrganizador);
         
-    
-        return dto;   
+      
     }
     
     @PUT
@@ -70,28 +71,27 @@ public class OrganizadorResourse
         
         if(logica.getOrganizador(organizadorId)== null)
         {
-            throw new WebApplicationException("El recurso/organizadores/"+ organizadorId+" no existe");
+            throw new WebApplicationException(recurso+ organizadorId+existe);
         }
-        OrganizadorDetailDTO updatedDTO= new OrganizadorDetailDTO(logica.update(organizador.toEntity()));
-        return updatedDTO;
+        return new OrganizadorDetailDTO(logica.update(organizador.toEntity()));
+       
         
     }
     
     @GET
     @Path("{organizadorId : \\d+}")
-    public OrganizadorDetailDTO getOrganizador(@PathParam("organizadorId") Long organizadorId) throws WebApplicationException
+    public OrganizadorDetailDTO getOrganizador(@PathParam("organizadorId") Long organizadorId)
     {
         //Se busca el entity que se quiere modificar
         OrganizadorEntity entity = logica.getOrganizador(organizadorId);
         //Si no existe se manda excepcion
         if(entity==null)
         {
-            throw new WebApplicationException("El recurso /organizadors/ "+ organizadorId+ "no existe",404);
+            throw new WebApplicationException(recurso+ organizadorId+ existe,404);
         }
         //Si existe se modifica y se vuelve DTO 
-        OrganizadorDetailDTO detailDTO= new OrganizadorDetailDTO(entity);
+        return new OrganizadorDetailDTO(entity);
         
-        return detailDTO;
                 
         
     }
@@ -99,8 +99,8 @@ public class OrganizadorResourse
     @GET 
     public List<OrganizadorDetailDTO> getOrganizadores()
     {
-         List<OrganizadorDetailDTO> listaOrganizadors = listEntity2DetailDTO(logica.getOrganizadores());
-        return listaOrganizadors;
+         return listEntity2DetailDTO(logica.getOrganizadores());
+       
     }
     
     @DELETE
@@ -131,7 +131,7 @@ public class OrganizadorResourse
     @Path("{organizadorId: \\d+}/espectaculos")
     public Class<OrganizadorEspectaculoResourse> getOrganizadoresEspectaculoResourse(@PathParam("organizadorId") Long organizadorId) {
         if (logica.getOrganizador(organizadorId) == null) {
-            throw new WebApplicationException("El recurso /organizadores/" + organizadorId + " no existe.", 404);
+            throw new WebApplicationException(recurso + organizadorId + existe, 404);
         }
         return OrganizadorEspectaculoResourse.class;
     }
