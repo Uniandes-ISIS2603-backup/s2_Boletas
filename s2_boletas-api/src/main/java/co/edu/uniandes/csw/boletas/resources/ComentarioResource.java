@@ -16,7 +16,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import co.edu.uniandes.csw.boletas.dtos.ComentarioDTO;
 import co.edu.uniandes.csw.boletas.ejb.ComentarioLogic;
-import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -44,7 +43,8 @@ public class ComentarioResource {
      */
     @Inject 
     private ComentarioLogic comentarioLogic;
-    
+    private static final String recurso = "El Recurso /comentarios/ ";
+    private static final String existe = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(ComentarioResource.class.getName());
     
     /**
@@ -61,11 +61,11 @@ public class ComentarioResource {
     @POST
     public ComentarioDTO postComentario(ComentarioDTO comentario) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "ComentarioResource postComentario: input: {0}", comentario.toString());
+        LOGGER.log(Level.INFO, "ComentarioResource postComentario: input: {0}", comentario);
         ComentarioEntity comentarioEntity = comentario.toEntity();
         ComentarioEntity nuevoComentarioEntity = comentarioLogic.createComentario(comentarioEntity);
         ComentarioDTO nuevoComentarioDTO =new ComentarioDTO(nuevoComentarioEntity);
-        LOGGER.log(Level.INFO, "ComentarioResource postComentario: output: {0}", nuevoComentarioDTO.toString());
+        LOGGER.log(Level.INFO, "ComentarioResource postComentario: output: {0}", nuevoComentarioDTO);
         return nuevoComentarioDTO;
     }
     
@@ -79,7 +79,7 @@ public class ComentarioResource {
     public List<ComentarioDTO> getComentarios() {
         LOGGER.info("ComentarioResource getComentarios: input: void");
         List<ComentarioDTO> listComentarios = listEntity2DTO(comentarioLogic.getComentarios());
-        LOGGER.log(Level.INFO, "ComentarioResource getComentarios: output: {0}", listComentarios.toString());
+        LOGGER.log(Level.INFO, "ComentarioResource getComentarios: output: {0}", listComentarios);
         return listComentarios;
     }
     
@@ -94,16 +94,16 @@ public class ComentarioResource {
      */
     @GET
     @Path("{comentariosId : \\d+}")
-    public ComentarioDTO getComentario(@PathParam("comentariosId") Long comentariosId) throws WebApplicationException
+    public ComentarioDTO getComentario(@PathParam("comentariosId") Long comentariosId) 
     {
         LOGGER.log(Level.INFO,"ComentarioResource getComentario: input: {0}", comentariosId);
         ComentarioEntity comentarioEntity = comentarioLogic.getComentario(comentariosId);
         if(comentarioEntity == null)
         {
-            throw new WebApplicationException("El recurso /comentarios/"+comentariosId+" no existe.", 404);
+            throw new WebApplicationException(recurso+comentariosId+existe, 404);
         }
         ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioEntity);
-        LOGGER.log(Level.INFO, "ComentarioResource getComentario: output: {0}", comentariosId.toString());
+        LOGGER.log(Level.INFO, "ComentarioResource getComentario: output: {0}", comentariosId);
         return comentarioDTO;
     }
     
@@ -125,13 +125,13 @@ public class ComentarioResource {
     @Path("{comentariosId: \\d+}")
     public ComentarioDTO updateComentario(@PathParam("comentariosId") Long comentariosId, ComentarioDTO comentario) throws WebApplicationException
     {
-        LOGGER.log(Level.INFO, "ComentarioResource updateComentario: input: id:{0} , comentario: {1}", new Object[]{comentariosId, comentario.toString()});
+        LOGGER.log(Level.INFO, "ComentarioResource updateComentario: input: id:{0} , comentario: {1}", new Object[]{comentariosId, comentario});
         comentario.setId(comentariosId);
         if (comentarioLogic.getComentario(comentariosId) == null) {
-            throw new WebApplicationException("El recurso /comentarios/" + comentariosId + " no existe.", 404);
+            throw new WebApplicationException(recurso+comentariosId+existe, 404);
         }
         ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioLogic.updateComentario(comentariosId, comentario.toEntity()));
-        LOGGER.log(Level.INFO, "ComentarioResource updateComentario: output: {0}", comentarioDTO.toString());
+        LOGGER.log(Level.INFO, "ComentarioResource updateComentario: output: {0}", comentarioDTO);
         return comentarioDTO;
     }
     
@@ -149,7 +149,7 @@ public class ComentarioResource {
     { 
         LOGGER.log(Level.INFO, "ComentarioResource deleteComentario: input: {0}", comentariosId);
         if (comentarioLogic.getComentario(comentariosId) == null) {
-            throw new WebApplicationException("El recurso /comentarios/" + comentariosId + " no existe.", 404);
+            throw new WebApplicationException(recurso+comentariosId+existe, 404);
         }
         comentarioLogic.deleteComentario(comentariosId);
         LOGGER.info("ComentarioResource deleteComentario: output: void");
