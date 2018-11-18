@@ -88,6 +88,8 @@ public class LugarResource {
         {
             throw new WebApplicationException(bE.getMessage());
         }
+        if(updatedEntity == null)
+            throw new WebApplicationException("El lugar con el id " + lugar_id + "no existe." );
         return new LugarDetailDTO(updatedEntity);
     }
     
@@ -98,7 +100,7 @@ public class LugarResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public LugarDetailDTO getLugar(@PathParam("id") Long id)
+    public LugarDetailDTO getLugar(@PathParam("id") Long id)throws WebApplicationException
     { 
         LugarEntity finded = logic.getLugarById(id);
         if(finded == null)
@@ -106,6 +108,8 @@ public class LugarResource {
              throw new WebApplicationException(recurso + id + existe,404 );
       
         }
+        if(finded == null)
+            throw new WebApplicationException("El lugar con el id " + id + " no existe.");
         return new LugarDetailDTO(finded);
     }
     
@@ -154,6 +158,8 @@ public class LugarResource {
         {
             throw new WebApplicationException(bE.getMessage());
         }
+        if(deleted == null)
+            throw new WebApplicationException("El lugar con el id: " + lugar_id + " no existe.");
         return new LugarDTO(deleted);
     }
     
