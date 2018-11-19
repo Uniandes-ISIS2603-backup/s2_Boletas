@@ -62,7 +62,7 @@ return clienteEntity;
      
      public ClienteEntity findByUser(String usuario)
      {
-         LOGGER.log(Level.INFO, "Entrando a buscar el usuario",usuario);
+         LOGGER.log(Level.INFO, "Entrando a buscar el usuario: {0}",usuario);
          
          TypedQuery query= em.createQuery("Select c From ClienteEntity c Where c.usuario=:usuario",ClienteEntity.class);
          
@@ -81,7 +81,7 @@ return clienteEntity;
                   else 
                       result=answer.get(0);
                   
-                  LOGGER.log(Level.INFO, "Saliendo de buscar por usuario ", usuario);
+                  LOGGER.log(Level.INFO, "Saliendo de buscar por usuario: {0}", usuario);
                   
                   return result;
                

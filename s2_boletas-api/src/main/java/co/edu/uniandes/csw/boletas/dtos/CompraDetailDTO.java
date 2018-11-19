@@ -40,14 +40,13 @@ public class CompraDetailDTO extends CompraDTO implements Serializable {
      */
     public CompraDetailDTO(CompraEntity compraEntity) {
         super(compraEntity);
-        if (compraEntity != null) {
-            if (compraEntity.getBoletas() != null) {
-                boletas = new ArrayList<>();
-                for (BoletaEntity entityBoleta : compraEntity.getBoletas()) {
-                    boletas.add(new BoletaDTO(entityBoleta));
-                }
-            }
-            
+        if (compraEntity != null && compraEntity.getBoletas() != null) 
+        {
+         
+            boletas = new ArrayList<>();
+            for (BoletaEntity entityBoleta : compraEntity.getBoletas()) {
+                boletas.add(new BoletaDTO(entityBoleta));
+            }            
         }
     }
     

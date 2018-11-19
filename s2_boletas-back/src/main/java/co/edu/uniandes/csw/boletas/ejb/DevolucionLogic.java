@@ -91,13 +91,10 @@ public class DevolucionLogic {
      * @param devolucionId
      * @throws BusinessLogicException 
      */
-    public void deleteDevolucion(Long devolucionId) throws BusinessLogicException 
+    public void deleteDevolucion(Long devolucionId) 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la devolucion con id = {0}", devolucionId);
-//        DevolucionEntity devolucion = getDevolucion(devolucionId);
-//        if (devolucion != null && !devolucion.getBoletas().isEmpty()) {
-//            throw new BusinessLogicException("No se puede borrar la devolucion con id = " + devolucionId + " porque tiene boletas asociadas");
-//        }
+
         persistence.delete(devolucionId); // AQUI
         LOGGER.log(Level.INFO, "Termina proceso de borrar la devolucion con id = {0}", devolucionId);
     }

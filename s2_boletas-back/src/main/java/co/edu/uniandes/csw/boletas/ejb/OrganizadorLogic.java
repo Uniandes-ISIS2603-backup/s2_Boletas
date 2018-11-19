@@ -11,7 +11,6 @@ import co.edu.uniandes.csw.boletas.persistence.OrganizadorPersistence;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -67,11 +66,11 @@ public class OrganizadorLogic {
      */
     public OrganizadorEntity getOrganizador (Long organizadorId)
     {
-        LOGGER.log(Level.INFO, "Obtengo el organizador", organizadorId);
+        LOGGER.log(Level.INFO, "Obtengo el organizador: "+ organizadorId);
         
         OrganizadorEntity entity =persistence.find(organizadorId);
         
-        LOGGER.log(Level.INFO, "Salgo de obtener el organizador", organizadorId);
+        LOGGER.log(Level.INFO, "Salgo de obtener el organizador: "+ organizadorId);
         
         return entity;
         
@@ -88,8 +87,7 @@ public class OrganizadorLogic {
         LOGGER.log(Level.INFO, "Traigo todos los organizadores existentes");
         
         //Se llama a la persistencia
-        List<OrganizadorEntity>  lista=persistence.findAll();
-        return lista;        
+        return persistence.findAll();      
     }
     
     /**
@@ -101,9 +99,9 @@ public class OrganizadorLogic {
      */
     public OrganizadorEntity update(OrganizadorEntity entity)
     {
-        LOGGER.log(Level.INFO, "Entrando a actualizar el organizador con el nombre", entity.getNombre());
+        LOGGER.log(Level.INFO, "Entrando a actualizar el organizador con el nombre: "+ entity.getNombre());
         entity=persistence.update(entity);
-        LOGGER.log(Level.INFO, "saliendo de actualizar el organizador con el nombre", entity.getNombre());
+        LOGGER.log(Level.INFO, "saliendo de actualizar el organizador con el nombre: "+ entity.getNombre());
         return entity;
     }
     

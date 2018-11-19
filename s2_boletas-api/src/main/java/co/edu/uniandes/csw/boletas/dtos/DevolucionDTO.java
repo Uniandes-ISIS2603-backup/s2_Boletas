@@ -17,7 +17,6 @@ import java.util.List;
 public class DevolucionDTO implements Serializable
 {
     private Long id;
-    private CompraDTO compra;
     private List<Long> boletas;
     
     
@@ -54,12 +53,7 @@ public class DevolucionDTO implements Serializable
     {
         DevolucionEntity devolucion = new DevolucionEntity();
         devolucion.setId(id);
-       
-        if(compra!= null)
-        {
-            devolucion.setCompra(compra.toEntity());
-        }
-        
+              
         return devolucion;
     }
 
@@ -71,12 +65,5 @@ public class DevolucionDTO implements Serializable
         this.id = id;
     }
 
-    public CompraDTO getCompra() {
-        return compra;
-    }
-
-    public void setCompra(CompraDTO compra) {
-        this.compra = compra;
-    }
 
 }

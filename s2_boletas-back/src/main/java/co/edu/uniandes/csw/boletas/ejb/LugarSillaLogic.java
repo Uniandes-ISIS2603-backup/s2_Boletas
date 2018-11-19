@@ -39,7 +39,7 @@ public class LugarSillaLogic {
          lugarEntity.setSilla(sillaEntity);
          sillaEntity.setLugar(lugarEntity);
          
-         LOGGER.log(Level.INFO, "Terminan proceso de asociarle una silla al lugar con id = (0)", lugarId);
+         LOGGER.log(Level.INFO, "Terminan proceso de asociarle una silla al lugar con id = {0}", lugarId);
          
          
         return sillaPersistence.find(sillaId);

@@ -62,33 +62,31 @@ public class SillaDTO implements Serializable{
         return id;
     }
 
-    public String getNumero() {
-        return numero;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNumero() {
+        return numero;
     }
 
     public void setNumero(String numero) {
         this.numero = numero;
     }
-    
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
 
     public String getTipo() {
         return tipo;
     }
-    
-    public Boolean getDisponible()
-    {
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Boolean getDisponible() {
         return disponible;
     }
-    
-    public void setDisponible(Boolean disponible)
-    {
+
+    public void setDisponible(Boolean disponible) {
         this.disponible = disponible;
     }
 }
