@@ -35,7 +35,7 @@ public class CompraLogic
     public CompraEntity createCompra(CompraEntity compraEntity) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la compra");
-        if(compraEntity.getEstado() == false)
+        if(!compraEntity.getEstado())
         {
             throw new BusinessLogicException("No se puede crear la compra con estado cancelada (estado = false) ");
         }
@@ -103,7 +103,7 @@ public class CompraLogic
         if (compra != null && !compra.getBoletas().isEmpty()) {
             throw new BusinessLogicException("No se puede borrar la compra con id = " + compraId + " porque tiene boletas asociadas");
         }
-        if(compra!=null && compra.getEstado()==false)
+        if(compra!=null && !compra.getEstado())
         {
             throw new BusinessLogicException("No se puede borrar la compra con id = " + compraId + " porque esta ya fue eliminada");
         }

@@ -31,13 +31,13 @@ public class OrganizadorDetailDTO extends OrganizadorDTO implements Serializable
      */
     public OrganizadorDetailDTO(OrganizadorEntity organizadorEntity) {
         super(organizadorEntity);
-        if (organizadorEntity != null) {
-            if (organizadorEntity.getEspectaculos() != null) {
-                espectaculos = new ArrayList<>();
-                for (EspectaculoEntity entityEspectaculo : organizadorEntity.getEspectaculos()) {
-                    espectaculos.add(new EspectaculoDTO(entityEspectaculo));
-                }
+        if (organizadorEntity != null && organizadorEntity.getEspectaculos() != null) {
+            
+            espectaculos = new ArrayList<>();
+            for (EspectaculoEntity entityEspectaculo : organizadorEntity.getEspectaculos()) {
+                espectaculos.add(new EspectaculoDTO(entityEspectaculo));
             }
+            
         }
     }
 

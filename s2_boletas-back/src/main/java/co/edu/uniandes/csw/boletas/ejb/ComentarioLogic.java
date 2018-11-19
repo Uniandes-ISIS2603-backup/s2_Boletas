@@ -55,11 +55,11 @@ public class ComentarioLogic {
         {
             throw new BusinessLogicException("El comentario debe tener un cliente que lo realizó");
         }
-        if(comentario.getEspectaculo() == null || espectaculoPersistence.find(comentario.getEspectaculo().getId())==null )
+        else if(comentario.getEspectaculo() == null || espectaculoPersistence.find(comentario.getEspectaculo().getId())==null )
         {
             throw new BusinessLogicException("El comentario debe estar asociado a un espectáculo");
         }
-        if(comentario.getMensaje()==null || comentario.getMensaje().equals(""))
+        else if(comentario.getMensaje()==null || comentario.getMensaje().equals(""))
         {
             throw new BusinessLogicException("El comentario debe tener un contenido");
         }
@@ -79,14 +79,10 @@ public class ComentarioLogic {
                 {
                     
                     
-                    if(boleta.getEspectaculo()!=null && boletaPersistence.find(boleta.getId())!=null && boletaPersistence.find(boleta.getId()).getEspectaculo()!=null )
-                    {
+                    if(boleta.getEspectaculo()!=null && boletaPersistence.find(boleta.getId())!=null && boletaPersistence.find(boleta.getId()).getEspectaculo()!=null && boletaPersistence.find(boleta.getId()).getEspectaculo().equals(comentario.getEspectaculo()))
+                    {                            
+                        corresponde = true;
                         
-                        if(boletaPersistence.find(boleta.getId()).getEspectaculo().equals(comentario.getEspectaculo()))
-                        {
-                            
-                            corresponde = true;
-                        }
                     }
                 }
             }

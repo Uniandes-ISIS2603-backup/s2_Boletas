@@ -32,17 +32,6 @@ public class SillaEntity extends BaseEntity implements Serializable{
     @OneToOne()
     private BoletaEntity boleta;
 
-    
-    
-    public void setLugar(LugarEntity lugar) {
-        this.lugar = lugar;
-    }
-
-    public LugarEntity getLugar() {
-        return lugar;
-    }
-
-
     public String getNumero() {
         return numero;
     }
@@ -51,24 +40,30 @@ public class SillaEntity extends BaseEntity implements Serializable{
         this.numero = numero;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-    
-    public Boolean getDisponible()
-    {
+    public Boolean getDisponible() {
         return disponible;
     }
-    
-    public void setDisponible(Boolean disponible)
-    {
+
+    public void setDisponible(Boolean disponible) {
         this.disponible = disponible;
     }
-    
+
+    public LugarEntity getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(LugarEntity lugar) {
+        this.lugar = lugar;
+    }
+
     public BoletaEntity getBoleta() {
         return boleta;
     }
@@ -76,7 +71,7 @@ public class SillaEntity extends BaseEntity implements Serializable{
     public void setBoleta(BoletaEntity boleta) {
         this.boleta = boleta;
     }
-    
+
     
     
 }

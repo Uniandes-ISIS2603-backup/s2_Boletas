@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.boletas.persistence;
 
-import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
 import java.util.List;
 import java.util.logging.Level;

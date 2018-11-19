@@ -55,7 +55,7 @@ public class SillaPersistence {
         //No funciona el desgraciado query
         //TypedQuery<SillaEntity> query = em.createQuery("Select e from SillaEntity e where e.lugar_id =:lugar_id", SillaEntity.class);
         //query = query.setParameter("lugar_id", lugarId);
-         List<SillaEntity> sillas = new ArrayList<SillaEntity>();
+         List<SillaEntity> sillas = new ArrayList<>();
         List<SillaEntity> sillasTodas = findAll();
         for(SillaEntity actual : sillasTodas)
             if(actual.getLugar().getId().equals( lugarId ))

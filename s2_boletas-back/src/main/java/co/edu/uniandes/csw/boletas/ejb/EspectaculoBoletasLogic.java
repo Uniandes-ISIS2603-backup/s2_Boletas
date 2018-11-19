@@ -49,11 +49,11 @@ public class EspectaculoBoletasLogic {
     
     public BoletaEntity getBoleta(Long espectaculosId,Long boletasId) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar la boleta con id = {0} del espectaculo con id = " + espectaculosId, boletasId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar la boleta con id = {0} del espectaculo con id = {1}" ,new Object[]{boletasId, espectaculosId} );
         List<BoletaEntity> boletas = espectaculoPersistence.find(espectaculosId).getBoletas();
         BoletaEntity boletaEntity = boletaPersistence.find(boletasId);
         int index = boletas.indexOf(boletaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar la boleta con id = {0} del espectaculo con id = " + espectaculosId, boletasId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar la boleta con id = {0} del espectaculo con id = {1}" ,new Object[]{boletasId, espectaculosId} );
         if (index >= 0) {
             return boletas.get(index);
         }

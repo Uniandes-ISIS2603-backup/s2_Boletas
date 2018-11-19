@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.boletas.entities.CompraEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.BoletaPersistence;
 import co.edu.uniandes.csw.boletas.persistence.CompraPersistence;
-import java.util.ArrayList;
 import java.util.List;
 
 import java.util.logging.Level;
@@ -45,7 +44,6 @@ public class CompraBoletasLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de asociarle una boleta a la compra con id = {0}", comprasId);
         CompraEntity compraEntity = compraPersistence.find(comprasId);
         BoletaEntity boletaEntity = boletaPersistence.find(boletasId);
-       // compraEntity.getBoletas().add(boletaEntity);
         boletaEntity.setCompra(compraEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociarle una compra a la compra con id = {0}", comprasId);
 	return boletaPersistence.find(boletasId);
@@ -72,11 +70,11 @@ public class CompraBoletasLogic {
      * compra
      */
     public BoletaEntity getBoleta(Long comprasId, Long boletasId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar la boleta con id = {0} de la compra con id = " + comprasId, boletasId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar la boleta con id = {0} de la compra con id = {1}",new Object[]{boletasId, comprasId} );
         List<BoletaEntity> boletas = compraPersistence.find(comprasId).getBoletas();
         BoletaEntity boletaEntity = boletaPersistence.find(boletasId);
         int index = boletas.indexOf(boletaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar la boleta con id = {0} de la compra con id = " + comprasId, boletasId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar la boleta con id = {0} de la compra con id = " ,new Object[]{boletasId, comprasId});
         if (index >= 0) {
             return boletas.get(index);
         }

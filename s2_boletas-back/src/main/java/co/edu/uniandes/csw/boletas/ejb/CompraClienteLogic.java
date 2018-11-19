@@ -7,10 +7,8 @@ package co.edu.uniandes.csw.boletas.ejb;
 
 import co.edu.uniandes.csw.boletas.entities.ClienteEntity;
 import co.edu.uniandes.csw.boletas.entities.CompraEntity;
-import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.ClientePersistence;
 import co.edu.uniandes.csw.boletas.persistence.CompraPersistence;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -55,13 +53,13 @@ public class CompraClienteLogic {
     public void removeCliente(Long comprasId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el Cliente de la compra con id = {0}", comprasId);
         CompraEntity compraEntity = compraPersistence.find(comprasId);
-        System.out.println("LLEGO CON "+compraEntity.getCliente().getId() );
+        
         ClienteEntity clienteEntity = clientePersistence.find(compraEntity.getCliente().getId());
-        System.out.println("PASO POR AQUI");
+        
         compraEntity.setCliente(null);
-        System.out.println(compraEntity.getCliente()+ " SOY ??");
+        
        clienteEntity.getCompras().remove(compraEntity);
-        System.out.println(compraEntity.getCliente()+ " SIGO ??");
+       
        LOGGER.log(Level.INFO, "Termina proceso de borrar el Cliente de la compra con id = {0}", compraEntity.getId());
     }
     

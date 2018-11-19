@@ -5,14 +5,9 @@
  */
 package co.edu.uniandes.csw.boletas.entities;
 
-import co.edu.uniandes.csw.boletas.podam.DateStrategy;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
-import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *

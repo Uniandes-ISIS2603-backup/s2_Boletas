@@ -29,7 +29,7 @@ public class LugarEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @OneToMany(mappedBy="lugar", fetch = FetchType.LAZY, cascade=CascadeType.PERSIST, orphanRemoval=true)
-    private List<SillaEntity> sillas = new ArrayList<SillaEntity>();
+    private List<SillaEntity> sillas = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy="lugar", fetch = FetchType.LAZY, cascade=CascadeType.PERSIST, orphanRemoval=true)

@@ -51,10 +51,7 @@ public class OrganizadorDTO implements Serializable  {
         
     }
     
-    public Long getOrganizadorId() {
-        return id;
-    }
-
+   
     public String getUsuario() {
         return usuario;
     }

@@ -54,15 +54,8 @@ public class EspectaculoLogic
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
         date = c.getTime();
-        
-//        System.out.println("DBG 2 date current: " + date.getYear());
-//        System.out.println("DBG 3 date especta: " + espec.getFecha().getYear());
-//
-//        System.out.println("DBG 4 date current: " + date.getTime());
-//        System.out.println("DBG 5 date especta: " + espec.getFecha().getTime());
 
-
-        System.out.println();
+      
         
         if(espec.getFecha().compareTo(date)<=0)
         {
@@ -119,8 +112,8 @@ public class EspectaculoLogic
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DAY_OF_MONTH, -1);
         date = c.getTime();
-        System.out.println("La fecha de hoy es "+date);
-        System.out.println("La fecha ingresada  es "+espectaculoEntity.getFecha());
+        LOGGER.log(Level.INFO, "La fecha de hoy es {0}", date);
+        LOGGER.log(Level.INFO, "La fecha ingresada  es {0}", espectaculoEntity.getFecha());
         
         if(espectaculoEntity.getFecha().before(date))
         {

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.boletas.persistence;
-;
 import co.edu.uniandes.csw.boletas.entities.OrganizadorEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -45,7 +44,7 @@ public OrganizadorEntity create( OrganizadorEntity organizadorEntity)
             */
            public OrganizadorEntity findByUser(String usuario)
            {
-                 LOGGER.log(Level.INFO, "Consultando organizador  por usuario ", usuario);
+                 LOGGER.log(Level.INFO, "Consultando organizador  por usuario: {0} ", usuario);
                   //Crea un Query para buscar organizadores con el usuario dado por parametro, en este caso usuario es un placeholder
                   TypedQuery query =em.createQuery("Select o From OrganizadorEntity o  Where o.usuario= :usuario ", OrganizadorEntity.class );
                   
@@ -64,7 +63,7 @@ public OrganizadorEntity create( OrganizadorEntity organizadorEntity)
                   else 
                       result=answer.get(0);
                   
-                  LOGGER.log(Level.INFO, "Saliendo de buscar por usuario ", usuario);
+                  LOGGER.log(Level.INFO, "Saliendo de buscar por usuario: {0} ", usuario);
                   
                   return result;   
            }

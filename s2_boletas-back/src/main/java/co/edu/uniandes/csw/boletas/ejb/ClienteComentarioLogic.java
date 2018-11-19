@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.ClientePersistence;
 import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
-import co.edu.uniandes.csw.boletas.persistence.OrganizadorPersistence;
 import java.util.logging.Logger;
 import java.util.List;
 import java.util.logging.Level;

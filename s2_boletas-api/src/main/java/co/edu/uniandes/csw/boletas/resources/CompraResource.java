@@ -51,7 +51,6 @@ public class CompraResource {
     public CompraDetailDTO postCompra(CompraDetailDTO compra) throws BusinessLogicException
     {
        LOGGER.log(Level.INFO, "CompraResource postCompra: input: {0}", compra);
-       LOGGER.log(Level.INFO, "CompraResource postCompra: costoTotal: {0}", compra.getCostoTotal());
        CompraEntity compraEntity = compra.toEntity();
        CompraEntity nuevaCompraEntity = compraLogic.createCompra(compraEntity);
        CompraDetailDTO nuevaCompraDTO = new CompraDetailDTO(nuevaCompraEntity);
