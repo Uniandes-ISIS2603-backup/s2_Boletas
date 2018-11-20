@@ -24,6 +24,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 
 /**
@@ -112,6 +113,8 @@ public class LugarResource {
         return new LugarDetailDTO(finded);
     }
     
+     
+    
     /**
      * Método correspondiente al servicio Get Lugares.
      * @return 
@@ -122,9 +125,13 @@ public class LugarResource {
         List<LugarEntity> lugaresEntities = logic.getLugares();
         return convertEntitiesToDTO(lugaresEntities);
     }
-    /*
+    
+   
+    
+    
     @GET
-    public List<LugarDetailDTO> getLugaresByNumSillas()throws WebApplicationException
+    @Path("/by_num_sillas")
+    public List<LugarDetailDTO> getLugaresByNumSillas(@QueryParam("numSillas")Integer numSillas)throws WebApplicationException
     {
         List<LugarEntity> lugaresEntities = null;
         try
@@ -134,10 +141,11 @@ public class LugarResource {
         {
             throw new WebApplicationException(bLE.getMessage());
         }
+        if(lugaresEntities == null)
+            throw new WebApplicationException("Ocurrió un problema inesperado.");
         return convertEntitiesToDTO(lugaresEntities);
         
     }
-    */
     
     /**
      * Método correspondiente al servicio Delete Lugar.

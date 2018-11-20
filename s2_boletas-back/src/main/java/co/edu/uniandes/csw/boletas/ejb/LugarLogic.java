@@ -65,6 +65,8 @@ public class LugarLogic {
     
     public List<LugarEntity> getLugaresByNumSillas(Integer numSillas)throws BusinessLogicException
     {
+        System.out.print("°°°°°°°°°°°°°°°°°°°°°°\n" + "°°°°°°°°°°°°°°°°°°°°°°°°°°\n"
+                +"El número de sillas ingresasdo es: " + numSillas);
         if(numSillas <= 0)
             throw new BusinessLogicException("El número de sillas introducido no es válido.");
         return persistence.findByNSillas(numSillas);
