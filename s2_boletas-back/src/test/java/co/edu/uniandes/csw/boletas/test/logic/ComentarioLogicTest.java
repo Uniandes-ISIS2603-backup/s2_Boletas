@@ -17,7 +17,6 @@ import co.edu.uniandes.csw.boletas.persistence.ComentarioPersistence;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
 import javax.inject.Inject;
@@ -156,17 +155,23 @@ public class ComentarioLogicTest {
         c.set(Calendar.MILLISECOND, 0);
         d = c.getTime();
         espectaculoData.get(0).setFecha(d);
-        em.persist(espectaculoData.get(0));
-        clienteData.get(0).setComentarios(data);
-        clienteData.get(0).setCompras(compraData);
-        compraData.get(0).setBoletas(boletaData);
+        em.persist(espectaculoData.get(0));       
         boletaData.get(0).setCompra(compraData.get(0));
         boletaData.get(0).setEspectaculo(espectaculoData.get(0));
         em.persist(boletaData.get(0));
         em.persist(compraData.get(0));
-        
-
         em.persist(clienteData.get(0));
+        
+        Calendar e = Calendar.getInstance();
+        e.add(Calendar.DAY_OF_MONTH, 1);
+        boletaData.get(1).setEspectaculo(espectaculoData.get(1));
+        boletaData.get(1).setCompra(compraData.get(1));
+        espectaculoData.get(1).setFecha(e.getTime());
+        compraData.get(1).setCliente(clienteData.get(1));
+        em.persist(boletaData.get(1));
+        em.persist(espectaculoData.get(1));
+        em.persist(compraData.get(1));
+        em.persist(clienteData.get(1));
     }
     
     /**
@@ -190,14 +195,14 @@ public class ComentarioLogicTest {
      * Prueba para crear un comentario con cliente invalido
      * @throws BusinessLogicException 
      */
-   /* @Test(expected = BusinessLogicException.class)
+    @Test(expected = BusinessLogicException.class)
     public void createComentarioConClienteInvalido() throws BusinessLogicException
     {
         ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
         newEntity.setEspectaculo(espectaculoData.get(0));
         newEntity.setCliente(null);
         comentarioLogic.createComentario(newEntity);
-    }*/
+    }
     
     /**
      * Prueba para crear un comentario con espectaculo invalido
@@ -212,6 +217,36 @@ public class ComentarioLogicTest {
         comentarioLogic.createComentario(newEntity);
     }
     
+    /**
+     * Prueba para crear un comentario con espectaculo que aun no ha ocurrido
+     * @throws BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void CreateComentarioConEspectaculoConFechaPosterior() throws BusinessLogicException
+    {
+        ComentarioEntity entity = factory.manufacturePojo(ComentarioEntity.class);
+        entity.setEspectaculo(espectaculoData.get(1));
+        entity.setCliente(clienteData.get(1));
+        comentarioLogic.createComentario(entity);     
+    }
+    
+    /**
+     * Prueba para crear un comentario con un cliente que no tiene boletas/compras del espectaculo
+     * @throws BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createComentarioClienteNoEspectaculo() throws BusinessLogicException
+    {
+        ComentarioEntity entity = factory.manufacturePojo(ComentarioEntity.class);
+        entity.setEspectaculo(espectaculoData.get(0));
+        entity.setCliente(clienteData.get(1));
+        comentarioLogic.createComentario(entity);
+        
+    }
+    /**
+     * Prueba para borrar un comentario
+     * @throws BusinessLogicException 
+     */
     @Test
     public void deleteComentarioTest() throws BusinessLogicException {
         ComentarioEntity entity = data.get(1);
@@ -219,5 +254,7 @@ public class ComentarioLogicTest {
         ComentarioEntity deleted = em.find(ComentarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
+    
+    
 }
 
