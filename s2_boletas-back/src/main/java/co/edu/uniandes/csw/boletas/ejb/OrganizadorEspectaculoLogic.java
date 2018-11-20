@@ -62,11 +62,7 @@ public class OrganizadorEspectaculoLogic {
            
            return espectaculoEntity;
       }
-      
-      public OrganizadorEntity addOrganizador(Long espectaculoId, Long organizadorId)
-      {
-          return new OrganizadorEntity();
-      }
+    
       
           /**
      * Retorna todos los espectaculos  asociados a un organizador
@@ -82,12 +78,6 @@ public class OrganizadorEspectaculoLogic {
            System.out.println(organizadorPersistence.find(organizadorId));
            
            return organizadorPersistence.find(organizadorId).getEspectaculos();
-      }
-      
-      
-      public OrganizadorEntity getOrganizador(Long espectaculoId,Long organizadorId)
-      {
-          return null;
       }
       
       
@@ -149,11 +139,29 @@ public class OrganizadorEspectaculoLogic {
           return espectaculos;
       }
       
-      
-      public EspectaculoEntity replaceOrganizador(Long espectaculoId, Long organizadorId)
+          /**
+     * Remplazar espectaculos de un organizador
+     *
+     * @param espectaculos Lista de espectaculos que serán los del organizador.
+     * @param organizadorId El id del organizador que se quiere actualizar.
+     * @return La lista de espectaculos actualizada.
+     */
+      public List <EspectaculoEntity> replaceEspectaculos(List<EspectaculoEntity> espectaculos, Long organizadorId)
       {
-          return null;
-      }
-      
-    
+                  LOGGER.log(Level.INFO, "Inicia proceso de actualizar la organizador con id = {0}", organizadorId);
+        OrganizadorEntity organizadorEntity = organizadorPersistence.find(organizadorId);
+        List<EspectaculoEntity> espectaculoList = espectaculoPersistence.findAll();
+        for (EspectaculoEntity espectaculo : espectaculoList) {
+            if (espectaculos.contains(espectaculo)) {
+                espectaculo.setOrganizador(organizadorEntity);
+            } else if (espectaculo.getOrganizador() != null && espectaculo.getOrganizador().equals(organizadorEntity)) {
+                espectaculo.setOrganizador(null);
+            }
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar la organizador con id = {0}", organizadorId);
+        return espectaculos;
+    }
 }
+      
+      
+   
