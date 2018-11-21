@@ -129,23 +129,7 @@ public class LugarResource {
    
     
     
-    @GET
-    @Path("/by_num_sillas")
-    public List<LugarDetailDTO> getLugaresByNumSillas(@QueryParam("numSillas")Integer numSillas)throws WebApplicationException
-    {
-        List<LugarEntity> lugaresEntities = null;
-        try
-        {
-            lugaresEntities = logic.getLugaresByNumSillas(numSillas);
-        }catch(BusinessLogicException bLE)
-        {
-            throw new WebApplicationException(bLE.getMessage());
-        }
-        if(lugaresEntities == null)
-            throw new WebApplicationException("Ocurrió un problema inesperado.");
-        return convertEntitiesToDTO(lugaresEntities);
-        
-    }
+    
     
     /**
      * Método correspondiente al servicio Delete Lugar.
