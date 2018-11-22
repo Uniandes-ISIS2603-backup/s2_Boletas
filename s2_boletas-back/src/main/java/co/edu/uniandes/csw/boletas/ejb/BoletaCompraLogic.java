@@ -16,7 +16,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Gabriel Hamlton
+ * @author Gabriel Hamilton
  */
 @Stateless
 public class BoletaCompraLogic {
