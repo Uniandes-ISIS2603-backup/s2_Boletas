@@ -83,7 +83,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     
         /**
      * modifica el costo de la compra
-     * @param costo, el nuevo costo de la compra
+     * @param costoTotal, el nuevo costo de la compra
      */
     public void setCostoTotal(Integer costoTotal)
     {
