@@ -74,18 +74,17 @@ public class SillaEntity extends BaseEntity implements Serializable{
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public boolean equals (Object obj)
+    {
+        return super.equals(obj);
+    }
+    
+    @Override
+    public int hashCode() {
+        if (this.getId() != null) {
+            return this.getId().hashCode();
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final BaseEntity other = (BaseEntity) obj;
-        return Objects.equals(this.id, other.id);
+        return super.hashCode();
     }
     
 }

@@ -17,8 +17,6 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class DevolucionEntity extends BaseEntity implements Serializable
 {
 
-    
-  
     private List<Long> boletas;
     
     @PodamExclude
