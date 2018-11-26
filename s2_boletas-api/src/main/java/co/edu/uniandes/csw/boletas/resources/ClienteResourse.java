@@ -37,8 +37,8 @@ import javax.ws.rs.WebApplicationException;
 public class ClienteResourse 
 {
    
-    private static final String recurso = "El Recurso /clientes/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSO = "El Recurso /clientes/ ";
+    private static final String EXISTE = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(ClienteResourse.class.getName());
     
     //Representacion de la clase ClienteLogic. Es una injeccion de dependencias
@@ -50,7 +50,7 @@ public class ClienteResourse
     public ClienteDTO createCliente(ClienteDTO cliente) throws BusinessLogicException
     { 
         
-        LOGGER.info("ClienteResourse createCliente: input: " + cliente);
+        LOGGER.log(Level.INFO,"ClienteResourse createCliente: input: {0}" , cliente);
         
         //Lo primero que se hace es pasar el DTO  a entity ya que la logica solo conoce entities
         ClienteEntity entity=cliente.toEntity();
@@ -72,7 +72,7 @@ public class ClienteResourse
         cliente.setId(clienteId);
          if(logica.getCliente(clienteId)==null)
          {
-              throw new WebApplicationException(recurso + clienteId +existe,404);
+              throw new WebApplicationException(RECURSO + clienteId +EXISTE,404);
          }
          ClienteEntity actualizado= logica.updateCliente(clienteId,cliente.toEntity());
          return new ClienteDetailDTO(actualizado);
@@ -88,7 +88,7 @@ public class ClienteResourse
         //Si no existe se manda excepcion
         if(entity==null)
         {
-            throw new WebApplicationException(recurso+ clienteId+ existe,404);
+            throw new WebApplicationException(RECURSO+ clienteId+ EXISTE,404);
         }
         //Si existe se modifica y se vuelve DTO 
         return new ClienteDetailDTO(entity);
@@ -118,7 +118,7 @@ public class ClienteResourse
     @Path("{clienteId: \\d+}/compras")
     public Class<ClienteCompraResource> getClienteCompraResourse(@PathParam("clienteId") Long clienteId) {
         if (logica.getCliente(clienteId) == null) {
-            throw new WebApplicationException(recurso + clienteId + existe, 404);
+            throw new WebApplicationException(RECURSO + clienteId + EXISTE, 404);
         }
         return ClienteCompraResource.class;
         
@@ -137,7 +137,7 @@ public class ClienteResourse
     @Path("{clienteId: \\d+}/comentarios")
     public Class<ClienteComentariosResource> getClienteComentariosResource(@PathParam("clienteId") Long clienteId) {
         if (logica.getCliente(clienteId) == null) {
-            throw new WebApplicationException(recurso + clienteId + existe, 404);
+            throw new WebApplicationException(RECURSO + clienteId + EXISTE, 404);
         }
         return ClienteComentariosResource.class;
         

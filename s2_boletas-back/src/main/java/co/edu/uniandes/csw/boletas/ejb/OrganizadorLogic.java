@@ -66,11 +66,11 @@ public class OrganizadorLogic {
      */
     public OrganizadorEntity getOrganizador (Long organizadorId)
     {
-        LOGGER.log(Level.INFO, "Obtengo el organizador: "+ organizadorId);
+        LOGGER.log(Level.INFO, "Obtengo el organizador: {0}", organizadorId);
         
         OrganizadorEntity entity =persistence.find(organizadorId);
         
-        LOGGER.log(Level.INFO, "Salgo de obtener el organizador: "+ organizadorId);
+        LOGGER.log(Level.INFO, "Salgo de obtener el organizador: {0}", organizadorId);
         
         return entity;
         
@@ -99,9 +99,9 @@ public class OrganizadorLogic {
      */
     public OrganizadorEntity update(OrganizadorEntity entity)
     {
-        LOGGER.log(Level.INFO, "Entrando a actualizar el organizador con el nombre: "+ entity.getNombre());
+        LOGGER.log(Level.INFO, "Entrando a actualizar el organizador con el nombre: {0}", entity.getNombre());
         entity=persistence.update(entity);
-        LOGGER.log(Level.INFO, "saliendo de actualizar el organizador con el nombre: "+ entity.getNombre());
+        LOGGER.log(Level.INFO, "saliendo de actualizar el organizador con el nombre: {0}", entity.getNombre());
         return entity;
     }
     

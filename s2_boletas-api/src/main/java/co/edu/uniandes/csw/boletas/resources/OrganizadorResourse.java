@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.boletas.ejb.OrganizadorLogic;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -35,8 +36,8 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class OrganizadorResourse 
 {
-    private static final String recurso = "El Recurso /organizadores/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSO = "El Recurso /organizadores/ ";
+    private static final String EXISTE = " no existe";
     
     private static final Logger LOGGER = Logger.getLogger(OrganizadorResourse.class.getName());
     
@@ -49,7 +50,7 @@ public class OrganizadorResourse
     public OrganizadorDTO createOrganizador(OrganizadorDTO organizador) throws BusinessLogicException
     { 
         
-        LOGGER.info("OrganizadorResourse createOrganizador: input: " + organizador);
+        LOGGER.log(Level.INFO,"OrganizadorResourse createOrganizador: input: {0}" , organizador);
         
         //Lo primero que se hace es pasar el DTO  a entity ya que la logica solo conoce entities
         OrganizadorEntity entity=organizador.toEntity();
@@ -71,7 +72,7 @@ public class OrganizadorResourse
         
         if(logica.getOrganizador(organizadorId)== null)
         {
-            throw new WebApplicationException(recurso+ organizadorId+existe);
+            throw new WebApplicationException(RECURSO+ organizadorId+EXISTE, 404);
         }
         return new OrganizadorDetailDTO(logica.update(organizador.toEntity()));
        
@@ -87,7 +88,7 @@ public class OrganizadorResourse
         //Si no existe se manda excepcion
         if(entity==null)
         {
-            throw new WebApplicationException(recurso+ organizadorId+ existe,404);
+            throw new WebApplicationException(RECURSO+ organizadorId+ EXISTE,404);
         }
         //Si existe se modifica y se vuelve DTO 
         return new OrganizadorDetailDTO(entity);
@@ -131,7 +132,7 @@ public class OrganizadorResourse
     @Path("{organizadorId: \\d+}/espectaculos")
     public Class<OrganizadorEspectaculoResourse> getOrganizadoresEspectaculoResourse(@PathParam("organizadorId") Long organizadorId) {
         if (logica.getOrganizador(organizadorId) == null) {
-            throw new WebApplicationException(recurso + organizadorId + existe, 404);
+            throw new WebApplicationException(RECURSO + organizadorId + EXISTE, 404);
         }
         return OrganizadorEspectaculoResourse.class;
     }

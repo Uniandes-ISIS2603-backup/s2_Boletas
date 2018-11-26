@@ -37,8 +37,8 @@ public class DevolucionResource {
     
      private static final Logger LOGGER = Logger.getLogger(DevolucionResource.class.getName());
     
-    private static final String recurso = "El Recurso /devoluciones/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSO = "El Recurso /devoluciones/ ";
+    private static final String EXISTE = " no existe";
     
     @Inject
     private DevolucionLogic devolucionLogic; 
@@ -96,7 +96,7 @@ public class DevolucionResource {
         LOGGER.log(Level.INFO, "DevolucionResource getDevolucion: input: {0}", devolucionId);
         DevolucionEntity devolucionEntity = devolucionLogic.getDevolucion(devolucionId);
         if (devolucionEntity == null) {
-            throw new WebApplicationException(recurso + devolucionId + existe, 404);
+            throw new WebApplicationException(RECURSO + devolucionId + EXISTE, 404);
         }
         DevolucionDTO detailDTO = new DevolucionDTO(devolucionEntity);
         LOGGER.log(Level.INFO, "DevolucionResource getDevolucion: output: {0}", detailDTO);
@@ -123,7 +123,7 @@ public class DevolucionResource {
         LOGGER.log(Level.INFO, "DevolucionResource putDevolucion: input: id:{0} , devolucion: {1}", new Object[]{devolucionId, devolucion});
         devolucion.setId(devolucionId);
         if (devolucionLogic.getDevolucion(devolucionId) == null) {
-            throw new WebApplicationException(recurso + devolucionId + existe, 404);
+            throw new WebApplicationException(RECURSO + devolucionId + EXISTE, 404);
         }
         DevolucionDTO detailDTO = new DevolucionDTO(devolucionLogic.updateDevolucion(devolucionId, devolucion.toEntity()));
         LOGGER.log(Level.INFO, "DevolucionResource putDevolucion: output: {0}", detailDTO);
@@ -145,7 +145,7 @@ public class DevolucionResource {
     {
         LOGGER.log(Level.INFO, "DevolucionResource deleteDevolucion: input: {0}", devolucionId);
         if (devolucionLogic.getDevolucion(devolucionId) == null) {
-            throw new WebApplicationException(recurso + devolucionId + existe, 404);
+            throw new WebApplicationException(RECURSO + devolucionId + EXISTE, 404);
         }
         devolucionLogic.deleteDevolucion(devolucionId);
         LOGGER.info("DevolucionResource deleteDevolucion: output: void");
@@ -169,7 +169,7 @@ public class DevolucionResource {
     @Path("{devolucionId: \\d+}/clientes")
     public Class<DevolucionCompraResource> getDevolucionCompraResource(@PathParam("devolucionId") Long devolucionId) {
         if (devolucionLogic.getDevolucion(devolucionId) == null) {
-            throw new WebApplicationException(recurso + devolucionId + existe, 404);
+            throw new WebApplicationException(RECURSO + devolucionId + EXISTE, 404);
         }
         return DevolucionCompraResource.class;
     }

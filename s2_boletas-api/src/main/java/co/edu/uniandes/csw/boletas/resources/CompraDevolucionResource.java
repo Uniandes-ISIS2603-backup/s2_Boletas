@@ -32,9 +32,9 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class CompraDevolucionResource {
     
-    private static final String recursoCo = "El Recurso /compras/ ";
-    private static final String recursoDe = "El Recurso devoluciones/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSOCO = "El Recurso /compras/ ";
+    private static final String RECURSODE = "El Recurso devoluciones/ ";
+    private static final String EXISTE = " no existe";
     private static final Logger LOGGER = Logger.getLogger(CompraDevolucionResource.class.getName());
 
     @Inject
@@ -60,10 +60,10 @@ public class CompraDevolucionResource {
     public DevolucionDTO addDevolucion(@PathParam("compraId") Long compraId, @PathParam("devolucionId") Long devolucionId) {
         LOGGER.log(Level.INFO, "CompraDevolucionResource addDevolucion: input: compraId {0} , devolucionId {1}", new Object[]{compraId, devolucionId});
         if (devolucionLogic.getDevolucion(devolucionId) == null) {
-            throw new WebApplicationException(recursoDe + devolucionId + existe, 404);
+            throw new WebApplicationException(RECURSODE + devolucionId + EXISTE, 404);
         }
         if (compraLogic.getCompra(compraId) == null) {
-            throw new WebApplicationException(recursoCo + compraId + existe, 404);
+            throw new WebApplicationException(RECURSOCO + compraId + EXISTE, 404);
         }
         DevolucionDTO detailDTO = new DevolucionDTO(compraDevolucionLogic. addDevolucion(compraId, devolucionId));
         LOGGER.log(Level.INFO, "CompraDevolucionResource addDevolucion: output: {0}", detailDTO);
@@ -104,7 +104,7 @@ public class CompraDevolucionResource {
         LOGGER.log(Level.INFO, "CompraDevolucionResource updateDevolucion: input: compraId {0} , devoluciones {1}", new Object[]{compraId, devolucion});
         
         if (devolucionLogic.getDevolucion(devolucion.getId()) == null) {
-            throw new WebApplicationException(recursoDe + devolucion.getId() + existe, 404);
+            throw new WebApplicationException(RECURSODE + devolucion.getId() + EXISTE, 404);
         }
        
         DevolucionDTO nueva = new DevolucionDTO( compraDevolucionLogic.updateDevolucion(compraId, devolucion.toEntity()));
@@ -125,7 +125,7 @@ public class CompraDevolucionResource {
     public void deleteDevolucion(@PathParam("compraId") Long compraId, @PathParam("devolucionId") Long devolucionId) {
         LOGGER.log(Level.INFO, "CompraDevolucionResource removeDevolucion: input: compraId {0} , devolucionId {1}", new Object[]{compraId, devolucionId});
         if (devolucionLogic.getDevolucion(devolucionId) == null) {
-            throw new WebApplicationException(recursoDe + devolucionId + existe, 404);
+            throw new WebApplicationException(RECURSODE + devolucionId + EXISTE, 404);
         }
         compraDevolucionLogic.removeDevolucion(compraId, devolucionId);
         LOGGER.info("CompraDevolucionResource removeDevolucion: output: void");

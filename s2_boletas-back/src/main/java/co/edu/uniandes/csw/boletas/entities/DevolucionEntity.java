@@ -41,5 +41,17 @@ public class DevolucionEntity extends BaseEntity implements Serializable
         this.compra = compra;
     }
     
+    @Override
+    public boolean equals (Object obj)
+    {
+        return super.equals(obj);
+    }
     
+    @Override
+    public int hashCode() {
+        if (this.getId() != null) {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
+    }
 }
