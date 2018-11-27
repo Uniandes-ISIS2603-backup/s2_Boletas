@@ -47,10 +47,11 @@ public class OrganizadorDetailDTO extends OrganizadorDTO implements Serializable
      * @return El DTO de la organizador para transformar a Entity
      */
     @Override
-    public OrganizadorEntity toEntity() {
+    public OrganizadorEntity toEntity() { 
         OrganizadorEntity organizadorEntity = super.toEntity();
         if (espectaculos != null) {
             List<EspectaculoEntity> espectaculosEntity = new ArrayList<>();
+            
             for (EspectaculoDTO dtoEspectaculo : espectaculos) {
                 espectaculosEntity.add(dtoEspectaculo.toEntity());
             }
