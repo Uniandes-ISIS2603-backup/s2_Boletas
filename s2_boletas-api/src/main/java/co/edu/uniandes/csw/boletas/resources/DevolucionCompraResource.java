@@ -28,9 +28,9 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class DevolucionCompraResource {
-    private static final String recursoDe = "El Recurso /devoluciones/ ";
-    private static final String recursoCo = "El Recurso /compras/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSODE = "El Recurso /devoluciones/ ";
+    private static final String RECURSOCO = "El Recurso /compras/ ";
+    private static final String EXISTE = " no existe";
     
     private static final Logger LOGGER = Logger.getLogger(DevolucionCompraResource.class.getName());
 
@@ -58,10 +58,10 @@ public class DevolucionCompraResource {
         LOGGER.log(Level.INFO, "DevolucionComprasResource replaceCompra: input: devolucionesId {0} , compras {1}", new Object[]{devolucionesId, compras});
       
             if (compraLogic.getCompra(compras.getId()) == null) {
-                throw new WebApplicationException(recursoCo + compras.getId() + existe, 404);
+                throw new WebApplicationException(RECURSOCO + compras.getId() + EXISTE, 404);
             }
             if (devolucionLogic.getDevolucion(devolucionesId) == null) {
-                throw new WebApplicationException(recursoDe + devolucionesId + existe, 404);
+                throw new WebApplicationException(RECURSODE + devolucionesId + EXISTE, 404);
             }
        
         CompraDetailDTO compra = new CompraDetailDTO(devolucionCompraLogic.replaceCompra(devolucionesId, compras.getId()).getCompra());
@@ -82,7 +82,7 @@ public class DevolucionCompraResource {
     {
         LOGGER.log(Level.INFO, "DevolucionComprasResource removeCompra: input: devolucionesId {0} ", new Object[]{devolucionesId});
         if (devolucionLogic.getDevolucion(devolucionesId) == null) {
-                throw new WebApplicationException(recursoDe + devolucionesId +existe, 404);
+                throw new WebApplicationException(RECURSODE + devolucionesId +EXISTE, 404);
             }
        
         devolucionCompraLogic.removeCompra(devolucionesId);

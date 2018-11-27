@@ -11,12 +11,14 @@ import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
 import co.edu.uniandes.csw.boletas.persistence.OrganizadorPersistence;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Vilma Tirado Gomez
  */
+@Stateless
 public class EspectaculoOrganizadorLogic {
     
         private static final Logger LOGGER = Logger.getLogger(EspectaculoOrganizadorLogic.class.getName());
@@ -35,7 +37,7 @@ public class EspectaculoOrganizadorLogic {
      * @return el nuevo libro.
      */
     public EspectaculoEntity replaceOrganizador(Long espectaculosId, Long organizadorsId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar libro con id = {0}", espectaculosId);
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar espectaculo con id = {0}", espectaculosId);
         OrganizadorEntity organizadorEntity = organizadorPersistence.find(organizadorsId);
         EspectaculoEntity espectaculoEntity = espectaculoPersistence.find(espectaculosId);
         espectaculoEntity.setOrganizador(organizadorEntity);

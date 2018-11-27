@@ -29,9 +29,9 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class CompraBoletasResource {
     
-    private static final String recursoCo = "El Recurso /compras/ ";
-    private static final String recursoBo = "El Recurso /boletas/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSOCO = "El Recurso /compras/ ";
+    private static final String RECURSOBO = "El Recurso /boletas/ ";
+    private static final String EXISTE = " no existe";
   private static final Logger LOGGER = Logger.getLogger(CompraBoletasResource.class.getName());
 
     @Inject
@@ -57,7 +57,7 @@ public class CompraBoletasResource {
     public BoletaDTO addBoleta(@PathParam("comprasId") Long comprasId, @PathParam("boletasId") Long boletasId) {
         LOGGER.log(Level.INFO, "CompraBoletasResource addBoleta: input: comprasID: {0} , boletasId: {1}", new Object[]{comprasId, boletasId});
         if (boletaLogic.getBoleta(boletasId) == null) {
-            throw new WebApplicationException(recursoBo + boletasId + existe, 404);
+            throw new WebApplicationException(RECURSOBO + boletasId + EXISTE, 404);
         }
         BoletaDTO boletaDTO = new BoletaDTO(compraBoletasLogic.addBoleta(comprasId, boletasId));
         LOGGER.log(Level.INFO, "CompraBoletasResource addBoleta: output: {0}", boletaDTO);
@@ -99,7 +99,7 @@ public class CompraBoletasResource {
     public BoletaDTO getBoleta(@PathParam("comprasId") Long comprasId, @PathParam("boletasId") Long boletasId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "CompraBoletasResource getBoleta: input: comprasID: {0} , boletasId: {1}", new Object[]{comprasId, boletasId});
         if (boletaLogic.getBoleta(boletasId) == null) {
-            throw new WebApplicationException(recursoCo + comprasId + "/boletas/" + boletasId + existe, 404);
+            throw new WebApplicationException(RECURSOCO + comprasId + "/boletas/" + boletasId + EXISTE, 404);
         }
         BoletaDTO boletaDetailDTO = new BoletaDTO(compraBoletasLogic.getBoleta(comprasId, boletasId));
         LOGGER.log(Level.INFO, "CompraBoletasResource getBoleta: output: {0}", boletaDetailDTO);
@@ -123,7 +123,7 @@ public class CompraBoletasResource {
         LOGGER.log(Level.INFO, "CompraBoletasResource replaceBoletas: input: comprasId: {0} , boletas: {1}", new Object[]{comprasId, boletas});
         for (BoletaDTO boleta : boletas) {
             if (boletaLogic.getBoleta(boleta.getId()) == null) {
-                throw new WebApplicationException(recursoBo + boleta.getId() + existe, 404);
+                throw new WebApplicationException(RECURSOBO + boleta.getId() + EXISTE, 404);
             }
         }
         List<BoletaDTO> listaDetailDTOs = boletasListEntity2DTO(compraBoletasLogic.putBoletas(comprasId, boletasListDTO2Entity(boletas)));

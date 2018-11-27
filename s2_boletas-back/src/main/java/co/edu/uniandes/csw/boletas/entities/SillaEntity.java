@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.boletas.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -72,6 +73,18 @@ public class SillaEntity extends BaseEntity implements Serializable{
         this.boleta = boleta;
     }
 
+    @Override
+    public boolean equals (Object obj)
+    {
+        return super.equals(obj);
+    }
     
+    @Override
+    public int hashCode() {
+        if (this.getId() != null) {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
+    }
     
 }

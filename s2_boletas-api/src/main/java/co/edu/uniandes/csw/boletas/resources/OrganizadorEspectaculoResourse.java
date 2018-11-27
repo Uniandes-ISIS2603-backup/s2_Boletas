@@ -34,9 +34,9 @@ import javax.ws.rs.core.MediaType;
 public class OrganizadorEspectaculoResourse 
 {
     
-    private static final String recursoEs = "El Recurso /espectaculos/ ";
-    private static final String recursoOr = "El Recurso /organizadores/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSOES = "El Recurso /espectaculos/ ";
+    private static final String RECURSOOR = "El Recurso /organizadores/ ";
+    private static final String EXISTE = " no existe";
     private static final Logger LOGGER = Logger.getLogger(OrganizadorEspectaculoResourse.class.getName());
 
    @Inject
@@ -61,7 +61,7 @@ public class OrganizadorEspectaculoResourse
     {
         LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: input: organizadorId: {0}, espectaculosId: {1}", new Object[]{organizadoresId, espectaculosId});
         if (espectaculoLogic.getEspectaculo(espectaculosId) == null) {
-            throw new WebApplicationException(recursoEs + espectaculosId + existe, 404);
+            throw new WebApplicationException(RECURSOES + espectaculosId + EXISTE, 404);
         }
         EspectaculoDetailDTO espectaculoDTO = new EspectaculoDetailDTO(organizadorEspectaculoLogic.addEspectaculo(espectaculosId, organizadoresId));
         
@@ -83,7 +83,7 @@ public class OrganizadorEspectaculoResourse
     public EspectaculoDetailDTO getEspectaculo ( @PathParam("organizadorId") Long organizadoresId,@PathParam("espectaculosId") Long espectaculosId) throws BusinessLogicException      
     {
         if (espectaculoLogic.getEspectaculo(espectaculosId)==null)
-            throw new WebApplicationException(recursoOr+ organizadoresId+ "/espectaculos / "+ espectaculosId + existe,404);
+            throw new WebApplicationException(RECURSOOR+ organizadoresId+ "/espectaculos / "+ espectaculosId + EXISTE,404);
         LOGGER.log(Level.INFO, "Estoy bien, (seguro?)");
         return new EspectaculoDetailDTO(organizadorEspectaculoLogic.getEspectaculo(organizadoresId, espectaculosId));
         
@@ -120,7 +120,7 @@ public class OrganizadorEspectaculoResourse
         {
           if(espectaculoLogic.getEspectaculo(espectaculo.getId()) == null)
           {
-              throw new WebApplicationException(recursoEs + espectaculo.getId()+ existe,404);
+              throw new WebApplicationException(RECURSOES + espectaculo.getId()+ EXISTE,404);
           }
         }
         

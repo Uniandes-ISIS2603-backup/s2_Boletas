@@ -66,11 +66,11 @@ public class ClienteLogic {
      */
     public ClienteEntity getCliente (Long clienteId)
     {
-        LOGGER.log(Level.INFO, "Obtengo el cliente con id: "+ clienteId);
+        LOGGER.log(Level.INFO, "Obtengo el cliente con id: {0}", clienteId);
         
         ClienteEntity entity =persistence.find(clienteId);
         
-        LOGGER.log(Level.INFO, "Salgo de obtener el cliente cpn id: "+ clienteId);
+        LOGGER.log(Level.INFO, "Salgo de obtener el cliente con id: {0}", clienteId);
         
         return entity;
         

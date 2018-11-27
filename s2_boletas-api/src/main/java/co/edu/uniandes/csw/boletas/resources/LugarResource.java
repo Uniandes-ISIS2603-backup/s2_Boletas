@@ -37,8 +37,8 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @RequestScoped
 public class LugarResource {
-    private static final String recurso = "El Recurso /lugares/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSO = "El Recurso /lugares/ ";
+    private static final String EXISTE = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(LugarResource.class.getName());
     @Inject
     private LugarLogic logic;
@@ -52,7 +52,7 @@ public class LugarResource {
     @POST
     public LugarDetailDTO createLugar(LugarDTO lugarDTO)
     {
-        LOGGER.log(Level.INFO, "LugarResource createLugar: ", lugarDTO);
+        LOGGER.log(Level.INFO, "LugarResource createLugar: {0}", lugarDTO);
         LugarEntity lugarEntity = null;
         try
         {
@@ -63,7 +63,7 @@ public class LugarResource {
         }
         
         LugarDetailDTO createdDTO = new LugarDetailDTO(lugarEntity);
-        LOGGER.log(Level.INFO,"LugarResource createLugar Terminado:" ,createdDTO);
+        LOGGER.log(Level.INFO,"LugarResource createLugar Terminado: {0}" ,createdDTO);
         
         return createdDTO;
     }
@@ -79,7 +79,7 @@ public class LugarResource {
     @Path("{lugarId : \\d+}")
     public LugarDetailDTO updateLugar(@PathParam("lugarId")Long lugarId, LugarDTO lugarDTO) 
     {
-        LOGGER.log(Level.INFO, "LugarResource updateLugar: ", lugarDTO);
+        LOGGER.log(Level.INFO, "LugarResource updateLugar: {0}", lugarDTO);
         LugarEntity lugarEntity = lugarDTO.toEntity();
         lugarEntity.setId(lugarId);
         LugarEntity updatedEntity = null;
@@ -91,7 +91,7 @@ public class LugarResource {
             throw new WebApplicationException(bE.getMessage());
         }
         if(updatedEntity == null)
-            throw new WebApplicationException(recurso + lugarId + existe,404 );
+            throw new WebApplicationException(RECURSO + lugarId + EXISTE,404 );
         return new LugarDetailDTO(updatedEntity);
     }
     
@@ -107,7 +107,12 @@ public class LugarResource {
         LugarEntity finded = logic.getLugarById(id);
         if(finded == null)
         {
+<<<<<<< HEAD
              throw new WebApplicationException(recurso + id + existe,404 );
+=======
+             throw new WebApplicationException(RECURSO + id + EXISTE,404 );
+      
+>>>>>>> bd4d0f338681efea681a11596dce3985803ae285
         }
        
         return new LugarDetailDTO(finded);
@@ -123,6 +128,7 @@ public class LugarResource {
         List<LugarEntity> lugaresEntities = logic.getLugares();
         return convertEntitiesToDTO(lugaresEntities);
     }
+<<<<<<< HEAD
     
     /**
      * Método que retorna una lista de dto's con los lugares que están disponibles en la fecha dada por paráemtro.
@@ -160,6 +166,8 @@ public class LugarResource {
         
     }
     */
+=======
+>>>>>>> bd4d0f338681efea681a11596dce3985803ae285
     
     /**
      * Método correspondiente al servicio Delete Lugar.
@@ -180,7 +188,7 @@ public class LugarResource {
             throw new WebApplicationException(bE.getMessage());
         }
         if(deleted == null)
-            throw new WebApplicationException(recurso + lugarId + existe);
+            throw new WebApplicationException(RECURSO + lugarId + EXISTE);
         return new LugarDTO(deleted);
     }
     
