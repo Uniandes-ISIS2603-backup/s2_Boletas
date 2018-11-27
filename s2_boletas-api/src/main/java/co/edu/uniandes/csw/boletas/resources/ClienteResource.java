@@ -34,12 +34,12 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class ClienteResourse 
+public class ClienteResource 
 {
    
     private static final String RECURSO = "El Recurso /clientes/ ";
     private static final String EXISTE = " /no existe";
-    private static final Logger LOGGER = Logger.getLogger(ClienteResourse.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ClienteResource.class.getName());
     
     //Representacion de la clase ClienteLogic. Es una injeccion de dependencias
     
@@ -116,7 +116,7 @@ public class ClienteResourse
      * Error de lógica que se genera cuando no se encuentra la editorial.
      */
     @Path("{clienteId: \\d+}/compras")
-    public Class<ClienteCompraResource> getClienteCompraResourse(@PathParam("clienteId") Long clienteId) {
+    public Class<ClienteCompraResource> getClienteCompraResource(@PathParam("clienteId") Long clienteId) {
         if (logica.getCliente(clienteId) == null) {
             throw new WebApplicationException(RECURSO + clienteId + EXISTE, 404);
         }

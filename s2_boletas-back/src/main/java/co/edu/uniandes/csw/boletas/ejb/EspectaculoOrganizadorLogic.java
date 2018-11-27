@@ -11,12 +11,14 @@ import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
 import co.edu.uniandes.csw.boletas.persistence.OrganizadorPersistence;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Vilma Tirado Gomez
  */
+@Stateless
 public class EspectaculoOrganizadorLogic {
     
         private static final Logger LOGGER = Logger.getLogger(EspectaculoOrganizadorLogic.class.getName());
