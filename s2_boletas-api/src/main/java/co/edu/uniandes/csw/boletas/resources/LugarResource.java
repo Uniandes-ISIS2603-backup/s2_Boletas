@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.boletas.dtos.LugarDetailDTO;
 import co.edu.uniandes.csw.boletas.ejb.LugarLogic;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +25,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 
 /**
@@ -106,7 +108,6 @@ public class LugarResource {
         if(finded == null)
         {
              throw new WebApplicationException(recurso + id + existe,404 );
-      
         }
        
         return new LugarDetailDTO(finded);
@@ -121,6 +122,27 @@ public class LugarResource {
     {
         List<LugarEntity> lugaresEntities = logic.getLugares();
         return convertEntitiesToDTO(lugaresEntities);
+    }
+    
+    /**
+     * Método que retorna una lista de dto's con los lugares que están disponibles en la fecha dada por paráemtro.
+     * @param fecha
+     * @return 
+     */
+    @Path("disponibles")
+    @GET
+    public List<LugarDetailDTO> getLugares(@QueryParam("fecha") Date fecha)
+    {
+        List<LugarEntity> lugaresDisponibles = new ArrayList<LugarEntity>();
+        try
+        {
+            lugaresDisponibles = logic.getLugaresDisponiblles(fecha);
+        }catch(Exception e)
+        {
+            throw new WebApplicationException(e.getMessage());
+        }
+         
+        return convertEntitiesToDTO(lugaresDisponibles);
     }
     /*
     @GET
