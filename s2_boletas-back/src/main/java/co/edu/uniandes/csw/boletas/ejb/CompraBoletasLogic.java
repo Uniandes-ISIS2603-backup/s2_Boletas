@@ -74,7 +74,7 @@ public class CompraBoletasLogic {
         List<BoletaEntity> boletas = compraPersistence.find(comprasId).getBoletas();
         BoletaEntity boletaEntity = boletaPersistence.find(boletasId);
         int index = boletas.indexOf(boletaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar la boleta con id = {0} de la compra con id = " ,new Object[]{boletasId, comprasId});
+        LOGGER.log(Level.INFO, "Termina proceso de consultar la boleta con id = {0} de la compra con id = {1}" ,new Object[]{boletasId, comprasId});
         if (index >= 0) {
             return boletas.get(index);
         }

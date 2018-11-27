@@ -35,8 +35,8 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped //A partir de ahí va a iniciar una transacción.
 public class SillaResource {
-    private static final String recurso = "El Recurso /sillas/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSO = "El Recurso /sillas/ ";
+    private static final String EXISTE = " /no existe";
     private static final Logger LOGGER = Logger.getLogger(SillaResource.class.getName());
     @Inject
     private SillaLogic logic;
@@ -50,7 +50,7 @@ public class SillaResource {
     @POST
     public SillaDTO createSilla(SillaDTO sillaDTO) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "SillaResource createSilla: ", sillaDTO);
+        LOGGER.log(Level.INFO, "SillaResource createSilla: {0}", sillaDTO);
         
         SillaEntity silla = sillaDTO.toEntity();
         
@@ -72,12 +72,12 @@ public class SillaResource {
     public SillaDTO updateSilla(@PathParam("sillaId") Long sillaId, SillaDTO sillaDTO)throws BusinessLogicException
     {
         
-        LOGGER.log(Level.INFO, "SillaResource updateSilla: ", sillaDTO);
+        LOGGER.log(Level.INFO, "SillaResource updateSilla: {0}", sillaDTO);
         sillaDTO.setId(sillaId);
         SillaEntity sillaEntity = sillaDTO.toEntity();
         if(logic.getSillaById(sillaId) == null)
         {
-            throw new WebApplicationException(recurso + sillaId+ existe, 404);
+            throw new WebApplicationException(RECURSO + sillaId+ EXISTE, 404);
         }
         
         return new SillaDTO(logic.updateSilla(sillaId, sillaEntity));
@@ -97,7 +97,7 @@ public class SillaResource {
         SillaEntity finded = logic.getSillaById(sillaId);
         if(finded == null)
         {
-            throw new WebApplicationException(recurso + sillaId + existe,404 );
+            throw new WebApplicationException(RECURSO + sillaId + EXISTE,404 );
         }
         return new SillaDTO(finded);
     }
@@ -128,19 +128,11 @@ public class SillaResource {
         
         if(logic.getSillaById(sillaId) == null)
         {
-            throw new WebApplicationException(recurso + sillaId + existe, 404);
+            throw new WebApplicationException(RECURSO + sillaId + EXISTE, 404);
         }
         
         logic.deleteSilla(sillaId);
         
-//        SillaEntity deleted = null;
-//        try
-//        {
-//            deleted = logic.deleteSilla(silla_id);
-//        }catch(BusinessLogicException bE)
-//        { 
-//            throw new WebApplicationException(bE.getMessage());
-//        }
-//        return new SillaDTO(deleted);
+
     }
 }

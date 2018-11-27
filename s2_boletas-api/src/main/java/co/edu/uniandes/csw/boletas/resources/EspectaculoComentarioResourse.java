@@ -34,9 +34,9 @@ import javax.ws.rs.core.MediaType;
 public class EspectaculoComentarioResourse 
 {
     
-    private static final String recursoEs = "El Recurso /espectaculos/ ";
-    private static final String recursoCom = "El Recurso /comentarios/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSOES = "El Recurso /espectaculos/ ";
+    private static final String RECURSOCOM = "El Recurso /comentarios/ ";
+    private static final String EXISTE = " no existe";
     private static final Logger LOGGER = Logger.getLogger(EspectaculoComentarioResourse.class.getName());
 
     @Inject
@@ -59,7 +59,7 @@ public class EspectaculoComentarioResourse
     {
         LOGGER.log(Level.INFO, "EspectaculoComentarioResourse addComentario: input: espectaculoId: {0}, comentariosId: {1}" , new Object[]{espectaculosId, comentariosId});
         if (comentarioLogic == null) {
-            throw new WebApplicationException(recursoCom + comentariosId + existe, 404);
+            throw new WebApplicationException(RECURSOCOM + comentariosId + EXISTE, 404);
         }
         ComentarioDTO comentarioDTO = new ComentarioDTO(espectaculoComentarioLogic.addComentario(comentariosId, espectaculosId));
         LOGGER.log(Level.INFO, "EspectaculoComentarioResourse agregarComentario: output: {0}", comentarioDTO);
@@ -100,7 +100,7 @@ public class EspectaculoComentarioResourse
         LOGGER.log(Level.INFO, "EspectaculoComentarioResourse getComentario");
         if(comentarioLogic.getComentario(comentariosId) == null)
         {
-            throw new WebApplicationException(recursoEs + espectaculosId + "/comentarios/" + comentariosId + existe, 404);
+            throw new WebApplicationException(RECURSOES + espectaculosId + "/comentarios/" + comentariosId + EXISTE, 404);
         }    
         
         return new ComentarioDTO(espectaculoComentarioLogic.getComentario(espectaculosId, comentariosId));
@@ -120,7 +120,7 @@ public class EspectaculoComentarioResourse
     {
         for (ComentarioDTO comentario : listaComentarios) {
             if (comentarioLogic.getComentario(comentario.getId()) == null) {
-                throw new WebApplicationException(recursoCom + comentario.getId() +existe, 404);
+                throw new WebApplicationException(RECURSOCOM + comentario.getId() +EXISTE, 404);
             }
         }
     

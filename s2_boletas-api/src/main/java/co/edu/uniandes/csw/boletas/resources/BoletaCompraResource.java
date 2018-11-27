@@ -25,14 +25,13 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Gabriel Hamilton
  */
-@Path("boletas/{boletasId: \\d+}/compras")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class BoletaCompraResource {
 
-    private static final String recursoCo = "El Recurso /compras/ ";
-    private static final String recursoBo = "El Recurso /boletas/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSOCO = "El Recurso /compras/ ";
+    private static final String RECURSOBO = "El Recurso /boletas/ ";
+    private static final String EXISTE = " no existe";
     private static final Logger LOGGER = Logger.getLogger(BoletaCompraResource.class.getName());
 
     @Inject
@@ -60,10 +59,10 @@ public class BoletaCompraResource {
     public BoletaDTO replaceCompra(@PathParam("boletasId") Long boletasId, CompraDetailDTO compra) {
         LOGGER.log(Level.INFO, "BoletaCompraResource replaceCompra: input: boletasId{0} , Compra:{1}", new Object[]{boletasId, compra});
         if (boletaLogic.getBoleta(boletasId) == null) {
-            throw new WebApplicationException(recursoBo + boletasId + existe, 404);
+            throw new WebApplicationException(RECURSOBO + boletasId + EXISTE, 404);
         }
         if (compraLogic.getCompra(compra.getId()) == null) {
-            throw new WebApplicationException(recursoCo + compra.getId() + existe, 404);
+            throw new WebApplicationException(RECURSOCO + compra.getId() + EXISTE, 404);
         }
         BoletaDTO boletaDetailDTO = new BoletaDTO(boletaCompraLogic.replaceCompra(boletasId, compra.getId()));
         LOGGER.log(Level.INFO, "BoletaCompraResource replaceCompra: output: {0}", boletaDetailDTO);

@@ -29,9 +29,9 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EspectaculoOrganizadorResourse {
-    private static final String recursoEs = "El Recurso /espectaculos/ ";
-    private static final String recursoOr = "El Recurso /organizadores/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSOES = "El Recurso /espectaculos/ ";
+    private static final String RECURSOOR = "El Recurso /organizadores/ ";
+    private static final String EXISTE = " no existe";
     private static final Logger LOGGER = Logger.getLogger(EspectaculoOrganizadorResourse.class.getName());
     
     @Inject
@@ -45,15 +45,15 @@ public class EspectaculoOrganizadorResourse {
 
     @PUT
   public EspectaculoDetailDTO replaceOrganizador(@PathParam("espectaculosId") Long espectaculosId, OrganizadorDTO organizador) {
-        LOGGER.log(Level.INFO, "EspectaculoOrganizadorResource replaceOrganizador: input: espectaculosId{0} , Organizador:{1}", new Object[]{espectaculosId, organizador.toString()});
+        LOGGER.log(Level.INFO, "EspectaculoOrganizadorResource replaceOrganizador: input: espectaculosId{0} , Organizador:{1}", new Object[]{espectaculosId, organizador});
         if (espectaculoLogic.getEspectaculo(espectaculosId) == null) {
-            throw new WebApplicationException("El recurso /espectaculos/" + espectaculosId + " no existe.", 404);
+            throw new WebApplicationException(RECURSOES + espectaculosId + EXISTE, 404);
         }
         if (organizadorLogic.getOrganizador(organizador.getId()) == null) {
-            throw new WebApplicationException("El recurso /organizadors/" + organizador.getId() + " no existe.", 404);
+            throw new WebApplicationException(RECURSOOR+ organizador.getId() + EXISTE, 404);
         }
         EspectaculoDetailDTO espectaculoDetailDTO = new EspectaculoDetailDTO(espectaculoOrganizadorLogic.replaceOrganizador(espectaculosId, organizador.getId()));
-        LOGGER.log(Level.INFO, "EspectaculoOrganizadorResource replaceOrganizador: output: {0}", espectaculoDetailDTO.toString());
+        LOGGER.log(Level.INFO, "EspectaculoOrganizadorResource replaceOrganizador: output: {0}", espectaculoDetailDTO);
         return espectaculoDetailDTO;
     }
 }

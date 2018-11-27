@@ -41,8 +41,8 @@ public class BoletaResource {
     @Inject 
     private BoletaLogic boletaLogic;
     
-    private static final String recurso = "El Recurso /boletas/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSO = "El Recurso /boletas/ ";
+    private static final String EXISTE = " no existe";
     
     private static final Logger LOGGER = Logger.getLogger(BoletaResource.class.getName());
     
@@ -99,7 +99,7 @@ public class BoletaResource {
         BoletaEntity boletaEntity = boletaLogic.getBoleta(boletasId);
         if(boletaEntity == null)
         {
-            throw new WebApplicationException(recurso+boletasId+existe, 404);
+            throw new WebApplicationException(RECURSO+boletasId+EXISTE, 404);
         }
         BoletaDTO boletaDTO = new BoletaDTO(boletaEntity);
         LOGGER.log(Level.INFO, "BoletaResource getBoleta: output: {0}", boletasId);
@@ -127,7 +127,7 @@ public class BoletaResource {
         LOGGER.log(Level.INFO, "BoletaResource updateBoleta: input: id:{0} , boleta: {1}", new Object[]{boletasId, boleta});
         boleta.setId(boletasId);
         if (boletaLogic.getBoleta(boletasId) == null) {
-            throw new WebApplicationException(recurso + boletasId + existe, 404);
+            throw new WebApplicationException(RECURSO + boletasId + EXISTE, 404);
         }
         BoletaDTO boletaDTO = new BoletaDTO(boletaLogic.updateBoleta(boletasId, boleta.toEntity()));
         LOGGER.log(Level.INFO, "BoletaResource updateBoleta: output: {0}", boletaDTO);
@@ -148,7 +148,7 @@ public class BoletaResource {
     { 
         LOGGER.log(Level.INFO, "BoletaResource deleteBoleta: input: {0}", boletasId);
         if (boletaLogic.getBoleta(boletasId) == null) {
-            throw new WebApplicationException(recurso + boletasId + existe, 404);
+            throw new WebApplicationException(RECURSO + boletasId + EXISTE, 404);
         }
         boletaLogic.deleteBoleta(boletasId);
         LOGGER.info("BoletaResource deleteBoleta: output: void");

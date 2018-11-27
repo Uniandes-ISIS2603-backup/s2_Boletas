@@ -31,9 +31,9 @@ import java.util.logging.Logger;
 @Produces(MediaType.APPLICATION_JSON)
 @Path("lugares/{lugarId: \\d+}/sillas")
 public class LugarSillaResource {
-    private static final String recursoLu = "El Recurso /lugares/ ";
-    private static final String recursoSi = "El Recurso /sillas/ ";
-    private static final String existe = " /no existe";
+    
+    private static final String RECURSOSI = "El Recurso /sillas/ ";
+    private static final String EXISTE = " no existe";
     private static final Logger LOGGER = Logger.getLogger(LugarSillaResource.class.getName());
     
     @Inject
@@ -50,27 +50,18 @@ public class LugarSillaResource {
         
         if(sillaLogic.getSillaById(sillaId) == null)
         {
-            throw new WebApplicationException(recursoSi + sillaId + existe, 404);
+            throw new WebApplicationException(RECURSOSI + sillaId + EXISTE, 404);
         
         }
         
         return new SillaDTO(lugarSillaLogic.addSilla(lugarId,sillaId));
-//        SillaDTO sillaAgregada = null;
-//        try
-//        {
-//            sillaAgregada = new SillaDTO( lugarSillaLogic.addSilla(lugarId, sillaId) );
-//        }catch(Exception e)
-//        {
-//            throw new WebApplicationException(e.getMessage());
-//        }
-//        return sillaAgregada;
         
     }
     
     @GET
     public List<SillaDTO> getSillas(@PathParam("lugarId")Long lugarId)
     {
-        //ist<SillaDTO> sillas = entityToDTO(logic.)
+        
         List<SillaDTO> sillasDTO = null;
         try
         {

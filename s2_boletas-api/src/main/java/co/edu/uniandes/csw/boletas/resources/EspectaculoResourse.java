@@ -36,8 +36,8 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class EspectaculoResourse 
 {
-    private static final String recurso = "El Recurso /espectaculos/ ";
-    private static final String existe = " /no existe";
+    private static final String RECURSO = "El Recurso /espectaculos/ ";
+    private static final String EXISTE = " no existe";
     private static final Logger LOGGER = Logger.getLogger(EspectaculoResourse.class.getName());
     
     @Inject
@@ -85,7 +85,7 @@ public class EspectaculoResourse
         EspectaculoEntity entity = espec.toEntity();
         if(espectaculoLogic.getEspectaculo(espectaculoId) == null)
         {
-            throw new WebApplicationException(recurso + espectaculoId +existe,404);
+            throw new WebApplicationException(RECURSO + espectaculoId +EXISTE,404);
         }
         
         EspectaculoEntity actualizado;
@@ -119,7 +119,7 @@ public class EspectaculoResourse
         
         if(entity == null)
         {
-            throw new WebApplicationException(recurso + espectaculoId + existe,404 );
+            throw new WebApplicationException(RECURSO + espectaculoId + EXISTE,404 );
         }
         
         EspectaculoDetailDTO dto = new EspectaculoDetailDTO(entity);
@@ -162,7 +162,7 @@ public class EspectaculoResourse
         
         if(espectaculoLogic.getEspectaculo(espectaculoId) == null)
         {
-            throw new WebApplicationException(recurso + espectaculoId + existe, 404);
+            throw new WebApplicationException(RECURSO + espectaculoId + EXISTE, 404);
         }
         
        espectaculoLogic.deleteEspectaculo(espectaculoId);
@@ -190,7 +190,7 @@ public class EspectaculoResourse
     @Path("{espectaculosId: \\d+}/comentarios")
     public Class<EspectaculoComentarioResourse> getEditorialBooksResource(@PathParam("espectaculosId") Long espectaculosId) {
         if (espectaculoLogic.getEspectaculo(espectaculosId)== null) {
-            throw new WebApplicationException(recurso + espectaculosId + existe, 404);
+            throw new WebApplicationException(RECURSO + espectaculosId + EXISTE, 404);
         }
         return EspectaculoComentarioResourse.class;
     }
