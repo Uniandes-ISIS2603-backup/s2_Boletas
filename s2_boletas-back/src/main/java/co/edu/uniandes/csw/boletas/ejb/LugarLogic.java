@@ -162,7 +162,7 @@ public class LugarLogic {
      * @return
      * @throws BusinessLogicException 
      */
-    private boolean estaDisponible(Date fecha, LugarEntity lugar)throws BusinessLogicException
+    public boolean estaDisponible(Date fecha, LugarEntity lugar)throws BusinessLogicException
     {
          if(lugar == null)
              throw new BusinessLogicException("Ocurrió un problema con la lista de lugares..");

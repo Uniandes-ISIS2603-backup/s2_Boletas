@@ -147,7 +147,7 @@ public class LugarLogicTest {
         boolean disponible = false;
         try
         {
-             disponible = logic.estaDisponible(date, data.get(0).getId());
+             disponible = logic.estaDisponible(date, data.get(0));
         }catch(BusinessLogicException bLE)
         {
             Assert.fail("El lugar debería existir.");
