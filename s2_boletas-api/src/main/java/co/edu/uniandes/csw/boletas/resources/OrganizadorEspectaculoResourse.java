@@ -70,62 +70,69 @@ public class OrganizadorEspectaculoResourse
     }
     
     
-    /**
-     * Retorna un espectaculo buscado por su id, asociado a un organizador asociado
-     * a su id
-     * @param espectaculosId
-     * @param organizadoresId
-     * @return
-     * @throws BusinessLogicException 
+   /**
+     * Busca y devuelve el espectaculo con el ID recibido en la URL, relativo a un
+     * organizador.
+     *
+     * @param espectaculoId El ID del espectaculo que se busca
+     * @param organizadorId El ID del organizador del cual se busca el espectaculo
+     * @return {@link EspectaculoDetailDTO} - El espectaculo encontrado en el organizador.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper}
+     * Error de lógica que se genera cuando no se encuentra el espectaculo.
      */
     @GET
-    @Path("{espectaculosId: \\+d}")
-    public EspectaculoDetailDTO getEspectaculo ( @PathParam("organizadorId") Long organizadoresId,@PathParam("espectaculosId") Long espectaculosId) throws BusinessLogicException      
-    {
-        if (espectaculoLogic.getEspectaculo(espectaculosId)==null)
-            throw new WebApplicationException(RECURSOOR+ organizadoresId+ "/espectaculos / "+ espectaculosId + EXISTE,404);
-        LOGGER.log(Level.INFO, "Estoy bien, (seguro?)");
-        return new EspectaculoDetailDTO(organizadorEspectaculoLogic.getEspectaculo(organizadoresId, espectaculosId));
-        
+    @Path("{espectaculoId: \\d+}")
+    public EspectaculoDetailDTO getEspectaculo(@PathParam("organizadorId") Long organizadorId, @PathParam("espectaculoId") Long espectaculoId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "OrganizadorEspectaculoResource getEspectaculo: input: organizadorId {0} , espectaculoId {1}", new Object[]{organizadorId, espectaculoId});
+        if (espectaculoLogic.getEspectaculo(espectaculoId) == null) {
+            throw new WebApplicationException(RECURSOES + espectaculoId + EXISTE, 404);
+        }
+        EspectaculoDetailDTO detailDTO = new EspectaculoDetailDTO(organizadorEspectaculoLogic.getEspectaculo(organizadorId, espectaculoId));
+        LOGGER.log(Level.INFO, "OrganizadorEspectaculoResource getEspectaculo: output: {0}", detailDTO);
+        return detailDTO;
     }
     
     
         /**
      * Busca y devuelve todos los espectaculos que estan asociados al organizador.
      *
-     * @param espectaculosId
+     * @param organizadorId
      * @return JSONArray {@link EspectaculoDetailDTO} - Los espectaculos asociados al
      * organizador. Si no hay ninguno retorna una lista vacía.
      */
     
     @GET
-    public List<EspectaculoDetailDTO> getEspectaculos (@PathParam("organizadorId") Long espectaculosId)
+    public List<EspectaculoDetailDTO> getEspectaculos (@PathParam("organizadorId") Long organizadorId)
     {
-        LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: output: {0}", espectaculosId);
-        return espectaculosListEntity2DTO(organizadorEspectaculoLogic.getEspectaculos(espectaculosId));
+        LOGGER.log(Level.INFO, "OrganizadorEspectaculoResourse addEspectaculo: output: {0}", organizadorId);
+        return espectaculosListEntity2DTO(organizadorEspectaculoLogic.getEspectaculos(organizadorId));
         
         
     }
     
     /**
-     * Metodo que remplaza los espectaculos de un organizador
-     * @param organizadoresId
-     * @param listaEspectaculo
-     * @return 
+     * Actualiza la lista de espectaculos de un organizador con la lista que se recibe en
+     * el cuerpo.
+     *
+     * @param organizadorId El ID del organizador al cual se le va a asociar la lista de
+     * espectaculos
+     * @param espectaculos JSONArray {@link EspectaculoDetailDTO} - La lista de espectaculos
+     * que se desea guardar.
+     * @return JSONArray {@link EspectaculoDetailDTO} - La lista actualizada.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper}
+     * Error de lógica que se genera cuando no se encuentra la espectaculo.
      */
     @PUT
-    public List<EspectaculoDetailDTO> remplazarEspectaculos(@PathParam("organizadoresId") Long organizadoresId, List<EspectaculoDetailDTO> listaEspectaculo)
-    {
-        for (EspectaculoDetailDTO espectaculo : listaEspectaculo) 
-        {
-          if(espectaculoLogic.getEspectaculo(espectaculo.getId()) == null)
-          {
-              throw new WebApplicationException(RECURSOES + espectaculo.getId()+ EXISTE,404);
-          }
+    public List<EspectaculoDetailDTO> updateEspectaculos(@PathParam("organizadorId") Long organizadorId, List<EspectaculoDetailDTO> espectaculos) {
+        LOGGER.log(Level.INFO, "OrganizadorEspectaculoResource replaceEspectaculos: input: organizadorId {0} , espectaculos {1}", new Object[]{organizadorId, espectaculos});
+        for (EspectaculoDetailDTO espectaculo : espectaculos) {
+            if (espectaculoLogic.getEspectaculo(espectaculo.getId()) == null) {
+                throw new WebApplicationException(RECURSOES + espectaculo.getId() + EXISTE, 404);
+            }
         }
-        
-        return espectaculosListEntity2DTO(organizadorEspectaculoLogic.updateEspectaculos(espectaculoListDTO2Entity(listaEspectaculo), organizadoresId));
-        
+        List<EspectaculoDetailDTO> lista = espectaculosListEntity2DTO(organizadorEspectaculoLogic.updateEspectaculos(organizadorId, espectaculoListDTO2Entity(espectaculos)));
+        LOGGER.log(Level.INFO, "OrganizadorEspectaculoResource replaceEspectaculos: output:{0}", lista);
+        return lista;
     }
     
         /**
