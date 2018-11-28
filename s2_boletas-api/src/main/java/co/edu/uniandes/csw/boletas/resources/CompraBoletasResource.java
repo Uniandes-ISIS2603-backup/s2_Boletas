@@ -119,14 +119,14 @@ public class CompraBoletasResource {
      * Error de lógica que se genera cuando no se encuentra la boleta.
      */
     @PUT
-    public List<BoletaDTO> replaceBoletas(@PathParam("comprasId") Long comprasId, List<BoletaDTO> boletas) {
+    public List<BoletaDTO> updateBoletas(@PathParam("comprasId") Long comprasId, List<BoletaDTO> boletas) {
         LOGGER.log(Level.INFO, "CompraBoletasResource replaceBoletas: input: comprasId: {0} , boletas: {1}", new Object[]{comprasId, boletas});
         for (BoletaDTO boleta : boletas) {
             if (boletaLogic.getBoleta(boleta.getId()) == null) {
                 throw new WebApplicationException(RECURSOBO + boleta.getId() + EXISTE, 404);
             }
         }
-        List<BoletaDTO> listaDetailDTOs = boletasListEntity2DTO(compraBoletasLogic.putBoletas(comprasId, boletasListDTO2Entity(boletas)));
+        List<BoletaDTO> listaDetailDTOs = boletasListEntity2DTO(compraBoletasLogic.updateBoletas(comprasId, boletasListDTO2Entity(boletas)));
         LOGGER.log(Level.INFO, "CompraBoletasResource replaceBoletas: output: {0}", listaDetailDTOs);
         return listaDetailDTOs;
     }

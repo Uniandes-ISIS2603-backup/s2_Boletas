@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "2af39e27-ada9-44e7-9548-27875e94c747",
-		"name": "BoletaTest",
+		"_postman_id": "d2817794-3321-49c0-8122-d6a3eb88b207",
+		"name": "BoletaTests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -31,10 +31,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"nombre\":\"El gran show\",\n\t\"descripcion\": \"el mejor show jamas presentado\"\n}"
+					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"nombre\":\"{{new_id_e}}.boletas\",\n\t\"descripcion\": \"el mejor show jamas presentado\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos?",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -43,8 +43,7 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"espectaculos",
-						""
+						"espectaculos"
 					],
 					"query": [
 						{
@@ -91,7 +90,7 @@
 					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"espectaculo\":{\"id\":{{new_id_e}}},\n\t\"vendida\":false\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas?",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -100,8 +99,7 @@
 					"path": [
 						"s2_boletas-api",
 						"api",
-						"boletas",
-						""
+						"boletas"
 					],
 					"query": [
 						{
@@ -185,10 +183,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":500,\n\t\"espectaculo\":{\"id\":19},\n\t\"vendida\":false\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b}}?",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -245,7 +243,7 @@
 					"raw": "{\t\n\t\"fecha\":\"2020-08-20T00:00:00-05:00\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":{{new_id_e}}},\n\t\"vendida\":true\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b}}?",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -300,7 +298,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b}}?",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"

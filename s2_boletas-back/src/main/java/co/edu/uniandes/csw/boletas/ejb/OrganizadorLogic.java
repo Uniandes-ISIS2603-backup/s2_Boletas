@@ -43,7 +43,7 @@ public class OrganizadorLogic {
         //Verifica que se cumpla la regla de negocio 
         if(persistence.findByUser(entity.getUsuario())!=null)
         {
-            throw new BusinessLogicException("Ya existe una editorial con el nombre"+ entity.getNombre());
+            throw new BusinessLogicException("Ya existe un organizador con ese usuario");
         }
         
         //Pone el objeto en la persistencia el cual le asigna un id

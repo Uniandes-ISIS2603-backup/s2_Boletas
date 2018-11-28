@@ -179,7 +179,7 @@ public class CompraBoletasLogicTest {
     public void putBoletasTest() {
         CompraEntity entity = data.get(0);
         List<BoletaEntity> list = boletasData.subList(1, 3);
-        compraBoletasLogic.putBoletas(entity.getId(), list);
+        compraBoletasLogic.updateBoletas(entity.getId(), list);
 
         entity = compraLogic.getCompra(entity.getId());
         Assert.assertFalse(entity.getBoletas().contains(boletasData.get(0)));

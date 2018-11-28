@@ -154,6 +154,30 @@ public class BoletaResource {
         LOGGER.info("BoletaResource deleteBoleta: output: void");
     }
     
+    
+    
+      /**
+     * Conexión con el servicio de compra para una boleta.
+     * {@link BoletaCompraResource}
+     *
+     * Este método conecta la ruta de /boletas con las rutas de /compras que
+     * dependen de la boleta, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de la compra de una boleta.
+     *
+     * @param boletaId El ID de la boleta con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de compra para esta boleta en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la boleta.
+     */
+    @Path("{boletasId: \\d+}/compras")
+    public Class<BoletaCompraResource> getBoletaCompraResource(@PathParam("boletasId") Long boletasId) {
+        if (boletaLogic.getBoleta(boletasId) == null) {
+            throw new WebApplicationException(RECURSO + boletasId + EXISTE, 404);
+        }
+        return BoletaCompraResource.class;
+    }
+    
     /**
      * Convierte una lista de entidades a DTO.
      *

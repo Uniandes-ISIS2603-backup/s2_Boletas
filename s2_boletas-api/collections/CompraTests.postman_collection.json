@@ -116,7 +116,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_id}}",
 					"protocol": "http",
@@ -153,7 +156,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/0",
 					"protocol": "http",
@@ -354,7 +360,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras",
 					"protocol": "http",

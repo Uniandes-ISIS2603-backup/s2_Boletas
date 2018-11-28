@@ -88,7 +88,7 @@ public class CompraBoletasLogic {
      * @param comprasId El id de la compra que se quiere actualizar.
      * @return La lista de boletas actualizada.
      */
-    public List<BoletaEntity> putBoletas(Long comprasId, List<BoletaEntity> boletas) {
+    public List<BoletaEntity> updateBoletas(Long comprasId, List<BoletaEntity> boletas) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la compra con id = {0}", comprasId);
         CompraEntity compraEntity = compraPersistence.find(comprasId);
         List<BoletaEntity> boletaList = boletaPersistence.findAll();
