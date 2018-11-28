@@ -48,7 +48,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     ClienteEntity cliente;
     
     @PodamExclude
-    @javax.persistence.OneToOne(mappedBy = "compra",fetch = FetchType.LAZY)
+    @javax.persistence.OneToOne()
     DevolucionEntity devolucion;
 
    
