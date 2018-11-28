@@ -10,6 +10,8 @@ import co.edu.uniandes.csw.boletas.ejb.LugarLogic;
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.persistence.LugarPersistence;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -92,17 +94,36 @@ public class LugarEspectaculoLogicTest {
      
      private void insertData()
      {
+         lugaresData = new ArrayList<LugarEntity>();
+         espectaculosData = new ArrayList<EspectaculoEntity>();
          for(int i = 0; i <  4; i++)
          {
              LugarEntity lugar = factory.manufacturePojo(LugarEntity.class);
+             
              em.persist(lugar);
              lugaresData.add(lugar);
+             
          }
+         
+         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+         String stringFecha;
+         Date fecha;
          for(int i = 0; i < 4; i++)
          {
-             EspectaculoEntity espectaculo = factory.manufacturePojo(EspectaculoEntity.class);
-             em.persist(espectaculo);
-             espectaculosData.add(espectaculo);
+             stringFecha = "2018-11-2"+i;
+             try
+             {
+                fecha = sdf.parse(stringFecha);
+                EspectaculoEntity espectaculo = factory.manufacturePojo(EspectaculoEntity.class);
+                espectaculo.setFecha(fecha);
+                em.persist(espectaculo);
+                espectaculosData.add(espectaculo);
+             }catch(Exception e)
+             {
+                 Assert.fail();
+             }
+             
+             
              
          }
          try
@@ -120,6 +141,10 @@ public class LugarEspectaculoLogicTest {
      @Test
      public void getLugaresDisponibles()
      {
+         if(espectaculosData.get(2) == null)
+             Assert.fail();
+         else if(espectaculosData.get(2).getFecha() == null)
+             Assert.fail();
          Date fecha = espectaculosData.get(2).getFecha();
          try
          {
@@ -133,6 +158,7 @@ public class LugarEspectaculoLogicTest {
                      for(EspectaculoEntity espectaculo : espectaculos)
                      {
                          Assert.assertFalse(espectaculo.getFecha().equals(fecha));
+                         Assert.assertFalse(espectaculo.equals(espectaculosData.get(2)));
                      }
                      
              }
