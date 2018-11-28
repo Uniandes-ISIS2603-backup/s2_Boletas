@@ -194,4 +194,18 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
         this.comentarios = comentarios;
     }
     
+    
+    @Override
+    public boolean equals (Object obj)
+    {
+        return super.equals(obj);
+    }
+    
+    @Override
+    public int hashCode() {
+        if (this.getId() != null) {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
+    }
 }

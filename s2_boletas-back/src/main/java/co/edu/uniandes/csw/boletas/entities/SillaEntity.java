@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.boletas.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -37,21 +36,19 @@ public class SillaEntity extends BaseEntity implements Serializable{
     public String getNumero() {
         return numero;
     }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getTipo() {
+     public String getTipo() {
         return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public Boolean getDisponible() {
         return disponible;
+    }
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public void setDisponible(Boolean disponible) {
