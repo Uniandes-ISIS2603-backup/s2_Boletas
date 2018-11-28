@@ -210,3 +210,4 @@ public class LugarResource {
         return LugarEspectaculoResource.class;
     }
 }
+
