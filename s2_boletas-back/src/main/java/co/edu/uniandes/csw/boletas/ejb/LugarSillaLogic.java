@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.boletas.entities.SillaEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.LugarPersistence;
 import co.edu.uniandes.csw.boletas.persistence.SillaPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +37,11 @@ public class LugarSillaLogic {
          LugarEntity lugarEntity = lugarPersistence.find(lugarId);
          SillaEntity sillaEntity = sillaPersistence.find(sillaId);
          
-         lugarEntity.setSilla(sillaEntity);
+         List<SillaEntity> sillas = lugarEntity.getSillas();
+         if(sillas == null)
+             sillas = new ArrayList<SillaEntity>();
+         sillas.add(sillaEntity);
+         lugarEntity.setSillas(sillas);
          sillaEntity.setLugar(lugarEntity);
          
          LOGGER.log(Level.INFO, "Terminan proceso de asociarle una silla al lugar con id = {0}", lugarId);

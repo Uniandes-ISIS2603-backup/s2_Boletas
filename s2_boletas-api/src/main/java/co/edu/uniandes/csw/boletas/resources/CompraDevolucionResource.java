@@ -56,8 +56,8 @@ public class CompraDevolucionResource {
      * Error de lógica que se genera cuando no se encuentra la devolucion.
      */
     @POST
-    @Path("{devolucionId: \\d+}")
-    public DevolucionDTO addDevolucion(@PathParam("compraId") Long compraId, @PathParam("devolucionId") Long devolucionId) {
+    @Path("{devolucionesId: \\d+}")
+    public DevolucionDTO addDevolucion(@PathParam("comprasId") Long compraId, @PathParam("devolucionesId") Long devolucionId) {
         LOGGER.log(Level.INFO, "CompraDevolucionResource addDevolucion: input: compraId {0} , devolucionId {1}", new Object[]{compraId, devolucionId});
         if (devolucionLogic.getDevolucion(devolucionId) == null) {
             throw new WebApplicationException(RECURSODE + devolucionId + EXISTE, 404);
