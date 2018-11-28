@@ -75,7 +75,7 @@ public class OrganizadorEspectaculoLogic {
       {
            LOGGER.log(Level.INFO, "Inicia proceso de consultar los espectaculos  asociados al organizador con id = {0}", organizadorId);
            
-           System.out.println(organizadorPersistence.find(organizadorId));
+          
            
            return organizadorPersistence.find(organizadorId).getEspectaculos();
       }

@@ -39,7 +39,7 @@ public class LugarSillaLogic {
          
          List<SillaEntity> sillas = lugarEntity.getSillas();
          if(sillas == null)
-             sillas = new ArrayList<SillaEntity>();
+             sillas = new ArrayList<>();
          sillas.add(sillaEntity);
          lugarEntity.setSillas(sillas);
          sillaEntity.setLugar(lugarEntity);

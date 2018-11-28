@@ -5,12 +5,9 @@
  */
 package co.edu.uniandes.csw.boletas.ejb;
 
-import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.LugarPersistence;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.util.List;
@@ -50,7 +47,7 @@ public class LugarLogic {
         LugarEntity alreadyExists = getLugarByName(entity.getNombre());
         if(alreadyExists != null)
             throw new BusinessLogicException("Ya existe un lugar con el nombre dado.");
-        if(!(entity.getUbicacion().equals("teatro") || entity.getUbicacion().equals("coliseo")))
+        if(!(entity.getUbicacion().equalsIgnoreCase("teatro") || entity.getUbicacion().equalsIgnoreCase("coliseo")))
             throw new BusinessLogicException("El tipo de lugar no es aceptado por el sistema.");
         return persistence.create(entity);
     }
@@ -72,8 +69,7 @@ public class LugarLogic {
      */
     public List<LugarEntity> getLugaresByNumSillas(Integer numSillas)throws BusinessLogicException
     {
-        System.out.print("°°°°°°°°°°°°°°°°°°°°°°\n" + "°°°°°°°°°°°°°°°°°°°°°°°°°°\n"
-                +"El número de sillas ingresasdo es: " + numSillas);
+         LOGGER.log(Level.INFO, "El numero de sillas ingresado es: {0}", numSillas);
         if(numSillas <= 0)
             throw new BusinessLogicException("El número de sillas introducido no es válido.");
         return persistence.findByNSillas(numSillas);

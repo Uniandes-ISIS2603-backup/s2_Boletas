@@ -128,7 +128,7 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
         this.boletas = boletas;
     }
     
-    public LugarEntity darLugar()
+    public LugarEntity getLugar()
     {
         return lugar;
     }

@@ -16,7 +16,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author estudiante
+ * @author Jhonatan Amortegui
  */
 @Stateless
 public class SillaLugaresLogic {
@@ -33,10 +33,10 @@ public class SillaLugaresLogic {
      */
     public List<LugarEntity> getLugaresByNumSillas(Integer numSillas)throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "Iniciando proceso de dar lugares con un número de sillas mayor o igual a: " + numSillas);
+        LOGGER.log(Level.INFO, "Iniciando proceso de dar lugares con un número de sillas mayor o igual a: {0}" , numSillas);
         if(numSillas <= 0)
             throw new BusinessLogicException("El número de sillas introducido no es válido.");
-        LOGGER.log(Level.INFO, "Terminado proceso de dar lugares con un número de sillas mayor o igual a: " + numSillas);
+        LOGGER.log(Level.INFO, "Terminado proceso de dar lugares con un número de sillas mayor o igual a: {0}" , numSillas);
         return lugarPersistence.findByNSillas(numSillas);
     }
 }
