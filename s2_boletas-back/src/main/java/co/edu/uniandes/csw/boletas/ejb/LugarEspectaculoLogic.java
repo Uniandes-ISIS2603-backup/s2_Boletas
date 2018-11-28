@@ -67,7 +67,17 @@ public class LugarEspectaculoLogic {
         return lugaresDisponibles;
     }
     
-    
+    public List<EspectaculoEntity> getEspectaculosByLugar(Long lugarId)throws BusinessLogicException
+    {
+        List<EspectaculoEntity> espectaculos;
+        LugarEntity lugar = lugarPersistence.find(lugarId);
+        if(lugar == null)
+            throw new BusinessLogicException("El lugar con el id dado no existe.");
+        espectaculos = lugar.getEspectaculos();
+        if(espectaculos == null)
+            espectaculos = new ArrayList<EspectaculoEntity>();
+        return espectaculos;
+    }
     /**
      * Método que verifica si un lugar específico está disponible en una fecha dada.
      * @param fecha

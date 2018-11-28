@@ -139,7 +139,7 @@ public class LugarResource {
      */
     @Path("disponibles")
     @GET
-    public List<LugarDetailDTO> getLugares(@QueryParam("fecha") Date fecha)
+    public List<LugarDetailDTO> getLugaresDisponibles(@QueryParam("fecha") Date fecha)
     {
         List<LugarEntity> lugaresDisponibles = new ArrayList<LugarEntity>();
         try
@@ -152,25 +152,7 @@ public class LugarResource {
          
         return convertEntitiesToDTO(lugaresDisponibles);
     }
-    /*
-    @GET
-    public List<LugarDetailDTO> getLugaresByNumSillas()throws WebApplicationException
-    {
-        List<LugarEntity> lugaresEntities = null;
-        try
-        {
-            lugaresEntities = logic.getLugaresByNumSillas(numSillas);
-        }catch(BusinessLogicException bLE)
-        {
-            throw new WebApplicationException(bLE.getMessage());
-        }
-        return convertEntitiesToDTO(lugaresEntities);
-        
-    }
-    */
- 
-
-    
+     
     /**
      * Método correspondiente al servicio Delete Lugar.
      * @param lugarId
