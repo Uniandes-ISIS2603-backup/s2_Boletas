@@ -98,7 +98,7 @@ public class LugarEspectaculoLogic {
         for (EspectaculoEntity espectaculo : espectaculoList) {
             if (espectaculos.contains(espectaculo)) {
                 espectaculo.setLugar(lugarEntity);
-            } else if (espectaculo.darLugar() != null && espectaculo.darLugar().equals(lugarEntity)) {
+            } else if (espectaculo.getLugar() != null && espectaculo.getLugar().equals(lugarEntity)) {
                 espectaculo.setLugar(null);
             }
         }
