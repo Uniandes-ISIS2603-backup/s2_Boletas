@@ -56,7 +56,7 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
      * y un espectaculo tiene un solo lugar
      */
     @PodamExclude
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     private LugarEntity lugar;
     
     
@@ -128,14 +128,14 @@ public class EspectaculoEntity extends BaseEntity implements Serializable {
         this.boletas = boletas;
     }
     
-    public LugarEntity darLugar()
+    public LugarEntity getLugar()
     {
         return lugar;
     }
     
-    public void setLugar(LugarEntity pLugar)
+    public void setLugar(LugarEntity lugar)
     {
-        this.lugar = pLugar;
+        this.lugar = lugar;
     }
     
     /**

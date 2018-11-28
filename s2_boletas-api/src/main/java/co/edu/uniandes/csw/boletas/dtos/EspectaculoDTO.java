@@ -79,9 +79,9 @@ public class EspectaculoDTO implements Serializable
             
             imagen = espectaculo.getImagen();
             
-            if(espectaculo.darLugar() != null)
+            if(espectaculo.getLugar() != null)
             {
-                this.lugar = new LugarDTO(espectaculo.darLugar());
+                this.lugar = new LugarDTO(espectaculo.getLugar());
             }
             else 
             {
