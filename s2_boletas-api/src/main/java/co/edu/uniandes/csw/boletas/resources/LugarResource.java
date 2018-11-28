@@ -8,9 +8,11 @@ package co.edu.uniandes.csw.boletas.resources;
 import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.dtos.LugarDTO;
 import co.edu.uniandes.csw.boletas.dtos.LugarDetailDTO;
+import co.edu.uniandes.csw.boletas.ejb.LugarEspectaculoLogic;
 import co.edu.uniandes.csw.boletas.ejb.LugarLogic;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +26,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 
 /**
@@ -40,6 +43,8 @@ public class LugarResource {
     private static final Logger LOGGER = Logger.getLogger(LugarResource.class.getName());
     @Inject
     private LugarLogic logic;
+    @Inject
+    private LugarEspectaculoLogic lugarEspectaculoLogic;
     
     /**
      * Método correspondiente al servicio Post Lugar.
@@ -105,12 +110,15 @@ public class LugarResource {
         LugarEntity finded = logic.getLugarById(id);
         if(finded == null)
         {
+
              throw new WebApplicationException(RECURSO + id + EXISTE,404 );
       
         }
        
         return new LugarDetailDTO(finded);
     }
+    
+     
     
     /**
      * Método correspondiente al servicio Get Lugares.
@@ -122,6 +130,46 @@ public class LugarResource {
         List<LugarEntity> lugaresEntities = logic.getLugares();
         return convertEntitiesToDTO(lugaresEntities);
     }
+
+    
+    /**
+     * Método que retorna una lista de dto's con los lugares que están disponibles en la fecha dada por paráemtro.
+     * @param fecha
+     * @return 
+     */
+    @Path("disponibles")
+    @GET
+    public List<LugarDetailDTO> getLugares(@QueryParam("fecha") Date fecha)
+    {
+        List<LugarEntity> lugaresDisponibles = new ArrayList<LugarEntity>();
+        try
+        {
+            lugaresDisponibles = lugarEspectaculoLogic.getLugaresDisponiblles(fecha);
+        }catch(Exception e)
+        {
+            throw new WebApplicationException(e.getMessage());
+        }
+         
+        return convertEntitiesToDTO(lugaresDisponibles);
+    }
+    /*
+    @GET
+    public List<LugarDetailDTO> getLugaresByNumSillas()throws WebApplicationException
+    {
+        List<LugarEntity> lugaresEntities = null;
+        try
+        {
+            lugaresEntities = logic.getLugaresByNumSillas(numSillas);
+        }catch(BusinessLogicException bLE)
+        {
+            throw new WebApplicationException(bLE.getMessage());
+        }
+        return convertEntitiesToDTO(lugaresEntities);
+        
+    }
+    */
+ 
+
     
     /**
      * Método correspondiente al servicio Delete Lugar.

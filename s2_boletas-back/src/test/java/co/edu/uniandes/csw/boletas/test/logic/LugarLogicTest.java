@@ -138,21 +138,5 @@ public class LugarLogicTest {
         Assert.assertEquals(sourced, entity);
     }
     
-    @Test
-    public void estaDisponibleTest()
-    {
-        //Está disponible dado que no tiene espectáculos. El lugar con el id 1.
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-        boolean disponible = false;
-        try
-        {
-             disponible = logic.estaDisponible(date, data.get(0).getId());
-        }catch(BusinessLogicException bLE)
-        {
-            Assert.fail("El lugar debería existir.");
-        }
-       
-        Assert.assertTrue(disponible);
-    }
+    
 }
