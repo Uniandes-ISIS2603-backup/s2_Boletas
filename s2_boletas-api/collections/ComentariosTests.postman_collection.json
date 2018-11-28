@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "45224c82-8129-4fde-99fb-70cb3b9d36c2",
-		"name": "ComentariosTest",
+		"_postman_id": "9f8ca53e-3739-4e0a-b2ef-7f8ab884788a",
+		"name": "ComentariosTests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -14,7 +14,7 @@
 						"id": "d89d53fd-0039-47f7-bcc9-c56fd8f69280",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"postman.setGlobalVariable(\"new_id_eCOM\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -46,7 +46,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \n        \"artista\": \"El mejor artista\",\n        \"descripcion\": \"el mejor show de la historia, con los mejores artistas\",\n        \"fecha\": \"{{isoTime}}\",\n        \"nombre\": \"el gran show parte 2\"\n        \n\t\n}"
+					"raw": "{ \n        \"artista\": \"El mejor artista\",\n        \"descripcion\": \"el mejor show de la historia, con los mejores artistas\",\n        \"fecha\": \"{{isoTime}}\",\n        \"nombre\": \"{{new_id_eCOM}}.espectaculoComentario.{{new_id_eCOM}}\"\n        \n\t\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
@@ -73,7 +73,7 @@
 						"id": "60ffc45f-5896-4fcd-8d9f-60475f9ed44c",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_b\",data.id);",
+							"postman.setGlobalVariable(\"new_id_bCOM\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -102,7 +102,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\t\n\t\"fecha\":\"{{isoTime}}\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":{{new_id_e}}, \"fecha\":\"{{isoTime}}\"},\n\t\"vendida\":true\n}"
+					"raw": "{\t\n\t\"fecha\":\"{{isoTime}}\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":{{new_id_eCOM}}, \"fecha\":\"{{isoTime}}\"},\n\t\"vendida\":true\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas",
@@ -129,7 +129,7 @@
 						"id": "8d6e20a1-e8d7-489d-a447-9b474335036e",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_c\",data.id);",
+							"postman.setGlobalVariable(\"new_id_cCOM\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -176,7 +176,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{new_id_c}}/boletas/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{new_id_cCOM}}/boletas/{{new_id_bCOM}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -186,9 +186,9 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"{{new_id_c}}",
+						"{{new_id_cCOM}}",
 						"boletas",
-						"{{new_id_b}}"
+						"{{new_id_bCOM}}"
 					]
 				}
 			},
@@ -203,7 +203,7 @@
 						"id": "090fa1ad-4501-4652-afbd-57c7c32af3aa",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_cl\",data.id);",
+							"postman.setGlobalVariable(\"new_id_clCOM\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -222,7 +222,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"usuario\": \"n.f\",\"nombre\": \"Nicolas\", \"pago\": \"Tajeta\", \"cedula\":\"123\"}"
+					"raw": "{\"usuario\": \"{{new_id_clCOM}}.clienteComentarios.{{new_id_clCOM}}\",\"nombre\": \"Nicolas\", \"pago\": \"Tajeta\", \"cedula\":\"123\"}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes",
@@ -263,7 +263,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cl}}/compras/{{new_id_c}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_clCOM}}/compras/{{new_id_cCOM}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -273,9 +273,9 @@
 						"s2_boletas-api",
 						"api",
 						"clientes",
-						"{{new_id_cl}}",
+						"{{new_id_clCOM}}",
 						"compras",
-						"{{new_id_c}}"
+						"{{new_id_cCOM}}"
 					]
 				}
 			},
@@ -290,7 +290,7 @@
 						"id": "d89d53fd-0039-47f7-bcc9-c56fd8f69280",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_co\",data.id);",
+							"postman.setGlobalVariable(\"new_id_coCOM\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -308,7 +308,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida\",\n        \"espectaculo\":{\"id\":{{new_id_e}}},\n        \"cliente\":{\"id\":{{new_id_cl}}}\n\t\n}"
+					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida\",\n        \"espectaculo\":{\"id\":{{new_id_eCOM}}},\n        \"cliente\":{\"id\":{{new_id_clCOM}}}\n\t\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios",
@@ -401,7 +401,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/{{new_id_co}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/{{new_id_coCOM}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -411,7 +411,7 @@
 						"s2_boletas-api",
 						"api",
 						"comentarios",
-						"{{new_id_co}}"
+						"{{new_id_coCOM}}"
 					]
 				}
 			},
@@ -444,10 +444,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida y me gusto el artista\",\n        \"espectaculo\":{\"id\":{{new_id_e}}},\n        \"cliente\":{\"id\":{{new_id_cl}}}\n\t\n}"
+					"raw": "{ \n        \"mensaje\":\"fue el mejor show de mi vida y me gusto el artista\",\n        \"espectaculo\":{\"id\":{{new_id_eCOM}}},\n        \"cliente\":{\"id\":{{new_id_clCOM}}}\n\t\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/{{new_id_co}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/{{new_id_coCOM}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -457,7 +457,7 @@
 						"s2_boletas-api",
 						"api",
 						"comentarios",
-						"{{new_id_co}}"
+						"{{new_id_coCOM}}"
 					]
 				}
 			},
@@ -491,7 +491,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/{{new_id_co}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/{{new_id_coCOM}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -501,7 +501,7 @@
 						"s2_boletas-api",
 						"api",
 						"comentarios",
-						"{{new_id_co}}"
+						"{{new_id_coCOM}}"
 					]
 				}
 			},
@@ -529,7 +529,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_bCOM}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -539,7 +539,7 @@
 						"s2_boletas-api",
 						"api",
 						"boletas",
-						"{{new_id_b}}"
+						"{{new_id_bCOM}}"
 					]
 				}
 			},
@@ -567,7 +567,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{new_id_c}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{new_id_cCOM}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -577,7 +577,7 @@
 						"s2_boletas-api",
 						"api",
 						"compras",
-						"{{new_id_c}}"
+						"{{new_id_cCOM}}"
 					]
 				}
 			},
@@ -605,7 +605,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cl}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_clCOM}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -615,7 +615,7 @@
 						"s2_boletas-api",
 						"api",
 						"clientes",
-						"{{new_id_cl}}"
+						"{{new_id_clCOM}}"
 					]
 				}
 			},
@@ -653,7 +653,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_e}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_eCOM}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -663,7 +663,7 @@
 						"s2_boletas-api",
 						"api",
 						"espectaculos",
-						"{{new_id_e}}"
+						"{{new_id_eCOM}}"
 					]
 				}
 			},
