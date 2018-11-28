@@ -43,7 +43,7 @@ public class BoletaEntity extends BaseEntity implements Serializable
     private CompraEntity compra;
    
     @PodamExclude
-    @OneToOne(mappedBy = "boleta", fetch=FetchType.LAZY)
+    @OneToOne()
     private SillaEntity silla;
 
     public SillaEntity getSilla() {

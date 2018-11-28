@@ -7,15 +7,10 @@ package co.edu.uniandes.csw.boletas.test.logic;
 
 import co.edu.uniandes.csw.boletas.ejb.ClienteComentarioLogic;
 import co.edu.uniandes.csw.boletas.ejb.ClienteLogic;
-import co.edu.uniandes.csw.boletas.ejb.EspectaculoBoletasLogic;
-import co.edu.uniandes.csw.boletas.ejb.EspectaculoLogic;
-import co.edu.uniandes.csw.boletas.entities.BoletaEntity;
 import co.edu.uniandes.csw.boletas.entities.ClienteEntity;
 import co.edu.uniandes.csw.boletas.entities.ComentarioEntity;
-import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.boletas.persistence.ClientePersistence;
-import co.edu.uniandes.csw.boletas.persistence.EspectaculoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
