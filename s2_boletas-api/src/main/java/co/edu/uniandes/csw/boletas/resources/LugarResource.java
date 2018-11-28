@@ -118,6 +118,8 @@ public class LugarResource {
         return new LugarDetailDTO(finded);
     }
     
+     
+    
     /**
      * Método correspondiente al servicio Get Lugares.
      * @return 
@@ -128,6 +130,7 @@ public class LugarResource {
         List<LugarEntity> lugaresEntities = logic.getLugares();
         return convertEntitiesToDTO(lugaresEntities);
     }
+<<<<<<< HEAD
 
     
     /**
@@ -167,6 +170,13 @@ public class LugarResource {
     }
     */
  
+=======
+    
+   
+    
+    
+    
+>>>>>>> 8f6434f0af07252909a8273a7b43c5a7b2adf1f4
     
     /**
      * Método correspondiente al servicio Delete Lugar.

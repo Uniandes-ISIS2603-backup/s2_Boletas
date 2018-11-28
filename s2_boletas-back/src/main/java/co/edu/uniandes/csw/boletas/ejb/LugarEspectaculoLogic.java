@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.boletas.ejb;
 
+
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
@@ -18,10 +19,12 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+
 /**
  *
- * @author estudiante
+ * @author ja.amortegui10
  */
+
 @Stateless
 public class LugarEspectaculoLogic {
      
@@ -83,4 +86,5 @@ public class LugarEspectaculoLogic {
                  return false;
         return true;
     }
+
 }
