@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "0c2a0a5a-1ade-4280-a5d8-adf7292ca4cd",
-		"name": "BoletasLugarCollection",
+		"_postman_id": "fde878ae-564f-4966-b81d-fe43fe16af61",
+		"name": "LugarTests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -12,12 +12,14 @@
 					"listen": "test",
 					"script": {
 						"id": "f32dc8d1-c218-4992-be3a-45ad56724ada",
-						"type": "text/javascript",
 						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newLugar_id\",data.id);",
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -31,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"numSillas\":\"2000\",\n\t\"direccion\":\"kra 6 cll 22\",\n\t\"nombre\":\"Teatro Bogotá\",\n\t\"ubicacion\": \"Teatro\"\n}"
+					"raw": "{\n\t\"numSillas\":\"2000\",\n\t\"direccion\":\"kra 6 cll 22\",\n\t\"nombre\":\"{{newLugar_id}}.lugar\",\n\t\"ubicacion\": \"teatro\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares",
@@ -56,12 +58,12 @@
 					"listen": "test",
 					"script": {
 						"id": "d093f8ff-faa2-4bba-b34e-769e0e4eedca",
-						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -75,10 +77,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"numSillas\":\"2200\",\n\t\"direccion\":\"kra 7 cll 23\",\n\t\"nombre\":\"Teatro 7ma\",\n\t\"ubicacion\":\"Coliseo\"\n}"
+					"raw": "{\n\t\"numSillas\":\"2200\",\n\t\"direccion\":\"kra 7 cll 23\",\n\t\"nombre\":\"{{newLugar_id}}.lugar.1\",\n\t\"ubicacion\":\"coliseo\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/9",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/{{newLugar_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -88,7 +90,7 @@
 						"s2_boletas-api",
 						"api",
 						"lugares",
-						"9"
+						"{{newLugar_id}}"
 					]
 				}
 			},
@@ -101,21 +103,24 @@
 					"listen": "test",
 					"script": {
 						"id": "3f38cc07-85bd-4445-8227-c0f591802d1a",
-						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/9",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/{{newLugar_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -125,7 +130,7 @@
 						"s2_boletas-api",
 						"api",
 						"lugares",
-						"9"
+						"{{newLugar_id}}"
 					]
 				}
 			},
@@ -138,19 +143,22 @@
 					"listen": "test",
 					"script": {
 						"id": "bb1c357f-25e2-4c28-877f-fff085863362",
-						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares",
 					"protocol": "http",
@@ -174,21 +182,24 @@
 					"listen": "test",
 					"script": {
 						"id": "20e8ecaa-b7c0-4f3e-b389-108f3ec0e138",
-						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/9",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/{{newLugar_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -198,7 +209,7 @@
 						"s2_boletas-api",
 						"api",
 						"lugares",
-						"9"
+						"{{newLugar_id}}"
 					]
 				}
 			},

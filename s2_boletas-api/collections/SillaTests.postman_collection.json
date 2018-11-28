@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "9346c812-6360-4cc9-885f-75260d048eb2",
-		"name": "BoletasSillaCollection",
+		"_postman_id": "7af20e9d-8943-4970-81b9-eef70829172a",
+		"name": "SillaTests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -12,12 +12,14 @@
 					"listen": "test",
 					"script": {
 						"id": "2ed52d79-f674-4109-8349-69858ec0ff86",
-						"type": "text/javascript",
 						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newSilla_id\",data.id);",
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -56,12 +58,12 @@
 					"listen": "test",
 					"script": {
 						"id": "c877a28b-e35e-4cfa-8844-625d51219050",
-						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -78,7 +80,7 @@
 					"raw": "{\n\t\"numero\":\"A1\",\n\t\"disponible\": true,\n\t\"tipo\":\"palcos\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/sillas/2",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/sillas/{{newSilla_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -88,7 +90,7 @@
 						"s2_boletas-api",
 						"api",
 						"sillas",
-						"2"
+						"{{newSilla_id}}"
 					]
 				}
 			},
@@ -101,21 +103,24 @@
 					"listen": "test",
 					"script": {
 						"id": "7423216d-494d-4334-9e41-710eb9d91f05",
-						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/sillas/2",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/sillas/{{newSilla_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -125,7 +130,7 @@
 						"s2_boletas-api",
 						"api",
 						"sillas",
-						"2"
+						"{{newSilla_id}}"
 					]
 				}
 			},
@@ -150,7 +155,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/sillas",
 					"protocol": "http",
@@ -174,21 +182,24 @@
 					"listen": "test",
 					"script": {
 						"id": "91c05d22-4a2f-4f0f-9836-9480aca37fdc",
-						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
 							"});"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/sillas/2",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/sillas/{{newSilla_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -198,7 +209,7 @@
 						"s2_boletas-api",
 						"api",
 						"sillas",
-						"2"
+						"{{newSilla_id}}"
 					]
 				}
 			},

@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "24d4d40b-ec0f-4c97-bd7c-1b7b6683a232",
-		"name": "EspectaculoCollections",
+		"_postman_id": "41a9585e-27cf-4477-968c-1157bf67f288",
+		"name": "EspectaculoTests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -12,12 +12,13 @@
 					"listen": "test",
 					"script": {
 						"id": "08d5da3c-e2e5-44e2-8a44-e077c42c7e00",
-						"type": "text/javascript",
 						"exec": [
+							"",
 							"pm.test(\"Status code is 412\", function () {",
 							"    pm.response.to.have.status(412);",
 							"});"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -31,7 +32,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"Menudo\"\n\t,\"fecha\":\"2000-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"Esta remasterizado\"\n\t,\"artista\":\"Menudo\"\n\t,\"tipo\":\"Concierto\"\n}"
+					"raw": "{\n\t\"nombre\":\"{{new_id_e}}.espectaculos\"\n\t,\"fecha\":\"2000-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"Esta remasterizado\"\n\t,\"artista\":\"Menudo\"\n\t,\"tipo\":\"Concierto\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
@@ -56,12 +57,12 @@
 					"listen": "test",
 					"script": {
 						"id": "8287b62d-9968-4d0f-91e2-5795bb9eb99d",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_id_e\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -75,7 +76,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"colo\"\n\t,\"fecha\":\"2020-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical\"\n\t,\"artista\":\"Coldpla\"\n\t,\"tipo\":\"tipo\"\n\t\n}\n"
+					"raw": "{\n\t\"nombre\":\"{{new_id_e}}.espectaculos\"\n\t,\"fecha\":\"2020-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical\"\n\t,\"artista\":\"Coldpla\"\n\t,\"tipo\":\"tipo\"\n\t\n}\n"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
@@ -100,11 +101,11 @@
 					"listen": "test",
 					"script": {
 						"id": "4c62ab9a-b000-437b-b461-c405b0e00dc4",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /espectaculos/0 no existe.\");"
-						]
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El Recurso /espectaculos/ 0 no existe\");"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -219,12 +220,12 @@
 					"listen": "test",
 					"script": {
 						"id": "a982bcc2-d8ce-47ed-89f1-127805ff1450",
-						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 412\", function () {",
 							"    pm.response.to.have.status(412);",
 							"});"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -241,17 +242,17 @@
 					"raw": "{\n\t\"nombre\":\"En los 2000\"\n\t,\"fecha\":\"2000-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"Es un nuevo genero\"\n\t,\"artista\":\"Coldplay\"\n\t,\"tipo\":\"Concierto\"\n}"
 				},
 				"url": {
-					"raw": "http:/{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/1",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_e}}",
+					"protocol": "http",
 					"host": [
-						"http:"
+						"{{ip}}"
 					],
-					"port": "",
+					"port": "{{puerto}}",
 					"path": [
-						"{{ip}}:{{puerto}}",
 						"s2_boletas-api",
 						"api",
 						"espectaculos",
-						"1"
+						"{{new_id_e}}"
 					]
 				}
 			},
@@ -264,11 +265,11 @@
 					"listen": "test",
 					"script": {
 						"id": "250c0094-d204-4bd3-8328-58052e757400",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /espectaculos/0 no existe.\");"
-						]
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El Recurso /espectaculos/ 0 no existe\");"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -308,12 +309,12 @@
 					"listen": "test",
 					"script": {
 						"id": "5e695d74-5aeb-4fc2-a70f-bed7efece0b7",
-						"type": "text/javascript",
 						"exec": [
 							"console.log(responseBody);",
 							"var data = JSON.parse(responseBody);",
 							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -327,7 +328,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"yolo\"\n\t,\"fecha\":\"2019-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical\"\n\t,\"artista\":\"Coldplay\"\n\t,\"tipo\":\"tipo\"\n}"
+					"raw": "{\n\t\"nombre\":\"{{new_id_e}}.espectaculos.1\"\n\t,\"fecha\":\"2019-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical\"\n\t,\"artista\":\"Coldplay\"\n\t,\"tipo\":\"tipo\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_e}}",
@@ -354,10 +355,10 @@
 					"listen": "test",
 					"script": {
 						"id": "2ecf93fd-4762-4acc-90e1-1d93ad375c67",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -369,7 +370,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_e}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -379,7 +380,7 @@
 						"s2_boletas-api",
 						"api",
 						"espectaculos",
-						"{{new_id_b}}"
+						"{{new_id_e}}"
 					]
 				}
 			},
@@ -392,11 +393,11 @@
 					"listen": "test",
 					"script": {
 						"id": "ff548134-2371-4451-8c54-ae4be5462efe",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No borra con id que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /espectaculo/0 no existe.\");"
-						]
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El Recurso /espectaculos/ 0 no existe\");"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
