@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.boletas.resources;
 import co.edu.uniandes.csw.boletas.entities.LugarEntity;
 import co.edu.uniandes.csw.boletas.dtos.LugarDTO;
 import co.edu.uniandes.csw.boletas.dtos.LugarDetailDTO;
+import co.edu.uniandes.csw.boletas.ejb.LugarEspectaculoLogic;
 import co.edu.uniandes.csw.boletas.ejb.LugarLogic;
 import co.edu.uniandes.csw.boletas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -42,6 +43,8 @@ public class LugarResource {
     private static final Logger LOGGER = Logger.getLogger(LugarResource.class.getName());
     @Inject
     private LugarLogic logic;
+    @Inject
+    private LugarEspectaculoLogic lugarEspectaculoLogic;
     
     /**
      * Método correspondiente al servicio Post Lugar.
@@ -139,7 +142,7 @@ public class LugarResource {
         List<LugarEntity> lugaresDisponibles = new ArrayList<LugarEntity>();
         try
         {
-            lugaresDisponibles = logic.getLugaresDisponiblles(fecha);
+            lugaresDisponibles = lugarEspectaculoLogic.getLugaresDisponiblles(fecha);
         }catch(Exception e)
         {
             throw new WebApplicationException(e.getMessage());
