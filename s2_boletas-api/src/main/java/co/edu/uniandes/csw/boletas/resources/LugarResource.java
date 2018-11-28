@@ -201,4 +201,12 @@ public class LugarResource {
             lugaresDTO.add(new LugarDetailDTO(entitieActual));
         return lugaresDTO;
     }
+    
+        @Path("{lugarId: \\d+}/espectaculos")
+    public Class<LugarEspectaculoResource> getLugarEspectaculoResourse(@PathParam("lugarId") Long lugarId) {
+        if (logic.getLugarById(lugarId) == null) {
+            throw new WebApplicationException(RECURSO + lugarId + EXISTE, 404);
+        }
+        return LugarEspectaculoResource.class;
+    }
 }
