@@ -83,6 +83,7 @@ public class LugarPersistence {
         query = query.setParameter("ubicacion", ubicacion);
         return query.getResultList();
     }
+    
     /**
      * Método que altera una entidad Lugar en la base de datos.
      * @param lugar
@@ -102,4 +103,6 @@ public class LugarPersistence {
         LugarEntity lugar = find(id);
         em.remove(lugar);
     }
+    
+    
 }
