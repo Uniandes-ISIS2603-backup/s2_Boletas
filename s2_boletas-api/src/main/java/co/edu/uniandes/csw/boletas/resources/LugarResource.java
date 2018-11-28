@@ -107,12 +107,9 @@ public class LugarResource {
         LugarEntity finded = logic.getLugarById(id);
         if(finded == null)
         {
-<<<<<<< HEAD
-             throw new WebApplicationException(recurso + id + existe,404 );
-=======
+
              throw new WebApplicationException(RECURSO + id + EXISTE,404 );
       
->>>>>>> bd4d0f338681efea681a11596dce3985803ae285
         }
        
         return new LugarDetailDTO(finded);
@@ -128,7 +125,7 @@ public class LugarResource {
         List<LugarEntity> lugaresEntities = logic.getLugares();
         return convertEntitiesToDTO(lugaresEntities);
     }
-<<<<<<< HEAD
+
     
     /**
      * Método que retorna una lista de dto's con los lugares que están disponibles en la fecha dada por paráemtro.
@@ -166,8 +163,7 @@ public class LugarResource {
         
     }
     */
-=======
->>>>>>> bd4d0f338681efea681a11596dce3985803ae285
+ 
     
     /**
      * Método correspondiente al servicio Delete Lugar.
