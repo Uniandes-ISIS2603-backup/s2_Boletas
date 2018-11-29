@@ -142,7 +142,7 @@ public class ClienteComentarioLogicTest {
     public void replaceComentarioTest() {
         ClienteEntity entity = data.get(0);
         List<ComentarioEntity> list = comentariosData.subList(1, 3);
-        clienteComentarioLogic.replaceComentarios(entity.getId(), list);
+        clienteComentarioLogic.updateComentarios(entity.getId(), list);
 
         entity = clienteLogic.getCliente(entity.getId());
         Assert.assertFalse(entity.getComentarios().contains(comentariosData.get(0)));

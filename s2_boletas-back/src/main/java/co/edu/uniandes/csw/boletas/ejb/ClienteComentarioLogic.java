@@ -107,34 +107,14 @@ public class ClienteComentarioLogic {
         
       }
       
-          /**
-     * Rempla        throw new BusinessLogicException("El comentario no pertenece a este cliente");
-zar los comentarios de un cliente
+    /**
+     * Remplazar los comentarios de un cliente
      *
      * @param comentarios  Lista de comentarios  que serán los del cliente.
-     * @param clienteId  El id del cliente que se quiere actualizar.
-     * @return Lalista de comentarios actualizados.
+     * @param clientesId  El id del cliente que se quiere actualizar.
+     * @return La lista de comentarios actualizados.
      */
-      
-      public List<ComentarioEntity> updateComentarios (List<ComentarioEntity> comentarios,Long clienteId)
-      {
-          ClienteEntity clienteEntity= clientePersistence.find(clienteId);
-          List<ComentarioEntity> listaComentarios= comentarioPersistence.findAll();
-          for (ComentarioEntity espec: listaComentarios)
-          {
-              if (comentarios.contains(espec))
-              {
-                  espec.setCliente(clienteEntity);
-              }
-              else if (espec.getCliente()!=null && espec.getCliente().equals(clienteEntity)  )
-              {
-                  espec.setCliente(null);
-              }
-          }
-          return comentarios;
-      }
-      
-      public List<ComentarioEntity> replaceComentarios(Long clientesId, List<ComentarioEntity> comentarios) {
+      public List<ComentarioEntity> updateComentarios(Long clientesId, List<ComentarioEntity> comentarios) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el cliente con id = {0}", clientesId);
         ClienteEntity clienteEntity = clientePersistence.find(clientesId);
         List<ComentarioEntity> comentarioList = comentarioPersistence.findAll();
