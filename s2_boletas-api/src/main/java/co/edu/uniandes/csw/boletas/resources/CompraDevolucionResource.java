@@ -65,7 +65,7 @@ public class CompraDevolucionResource {
         if (compraLogic.getCompra(compraId) == null) {
             throw new WebApplicationException(RECURSOCO + compraId + EXISTE, 404);
         }
-        DevolucionDTO detailDTO = new DevolucionDTO(compraDevolucionLogic. addDevolucion(compraId, devolucionId));
+        DevolucionDTO detailDTO = new DevolucionDTO(compraDevolucionLogic. addDevolucion( devolucionId,compraId));
         LOGGER.log(Level.INFO, "CompraDevolucionResource addDevolucion: output: {0}", detailDTO);
         return detailDTO;
     }
@@ -81,9 +81,12 @@ public class CompraDevolucionResource {
      * Error de lógica que se genera cuando no se encuentra la devolucion.
      */
     @GET
-    public DevolucionDTO getDevolucion(@PathParam("compraId") Long compraId) throws BusinessLogicException
+    public DevolucionDTO getDevolucion(@PathParam("comprasId") Long compraId) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "CompraDevolucionResource getDevolucion: input: {0}", compraId);
+        if (compraLogic.getCompra(compraId) == null) {
+            throw new WebApplicationException(RECURSOCO + compraId + EXISTE, 404);
+        }
         DevolucionDTO devolucion =new DevolucionDTO(compraDevolucionLogic.getDevolucion(compraId));
         LOGGER.log(Level.INFO, "CompraDevolucionResource getDevolucion: output: {0}", devolucion);
         return devolucion;
@@ -100,7 +103,7 @@ public class CompraDevolucionResource {
      * Error de lógica que se genera cuando no se encuentra la devolucion.
      */
     @PUT
-    public DevolucionDTO updateDevolucion(@PathParam("compraId") Long compraId, DevolucionDTO devolucion) {
+    public DevolucionDTO updateDevolucion(@PathParam("comprasId") Long compraId, DevolucionDTO devolucion) {
         LOGGER.log(Level.INFO, "CompraDevolucionResource updateDevolucion: input: compraId {0} , devoluciones {1}", new Object[]{compraId, devolucion});
         
         if (devolucionLogic.getDevolucion(devolucion.getId()) == null) {
@@ -122,7 +125,7 @@ public class CompraDevolucionResource {
      */
     @DELETE
     @Path("{devolucionId: \\d+}")
-    public void deleteDevolucion(@PathParam("compraId") Long compraId, @PathParam("devolucionId") Long devolucionId) {
+    public void deleteDevolucion(@PathParam("comprasId") Long compraId, @PathParam("devolucionId") Long devolucionId) {
         LOGGER.log(Level.INFO, "CompraDevolucionResource removeDevolucion: input: compraId {0} , devolucionId {1}", new Object[]{compraId, devolucionId});
         if (devolucionLogic.getDevolucion(devolucionId) == null) {
             throw new WebApplicationException(RECURSODE + devolucionId + EXISTE, 404);

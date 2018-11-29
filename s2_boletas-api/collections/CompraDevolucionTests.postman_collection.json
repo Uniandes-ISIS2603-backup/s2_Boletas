@@ -1,0 +1,641 @@
+{
+	"info": {
+		"_postman_id": "2bea7f77-ece6-4223-83dd-dde80acf15d1",
+		"name": "CompraDevolucionTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "31aacdcb-5d38-49f4-80d9-2586adce02b0",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newCompra_idCD1\",data.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"costoTotal\": \"2000\", \"envio\": true, \"fecha\": \"2018-10-20T18:25:43.511Z\", \"direccion\": \"Cra 1 #18a-12\", \"estado\": true}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST devolucion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba206791-6d7a-40de-9ada-31b5541ec98b",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newDevolucion_idCD1\",data.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/devoluciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"devoluciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST devolucion 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba206791-6d7a-40de-9ada-31b5541ec98b",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newDevolucion_idCD2\",data.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/devoluciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"devoluciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST agregar una devolucion que no existe a una compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9a94250-89e0-4ef2-adb7-7606d63c9007",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_idCD1}}/devoluciones/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_idCD1}}",
+						"devoluciones",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST agregar una devolucion a una compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "928d4fa6-7fc0-4443-a233-d9e9bee4761e",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_idCD1}}/devoluciones/{{newDevolucion_idCD1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_idCD1}}",
+						"devoluciones",
+						"{{newDevolucion_idCD1}}"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nAsocia un libro a una editorial en la aplicación. \r\n\r\nSe envía el Id de la editorial y el del libro a asociar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "GET devolucion de la compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0f40c17f-d786-4cc7-a506-809d7089c41e",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get \"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_idCD1}}/devoluciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_idCD1}}",
+						"devoluciones"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nConsulta los libros de una editorial en la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nSe envía el Id de la editorial y el del libro a consultar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "GET devolucion de la compra que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0f40c17f-d786-4cc7-a506-809d7089c41e",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/0/devoluciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"0",
+						"devoluciones"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nConsulta los libros de una editorial en la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nSe envía el Id de la editorial y el del libro a consultar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT asignar devolucion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0f40c17f-d786-4cc7-a506-809d7089c41e",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get \"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \t{{newDevolucion_idCD2}}\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_idCD1}}/devoluciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_idCD1}}",
+						"devoluciones"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nConsulta los libros de una editorial en la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nSe envía el Id de la editorial y el del libro a consultar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT asignar devolucion a compra que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0f40c17f-d786-4cc7-a506-809d7089c41e",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \t{{newDevolucion_idCD2}}\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/0/devoluciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"0",
+						"devoluciones"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nConsulta los libros de una editorial en la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nSe envía el Id de la editorial y el del libro a consultar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT asignar devolucion que no existe a compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0f40c17f-d786-4cc7-a506-809d7089c41e",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \t0\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_idCD1}}/devoluciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_idCD1}}",
+						"devoluciones"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nConsulta los libros de una editorial en la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nSe envía el Id de la editorial y el del libro a consultar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE devolucion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52887993-bb3f-4d67-b1d3-2383082dea3c",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/devoluciones/{{newDevolucion_idCD1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"devoluciones",
+						"{{newDevolucion_idCD1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE asociacion devolucion compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52887993-bb3f-4d67-b1d3-2383082dea3c",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_idCD1}}/devoluciones/{{newDevolucion_idCD2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_idCD1}}",
+						"devoluciones",
+						"{{newDevolucion_idCD2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE devolucion 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e2a593e-eba2-4e37-bf11-ebb0049fa3d7",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/devoluciones/{{newDevolucion_idCD2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"devoluciones",
+						"{{newDevolucion_idCD2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab9de0c9-63aa-426f-8c7d-ec4782552e2f",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{newCompra_idCD1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{newCompra_idCD1}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

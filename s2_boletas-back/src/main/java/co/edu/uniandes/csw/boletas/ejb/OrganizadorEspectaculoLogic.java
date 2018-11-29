@@ -75,7 +75,7 @@ public class OrganizadorEspectaculoLogic {
       {
            LOGGER.log(Level.INFO, "Inicia proceso de consultar los espectaculos  asociados al organizador con id = {0}", organizadorId);
            
-           System.out.println(organizadorPersistence.find(organizadorId));
+          
            
            return organizadorPersistence.find(organizadorId).getEspectaculos();
       }
@@ -113,31 +113,7 @@ public class OrganizadorEspectaculoLogic {
         
       }
       
-          /**
-     * Remplazar los espectaculos de un organizador
-     *
-     * @param espectaculos  Lista de espectaculos  que serán los del organizador.
-     * @param organizadorId  El id del organizador que se quiere actualizar.
-     * @return Lalista de espectaculos actualizados.
-     */
-      
-      public List<EspectaculoEntity> updateEspectaculos (List<EspectaculoEntity> espectaculos,Long organizadorId)
-      {
-          OrganizadorEntity organizadorEntity= organizadorPersistence.find(organizadorId);
-          List<EspectaculoEntity> listaEspectaculos= espectaculoPersistence.findAll();
-          for (EspectaculoEntity espec: listaEspectaculos)
-          {
-              if (espectaculos.contains(espec))
-              {
-                  espec.setOrganizador(organizadorEntity);
-              }
-              else if (espec.getOrganizador()!=null && espec.getOrganizador().equals(organizadorEntity)  )
-              {
-                  espec.setOrganizador(null);
-              }
-          }
-          return espectaculos;
-      }
+        
       
           /**
      * Remplazar espectaculos de un organizador
@@ -146,7 +122,7 @@ public class OrganizadorEspectaculoLogic {
      * @param organizadorId El id del organizador que se quiere actualizar.
      * @return La lista de espectaculos actualizada.
      */
-      public List <EspectaculoEntity> replaceEspectaculos(List<EspectaculoEntity> espectaculos, Long organizadorId)
+      public List <EspectaculoEntity> updateEspectaculos( Long organizadorId, List<EspectaculoEntity> espectaculos)
       {
                   LOGGER.log(Level.INFO, "Inicia proceso de actualizar la organizador con id = {0}", organizadorId);
         OrganizadorEntity organizadorEntity = organizadorPersistence.find(organizadorId);

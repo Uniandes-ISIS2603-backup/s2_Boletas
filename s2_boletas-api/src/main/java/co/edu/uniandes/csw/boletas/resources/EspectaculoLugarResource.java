@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.boletas.resources;
 
 import co.edu.uniandes.csw.biblioteca.mappers.WebApplicationExceptionMapper;
 import co.edu.uniandes.csw.boletas.dtos.EspectaculoDetailDTO;
-import co.edu.uniandes.csw.boletas.dtos.EspectaculoLugarLogic;
+import co.edu.uniandes.csw.boletas.ejb.EspectaculoLugarLogic;
 import co.edu.uniandes.csw.boletas.dtos.LugarDTO;
 import co.edu.uniandes.csw.boletas.ejb.EspectaculoLogic;
 import co.edu.uniandes.csw.boletas.ejb.LugarLogic;

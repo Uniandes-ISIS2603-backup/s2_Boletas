@@ -108,30 +108,31 @@ public class ClienteComentariosResource {
         return comentarioDTO;
     }
     
-     /**
-     * Remplaza las instancias de Comentario asociadas a una instancia de Cliente
+    /**
+     * Actualiza la lista de comentarios de un cliente con la lista que se recibe en
+     * el cuerpo.
      *
-     * @param clientesId Identificador del cliente que se esta
-     * remplazando. Este debe ser una cadena de dígitos.
-     * @param comentarios JSONArray {@link ComentarioDTO} El arreglo de comentarios nuevos para el
-     * cliente.
-     * @return JSON {@link ComentarioDTO} - El arreglo de comentarios guardado en el
-     * cliente.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * @param clienteId El ID del cliente al cual se le va a asociar la lista de
+     * comentarios
+     * @param comentarios JSONArray {@link ComentarioDetailDTO} - La lista de comentarios
+     * que se desea guardar.
+     * @return JSONArray {@link ComentarioDetailDTO} - La lista actualizada.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper}
      * Error de lógica que se genera cuando no se encuentra el comentario.
      */
     @PUT
-    public List<ComentarioDTO> replaceComentarios(@PathParam("clientesId") Long clientesId, List<ComentarioDTO> comentarios) {
-        LOGGER.log(Level.INFO, "ClienteComentariosResource replaceComentarios: input: clientesId: {0} , comentarios: {1}", new Object[]{clientesId, comentarios});
+    public List<ComentarioDTO> updateComentarios(@PathParam("clienteId") Long clienteId, List<ComentarioDTO> comentarios) {
+        LOGGER.log(Level.INFO, "ClienteComentarioResource replaceComentarios: input: clienteId {0} , comentarios {1}", new Object[]{clienteId, comentarios});
         for (ComentarioDTO comentario : comentarios) {
             if (comentarioLogic.getComentario(comentario.getId()) == null) {
                 throw new WebApplicationException(RECURSOCOM + comentario.getId() + EXISTE, 404);
             }
         }
-        List<ComentarioDTO> listaDTOs = listEntity2DTO(clienteComentarioLogic.replaceComentarios(clientesId, listDTO2Entity(comentarios)));
-        LOGGER.log(Level.INFO, "ClienteComentariosResource replaceComentarios: output: {0}", listaDTOs);
-        return listaDTOs;
+        List<ComentarioDTO> lista = listEntity2DTO(clienteComentarioLogic.updateComentarios(clienteId, listDTO2Entity(comentarios)));
+        LOGGER.log(Level.INFO, "ClienteComentarioResource replaceComentarios: output:{0}", lista);
+        return lista;
     }
+
     
     /**
      * Convierte una lista de ComentarioEntity a una lista de ComentarioDTO.

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.boletas.dtos;
+package co.edu.uniandes.csw.boletas.ejb;
 
 import co.edu.uniandes.csw.boletas.entities.EspectaculoEntity;
 import co.edu.uniandes.csw.boletas.entities.LugarEntity;
@@ -54,7 +54,7 @@ public class EspectaculoLugarLogic {
     public void removeLugar(Long espectaculosId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la Lugar del libro con id = {0}", espectaculosId);
         EspectaculoEntity espectaculoEntity = espectaculoPersistence.find(espectaculosId);
-        LugarEntity lugarEntity = lugarPersistence.find(espectaculoEntity.darLugar().getId());
+        LugarEntity lugarEntity = lugarPersistence.find(espectaculoEntity.getLugar().getId());
         espectaculoEntity.setLugar(null);
         lugarEntity.getEspectaculos().remove(espectaculoEntity);
         LOGGER.log(Level.INFO, "Termina proceso de borrar la Lugar del libro con id = {0}", espectaculoEntity.getId());

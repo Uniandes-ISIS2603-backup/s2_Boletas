@@ -40,7 +40,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     private Boolean estado;
     
     @PodamExclude
-    @javax.persistence.OneToMany()
+    @javax.persistence.OneToMany(mappedBy = "compra", fetch = javax.persistence.FetchType.LAZY)
     private List<BoletaEntity> boletas;
     
     @PodamExclude
@@ -48,7 +48,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     ClienteEntity cliente;
     
     @PodamExclude
-    @javax.persistence.OneToOne()
+    @javax.persistence.OneToOne(mappedBy = "compra", fetch = javax.persistence.FetchType.LAZY)
     DevolucionEntity devolucion;
 
    
@@ -201,6 +201,20 @@ public class CompraEntity extends BaseEntity implements Serializable{
      */
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
+    }
+    
+    @Override
+    public boolean equals (Object obj)
+    {
+        return super.equals(obj);
+    }
+    
+    @Override
+    public int hashCode() {
+        if (this.getId() != null) {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
     }
     
 }

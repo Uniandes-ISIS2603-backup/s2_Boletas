@@ -9,7 +9,6 @@ import co.edu.uniandes.csw.boletas.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -99,6 +98,18 @@ public class BoletaEntity extends BaseEntity implements Serializable
         this.vendida = vendida;
     }
     
+    @Override
+    public boolean equals (Object obj)
+    {
+        return super.equals(obj);
+    }
     
+    @Override
+    public int hashCode() {
+        if (this.getId() != null) {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
+    }
     
 }

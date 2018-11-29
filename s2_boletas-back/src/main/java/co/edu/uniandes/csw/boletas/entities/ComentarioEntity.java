@@ -51,4 +51,17 @@ public class ComentarioEntity extends BaseEntity implements Serializable
         this.mensaje = mensaje;
     }
     
+    @Override
+    public boolean equals (Object obj)
+    {
+        return super.equals(obj);
+    }
+    
+    @Override
+    public int hashCode() {
+        if (this.getId() != null) {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
+    }
 }
