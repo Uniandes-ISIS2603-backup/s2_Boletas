@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "39ba3cfa-f856-4c05-bc6d-8cd2144826d1",
+		"_postman_id": "7d8efed6-01e2-4865-903a-fa7e94979863",
 		"name": "ClienteTests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -32,7 +32,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"usuario\": {{new_id_c}},\"nombre\": \"Nicolas\", \"pago\": \"Tajeta\", \"cedula\":\"123\"}"
+					"raw": "{\n\t\"usuario\": \"{{new_id_c}}.cliente\",\n\"nombre\": \"Nicolas\",\n\"pago\": \"Tajeta\", \n\"cedula\":\"123\"}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes",
@@ -112,8 +112,7 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"disabled": false
+						"value": "application/json"
 					}
 				],
 				"body": {

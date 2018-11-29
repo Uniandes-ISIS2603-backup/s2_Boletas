@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ca29ccf0-920d-4ce6-ab1f-2978ffccde28",
+		"_postman_id": "534e2c89-8b30-4387-9d91-9d5d2865cfa7",
 		"name": "OrganizadorEspectaculoTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,13 +12,13 @@
 					"listen": "test",
 					"script": {
 						"id": "a5a9477d-69a0-4578-b08b-bff66e0a9c2d",
-						"type": "text/javascript",
 						"exec": [
 							"var data= JSON.parse(responseBody)",
-							"postman.setGlobalVariable(\"new_id_o\",data.id )",
+							"postman.setGlobalVariable(\"new_id_oOE\",data.id )",
 							"tests [\"no genera error en el post\"]=responseCode.code=200",
 							""
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -32,7 +32,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"usuario\": \"r.casalla\", \"nombre\": \"Rubby\", \"ganancia\": \"123\" , \"presupuesto\": \"345\"}"
+					"raw": "{\"usuario\": \"{{new_id_oOE}}.organizadorEspectaculo.orga\", \"nombre\": \"Rubby\", \"ganancia\": \"123\" , \"presupuesto\": \"345\"}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores",
@@ -57,12 +57,12 @@
 					"listen": "test",
 					"script": {
 						"id": "99744daf-cf1f-44d6-a817-3d6652775cdd",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"postman.setGlobalVariable(\"new_id_eOE\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -76,7 +76,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"Tour of\"\n\t,\"fecha\":\"2020-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"Es un show\"\n\t,\"artista\":\"GMM\"\n\t,\"tipo\":\"Concierto\"\n}\n"
+					"raw": "{\n\t\"nombre\":\"{{new_id_eOE}}.organizadorEspectaculo.espec\"\n\t,\"fecha\":\"2020-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"Es un show\"\n\t,\"artista\":\"GMM\"\n\t,\"tipo\":\"Concierto\"\n}\n"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
@@ -101,13 +101,13 @@
 					"listen": "test",
 					"script": {
 						"id": "43108a93-c17f-4109-a13e-d6193db09c68",
-						"type": "text/javascript",
 						"exec": [
 							"var data= JSON.parse(responseBody)",
-							"postman.setGlobalVariable(\"new_id_o2\",data.id )",
+							"postman.setGlobalVariable(\"new_id_oOE2\",data.id )",
 							"tests [\"no genera error en el post\"]=responseCode.code=200",
 							""
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -121,7 +121,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"usuario\": \"v.tirado\", \"nombre\": \"Vilma\", \"ganancia\": \"0\" , \"presupuesto\": \"5000\"}"
+					"raw": "{\"usuario\": \"{{new_id_oOE2}}.organizadorEspectaculo.organizador2\", \"nombre\": \"Vilma\", \"ganancia\": \"0\" , \"presupuesto\": \"5000\"}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores",
@@ -146,12 +146,12 @@
 					"listen": "test",
 					"script": {
 						"id": "27edfc45-9eb9-4fd1-a2e2-e0a7008574f8",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_e2\",data.id);",
+							"postman.setGlobalVariable(\"new_id_eOE2\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -165,7 +165,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"Sofa\"\n\t,\"fecha\":\"2020-07-21T18:25:43.511Z\"\n\t,\"descripcion\":\"Es una convencion de muchas cosas\"\n\t,\"artista\":\"Artista1;Artista2;Artista3\"\n\t,\"tipo\":\"Feria\"\n}\n"
+					"raw": "{\n\t\"nombre\":\"{{new_id_eOE2}}.organizadorEspectaculo.espec2\"\n\t,\"fecha\":\"2020-07-21T18:25:43.511Z\"\n\t,\"descripcion\":\"Es una convencion de muchas cosas\"\n\t,\"artista\":\"Artista1;Artista2;Artista3\"\n\t,\"tipo\":\"Feria\"\n}\n"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
@@ -185,12 +185,28 @@
 		},
 		{
 			"name": "Agrega un espectaculo a un organizador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b9901037-2a25-460a-9959-6c924c3991e4",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_o}}/espectaculos/{{new_id_e}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_oOE}}/espectaculos/{{new_id_eOE}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -200,9 +216,9 @@
 						"s2_boletas-api",
 						"api",
 						"organizadores",
-						"{{new_id_o}}",
+						"{{new_id_oOE}}",
 						"espectaculos",
-						"{{new_id_e}}"
+						"{{new_id_eOE}}"
 					]
 				}
 			},
@@ -215,11 +231,11 @@
 					"listen": "test",
 					"script": {
 						"id": "0637c367-3805-4950-b16a-37814257e891",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No agrega un espectaculo que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /espectaculos/0 no existe.\");"
-						]
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El Recurso /espectaculos/ 0 no existe\");"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -236,7 +252,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_o}}/espectaculos/0",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_oOE}}/espectaculos/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -246,7 +262,7 @@
 						"s2_boletas-api",
 						"api",
 						"organizadores",
-						"{{new_id_o}}",
+						"{{new_id_oOE}}",
 						"espectaculos",
 						"0"
 					]
@@ -261,21 +277,24 @@
 					"listen": "test",
 					"script": {
 						"id": "36ba6b06-5cb8-4cc1-875d-3a8fad03ff89",
-						"type": "text/javascript",
 						"exec": [
 							"var data= JSON.parse(responseBody);",
 							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
 							"tests[\"Editorial count with books\"] = data.length >= 0;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_o}}/espectaculos",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_oOE}}/espectaculos",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -285,7 +304,7 @@
 						"s2_boletas-api",
 						"api",
 						"organizadores",
-						"{{new_id_o}}",
+						"{{new_id_oOE}}",
 						"espectaculos"
 					]
 				}
@@ -299,21 +318,24 @@
 					"listen": "test",
 					"script": {
 						"id": "58ad4be7-3a6f-4e20-b95c-3242b2986e50",
-						"type": "text/javascript",
 						"exec": [
 							"console.log(responseBody);",
 							"var data = JSON.parse(responseBody);",
 							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_o}}/espectaculos/{{new_id_e}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_oOE}}/espectaculos/{{new_id_eOE}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -323,9 +345,9 @@
 						"s2_boletas-api",
 						"api",
 						"organizadores",
-						"{{new_id_o}}",
+						"{{new_id_oOE}}",
 						"espectaculos",
-						"{{new_id_e}}"
+						"{{new_id_eOE}}"
 					]
 				}
 			},
@@ -338,20 +360,23 @@
 					"listen": "test",
 					"script": {
 						"id": "2e59c492-9ea9-4c06-9c90-69743e10f511",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No se puede obtener un espectaculo que no esta asociado\"] = responseCode.code === 412;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El espectaculo no está asociado al organizador\");"
-						]
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El espectaculo no pertenece a este organizador\");"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_o}}/espectaculos/{{new_id_e2}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_oOE}}/espectaculos/{{new_id_eOE2}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -361,9 +386,9 @@
 						"s2_boletas-api",
 						"api",
 						"organizadores",
-						"{{new_id_o}}",
+						"{{new_id_oOE}}",
 						"espectaculos",
-						"{{new_id_e2}}"
+						"{{new_id_eOE2}}"
 					]
 				}
 			},
@@ -376,12 +401,12 @@
 					"listen": "test",
 					"script": {
 						"id": "1f747293-3391-4511-a1f5-68488d756734",
-						"type": "text/javascript",
 						"exec": [
 							"console.log(responseBody);",
 							"var data = JSON.parse(responseBody);",
 							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -395,10 +420,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n    {\n        \"nombre\":\"colo\"\n\t,\"fecha\":\"2020-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical\"\n\t,\"artista\":\"Coldpla\"\n\t,\"tipo\":\"tipo\"\n\t,\"organizador\":{\n\t\t\"id\":{{new_id_o2}},\"usuario\": \"v.tirado\", \"nombre\": \"Vilma\", \"ganancia\": \"0\" , \"presupuesto\": \"5000\"\n\t}\n    }\n]"
+					"raw": "[\n    {\n    \"type\": \"espectaculoDetailDTO\",\n    \"fecha\": \"2020-04-23\",\n    \"artista\": \"GMM\",\n    \"descripcion\": \"Es un show\",\n    \"id\": {{new_id_eOE}},\n    \"nombre\": \"{{new_id_eOE}}.organizadorEspectaculo.espec.edit\",\n    \"tipo\": \"Concierto\",\n    \"boletas\": [],\n    \"comentarios\": [],\n    \"organizador\":{\n\t\t\"id\":{{new_id_oOE2}},\"usuario\": \"v.tirado\", \"nombre\": \"Vilma\", \"ganancia\": \"0\" , \"presupuesto\": \"5000\"\n\t}\n}\n]"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_o2}}/espectaculos",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_oOE2}}/espectaculos",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -408,7 +433,7 @@
 						"s2_boletas-api",
 						"api",
 						"organizadores",
-						"{{new_id_o2}}",
+						"{{new_id_oOE2}}",
 						"espectaculos"
 					]
 				}
@@ -422,19 +447,22 @@
 					"listen": "test",
 					"script": {
 						"id": "91bb5526-231b-492b-88cc-1bcce14cbca9",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_eOE}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -444,7 +472,7 @@
 						"s2_boletas-api",
 						"api",
 						"espectaculos",
-						"{{new_id_b}}"
+						"{{new_id_eOE}}"
 					]
 				}
 			},
@@ -457,19 +485,22 @@
 					"listen": "test",
 					"script": {
 						"id": "4a98beef-9d42-476e-be47-d24442ad1058",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_b2}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_eOE2}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -479,7 +510,7 @@
 						"s2_boletas-api",
 						"api",
 						"espectaculos",
-						"{{new_id_b2}}"
+						"{{new_id_eOE2}}"
 					]
 				}
 			},
@@ -492,19 +523,22 @@
 					"listen": "test",
 					"script": {
 						"id": "252af41b-025e-47a7-aab2-960cb4baa3c3",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_o}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_oOE}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -514,7 +548,7 @@
 						"s2_boletas-api",
 						"api",
 						"organizadores",
-						"{{new_id_o}}"
+						"{{new_id_oOE}}"
 					]
 				}
 			},
@@ -527,19 +561,22 @@
 					"listen": "test",
 					"script": {
 						"id": "a8f9f6f6-d9cf-4036-b6a9-431ea0985009",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_o2}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/organizadores/{{new_id_oOE2}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -549,7 +586,7 @@
 						"s2_boletas-api",
 						"api",
 						"organizadores",
-						"{{new_id_o2}}"
+						"{{new_id_oOE2}}"
 					]
 				}
 			},

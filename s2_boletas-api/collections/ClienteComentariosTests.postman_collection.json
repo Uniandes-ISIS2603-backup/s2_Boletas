@@ -1,0 +1,964 @@
+{
+	"info": {
+		"_postman_id": "e8f0c6f6-8bad-403e-bbca-db678067b487",
+		"name": "ClienteComentariosTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST Crear espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d89d53fd-0039-47f7-bcc9-c56fd8f69280",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_eCCOM\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "659d06be-da77-496c-994b-3744f5a5749e",
+						"exec": [
+							"var moment = require('moment');",
+							"var m = moment().utcOffset(0);",
+							"m.set({hour:0,minute:0,second:0,millisecond:0});",
+							"postman.setEnvironmentVariable('isoTime',m.toISOString());",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n        \"artista\": \"El mejor artista\",\n        \"descripcion\": \"el mejor show de la historia, con los mejores artistas\",\n        \"fecha\": \"{{isoTime}}\",\n        \"nombre\": \"{{new_id_eCCOM}}.espectaculoComentarios.{{new_id_eCOM}}\"\n        \n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST crear cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e864a547-48bf-4e14-b747-f0758946ef0b",
+						"exec": [
+							"var data= JSON.parse(responseBody)",
+							"postman.setGlobalVariable(\"new_id_cliCCOM\",data.id )",
+							"tests [\"no genera error en el post\"]=responseCode.code=200",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"usuario\": \"{{new_id_cliCCOM}}.clienteComentarios.clie\",\"nombre\": \"postmon salvaje\", \"pago\": \"Tajeta\", \"cedula\":\"123\"}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST crear cliente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e864a547-48bf-4e14-b747-f0758946ef0b",
+						"exec": [
+							"var data= JSON.parse(responseBody)",
+							"postman.setGlobalVariable(\"new_id_cliCCOM2\",data.id )",
+							"tests [\"no genera error en el post\"]=responseCode.code=200",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"usuario\": \"{{new_id_cliCCOM2}}.clienteComentarios.clie\",\"nombre\": \"postmon salvaje shiny\", \"pago\": \"Tajeta\", \"cedula\":\"123\"}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear boleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "60ffc45f-5896-4fcd-8d9f-60475f9ed44c",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_bCCOM\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "761e319a-24ff-42f6-a06d-2851868c6727",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n\t\"fecha\":\"{{isoTime}}\",\n\t\"precio\":5000,\n\t\"espectaculo\":{\"id\":{{new_id_eCCOM}}, \"fecha\":\"{{isoTime}}\"},\n\t\"vendida\":true\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8d6e20a1-e8d7-489d-a447-9b474335036e",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_cCCOM\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"costoTotal\": \"2000\", \"envio\": true, \"fecha\": \"2018-10-20T18:25:43.511Z\", \"direccion\": \"Cra 1 #18a-12\", \"estado\": true}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar boleta compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "49823c0a-fdc6-4b1f-a67d-7a290594acd7",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{new_id_cCCOM}}/boletas/{{new_id_bCCOM}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{new_id_cCCOM}}",
+						"boletas",
+						"{{new_id_bCCOM}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar cliente compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be7d6d66-c3b7-4431-84af-e4e7aec83cbc",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cliCCOM}}/compras/{{new_id_cCCOM}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cliCCOM}}",
+						"compras",
+						"{{new_id_cCCOM}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST comentario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87540d6e-3751-4d6a-bb1f-34a7f101b33b",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newComentario_idCCOM1\",data.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n        \"mensaje\":\"take me out of my misery T.T\",\n        \"espectaculo\":{\"id\":{{new_id_eCCOM}}},\n        \"cliente\":{\"id\":{{new_id_cliCCOM}}}\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST comentario 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87540d6e-3751-4d6a-bb1f-34a7f101b33b",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newComentario_idCCOM2\",data.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n        \"mensaje\":\"no ha acabado T.T\",\n        \"espectaculo\":{\"id\":{{new_id_eCCOM}}},\n        \"cliente\":{\"id\":{{new_id_cliCCOM}}}\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Obtener los comentarios de un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6c167bd-9cd1-491d-bb53-a0a747ab672e",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cliCCOM}}/comentarios",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cliCCOM}}",
+						"comentarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Obtener un comentario del cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ac0a0b3a-fb33-4f57-a710-cd9499513503",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cliCCOM}}/comentarios/{{newComentario_idCCOM2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cliCCOM}}",
+						"comentarios",
+						"{{newComentario_idCCOM2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Obtener un comenatrio no asociado al cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9cb7a923-7b55-4fa4-9f0e-90c1c2bc019a",
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"    pm.response.to.have.status(412);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cliCCOM2}}/comentarios/{{newComentario_idCCOM2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cliCCOM2}}",
+						"comentarios",
+						"{{newComentario_idCCOM2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Obtener un comentario que no existe del cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc33d7c5-ea5f-4377-af6e-18d18200854d",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cliCCOM}}/comentarios/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cliCCOM}}",
+						"comentarios",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT asignar comentarios a un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5214abaf-1331-4cb2-b2c9-716d9e551399",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"cliente\": {\n            \"cedula\": \"123\",\n            \"id\": {{new_id_cliCCOM}},\n            \"nombre\": \"postmon salvaje evolucionado\",\n            \"pago\": \"Tajeta\",\n            \"usuario\": \"{{new_id_cliCCOM}}.clienteComentario.clie.evol\"\n        },\n        \"espectaculo\": {\n            \"fecha\": \"2018-11-29\",\n            \"artista\": \"El mejor artista\",\n            \"descripcion\": \"el mejor show de la historia, con los mejores artistas\",\n            \"id\": {{new_id_eCCOM}},\n            \"nombre\": \"{{new_id_eCCOM}}.espectaculoComentario.{{new_id_eCCOM}}.aaach\"\n        },\n        \"id\": {{newComentario_idCCOM1}},\n        \"mensaje\": \"take me out of my misery T.T ... please\"\n    }\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cliCCOM}}/comentarios",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cliCCOM}}",
+						"comentarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT asignar comentarios que no existen a un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5214abaf-1331-4cb2-b2c9-716d9e551399",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n   {\n    \"cliente\": {\n        \"id\": {{new_id_cliCCOM}}\n    },\n    \"espectaculo\": {\n        \"id\": {{new_id_eCCOM}}\n    },\n    \"id\": 0,\n    \"mensaje\": \"take me out of my misery T.T\"\n}\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cliCCOM}}/comentarios",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cliCCOM}}",
+						"comentarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar comentario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d396b9b-f13f-45d4-87d3-2f7725a0baac",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/{{newComentario_idCCOM1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios",
+						"{{newComentario_idCCOM1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar comenatrio 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d396b9b-f13f-45d4-87d3-2f7725a0baac",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/comentarios/{{newComentario_idCCOM2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"comentarios",
+						"{{newComentario_idCCOM2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar boleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e51ef814-5284-463d-b936-f91e25698397",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/boletas/{{new_id_bCCOM}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"boletas",
+						"{{new_id_bCCOM}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e51ef814-5284-463d-b936-f91e25698397",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/compras/{{new_id_cCCOM}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"compras",
+						"{{new_id_cCCOM}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e51ef814-5284-463d-b936-f91e25698397",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cliCCOM}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cliCCOM}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar cliente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e51ef814-5284-463d-b936-f91e25698397",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/clientes/{{new_id_cliCCOM2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"clientes",
+						"{{new_id_cliCCOM2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE borrar espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e51ef814-5284-463d-b936-f91e25698397",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_eCCOM}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"{{new_id_eCCOM}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

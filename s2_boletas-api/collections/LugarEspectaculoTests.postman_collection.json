@@ -1,0 +1,576 @@
+{
+	"info": {
+		"_postman_id": "09f8e325-35a6-480f-bad7-5652759af395",
+		"name": "LugarEspectaculoTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateLugar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f32dc8d1-c218-4992-be3a-45ad56724ada",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"newLugar_idLE\",data.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"numSillas\":\"2000\",\n\t\"direccion\":\"kra 6 cll 22\",\n\t\"nombre\":\"{{newLugar_idLE}}.lugar\",\n\t\"ubicacion\": \"teatro\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crea un espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8287b62d-9968-4d0f-91e2-5795bb9eb99d",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_eLE1\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"{{new_id_eLE1}}.espectaculos\"\n\t,\"fecha\":\"2020-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical\"\n\t,\"artista\":\"Coldpla\"\n\t,\"tipo\":\"tipo\"\n\t\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crea un espectaculo 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8287b62d-9968-4d0f-91e2-5795bb9eb99d",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_eLE2\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"{{new_id_eLE2}}.espectaculos\"\n\t,\"fecha\":\"2020-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical\"\n\t,\"artista\":\"Coldpla\"\n\t,\"tipo\":\"tipo\"\n\t\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST agregar espectaculo que no existe al lugar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9a94250-89e0-4ef2-adb7-7606d63c9007",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/{{newLugar_idLE}}/espectaculos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares",
+						"{{newLugar_idLE}}",
+						"espectaculos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST agregar espectaculo al luagr",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9a94250-89e0-4ef2-adb7-7606d63c9007",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/{{newLugar_idLE}}/espectaculos/{{new_id_eLE1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares",
+						"{{newLugar_idLE}}",
+						"espectaculos",
+						"{{new_id_eLE1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET espectaculo del lugar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9a94250-89e0-4ef2-adb7-7606d63c9007",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/{{newLugar_idLE}}/espectaculos/{{new_id_eLE1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares",
+						"{{newLugar_idLE}}",
+						"espectaculos",
+						"{{new_id_eLE1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET espectaculos del lugar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9a94250-89e0-4ef2-adb7-7606d63c9007",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/{{newLugar_idLE}}/espectaculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares",
+						"{{newLugar_idLE}}",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT asignar espectaculos al lugar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9a94250-89e0-4ef2-adb7-7606d63c9007",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"type\": \"espectaculoDetailDTO\",\n        \"fecha\": \"2020-04-23\",\n        \"artista\": \"Coldpla\",\n        \"descripcion\": \"es un musical\",\n        \"id\": {{new_id_eLE1}},\n        \"lugar\": {\n            \"direccion\": \"kra 6 cll 22\",\n            \"id\": {{newLugar_idLE}},\n            \"nombre\": \"{{newLugar_idLE}}.lugar.edit\",\n            \"numSillas\": 2000,\n            \"ubicacion\": \"teatro\"\n        },\n        \"nombre\": \"{{new_id_eLE1}}.espectaculos\",\n        \"tipo\": \"tipo\",\n        \"boletas\": [],\n        \"comentarios\": []\n    },\n    {\n\t\"nombre\":\"{{new_id_eLE2}}.espectaculos\",\n        \"id\": {{new_id_eLE2}},\n        \"lugar\": {\n            \"direccion\": \"kra 6 cll 22\",\n            \"id\": {{newLugar_idLE}},\n            \"nombre\": \"{{newLugar_idLE}}.lugar.edit\",\n            \"numSillas\": 2000,\n            \"ubicacion\": \"teatro\"\n        },\n        \"fecha\":\"2020-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical sobre pruebas postman\"\n\t,\"artista\":\"MR.POST & MR.MAN\"\n\t,\"tipo\":\"tipo\"\n\t\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/{{newLugar_idLE}}/espectaculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares",
+						"{{newLugar_idLE}}",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT asignar espectaculos al lugar que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9a94250-89e0-4ef2-adb7-7606d63c9007",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"type\": \"espectaculoDetailDTO\",\n        \"fecha\": \"2020-04-23\",\n        \"artista\": \"Coldpla\",\n        \"descripcion\": \"es un musical\",\n        \"id\": {{new_id_eLE1}},\n        \"lugar\": {\n            \"direccion\": \"kra 6 cll 22\",\n            \"id\": {{newLugar_idLE}},\n            \"nombre\": \"{{newLugar_idLE}}.lugar.edit\",\n            \"numSillas\": 2000,\n            \"ubicacion\": \"teatro\"\n        },\n        \"nombre\": \"{{new_id_eLE1}}.espectaculos\",\n        \"tipo\": \"tipo\",\n        \"boletas\": [],\n        \"comentarios\": []\n    },\n    {\n\t\"nombre\":\"{{new_id_eLE2}}.espectaculos\",\n        \"id\": {{new_id_eLE2}},\n        \"lugar\": {\n            \"direccion\": \"kra 6 cll 22\",\n            \"id\": {{newLugar_idLE}},\n            \"nombre\": \"{{newLugar_idLE}}.lugar.edit\",\n            \"numSillas\": 2000,\n            \"ubicacion\": \"teatro\"\n        },\n        \"fecha\":\"2020-04-23T18:25:43.511Z\"\n\t,\"descripcion\":\"es un musical sobre pruebas postman\"\n\t,\"artista\":\"MR.POST & MR.MAN\"\n\t,\"tipo\":\"tipo\"\n\t\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/0/espectaculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares",
+						"0",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT asignar espectaculos que no existe al lugar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9a94250-89e0-4ef2-adb7-7606d63c9007",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"type\": \"espectaculoDetailDTO\",\n        \"fecha\": \"2020-04-23\",\n        \"artista\": \"Coldpla\",\n        \"descripcion\": \"es un musical\",\n        \"id\": 0,\n        \"lugar\": {\n            \"direccion\": \"kra 6 cll 22\",\n            \"id\": {{newLugar_idLE}},\n            \"nombre\": \"{{newLugar_idLE}}.lugar.edit\",\n            \"numSillas\": 2000,\n            \"ubicacion\": \"teatro\"\n        },\n        \"nombre\": \"{{new_id_eLE1}}.espectaculos\",\n        \"tipo\": \"tipo\",\n        \"boletas\": [],\n        \"comentarios\": []\n    }\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/{{newLugar_idLE}}/espectaculos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares",
+						"{{newLugar_idLE}}",
+						"espectaculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borra un espectaculo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ecf93fd-4762-4acc-90e1-1d93ad375c67",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_eLE1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"{{new_id_eLE1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borra un espectaculo 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ecf93fd-4762-4acc-90e1-1d93ad375c67",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/espectaculos/{{new_id_eLE2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"espectaculos",
+						"{{new_id_eLE2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteLugar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "20e8ecaa-b7c0-4f3e-b389-108f3ec0e138",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_boletas-api/api/lugares/{{newLugar_idLE}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_boletas-api",
+						"api",
+						"lugares",
+						"{{newLugar_idLE}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
