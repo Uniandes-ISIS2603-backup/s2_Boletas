@@ -20,8 +20,7 @@ public class DevolucionEntity extends BaseEntity implements Serializable
     private List<Long> boletas;
     
     @PodamExclude
-    @javax.persistence.OneToOne(mappedBy = "devolucion",
-    fetch = javax.persistence.FetchType.LAZY)
+    @javax.persistence.OneToOne()
     CompraEntity compra;
 
     public List<Long> getBoletas() {
